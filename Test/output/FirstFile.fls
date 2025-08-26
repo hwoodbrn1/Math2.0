@@ -1,0 +1,23 @@
+PWD c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Test
+INPUT c:/texlive/2023/texmf.cnf
+INPUT c:/texlive/2023/texmf-dist/web2c/texmf.cnf
+INPUT c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Test/FirstFile.tex
+OUTPUT output/FirstFile.log
+INPUT c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
+INPUT c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
+INPUT c:/texlive/2023/texmf-dist/tex/latex/base/size11.clo
+INPUT c:/texlive/2023/texmf-dist/tex/latex/base/size11.clo
+INPUT c:/texlive/2023/texmf-dist/tex/latex/base/size11.clo
+INPUT c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
+INPUT c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT output/FirstFile.aux
+INPUT output/FirstFile.aux
+INPUT output/FirstFile.aux
+OUTPUT output/FirstFile.aux
+OUTPUT output/FirstFile.pdf
+INPUT c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+INPUT output/FirstFile.aux
+INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmr10.657pk
