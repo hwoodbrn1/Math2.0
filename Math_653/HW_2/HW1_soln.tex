@@ -1,0 +1,52 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{bookmark}
+\usepackage{fullpage}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{pdfpages}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.5in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\begin{document}
+
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 653}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+\section*{Homework 1}
+
+\begin{enumerate}
+    \item Let $G$ be a group, $H \subset G$ be a subgroup, and $g \in G$. We will show
+    $gHg^{-1} = \{ghg^{-1}: h \in H\}$ is a subgroup. 
+
+    It contains the identity since $geg^{-1} = gg^{-1} = e$. 
+    
+    It contains inverses: let $gag^{-1}$
+    be some element of $gHg^{-1}$, with $a \in H$. Then since $H$ is a subgroup, $a^{-1} \in H$, 
+    and $ga^{-1}g^{-1} \in gHg^{-1}$ is the inverse of $gag^{-1}$ since $gag^{-1}ga^{-1}g^{-1}
+    = gaa^{-1}g^{-1} = e$.
+
+    Finally, $gHg^{-1}$ is closed under multiplication since for $gag^{-1}, gbg^{-1} \in gHg^{-1}$,
+    $gag^{-1}gbg^{-1} = gabg^{-1}$. As $H$ is a subgroup, we have $ab \in H$ and thus $gabg^{-1} \in gHg^{-1}$.
+
+    Now we show that $gHg^{-1}$ is isomorphic to $H$. I claim the map $\varphi: H \rightarrow gHg^{-1}$
+    defined by $a \mapsto gag^{-1}$ is an isomorphism of subgroups. It is a group homomorphism
+    since $\varphi(ab) = gabg^{-1} = gag^{-1}gbg^{-1} = \varphi(a)\varphi(b)$. It is injective: 
+    suppose $\varphi(a) = e$. Then $gag^{-1} = e$, and thus $a = g^{-1}eg = e$. It is surjective: 
+    choose any $gag^{-1} \in gHg^{-1}$. Then $\varphi(a) = gag^{-1}$. Thus $\varphi$ is an isomorphism.
+    
+\end{enumerate}
+
+\end{document}
