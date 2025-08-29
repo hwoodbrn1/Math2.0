@@ -1,0 +1,169 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{bookmark}
+\usepackage{fullpage}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{pdfpages}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.5in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\begin{document}
+
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 653}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+\section*{Homework 1}
+
+\begin{enumerate}
+    \item Let $S = \{1, 2\}$, a set with 2 elements. We write the elements of $\operatorname{Func}(S)$
+    as
+    \[
+    e := \begin{pmatrix}
+        1 & 2 \\ 1 & 2
+    \end{pmatrix}
+    \qquad 
+    \alpha := \begin{pmatrix}
+        1 & 2 \\ 2 & 1
+    \end{pmatrix}
+    \qquad 
+    \beta := \begin{pmatrix}
+        1 & 2 \\ 1 & 1
+    \end{pmatrix}
+    \qquad 
+    \gamma := \begin{pmatrix}
+        1 & 2 \\ 2 & 2
+    \end{pmatrix}.
+    \]
+
+    Then the multiplication table for the monoid $\operatorname{Func}(S)$ under composition is as follows:
+
+    \begin{tabular}{L || L | L | L | L}
+        \circ   &    e     &   \alpha  &   \beta   &   \gamma\\
+        \hline
+        e       &    e     &   \alpha  &   \beta   &   \gamma\\
+        \hline
+        \alpha  &   \alpha &   e       &   \gamma  &   \beta\\
+        \hline
+        \beta   &   \beta  &   \beta   &   \beta   &   \beta\\
+        \hline
+        \gamma  & \gamma   &   \gamma  &   \gamma  &   \gamma 
+    \end{tabular}
+
+    This monoid is not commutative since $\gamma \circ \beta = \beta$ but $\beta \circ \gamma = \gamma$. 
+
+    \item Let $\mathbb{R}_{\geq 0}$ be the monoid of nonnegative real numbers under addition,
+    and let $\mathbb{R}^+$ denote the monoid of positive real numbers under multiplication.
+    \begin{enumerate}
+        \item[(a.)] We know that any submonoid of $\mathbb{R}_{\geq 0}$ must contain $0$. Also,
+        any submonoid containing $\sqrt{3}$ must contain $\sqrt{3}\mathbb{N}$, where $\mathbb{N}$
+        is the monoid of nonnegative integers under addition. $\sqrt{3}\mathbb{N}$ is in fact the smallest submonoid
+        containing $\sqrt{3}$, since no smaller subset is a monoid, and any submonoid
+        containing $\sqrt{3}$ must contain $\sqrt{3}\mathbb{N}$.
+
+        \item[(b.)] A submonoid of $\mathbb{R}^+$ containing $\sqrt{3}$ necessarily contains 
+        $\sqrt{3}^n$ for $n = 0, 1, 2, \dots$. The set $\{\sqrt{3}^n: n = 0, 1, 2, \dots\}$
+        is a submonoid of $\mathbb{R}^+$ under multiplication, and removing any element makes it not a monoid. 
+        This is the smallest monoid containing $\sqrt{3}$.
+
+        \item[(c.)] $\mathbb{R}_{\geq 0}$ is not a group because none of the positive
+        reals have additive inverses.
+
+        $\mathbb{R}^+$ is a group because it is a monoid where every $r \in \mathbb{R}^+$ has 
+        an inverse, namely $1/r$ since $r > 0$.
+
+        If we want to find the smallest subgroup of $\mathbb{R}^+$ containing $\sqrt{3}$,
+        we need all integer powers of $\sqrt{3}$, not just the nonnegative ones. It is trivial
+        to check that this also defines a submonoid. Also, every
+        element $(\sqrt{3})^n$ has inverse $(\sqrt{3})^{-n}$, and we still have identity $1 = (\sqrt{3})^0$.
+    \end{enumerate}
+
+    \item The identity in $\operatorname{GL}(2, \mathbb{R})$ is the matrix $\left(\begin{smallmatrix}
+        1 & 0 \\ 0 & 1
+    \end{smallmatrix}\right)$. This is indeed contained in 
+    $B_2(\mathbb{R}) := \{\left(\begin{smallmatrix} a & b \\ 0 & c \end{smallmatrix}\right): a,b,c \in \mathbb{R},\ ac \neq 0\}$.
+
+    We check that $B_2(\mathbb{R})$ is closed under multiplication: for $\left(\begin{smallmatrix}
+        a & b \\ 0 & c
+    \end{smallmatrix}\right), \left(\begin{smallmatrix}
+        d & e \\ 0 & f
+    \end{smallmatrix}\right) \in B_2(\mathbb{R})$, we have
+    \[
+    \begin{pmatrix}
+        a & b \\ 0 & c
+    \end{pmatrix}
+    \begin{pmatrix}
+        d & e \\ 0 & f
+    \end{pmatrix}
+    = \begin{pmatrix}
+        ad & ea + bf \\ 0 & cf
+    \end{pmatrix} \in B_2(\mathbb{R}),
+    \]
+    since $adcf = (ac)(df) \neq 0$.
+
+    Also, if 
+    \[
+    \begin{pmatrix}
+        a & b \\ 0 & c
+    \end{pmatrix}
+    \begin{pmatrix}
+        d & e \\ 0 & f
+    \end{pmatrix}
+    = \begin{pmatrix}
+        1 & 0 \\ 0 & 1
+    \end{pmatrix},
+    \]
+    Then $ad = cf = 1$, and $ea + bf = 0$. Then we can solve for $d, e, f$ to get $d = a^{-1}$, 
+    $f = c^{-1}$, and $e = -cab^{-1}$, giving us the inverse of $\left(\begin{smallmatrix}
+        a & b \\ 0 & c
+    \end{smallmatrix}\right)$.
+
+    \item To see that $f$ is injective, we note that a complex number is uniquely determined by 
+    its real and imaginary parts. 
+
+    We have 
+    \[
+    f((a + bi)(c + di)) = f((ac - bd) + (bc + ad)i) = \begin{pmatrix}
+        ac - bd & bc + ad \\ -(bc + ad) & ac - bd
+    \end{pmatrix}
+    \]
+    \[
+    = \begin{pmatrix}
+        a & b \\ -b & a
+    \end{pmatrix}
+    \begin{pmatrix}
+        c & d \\ -d & c
+    \end{pmatrix}
+    =f(a + bi)f(c + di),\]
+    so that $f$ is a monoid homomorphism and thus a group homomorphism.
+
+    \item We have $e \in Z(G)$ since for any $g \in G$, $eg = ge = g$.
+    
+    If $a \in Z(G)$, then $a^{-1} \in Z(G)$, since for any $g \in G$, 
+    \[a^{-1}g = a^{-1}gaa^{-1} = 
+    a^{-1}aga^{-1} = ga^{-1}.\]
+
+    If $a,b \in Z(G)$, then the product $ab \in Z(G)$ since for any $g \in G$,
+    \[
+    gab = agb = abg.
+    \]
+
+    Then $Z(G)$ is a subgroup since it contains identity, is closed, and contains inverses.
+
+    $C_G(g)$ is a subgroup for the same reasons and the proof is similar.
+
+\end{enumerate}
+
+\end{document}

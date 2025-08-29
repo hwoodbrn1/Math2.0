@@ -1,0 +1,158 @@
+%HW01.tex
+%
+% First Homework for Graduate Algebra
+% Frank Sottile
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt]{article}
+\usepackage{multicol,amsfonts, amssymb,  mathtools,amsmath}
+\usepackage{colordvi,graphicx}
+\headheight=8pt
+%
+\topmargin=-75pt
+\textheight=720pt   \textwidth=560pt
+\oddsidemargin=-60pt \evensidemargin=-60pt
+
+
+\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\CC}{{\mathbb C}}
+\newcommand{\KK}{{\mathbb K}}
+\newcommand{\NN}{{\mathbb N}}
+\newcommand{\QQ}{{\mathbb Q}}
+\newcommand{\RR}{{\mathbb R}}
+\newcommand{\TT}{{\mathbb T}}
+\newcommand{\ZZ}{{\mathbb Z}}
+
+\newcommand{\calA}{{\mathcal A}}
+\newcommand{\be}{{\bf e}}
+
+\newcommand{\Hom}{\mbox{Hom}}
+\newcommand{\spec}{\mbox{spec}}
+\newcommand{\cone}{\mbox{cone}}
+
+\newcommand{\vect}[2]{(\begin{smallmatrix}#1\\#2\end{smallmatrix})}
+
+\def\Color#1#2{\special{color push cmyk #1}#2\special{color pop}}
+%\def\Indigo#1{\Color{.42 1. 0. .49}{#1}}
+\def\Indigo#1{\Color{1. .95 .05 .4}{#1}}
+\def\MyViolet#1{\Color{.6 1. 0. .15}{#1}}
+\def\TAMU#1{\Color{.15 1. .39 .69}{#1}}
+
+\newcommand{\barsl}{\noindent\begin{minipage}[t]{590pt}
+\Indigo{\rule{590pt}{1.2pt}}\vspace{-5.7mm}\\
+\MyViolet{\rule{590pt}{1.2pt}}\vspace{-5.7mm}\\
+\Blue{\rule{590pt}{1.2pt}}\vspace{-5.7mm}\\
+\Green{\rule{590pt}{1.2pt}}\vspace{-5.7mm}\\
+\Yellow{\rule{590pt}{1.2pt}}\vspace{-5.7mm}\\
+\Orange{\rule{590pt}{1.2pt}}\vspace{-5.7mm}\\
+\Red{\rule{590pt}{1.2pt}}\bigskip
+\end{minipage}}
+
+
+\newcommand{\barsn}{\noindent\begin{minipage}[t]{590pt}
+\Indigo{\rule{590pt}{1.1pt}}\vspace{-4.5mm}\\
+\MyViolet{\rule{590pt}{1.1pt}}\vspace{-4.5mm}\\
+\Blue{\rule{590pt}{1.1pt}}\vspace{-4.5mm}\\
+\Green{\rule{590pt}{1.1pt}}\vspace{-4.5mm}\\
+\Yellow{\rule{590pt}{1.1pt}}\vspace{-4.5mm}\\
+\Orange{\rule{590pt}{1.1pt}}\vspace{-4.5mm}\\
+\Red{\rule{590pt}{1.1pt}}\bigskip
+\end{minipage}}
+
+\def\demph#1{\TAMU{{\sl #1}}}
+\def\defcolor#1{\TAMU{#1}}
+
+\begin{document}
+\LARGE 
+\noindent
+Algebra \ \ Autumn 2025\vspace{1pt}\\
+Frank Sottile\vspace{1pt}\\
+\Large 26 August 2025 \hfill
+\sf
+ First Homework\makebox[40pt][l]{\ }
+\normalsize\vspace{10pt}
+
+\noindent
+Write your answers neatly, in complete sentences.  
+I highly recommend recopying your work before handing it in.
+Correct and crisp proofs are greatly appreciated; oftentimes your work can be shortened and made clearer.
+
+\barsn
+
+\noindent\Maroon{{\sf Hand in at the start of class, Thursday 28 August:}} 
+
+\begin{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item[0.] Read Sections I.1 and I.2 of Lang's Algebra.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+  We explained that \defcolor{$\mbox{Func}(S)$}, the set of functions $f\colon S\to S$, where $S$ is  set, forms a monoid.
+  Let $S\vcentcolon=\{1,2\}$, a set with two elements.
+  We write the elements of $S$ in 2-line notation as
+  \[
+    e\vcentcolon=\begin{pmatrix}1&2\\1&2\end{pmatrix}\qquad
+  \alpha\vcentcolon=\begin{pmatrix}1&2\\2&1\end{pmatrix}\qquad
+  \beta\vcentcolon=\begin{pmatrix}1&2\\1&1\end{pmatrix}\qquad
+  \gamma\vcentcolon=\begin{pmatrix}1&2\\2&2\end{pmatrix}\,.
+  \]
+  Please give the composition (multiplication) table for this monoid $\mbox{Func}(\{1,2\})$.
+
+  \begin{tabular}{c||c|c|c|c|}
+     $\circ$  & $e$  & $\alpha$ & $\beta$ & $\gamma$ \\\hline\hline
+     $e$      &      & & & \\\hline
+     $\alpha$ &      & &$\alpha\circ\beta$ & \\\hline
+     $\beta$  &      & & & \\\hline
+     $\gamma$ &      & & & \\\hline
+  \end{tabular}
+
+  (Evaluate the composition $\alpha\circ\beta$, place it in that cell, and do the same for the other 15 cells.)
+  
+  Is this monoid commutative?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item 
+  Let \defcolor{$\RR_{\geq 0}$} be the monoid of nonnegative real numbers under addition, and let
+  \defcolor{$\RR_+$} denote the monoid of positive real numbers under multiplication.  
+  \begin{enumerate}
+  \item Find the smallest submonoid of $\RR_{\geq 0}$ that contains $\sqrt{3}$.
+    (That is, describe it elements as a set.
+    The term ``smallest'' here means, by defintion, the submonoid that is contained in any other submonoid that contains $\sqrt{3}$.)
+  \item Find the smallest submonoid of $\RR_+$ that contains $\sqrt{3}$.
+  \item Are either of  $\RR_{\geq 0}$ or $\RR_+$  a group?
+        If so, do the answers to the previous quesions change if ``submonoid'' is replaced by ``subgroup''?
+  \end{enumerate}
+  (You need not justify your answers.)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Let $\defcolor{B_2(\RR)}\vcentcolon=\left\{ \left(\begin{smallmatrix}a&b\\0&c\end{smallmatrix}\right)
+                 \mid a,b,c\in\RR,\ ac\neq 0\right\}$.
+  Show that $B_2(\RR)$ is a subgroup of $\mbox{GL}(2,\RR)$, under matrix multiplication.
+  (This subgroup is called a \demph{Borel subgroup}.)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Let \defcolor{$\CC^\times$} be the group of nonzero complex numbers under multiplication.
+  Define $f\colon \CC^\times\to \mbox{GL}(2,\RR)$ by $f(z)=\left(\begin{smallmatrix} a(z) & b(z)\\-b(z)&a(z)\end{smallmatrix}\right)$, where
+  $a(z)\vcentcolon= \frac{z+\overline{z}}{2}$ and $b(z)\vcentcolon= \frac{z-\overline{z}}{2\sqrt{-1}}$ are the real and
+  imaginary parts of the complex number $z$.
+
+ Show that $f$ is an injective group homomorphism.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+  The \demph{center} of a group $G$ is the set $\defcolor{Z(G)}\vcentcolon=\{a\in G\mid ag=ga\ \forall g\in G\}$.
+  For a fixed $g\in G$, the \demph{centralizer} of $g$ is the set
+  $\defcolor{C_G(g)}\vcentcolon=\{ a\in G\mid ag=ga\}$.
+  Prove that both $Z(G)$ and $C_G(g)$ are subgroups of $G$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+    
+      
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
