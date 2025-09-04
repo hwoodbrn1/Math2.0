@@ -1,0 +1,118 @@
+\documentclass[12pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{bookmark}
+\usepackage{fullpage}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{pdfpages}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.5in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 653}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+\section*{653 Notes}
+
+\subsection{Group Theory}
+
+Let $S$ be a set. A \textbf{Product} on $S$ is a function $S\times S \rightarrow S$,
+where $(s,t) \mapsto s\cdot t$. 
+If $s\cdot t = t \cdot s$, we say $\cdot$ is \textbf{commutative} and write $s + t$. 
+A product is \textbf{associative} if $(s\cdot t)\cdot u = s \cdot (t \cdot u)$.
+An element $e \in S$ is an \textbf{identity} if for all $s \in S$, we have $e\cdot s = s \cdot e = s$.
+Identities are unique. 
+A \textbf{Monoid} is a set $M$ equipped with an associative product that contains an identity.
+\begin{example} 
+    The set $\operatorname{func}(S)$ of functions on $S$ is a monoid under function 
+    composition with identity $e: s \mapsto s$.
+\end{example}
+
+\begin{example}
+    The subsets of a set $S$ form a monoid under intersection with identity $X$,
+    as well as under set union with identity $\emptyset$.
+\end{example}
+
+If a monoid $M$ has a commutative product, $M$ is called an \textbf{abelian monoid}. A \textbf{submonoid} of a
+monoid $M$ is a subset $H \subset M$ with $e \in H$ and $xy \in H$ for all $x, y \in H$. 
+
+\begin{example}
+    The set $\mathbb{N} = \{n \in \mathbb{Z}: n \geq 0\}$ is a monoid under $+$ with identity $0$, and under 
+    $\cdot$ with identity $1$. The element $0$ is called absorbing in this case.
+\end{example}
+
+\begin{example}
+    For all $a \in \mathbb{N}$, $a\mathbb{N}$ is a monoid under addition but not multiplication unless $a = 1$, 
+    since it does not contain $1$. 
+\end{example}
+
+A \textbf{Group} $G$ is a monoid such that for every $x \in G$, there exists a $y \in G$ such that $xy = e$. In this case
+we write $y = x^{-1}$. Note that $xy = e$ implies that $yx = e$. In a group, both inverses and the identity are unique.
+In a group, equations $ax = b$ and $xa = b$ have unique solutions. A \textbf{Subgroup} of a group $G$ is a submonoid
+of $G$ that is closed under the action of taking inverse.
+
+\begin{example}
+    $\{e\}$ is a trivial example of a group. $\mathbb{Z}, \mathbb{Q}, \mathbb{R}$, and $\mathbb{C}$ are all
+    examples of groups under addition.
+\end{example}
+
+\begin{example}
+    $\mathbb{Q}^\times := \mathbb{Q} \setminus \{0\}$ is a group under multiplication, along with $\mathbb{R}^\times$ 
+    and $\mathbb{C}^\times$, defined in an analagous way.
+\end{example}
+
+\begin{example}
+    The unit complex numbers $S^1$ form a group under complex multiplication
+\end{example}
+
+\begin{example}
+    Let $S$ be a set and define $\operatorname{Sym}(S)$ to be the set of bijections $S \rightarrow S$. Then $\operatorname{Sym}(S)$
+    is a group under composition called the \textbf{Symmetric Group} on $S$.
+\end{example}
+
+Let $M, M'$ be monoids with identities $e, e'$ respectively. A \textbf{homomorphism} of monoids is a function 
+$f: M \rightarrow M'$ such that $f(e) = e'$, and for all $x,y \in M$, we have $f(xy) = f(x)f(y)$. A monoid homomorphism
+between groups is a group homomorphism.
+\bigbreak
+We say a group is \textbf{cyclic} if there exists $a \in G$ such that any $g \in G$ can be written $g = a^n$ for 
+some $n \in \mathbb{Z}$. When this occurs, we say $a$ \textbf{generates} $G$. 
+
+\begin{example}
+    $\mathbb{Z}$ has two generators, $1$ and $-1$.
+\end{example}
+
+\begin{example}
+    The $n$th roots of unity, denoted $C_n$, has generators $e^{2\pi\frac{k}{n}}$, where $\gcd(n,k) = 1$.
+\end{example}
+
+Let $G$ and $H$ be groups. We can define a product on $G\times H$ by $(g_1, h_1)\cdot(g_2,h_2) = (g_1 g_2, h_1 h_2)$.
+Then $G\times H$ is a group with identity $e = (e_G,e_H)$ and with inverse $(g,h)^{-1} = (g^{-1}, h^{-1})$. This 
+construction generalizes to arbitrary product with component-wise multiplication.
+\bigbreak
+Let $G$ be a group and $S \subset G$. We define $\langle S\rangle$, the subgroup \textbf{generated} by $S$ to
+be the collection of all finite combinations of elements of $S$. Equivalently, $\langle S \rangle$ is the smallest
+subgroup of $G$ containing $S$, or the intersection of all subgroups containing $S$. If $a \in G$, the order of $a$
+is the smallest $n > 0$ such that $a^n = e$. Equivalently the order of $a$ is the number of elements in $\langle a \rangle$. 
+
+\end{document}

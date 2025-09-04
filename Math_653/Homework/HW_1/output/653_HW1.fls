@@ -1,9 +1,9 @@
-PWD c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Math_653/HW_1
+PWD c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Math_653/Homework/HW_1
 INPUT c:/texlive/2023/texmf.cnf
 INPUT c:/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Math_653/HW_1/HW1_soln.tex
-OUTPUT output/HW1_soln.log
+INPUT c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Math_653/Homework/HW_1/653_HW1.tex
+OUTPUT output/653_HW1.log
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/size11.clo
@@ -247,11 +247,11 @@ INPUT c:/texlive/2023/texmf-dist/tex/latex/tools/array.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/tools/array.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-INPUT output/HW1_soln.aux
-INPUT output/HW1_soln.aux
-INPUT output/HW1_soln.aux
-OUTPUT output/HW1_soln.aux
-OUTPUT output/HW1_soln.pdf
+INPUT output/653_HW1.aux
+INPUT output/653_HW1.aux
+INPUT output/653_HW1.aux
+OUTPUT output/653_HW1.aux
+OUTPUT output/653_HW1.pdf
 INPUT c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -298,7 +298,7 @@ INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm
 INPUT c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT output/HW1_soln.aux
+INPUT output/653_HW1.aux
 INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmmi8.600pk
 INPUT c:/texlive/2023/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk
 INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy8.600pk

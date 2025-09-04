@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.9)  29 AUG 2025 12:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.9)  1 SEP 2025 15:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Math_653/HW_2/HW1_soln.tex"
-(c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Math_653/HW_2/HW1_soln.tex
+**"c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Math_636/Homework/HW1/636_HW1.tex"
+(c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Math_636/Homework/HW1/636_HW1.tex
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-12-08>
 (c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
@@ -552,8 +552,8 @@ Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
 File: l3backend-pdftex.def 2023-11-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count321
 \l__pdf_internal_box=\box77
-) (output/HW1_soln.aux)
-\openout1 = `HW1_soln.aux'.
+) (output/636_HW1.aux)
+\openout1 = `636_HW1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
 LaTeX Font Info:    ... okay on input line 18.
@@ -635,15 +635,15 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 31.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 30.
 (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 31.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 30.
  (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 31.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 30.
  (c:/texlive/2023/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
@@ -656,25 +656,25 @@ Package fancyhdr Warning: \headheight is too small (0.0pt):
 
 [1{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-] (output/HW1_soln.aux)
+] [2] (output/636_HW1.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-12-08>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 24605 strings out of 474171
- 467391 string characters out of 5749597
- 1935473 words of memory out of 5000000
- 46511 multiletter control sequences out of 15000+600000
+ 24607 strings out of 474171
+ 467465 string characters out of 5749597
+ 1953473 words of memory out of 5000000
+ 46513 multiletter control sequences out of 15000+600000
  563816 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 101i,11n,107p,619b,442s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <c:/texlive/2023/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy8.600pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy10.657pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmmi10.657pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.720pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmr10.657pk>
-Output written on output/HW1_soln.pdf (1 page, 22606 bytes).
+ 101i,11n,107p,626b,563s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/amsfonts/symbols/msbm10.657pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmmi6.600pk> <c:/texlive/2023/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy8.600pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmex10.657pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmmi8.600pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy10.657pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmmi10.657pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.720pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmr10.657pk>
+Output written on output/636_HW1.pdf (2 pages, 49048 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
- 38 compressed objects within 1 object stream
+ 195 PDF objects out of 1000 (max. 8388607)
+ 56 compressed objects within 1 object stream
  4 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

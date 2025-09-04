@@ -1,0 +1,255 @@
+\documentclass[12pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 653}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent 655 Notes}
+
+\subsection*{Product Topology}
+
+Let $\Gamma$ be a set and $(X_\gamma, \tau_\gamma)_{\gamma \in \Gamma}$ a collection of topological
+spaces. The Product topology on $\prod_{\gamma \in \Gamma}X_\gamma$ is defined as the weakest topology on 
+$\prod_{\gamma \in \Gamma}X_\gamma$ which makes the projection maps $\pi_\gamma: \prod_{\gamma \in \Gamma} X_\gamma$
+continuous.
+
+\begin{example}
+    On $\mathbb{R}^\Gamma$, the product topology is given by the following neighborhood basis:
+    \[
+    \{U(x; \gamma_1, \dots, \gamma_n; \epsilon): \gamma_1, \dots,\gamma_n \in \Gamma, \epsilon > 0, n \geq 1, x \in \mathbb{R}^\gamma\},
+    \]
+    where $U(x; \gamma_1, \dots, \gamma_n; \epsilon) := \{z \in \mathbb{R}^\Gamma: |z_{\gamma_i} - x_{\gamma_i}| < \epsilon,
+    1 \leq i \leq n\}$.
+
+    $\mathbb{R}^\Gamma$ with the product topology is hausdorff.
+\end{example}
+
+\subsection*{Locally Convex Topological Vector Spaces}
+
+\begin{definition}
+    A \textbf{topological vector space} is a vector space $X$ equipped with a topology $\tau$ such that the maps 
+    \[
+    \begin{split}
+        A: & X\times X \rightarrow X\\
+        & (x_1, x_2) \mapsto x_1 + x_2
+    \end{split} \qquad 
+    \begin{split}
+        \Omega: & \mathbb{R}\times X \rightarrow X\\
+        & (a, x) \mapsto ax
+    \end{split}
+    \]
+    are both continuous. 
+
+    A TVS is locally convex if every point has a local base consisting of convex sets.
+\end{definition}
+
+\begin{example}
+    An arbitrary product of LCTVS's is an LCTVS with the product Topology. A vector subspace of an LCTVS is 
+    an LCTVS when given the relative topology.
+\end{example}
+
+\subsection*{Dual Pairs}
+
+Let $E$ be a vector space and let $E^{\#} := \{f: E \rightarrow \RR: f\ \textrm{is linear}\}$ be the algebraic dual space.
+
+Let $E$ and $F$ be vector spaces. Then a bilinear form $\langle \cdot, \cdot \rangle: E \times F \rightarrow \RR$ induces 
+two maps:
+\begin{equation*}
+    \begin{split}
+        \varphi: &E \rightarrow F^\#\\
+            &e \mapsto f \mapsto \langle e, f\rangle
+    \end{split} \qquad 
+    \begin{split}
+        \psi: & F \rightarrow E^\#\\
+            & f \mapsto e \mapsto \langle e,f \rangle.
+    \end{split}
+\end{equation*}
+
+\begin{definition}
+    A dual pair is a pair of vector spaces $E, F$ and a bilinear map $\langle \cdot, \cdot \rangle: E \times F \rightarrow \RR$
+    such that 
+    \begin{enumerate}
+        \item[a.)] $E$ separates points in $F$, meaning for all $f_1, f_2 \in E$, $f_1 \neq f_2$, there is an $e \in E$
+        such that $\langle e, f_1\rangle \neq \langle e, f_2\rangle$.
+        \item[b.)] $F$ separates points in $E$.
+    \end{enumerate}
+    We write $\langle E, F\rangle$ is a dual pair. 
+\end{definition}
+
+\begin{remark}
+    The statement that $E$ separates points in $F$ is equivalent to the statement that for $f \in F$, if for all $e \in E$, 
+    $\langle e, f \rangle = 0$, then $f = 0$. Then $\psi$ is an injection, and we can identify $F$ with its image 
+    in under $\psi$ in $E^\#$
+
+    The dual statement is that if $F$ separates points in $E$, we can identify $E$ with its image under $\varphi$ in $F^\#$.
+\end{remark}
+
+\begin{example}
+    Given a vector space $E$, $\langle E, E^\# \rangle$ is a dual pair for $\langle \cdot, \cdot \rangle: 
+    E\times E^\# \rightarrow \RR$ given by $(e, e^\#) \mapsto e^\#(e)$.
+\end{example}
+
+\begin{example}
+    Given a normed vector space $X$, $\langle X, X^*\rangle$ is a dual pair for $\langle \cdot, \cdot, \rangle: 
+    X\times X^* \rightarrow \RR$ given by $(x,x^*) \mapsto x^*(x)$.
+\end{example}
+
+\begin{definition}
+    Let $\langle E,F\rangle$ be a dual pair. The weak topology associated to the dual pair, denoted by $\sigma(E,F)$, is 
+    defined as the restriction to $E$ of the product topology on $\RR^F$. 
+\end{definition}
+
+\begin{remark}
+    We showed that we can view $E$ as a subset of $F^\#$ by the injection $\varphi$. $F^\#$ is a subset of $\RR^F$, the space
+    of all maps $F \rightarrow \RR$, consisting of those maps which are linear. Then we can view $E$ as a subset of $\RR^F$. 
+\end{remark}
+
+\begin{example}
+    Let $X$ be a normed vector space and consider the dual pair $\langle X, X^*\rangle$, with $\langle e, e^*\rangle = e^*(e)$.
+    The topology $\sigma(X,X^*)$ on $X$ is called the weak topology. The topology $\sigma(X^*, X)$ on $X^*$ is called
+    the weak$^*$ topology. 
+\end{example}
+
+We now give some equivalent definitions for the weak topology in the case that $X$ is a normed vector space
+and $\langle X, X^*\rangle$ is our dual pair. 
+
+\subsubsection*{Weak Topology} 
+
+The weak topology on $X$ is given by: 
+\begin{itemize}
+    \item The topology generated by the sets 
+    \begin{align*}
+    U(x_0; x_1^*, \dots, x_n^*; \epsilon) &= \{x \in X: |\langle x_0, x_i^*\rangle - \langle x, x_i^*\rangle| < \epsilon, 1 \leq i \leq n\}\\
+    & = \{x \in X: |x_i^*(x_0) - x_i^*(x)| < \epsilon, 1 \leq i \leq n\}
+    \end{align*}
+    
+    \item If $\{x_\alpha\}_{\alpha}$ is a net in $X$ and $x \in X$, then $x_\alpha \rightarrow x$ weakly if and only if 
+    for all $x^* \in X^*$, $x^*(x_\alpha) \rightarrow x^*(x)$
+
+    \item the weakest topology on $X$ which makes all of the bounded linear functionals on $X$ continuous.
+\end{itemize}
+
+\subsubsection*{Weak$^*$ Topology}
+
+The weak$^*$ topology on $X^*$ is given by 
+\begin{itemize}
+    \item the topology generated by sets 
+    \[
+    U(x_0^*; x_1, \dots, x_n; \epsilon) = \{x^* \in X^*: |x_0^*(x_i) - x^*(x_i)| < \epsilon, 1 \leq i \leq n\}
+    \]
+
+    \item $x_\alpha^* \rightarrow x^*$ in the weak$^*$ topology if and only if $x_\alpha^*(x) \rightarrow x^*(x)$ for 
+    all $x \in X$
+    
+    \item the weakest topology on $X^*$ for which the maps $x^* \rightarrow x^*(x)$ are continuous for every $x \in X$.
+\end{itemize}
+
+\begin{remark}
+    The map $i: (X^*, \sigma(X^*, X)) \rightarrow \RR^X, x^* \mapsto {(x^*(x))}_{x \in X}$ is a homeomorphism from $(X^*, \sigma(X^*, X))$ onto its
+    image in $\RR^X$ with the product topology.
+
+    We have $x_\alpha^* \rightarrow x^*$ in the weak$^*$ topology if and only if for all $x \in X$, $x_\alpha^*(x) \rightarrow x^*(x)$,
+    if and only if $i(x_\alpha^*) \rightarrow i(x^*)$ in the product topology. 
+\end{remark}
+
+\begin{remark}
+    The map $j: (X, \sigma(X, X^*)) \rightarrow X^{**} \subset \RR^{X^*}, x \mapsto (x^*(x))_{x^* \in X^*}$ is a homeomorphism
+    from $(X, \sigma(X, X^*))$ onto its image in $(X^{**}, \sigma(X^{**}, X^*))$. 
+
+    We have $x_\alpha \rightarrow x$ weakly if and only if for all $x^* \in X^*$, $x^*(x_\alpha) \rightarrow x^*(x)$
+    if and only if $j(x_\alpha) \rightarrow j(x)$ in the weak$^*$ topology on $X^{**}$. 
+\end{remark}
+
+\begin{proposition}
+    Let $X$ be a normed space. 
+    \begin{enumerate}
+        \item $(X, \sigma(X, X^*)) = X^*$
+        \item $(X^*, \sigma(X^*, x))^* = j(X)$
+    \end{enumerate}
+\end{proposition}
+
+
+\textit{Proof.} (1.) We have $(X, \sigma(X, X^*))^* \subset X^*$ because $\sigma(X, X^*)$ is weaker than the norm 
+topology, thus every functional which is weak-continuous is also norm-continuous. That $X^* \subset (X, \sigma(X, X^*))$
+follows by construction, since $\sigma(X, X^*)$ ensures that each functional which is norm-continuous is also
+$\sigma(X, X^*)$ continuous.
+
+(2.) We have $j(X) \subset (X^*, \sigma(X^*, X))^*$ by construction, since $\sigma(X^*, X)$ is a topology 
+such that the maps $j(x)$ are continuous. 
+
+To show the other direction, let $\phi: (X^*, \sigma(X^*, X)) \rightarrow \RR$ be a weak$^*$ continuous functional
+on $X^*$. Since $\phi$ is continuous, there is a weak$^*$ neighborhood $U \ni 0$ in $X^*$ such that 
+$U \subset \phi^{-1}(-1, 1)$.
+
+From one of the above characterizations of the weak$^*$ topology, we know that there must be elements $x_1, \dots, x_n$ 
+such that $U = \{x^*: |x^*(x_i)| < \epsilon\ \textrm{for} 1 \leq i \leq n\}$. Now suppose $f^* \in \bigcap_1^n \ker x_i$.
+In particular, we have $|f^*(x_i)| = 0 < \epsilon$ for $i = 1, \dots, n$, thus $f^* \in U$. Then for any $\lambda > 0$, 
+$|\lambda f(x_i)| = \lambda 0 = 0 < \epsilon$ for $i = 1, \dots, n$, thus $\lambda f^* \in U$, and we have
+$|\phi(\lambda f^*)| < 1$ and thus $|\phi(f^*)| < 1/\lambda$. 
+
+Since this holds for all $\lambda > 0$, it must be that $\phi(f^*) = 0$ and $f^* \in \ker\phi$. We have therefore shown
+that $\ker\phi \subset \bigcap_1^n \ker x_i$. Then linear algebra tells us that $\phi$ must be a linear combination of
+the functionals $x_i$, $\phi = \sum_1^n a_i x_i := x$. Then $j(x) = \phi$ \hfill $\qed$
+
+\begin{theorem}[Banach-Alaoglu Theorem]
+    Let $X$ be a normed vector space. Then $(B_{X^*}, \sigma(X^*, X))$ is a compact topological space.
+\end{theorem}
+
+\textit{Proof (outline)} Observe that for all $x \in X, x^* \in X^*$, $\|x^*(x)\| \leq \|x^*\|\|x\|$. Then $B_{X^*}$ embeds
+in $\RR^X$ by the map 
+
+\begin{align*}
+    i: & B_{X^*} \rightarrow \prod_{x \in X} [-\|x\|, \|x\|] \subset \RR^X\\
+    & x^* \mapsto (x^*)_{x \in X}.
+\end{align*}
+
+$K := \prod_{x \in X} [-\|x\|, \|x\|]$ is compact by Tychonoff's theorem. $i(B_{X^*})$ consists of only the elements
+of $K$ that are linear. To finish show nets in $i(B_{X^*})$ converge to linear elements of $K$.\hfill $\qed$
+
+\begin{theorem}
+    If $X$ is reflexive, then $(B_X, \sigma(X, X^*))$ is compact. 
+\end{theorem}
+
+\subsection*{Hahn-Banach Theorems}
+
+\begin{definition}
+    Let $E$ be a vector space over $\RR$. A subset $A \subset E$ is called absorbing if for all $x \in E$, there
+    exists $\lambda > 0$ such that $x \in \lambda A$.
+\end{definition}
+
+\end{document}
