@@ -1,0 +1,151 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 636}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 2}
+
+\subsection*{Section 17}
+
+\begin{enumerate}
+    \item[2.] Let $A$ be closed in $Y$ and $Y$ be closed in $X$. Then $A = C \cap Y$ for 
+    some $C$ closed in $X$. Then $A$ is an intersection of two closed sets and is closed. 
+
+    \item[6.] (a.) If $A \subset B$, then $B \subset \overline{B}$ and thus $\overline{B}$
+    is a closed set containing $A$ and $\overline{A} \subset \overline{B}$.
+
+    (b.) We can write 
+    \[
+        \overline{A \cup B} = \bigcap\{C \supset A \cup B: C\ \text{closed}\} 
+        = \bigcap\{C\cup D: C \supset A, D \supset B;\ C, D\ \text{closed}\}.
+    \]
+    To see these two sets are the same, write $C = C \cup \emptyset$ for one direction
+    and in the other take $C$ to be the union of both closed sets. 
+
+    Moreover, we have 
+    \[
+        \bigcap\{C\cup D: C \supset A, D \supset B;\ C, D\ \text{closed}\}
+        \supset \left(\bigcap\{C \supset A: C\ \text{closed}\}\right) \cup
+        \left(\bigcap\{D \supset B: D\ \text{closed}\}\right) = \overline{A} \cup \overline{B}.
+    \]
+    Then since $\overline{A \cup B}$ is the smallest closed set containing $A \cup B$ and
+    $\overline{A} \cup \overline{B}$ is a closed set containing $A \cup B$, we must have 
+    $\overline{A \cup B} = \overline{A} \cup \overline{B}$.
+
+    (c.) The above proof generalizes to the case where $\bigcup A_\alpha$ is a union of
+    arbitrarily many sets $A_\alpha$, except for the last step, where $\bigcup \overline{A_\alpha}$
+    is potentially not open. 
+
+    An example of this failing is for the family of open sets $A_n = (\frac{1}{n+1}, \frac{1}{n})$
+    for $n \geq 1$. Their union is $(0,1)$, and the union of closures is $\left(0,1\right]$.
+    However, the closure of the union is $[0,1]$.
+
+    \item[9.] $(\overline{A \times B}) \subset \overline{A} \times \overline{B})$: 
+    Let $(a, b) \in \overline{A \times B}$. Let $U \subset X$ and $V \subset Y$ be open sets
+    containing $a$ and $b$ respectively.
+    Then $(U \times V) \cap (A \times B) \neq \emptyset$. But 
+    $(U \times V) \cap (A \times B) = (U \cap A) \times (V \cap B)$, and thus 
+    both $U \cap A$ and $V \cap B$ are nonempty for all such $U$ and $V$, and $(a,b) \in \overline{A}\times\overline{B}$.
+
+    $(\overline{A} \times \overline{B} \subset \overline{A \times B})$: 
+    Conversely let $(a,b) \in \overline{A} \times\overline{B}$. Let $U \times V$ be 
+    a basic open set in $X \times Y$ containing $(a,b)$. Then $U \cap A$ and $V \cap B$
+    are both nonempty, thus $(U \times V) \cap (A \times B) = (U \cap A) \times (V \cap B)$
+    is nonempty, and $(a,b) \in \overline{A \times B}$.
+
+    \item[12.] Let $X$ be hausdorff with subspace $Y$. Let $a, b \in Y$ with $a \neq b$. 
+    Choose $U, V$ open disjoint sets in $X$ containing $a$ and $b$ respectively. Then
+    $Y \cap U$ and $Y \cap V$ are disjoint open sets in $Y$ containing $a$ and $b$ respectively.
+    Thus $Y$ is hausdorff.
+
+    \item[13.] First suppose $X$ is hausdorff. Choose any $(a,b) \notin \Delta$, so
+    that $a \neq b$, and choose disjoint open sets $U, V$ containing $a$ and $b$ respectively.
+    Then $A \times B$ is an open set in $X \times X$ which is disjoint from $\delta$, since 
+    no point in $A$ is equal to any point in $B$. Then $X \times X \setminus \Delta$ is open and 
+    $\Delta$ is closed.
+
+    Conversely if $\Delta$ is closed, for any $(a,b) \notin \Delta$, there is a basic open set 
+    $A \times B \ni (a,b)$ such that $A \times B$ is disjoint from $\Delta$, and thus 
+    $A \cap B = \emptyset$ and $X$ is hausdorff. 
+
+    \item[19.] (a.) Suppose $x \in \operatorname{int}A$. Then there is some open $U \subset A$ with 
+    $x \in U$. Then $X \setminus U$ is a closed set containing $X \setminus A$. But $x \notin X\setminus U$,
+    so $x$ cannot be in $\overline{X \setminus A}$.
+
+    Conversely let $x \in \overline{X \setminus A} \supset \operatorname{Bd}A$. Then if there is some open $U \subset A$ containing $x$,
+    $X \setminus U$ is a closed set containing $X \setminus A$ which does not contain $x$, contradicting
+    $x \in \overline{X \setminus A}$.Then $x \notin \operatorname{int} A$.
+
+    Now suppose $x \in \overline{A}$. If $x \notin \operatorname{int}A$, then $x$ is not contained 
+    in any open subsets of $A$. Choose any closed $B \supset X\setminus A$, so that $X \setminus B$
+    is an open subset of $A$. Then $x \notin X \setminus B$ implying $x \in B$ and $x \in \overline{X \setminus A} \cap \overline{A} =
+    \operatorname{Bd} A$. Then $\overline{A} = \operatorname{int} A \cup \operatorname{Bd} A$.
+
+    (b.) If $A$ is both open and closed, then $\operatorname{int}A = A = \overline{A}$. Then
+    by (a.), $\operatorname{Bd}A = \overline{A} \setminus \operatorname{int}A = A \setminus A = \emptyset$.
+
+    If $\operatorname{Bd}A = \emptyset$, we have $\overline{A} = \operatorname{int}A$,
+    implying $A$ is equal to its interior and closure and therefore must be open and closed. 
+
+    (c.) If $A$ is open, by reasoning above we have $\operatorname{Bd}A = \overline{A} \setminus \operatorname{int}A = 
+    \overline{A} \setminus A$. 
+
+    If $\operatorname{Bd}A = \overline{A} \setminus A$, we have $\operatorname{int}A = \overline{A} \setminus \operatorname{Bd}A
+    = \overline{A} \setminus (\overline{A}\setminus A) = A$, and $A$ must be open. 
+
+    (d.) No. Let $U = (-1, 0) \cup (0 ,1)$. Then $\overline{U} = [-1,1]$, and so $\operatorname{int}(\overline{U}) = (-1,1)$.
+\end{enumerate}
+
+\subsection*{Section 18}
+
+\begin{enumerate}
+    \item[2.] This is not necessarily the case. Let $f: \RR \rightarrow \RR$ be the function mapping 
+    all $x \in \RR$ to $1$. Then if $A = [0,1]$, the point $1$ is a limit point of $A$, however 
+    $f(1) = 1$ is not a limit point of $f(A) = \{1\}$ since any neighborhood of $1$ only intersects $f(A)$
+    at $1$. 
+\end{enumerate}
+
+\end{document}

@@ -1,4 +1,4 @@
-\documentclass[12pt, reqno]{article}
+\documentclass[11pt, reqno]{article}
 
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage{enumitem}
@@ -16,6 +16,8 @@
 \newtheorem*{theorem}{Theorem}
 \newtheorem*{proposition}{Proposition}
 \newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
 
 \theoremstyle{definition}
 \newtheorem*{definition}{Definition}
@@ -34,7 +36,7 @@
 
 \topmargin=-40pt
 \rhead{Henry Woodburn}
-\lhead{Math 653}
+\lhead{Math 655}
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\headsep}{20pt}
 \thispagestyle{fancy}
@@ -198,7 +200,7 @@ The weak$^*$ topology on $X^*$ is given by
 \begin{proposition}
     Let $X$ be a normed space. 
     \begin{enumerate}
-        \item $(X, \sigma(X, X^*)) = X^*$
+        \item $(X, \sigma(X, X^*))^* = X^*$
         \item $(X^*, \sigma(X^*, x))^* = j(X)$
     \end{enumerate}
 \end{proposition}
@@ -251,5 +253,350 @@ of $K$ that are linear. To finish show nets in $i(B_{X^*})$ converge to linear e
     Let $E$ be a vector space over $\RR$. A subset $A \subset E$ is called absorbing if for all $x \in E$, there
     exists $\lambda > 0$ such that $x \in \lambda A$.
 \end{definition}
+
+A neighborhood of $0$ in a topological vector space is absorbing: For all $x \in E$, the map
+$\mu_\lambda: \RR \rightarrow E$ sending $\lambda$ to $\lambda x$ is continuous
+and sends $0$ to $0$. Then if $V$ is a neighborhood of $0$ in $E$, there exists
+$r > 0$ such that $(-r, r) \subset \mu_x^{-1}(V)$, and thus for all $|\lambda| < r$,
+$\mu_x(\lambda) = \lambda x \in V$. 
+
+\begin{definition}
+    Let $A$ be an absorbing set in a topological vector space $E$. We define the 
+    gauge, or Minkowski Functional, of $A$, denoted $\mu_A$, as follows:
+    \begin{align*}
+        \mu_A: & X \rightarrow \left[0,\infty\right) \\
+        & x \mapsto \inf\{\lambda > 0: x \in \lambda A\}
+    \end{align*}
+\end{definition}
+
+Notice that $\mu_A(0) = 0$. 
+
+\begin{lemma}
+    If $C$ is a convex absorbing subset, then 
+    \begin{enumerate}
+        \item[i.] $\mu_C$ is a sublinear functional 
+        \item[ii.] $\{x \in E: \mu_C(x) < 1\} \subset C \subset \{x \in E: \mu_C(x) \leq 1\}$.
+        \item[iii.] If $E$ is an LCTVS and $0 \in C^\circ$, then $\mu_C$ is continuous at $0$. 
+    \end{enumerate}
+\end{lemma}
+
+\textit{Proof.} (i.) Let $x, y \in E$ and $\epsilon > 0$. By definition, there are $\lambda, \mu > 0$ 
+such that $\lambda < \mu_C(x) + \epsilon$, $\mu < \mu_C(y) + \epsilon$ and $x \in \lambda C$, $y \in \mu C$.
+Then 
+\[
+    \frac{x + y}{\lambda + \mu} = \frac{\lambda}{\lambda + \mu}\frac{x}{\lambda} + \frac{\mu}{\lambda + \mu}\frac{y}{\mu} \in C,
+\]
+
+so that $x + y \in (\lambda + \mu)C$ and $\mu_C(x + y) \leq \lambda + \mu \leq \mu_C(x) + \mu_C(y) + 2\epsilon$.
+This shows subadditivity. Positive homogeneity is obvious after expanding the definition of $\mu_C$. 
+
+(ii.) If $x \in C$, then $x = \frac{x}{1}$, which proves the second inclusion. For the first, if $ \mu_C(x) < 1$,
+then for some $\lambda < 1$, we have $x \in \lambda C$. Since $C$ is convex, writing $x = \lambda \frac{x}{\lambda} + (1-\lambda ) 0$
+shows that $x \in C$. 
+
+(iii.) Since $x \in C^\circ$, there is a convex open neighborhood $U \ni 0$ in $C$. Let $\epsilon > 0$, then 
+$\epsilon U$ is also an open neighborhood of $0$, and if $x_\alpha$ is a net in $E$ converging to $0$, 
+then there exists $\alpha_0$ such that $x_\alpha \in \epsilon U$ for all $\alpha > \alpha_0$. 
+Then $\mu_C(x_\alpha) \leq \mu_U(x_\alpha) \leq \epsilon$.
+
+\subsubsection*{Geometric Hahn-Banach Separation Theorem for LCTVS}
+
+\begin{theorem}
+    Let $(X, \tau)$ be an LCTVS, $C$ a nonempty closed convex subset, and $x_0 \in X \setminus C$. Then
+    there exists $x^* \in (X,\tau)^*$ such that 
+    \[
+        x^*(x_0) > \sup_{x \in C} x^*(x)
+    \]
+\end{theorem}
+
+\textit{Proof.} WLOG, suppose $0 \in C$. Since $C$ is closed, $X \setminus C$ is open and there exists 
+a convex neighborhood $U$ of $0$ such that $x_0 + U \subset X \setminus C$. Then take a convex neighborhood 
+$V$ of $0$ such that $V - V \subset U$ by continuity of operations in a TVS. 
+
+Let $D = C + V$ and observe that $(x_0 + V) \cap D = \emptyset$, and $D$ is convex and $0 \in D^\circ$. Need 
+to write this step out to see how $V - V \subset U$ is used. 
+
+Let $\mu_D$ be the gauge of $D$. Then for all $z \in x_0 + V$, $\mu_D(z) \geq 1$. Since $V$ is open, there 
+is a $\lambda > 1$ such that $\lambda x_0 \in x_0 + V$ and in fact $\mu_D(x_0) > 1$. 
+
+Now define 
+\begin{align*}
+    f: & \RR x_0 \rightarrow \RR\\
+    &\alpha x_0 \mapsto \alpha \mu_D(x_0)
+\end{align*}
+
+and observe that $f$ is linear. Then for any $\alpha \geq 0$, we have 
+\[
+    f(\alpha x_0) = \alpha \mu_D(x_0) = \mu_D(\alpha x_0).
+\]
+Likewise if $\alpha < 0$ we have 
+\[
+    f(\alpha x_0) = \alpha \mu_D(x_0) \leq \mu_D(\alpha x_0),
+\]
+so that $f \leq \mu_D$ on $\RR x_0$. By the algebraic Hahn-Banach theorem, we can extend $f$ to a function 
+$F: X \rightarrow \RR$ such that $F$ equals $f$ on the subspace $\RR x_0$, and $F \leq \mu_D$ on $X$. 
+In particular, $x \in D$ implies $\mu_D(x) \leq 1$ and thus $F(x) \leq 1$ on $D$ and $F(x) \geq -1$ on $-D$.
+Then we have $|F(x)| \leq 1$ on $D \cap (-D)$ and $F$ is continuous at $0$. 
+
+The inequality holds since $F(x_0) \geq 1$ but $F(x) < 1$ for all $x \in D$. 
+
+\subsubsection*{Applications}
+
+\begin{theorem}[Goldstine's Theorem]
+    Let $X$ be a normed space. Then 
+    \[
+        \overline{j(B_x)}^{\sigma(X^{**}, X^*)} = B_{X^{**}}.
+    \]
+    In particular, 
+    \[
+        \overline{j(X)}^{\sigma(X^{**}, X^*)} = X^{**}.
+    \]
+\end{theorem}
+
+\textit{Proof.} First notice that 
+\[
+    \overline{j(B_x)}^{\sigma(X^{**}, X^*)} \subset B_{X^{**}}
+\]  
+since $B_{X^{**}}$ is weak$^*$ compact and hence closed. 
+
+Next suppose $x_0 \in B_{X^{**}} \setminus \overline{j(B_x)}^{\sigma(X^{**}, X^*)}$. $\sigma(X^{**}, X^*)$ is a 
+hausdorff LCVT, so we can apply geometric Hahn-Banach theorem to obtain $\phi \in (X, \sigma(X^{**}, X^*)) = j(X^*)$
+such that $\phi(x_0) > \sup_{x \in \overline{j(B_x)}^{\sigma(X^{**}, X^*)}} \phi(x)$. 
+
+Then since $\phi = j(x_0^*)$ for some $x_0^* \in X^*$, we have 
+\[
+\phi(x_0) > \sup_{x \in \overline{j(B_x)}^{\sigma(X^{**}, X^*)}} x(x_0^*) \geq \sup_{x \in j(B_X)} x(x_0) =
+\sup_{x \in B_x} x_0^*(x) = \|x_0^*\|.
+\]
+However, $j(x_0^*)(x_0) = x_0(x_0^*) \leq \|x_0\|_{\sigma(X^{**}, X^*)} \|x_0^*\|_{X^*} \leq \|x_0\|_{X^*}$,
+which shows $\|x_0^*\| < \|x_0^*\|$, a contradiction.
+
+\begin{theorem}[Mazur's Theorem]
+    Let $C$ be a convex subset of a normed space $X$. Then $\overline{C}^{\|\cdot\|} = \overline{C}^w$.
+\end{theorem}
+
+\textit{Proof.} We have $\overline{C}^{\|\cdot\|} \subset \overline{C}^w$ by definition. The intuition is that
+since the weak topology is less restrictive, it allows more into the closure. 
+
+Then suppose $x_0 \in \overline{C}^w \setminus \overline{C}^{\|\cdot\|}$.
+
+By the Geometric Hahn-Banach theorem, there exists $x_0^* \in (X, \|\cdot\|)^*$ such that 
+$x_0^*(x_0) > \sup_{x \in C} x_0^*(x)$. Now let $x_\alpha$ be a net in $C$ converging weakly to $x_0$. 
+Then for all $x^* \in X^*$, $x^*(x_\alpha) \rightarrow x^*(x_0)$. In particular, $x_0^*(x_\alpha)
+\rightarrow x_0^*(x_0)$. However, we have $x_0^*(x_\alpha) \leq \sup_{x \in C} x_0^*(x)$,
+implying $x_0^*(x_0) \leq \sup_{x \in C} x_0^*(x) < x_0^*(x_0)$, a contradiction. 
+
+\begin{theorem}[Eberlein-Smulian]
+    Let $(X, \|\cdot\|)$ be a normed vector space. Then $A \subset X$ is (relatively) weakly compact if and only if 
+    $A$ is (relatively) weakly sequentially compact. 
+\end{theorem}
+
+\begin{remark}
+    \begin{enumerate}
+        \item The weak topology on $X$ is metrizable iff $X$ is finite dimensional
+        \item The weak topology on $X$ is not $1st$ countable
+        \item $(B_X, \sigma(X, X^*))$ is metrizable iff $X^*$ is separable
+        \item $(B_{X^*}, \sigma(X^*, X))$ is metrizable iff $X$ is separable.
+    \end{enumerate}
+\end{remark}
+
+\begin{lemma}
+    Let $(X, \|\cdot\|)$ be a normed space. If $X$ is separable, then there exists a norm on $X$ that induces
+    a topology that is weaker than the weak topology on the unit ball.
+\end{lemma}
+
+\textit{Proof of Lemma.} Let $\{x_n\}$ be a dense sequence in $B_X$. Choose $x_n^* \in B_X$ such that 
+$x_n^*(x_n) = \|x_n\|$ using algebraic Hahn-Banach theorem. Let $p(x) = \sum_1^\infty \frac{1}{2^n}|x_n^*(x)|$,
+taking values in $\left[0,\infty\right)$. Check that $p$ is a sublinear functional. Assume that $p(x) = 0$ 
+and $\|x\| \leq 1$. Let $i \geq 1$ such that $\|x - x_i\| < \epsilon$. Then 
+
+\[
+    \|x_i\| = |x_i^*(x_i)| = |x_i^*(x - x_i)| \leq \|x_i - x\| < \epsilon
+\]
+
+Now let $r > 0$ and consier $\{x \in B_X: p(x) < r\}$. Let $V = \{x \in B_X: |x_i^*(x)| < \epsilon, 1 \leq i \leq N\}$.
+We can choose $\epsilon$ small so that the first $N$ terms of $p(x)$ sum to less than $r/2$ and $N$ large 
+so that the remaining terms sum to less than $r/2$.\hfill\qed
+
+\bigbreak
+\textit{Proof of Eberlein-Smulian ($\Rightarrow$)} Since $X$ is a normed vector space and $A$ relatively weakly compact, 
+every sequence in $A$ has a subsequence which is convergent in $X$. 
+
+Let $K = \overline{A}^{\sigma(X,X^*)}$. Then $K$ is weakly compact. Let $a_n \in A$ and define
+$Z := \overline{\text{span}\{a_n\}}^{\|\cdot\|} \subset X$. $Z$ is a separable subspace of $X$. 
+
+Let $K_0 = \overline{\{a_n\}}^{\sigma(X, X^*)}$. Note that $K_0 \subset Z$, since $Z$ is a convex
+set and is thus also weakly closed by Mazur's theorem. Also $K_0$ is a wealky closed subset of $K$, which is 
+compact, thus $K_0$ is weakly compact. 
+
+In fact $K_0$ is $\sigma(Z, Z^*)$ compact by Hahn-Banach extension theorem, since every linear functional on 
+$Z$ extends to one on $X$. 
+
+Note that $K_0$ is weakly compact and hence bounded in $Z$. 
+By the previous lemma, there is a norm $\rho$ on $Z$ which induces a topology on $K_0$ which is 
+weaker than the weak topology. 
+
+The $\rho$ topology actually coincides with $\sigma(Z, Z^*)$ on $K_0$. This is because if 
+$\tau_1 \subset \tau_2$ are both topologies, with $\tau_1$ hausdorff and $\tau_2$ compact, then 
+$\tau_1 = \tau_2$. Then $K_0$ is metrizable, so $a_n$ has a subsequence which is weakly convergent
+in $Z$. \hfill\qed
+
+\begin{definition}
+    Let $A \subset (X, \|\cdot\|)$. We say that $A$ is weakly bounded if for all $x^* \in X^*$, 
+    the set $x^*(A)\subset \RR$ is bounded.
+\end{definition}
+
+\begin{remark}
+    Every originally bounded subset is also weakly bounded.
+\end{remark}
+
+\begin{lemma}
+    If $A$ is weakly bounded, then $A$ is norm bounded.
+\end{lemma}
+
+\textit{Proof.} Consider linear maps $T_a: X^* \rightarrow \RR$, where $x^* \mapsto x^*(a)$ for $a \in A$. 
+Then $\|T_a\| = \|a\|$. Since $A$ is weakly bounded, for each $x^* \in X*$ we have 
+$\sup_{a \in A} |T_a(x^*)| < \infty$. Then the Uniform Boundedness Principle implies that 
+$\sup_{a \in A} \|T_a\| < \infty$ and thus $\sup_{a \in A}\|a\| < \infty$. \hfill\qed
+
+\begin{corollary}
+    If $A \subset (X, \|\cdot\|)$ is (relatively) weakly compact OR (relatively) weakly
+    sequentially compact, then $A$ is norm-bounded.
+\end{corollary}
+
+\textit{Proof.} Prof. only sketched. Prove by contradiction.
+
+\begin{lemma}
+    Let $(X, \|\cdot\|)$ be a normed space and $E \subset X^*$ a finite dimensional subspace. Then there 
+    exists a finite subset $F \subset X$ such that for all $x^* \in E$, we have 
+    \[
+        \frac{\|x^*\|}{2}\leq \max\limits_{x \in F}|x^*(x)| \leq \|x^*\|
+    \]
+\end{lemma}
+
+\textit{Proof.} Since $E$ is finite dimensional, the unit sphere $S_E$ is compact. Then we can 
+choose a finite $\eta$-net $\{x_1^*, \dots, x_N^*\}$ such that for all $x^* \in S_E$, there
+is some $i \in \{1, \dots, N\}$ such that $\|x^* - x_i^*\| < \eta$. For each $i$, choose
+$x_i \in B_X$ such that $|x_i^*(x_i)| > 1 - \eta$.
+
+Then for any $x^* \in E$, choose $i \in \{1, \dots, N\}$ such that $\left\|\frac{x^*}{\|x^*\|} - x_i^*\right\| < \eta$.
+Then we have 
+\[
+    \left|\frac{x^*}{\|x^*\|}(x_i)\right| = \left|\left(\frac{x^*}{\|x^*\|} - x_i^*\right)(x_i) + x_i^*(x_i)\right|
+    \geq |x_i^*(x_i)| - \left|\left(\frac{x^*}{\|x^*\|} - x_i^*\right)(x_i)\right| \geq 1 - \eta - \eta,
+\]
+using the reverse triangle inequality. Then take $\eta = 1/4$.
+
+\bigbreak
+\textit{Proof of Eberlein-Smulian ($\Leftarrow$)} Our first observation is that $A$ is bounded by the above corollary. 
+The second and main observation is that if $A \subset X$ is bounded, then $\overline{A}^{\sigma(X, X^*)}$ is compact
+if and only if $\overline{J(A)}^{\sigma(X^{**}, X^*)} \subset J(X)$.
+
+To prove the only if, first we have that $j(\overline{A}^{\sigma(X,X^*)})$ is $\sigma(X^{**}, X^*)$ 
+compact since $J$ is weak to weak$^*$ continuous. Then $j(\overline{A}^{\sigma(X,X^*)})$ is closed
+since the weak$^*$ topology is hausdorff. Then since $A \subset \overline{A}^{\sigma(X, X^*)}$, we have 
+$\overline{J(A)}^{\sigma(X^{**}, X^*)} \subset j(\overline{A}^{\sigma(X, X^*)})$.
+
+For the other direction, $A$ bounded implies $j(A)$ bounded, so $\overline{j(A)}^{\sigma(X^{**}, X^*)}$ 
+is $\sigma(X^{**}, X^*)$-compact by Banach-Alaoglu. Now if $\smash{\overline{j(A)}^{\sigma(X^{**}, X^*)}}
+\subset J(X)$, the $\sigma(X^{**}, X^*)$ topology restricted to $J(X)$ coincides with the weak topology on $X$
+and thus $\overline{A}^{\sigma(X, X^*)}$ is weakly compact. 
+
+Now we begin the proof. Let $x_0^{**} \in \overline{J(A)}^{\sigma(X^{**}, X^*)}$. Our goal will be to show
+that there is some $x_0 \in X$ such that $x_0^{**} = J(x)$. We will construct a sequence $\{a_n\} \subset A$ and 
+$\{x_n^*\} \subset B_{X^*}$ inductively. 
+
+Begin by taking $x_1^* \in S_{X^*}$ and consider the $\sigma(X^{**}, X^*)$ neighborhood 
+$V = \{x^{**} \subset X^{**}: |x^{**}(x_1^*) - x_0^{**}(x_1^*)| < 1\}$ of $x_0^{**}$. 
+Since $x_0^{**} \in \overline{J(A)}^{\sigma(X^{**}, X^*)}$, there is $a_1 \in A$ such that $J(a_1) 
+\in V$ and hence $|J(a_1)(x_1^*) - x_0^{**}(x_1^*)| < 1$.
+
+Now $E_1 := \operatorname{span}\{x_0^{**}, x_0^{**} - J(a_1)\}$ is a finite dimensional subspace of $X^*$, so by the lemma
+there is a finite sequence $x_2^*, \dots, x_{n_2}^* \in B_{X^*}$ such that for all $x^{**} \in E_1$, 
+\[
+    \frac{\|x^{**}}{2} \leq \max\limits_{2 \leq i \leq n_2} |x^{**}(x_i^*)| \leq \|x^{**}\|
+\]
+
+Then in a similar fashion to above, there is some $a_2 \in A$ such that 
+\[
+    \left|J(a_2)(x_i^*) - x_0^{**}(x_i^*)\right| < \frac{1}{2}
+\]
+for all $1 \leq i \leq n_2$. By the lemma there exist $x_{n_2 + 1}^*, \dots, x_{n_3}^* \in B_{X^*}$ such that 
+for all $x^{**} \in \operatorname{span}\{x_0^{**}, x_0^{**} - j(a_1), x_0^{**} - j(a_2)\}$, we have 
+\[
+    \frac{\|x^{**}\|}{2} \leq \max\limits_{n_2 + 1 \leq i \leq n_3} |x^{**}(x_i^*)| \leq \|x^{**}\|.
+\]
+
+Continue inductively to obtain sequences $\{a_n\} \subset A$ and $\{x_n^*\} \subset B_{X^*}$, such that 
+\begin{enumerate}
+    \item for all $x^{**} \in \operatorname{span}\{x_0^{**}, x_0^{**} - J(a_1), x_0^{**} - J(a_2), \dots\}$,
+    \[
+        \frac{\|x^{**}\|}{2} \leq \sup\limits_{i \geq 1} |x^{**}(x_i)| \leq \|x^{**}\|
+    \]
+
+    \item $|J(a_k)(x_i^*) - x_0^{**}(x_i^*)| < \frac{1}{k}$ for all $1 \leq i \leq n_k$.
+\end{enumerate}
+
+Since $A$ is relatively weakly sequentially compact, there is some $x \in X$ and a subsequence $\{a_{n_k}\}$ 
+converging to $x$ in the $\sigma(X, X^*)$ topology.
+
+Note that by Mazur's theorem, $x \in \overline{\operatorname{span}\{a_n: n \geq 1\}}$. Hence 
+$x_0^{**} - j(x) \in \overline{\operatorname{span}\{x_0^{**} - J(a_n): n \geq 1\}} =: Z$. 
+This needs to be verified. Then for any $z^{**} \in Z$, we have 
+\[
+    \frac{\|z^{**}\|}{2} \leq \sup\limits_{i \geq 1} |z^{**}(x_i^*)|
+\]
+by a continuity argument.
+
+In particular, 
+\[
+    \frac{\|x_0^{**} - J(x)\|}{2} \leq \sup\limits_{i \geq 1} |(x_0^{**} - J(x))(x_i^*)|.
+\]
+Finally we will show this last term must be zero. Let $i \geq 1$. Then 
+\begin{align*}
+    |(x_0^{**} - J(x))(x_i^*)| \leq |(x_0^{**} - J(a_k))(x_i^*)| + |(J(a_k) - J(x))(x_i^*)| \leq \epsilon/2 + \epsilon/2
+\end{align*}
+by choosing $k$ large enough that the second term is small by weak convergence, and the first is small by (2.) above,
+such that $a_k > i$.
+
+\subsection*{Reflexive Spaces}
+
+\begin{definition}
+    A normed space is called reflexive if the canonical map 
+    \begin{align*}
+        J: & X \rightarrow X^{**}\\
+        & x \mapsto (x^* \mapsto x^*(x)) =: \langle J(x), x^*\rangle
+    \end{align*}
+\end{definition}
+
+\begin{remark}
+    A reflexive space is always a Banach space.
+\end{remark}
+
+The obvious examples are the spaces $\ell_p$ and $L_p([0,1])$ for $1 < p < \infty$.
+
+\subsubsection*{Topological Characterization of Reflexivity}
+
+\begin{theorem}
+    Let $X$ be a Banach space. $X$ is reflexive if and only if $B_X$ is $\sigma(X, X^*)$ compact.
+\end{theorem}
+
+\textit{Proof.} The forward direction is immediate by Banach-Alaoglu theorem. 
+
+For the other direction, if $(B_X, \sigma(X, X^*))$ is compact, then $J(B_X)$ is $\sigma(X^{**}, X^*)$ compact.
+Then $J(B_X)$ is closed since $\sigma(X^{**}, X^*)$ is a hausdorff topology. But by Goldstine's theorem,
+$J(B_X) = \overline{J(B_X)}^{\sigma(X^{**}, X^*)} = B_{X^{**}}$. Then $J(B_X) = B_{X^{**}}$, implying
+that $J(X) = X^{**}$.
+
+\begin{corollary}
+    Let $X$ be a Banach space. If $X$ is reflexive, then 
+    \begin{enumerate}
+        \item $X^*$ is reflexive
+        \item Every closed subspace of $X$ is reflexive
+        \item Every $x^* \in X^*$ attains its norm
+        \item $Y$ is reflexive whenever $Y$ is isomorphic to $X$
+        \item Every bounded sequence in $X$ has a weakly convergent subsequence.
+    \end{enumerate}
+\end{corollary}
 
 \end{document}

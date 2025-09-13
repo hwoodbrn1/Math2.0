@@ -1,12 +1,12 @@
 \documentclass[12pt, reqno]{article}
 
-\usepackage{amsmath, amsthm, amssymb}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
 \usepackage{enumitem}
 \usepackage{bookmark}
 \usepackage{fullpage}
 \usepackage{tcolorbox}
 \usepackage{hyperref}
-\usepackage{tikz}
+\usepackage{tikz, tikz-cd}
 \usetikzlibrary{arrows.meta}
 \usepackage{pdfpages}
 \usepackage{mathrsfs}
@@ -21,8 +21,21 @@
 \newtheorem{exercise}{Exercise}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
+\newtheorem*{definition}{Definition}
 \newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+
+\DeclareMathOperator{\ima}{\text{im}}
 
 \begin{document}
 
@@ -33,9 +46,9 @@
 \renewcommand{\headsep}{20pt}
 \thispagestyle{fancy}
 
-\section*{653 Notes}
+{\Huge \bfseries \noindent 653 Notes}
 
-\subsection{Group Theory}
+\section*{Group Theory}
 
 Let $S$ be a set. A \textbf{Product} on $S$ is a function $S\times S \rightarrow S$,
 where $(s,t) \mapsto s\cdot t$. 
@@ -114,5 +127,133 @@ Let $G$ be a group and $S \subset G$. We define $\langle S\rangle$, the subgroup
 be the collection of all finite combinations of elements of $S$. Equivalently, $\langle S \rangle$ is the smallest
 subgroup of $G$ containing $S$, or the intersection of all subgroups containing $S$. If $a \in G$, the order of $a$
 is the smallest $n > 0$ such that $a^n = e$. Equivalently the order of $a$ is the number of elements in $\langle a \rangle$. 
+
+\begin{remark}
+    Suppose $S \subset G$ and $G = \langle S \rangle$. Then any homomorphism $G \rightarrow H$ 
+    is determined by its restriction to $S$. 
+
+    Not all functions $\phi: S \rightarrow H$ give homomorhpisms. 
+\end{remark}
+
+\begin{definition}
+    An isomorphism $G \rightarrow G$ is called an automorphism. We denote $\operatorname{Aut}(G)$
+    the set of automorphisms of a group $G$.
+\end{definition}
+dy
+\begin{example}
+    For $m \in \mathbb{Z}$, $a \mapsto a\cdot m$ is a homomorphism $\mathbb{Z} \rightarrow \mathbb{Z}$.
+    If $m \neq 0$, the map is an injective homomorphism, called a monomorphism.
+\end{example}
+
+\begin{definition}
+    We denote $\ZZ_m$ the set of integers mod $m$.
+
+    The map $a \mapsto a \mod m$ is a homomorphism $\ZZ \rightarrow \ZZ_m$.
+\end{definition}
+
+\begin{example}
+    The exponential map is a homomorphism $(\RR, +) \rightarrow (\RR_>, \cdot)$. The inverse
+    map is the logarithm.
+\end{example}
+
+\begin{theorem}
+    Let $f$ be a group homomorphism. Then $\ker f = \{e\}$ if an only if $f$ is injective.
+\end{theorem}
+
+\begin{proposition}[Internal Direct Product]
+    Let $G$ be a group with subgroups $H$ and $K$, such that $H \cap K = \{e\}$, and 
+    $H\cdot K = G$, and $hk = kh$ for all $h \in H, k \in K$. Then the map 
+    $\phi: H \times K \rightarrow G$ given by $(h,k) \mapsto h\cdot k$ is an isomorphism.
+\end{proposition}
+
+\textit{Proof.} $\phi$ is surjective by $H\cdot K = G$. Homomorphism easy to check. To show injective, 
+if $\phi(h,k) = e$, then $hk = e$ and $k \in H$, therefore $k = e$. The same applies for $h = e$. Then $(h,k) = (e,e)$.
+
+\subsection*{Cosets and Lagrange's Theorem}
+
+\begin{definition}
+    Let $H$ be a subgroup of a group $G$. A left (right) coset of $H$ in $G$ is a subset of the form 
+    $aH$ ($Ha$) for some $a \in G$. 
+\end{definition}
+
+\begin{theorem}
+    Let $H$ be a subgroup of a group $G$. Then
+    \begin{itemize}
+        \item $aH = bH$ iff $b \in aH$ iff $aH \cap bH \neq \emptyset$ iff $b^{-1}a \in H$
+        \item for all $a \in G$, $H$ and $aH$ are in non-canonical bijection
+        \item the relation $a \sim b$ if $aH = bH$ is an equivalence relation on $G$.
+        \item the map $aH \mapsto Ha^{-1}$ is a bijection between left and right cosets of $H$.
+    \end{itemize}
+\end{theorem}
+
+\begin{definition}
+    The index of a subgroup $H$ of $G$, denoted $[G:H]$, is the cardinal number of the set of right cosets of $H$
+    in $G$. 
+\end{definition}
+
+\begin{theorem}
+    Let $G$ be a group and $H$ a subgroup. Then $|G| = [G:H]\cdot |H|$.
+\end{theorem}
+
+\textit{Proof.} The cosets of $H$ partition $G$ and are equinumerous with $H$.
+
+\subsection*{Normal Subgroups}
+
+\begin{definition}
+    A subgroup $N$ of $G$ is called normal if for all $g \in G$, $gN = Ng$. 
+\end{definition}
+
+\begin{theorem}
+    Let $N$ be normal in $G$ and let $G/N$ be the set of cosets of $N$ in $G$. Then $G/N$ is a group 
+    with product $aN \cdot bN = abN$. We call $G/N$ the quotient or factor group of $G$ by $N$.
+\end{theorem}
+
+\textit{Proof.} Let $\alpha \in aN$ and $\beta \in bN$. Then there exist $m,n \in N$ such that $\alpha = an$
+and $\beta = bm$. Then $\alpha \cdot \beta = anbm = ab(b^{-1}nb)m \in ab N$. 
+
+One also must check for inverses and identity. 
+
+We call the map $G \rightarrow G/N$ sending $a \rightarrow aN$ the canonical surjection/map. $N$ is the kernel 
+of the canonical surjection. 
+
+\begin{definition}
+    A sequence 
+    \begin{equation*}
+        \begin{tikzcd}
+            A \arrow[r, "f"] & G \arrow[r, "g"]  & K
+        \end{tikzcd}
+    \end{equation*}
+    is called exact at $G$ if $\ker g = \text{im} f$.
+\end{definition}
+
+If $N \trianglelefteq G$, then 
+\begin{equation*}
+    \begin{tikzcd}
+        0 \arrow[r, "i"] & N \arrow[r, "j"] & G \arrow[r, "\phi"] & G/N \arrow[r, "f"] & 0
+    \end{tikzcd}
+\end{equation*}
+
+is exact everywhere.
+
+Suppose 
+\begin{equation*}
+    \begin{tikzcd}
+        e \arrow[r] & H \arrow[r, "f"] & G \arrow[r, "g"] & K \arrow[r] & e
+    \end{tikzcd}
+\end{equation*}
+
+is exact. We call this a short exact sequence. Let $N = \text{im} f$. Then we get a commutative diagram
+\begin{equation*}
+    \begin{tikzcd}
+        e \arrow[r] & H \arrow[r, "f"] \arrow[d, "f"] & G \arrow[r, "g"] \arrow[d] & K \arrow[r, "p"] \arrow[d,"\psi"] & e\\
+        e \arrow[r] & N \arrow[r, "i"] & G \arrow[r, "\phi"] & G/N \arrow[r] & 0
+    \end{tikzcd}
+\end{equation*}
+where the vertical arrows are isomorphisms.
+
+\textit{Proof.} Let $k \in K$. There exists $a \in G$ such that $g(a) = k$ since $\ima g = \ker p = K$.
+Then $\phi(a) \in G/N$. Set $\psi(k) = \phi(a)$. Suppose $g(b) = k$. Then $\phi(a)\phi(b)^{-1} = \phi(ab^{-1}) = e$,
+because $g(a) = g(b)$ implies $ab^{-1} \in \ker g = \ima f = N = \ker \phi$.
+
 
 \end{document}

@@ -1,0 +1,63 @@
+\documentclass[12pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 655}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 1}
+
+\it Let $X$ be a finite dimensional normed vector space. Show that the weak topology and the norm
+topology coincide. 
+\normalfont
+
+Let $\tau$ be the norm topology on $X$ and $\tau_w$ the weak topology. We know that $\tau_w \subset
+\tau$ by definition. 
+
+To prove the other direction, we will show that a weakly convegent net is norm-convergent.
+Let $\{x_1, \dots, x_n\}$ be a basis for $x$ and let 
+$\phi_j: (a_1x_1 + \cdots + a_n x_n) \mapsto a_j$ be linear functionals on $X$. 
+Let $x_\alpha = a_{1,\alpha}x_{1,\alpha} + \cdots + a_{n, \alpha} x_{n, \alpha}$ be a net 
+and suppose WLOG that $x_\alpha \rightarrow 0$ weakly. Then $\phi_j(x_\alpha) = a_{j, \alpha} \rightarrow 0$ 
+for $j = 1, \dots, n$. 
+
+Now give $X$ the norm $\|\cdot \|': a_1 x_1 + \cdots + a_n x_n \mapsto \sum_1^n |a_j|$ so that 
+$\|x_\alpha\|' \rightarrow 0$. Since $X$ is finite dimensional, all norms are equivalent and $x_\alpha \rightarrow 0$
+in $\tau$. Then $\tau \subset \tau_w$.
+
+\end{document}

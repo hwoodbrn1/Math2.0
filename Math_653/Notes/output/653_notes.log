@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.9)  1 SEP 2025 18:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.9)  9 SEP 2025 11:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -467,13 +467,19 @@ File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@expandcount=\count311
  (c:/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))) (c:/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
+))) (c:/texlive/2023/texmf-dist/tex/latex/tikz-cd/tikz-cd.sty
+Package: tikz-cd 2021/05/04 v1.0 Commutative diagrams with TikZ
+ (c:/texlive/2023/texmf-dist/tex/generic/tikz-cd/tikzlibrarycd.code.tex (c:/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
+File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (c:/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryquotes.code.tex
+File: tikzlibraryquotes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (c:/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
 File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfarrowinset=\dimen263
 \pgfarrowlength=\dimen264
 \pgfarrowwidth=\dimen265
 \pgfarrowlinewidth=\dimen266
-) (c:/texlive/2023/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+))) (c:/texlive/2023/texmf-dist/tex/latex/pdfpages/pdfpages.sty
 Package: pdfpages 2022/12/19 v0.5x Insert pages of external PDF documents (AM)
  (c:/texlive/2023/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
@@ -552,45 +558,44 @@ Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
 \c@theorem=\count321
 \c@proposition=\count322
 \c@exercise=\count323
-\c@definition=\count324
  (c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-11-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count325
+\l__color_backend_stack_int=\count324
 \l__pdf_internal_box=\box77
 ) (output/653_notes.aux)
 \openout1 = `653_notes.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-Package hyperref Info: Link coloring OFF on input line 27.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+Package hyperref Info: Link coloring OFF on input line 40.
  (c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count326
+\scratchcounter=\count325
 \scratchdimen=\dimen284
 \scratchbox=\box78
-\nofMPsegments=\count327
-\nofMParguments=\count328
+\nofMPsegments=\count326
+\nofMParguments=\count327
 \everyMPshowfont=\toks50
-\MPscratchCnt=\count329
+\MPscratchCnt=\count328
 \MPscratchDim=\dimen285
-\MPnumerator=\count330
-\makeMPintoPDFobject=\count331
+\MPnumerator=\count329
+\makeMPintoPDFobject=\count330
 \everyMPtoPDFconversion=\toks51
 ) (c:/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -640,15 +645,15 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 53.
 (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 53.
  (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 40.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 53.
  (c:/texlive/2023/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
@@ -661,25 +666,25 @@ Package fancyhdr Warning: \headheight is too small (0.0pt):
 
 [1{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-] (output/653_notes.aux)
+] [2] [3] (output/653_notes.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-12-08>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 24641 strings out of 474171
- 467777 string characters out of 5749597
- 1948473 words of memory out of 5000000
- 46545 multiletter control sequences out of 15000+600000
- 564726 words of font info for 62 fonts, out of 8000000 for 9000
+ 25540 strings out of 474171
+ 495463 string characters out of 5749597
+ 1954473 words of memory out of 5000000
+ 47420 multiletter control sequences out of 15000+600000
+ 566016 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 101i,11n,107p,621b,442s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmmi6.600pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmmi8.600pk> <c:/texlive/2023/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy8.600pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/amsfonts/symbols/msbm10.720pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy10.720pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.600pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmmi12.600pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.720pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.864pk> <c:/texlive/2023/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk>
-Output written on output/653_notes.pdf (1 page, 52733 bytes).
+ 101i,15n,107p,621b,1059s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/amsfonts/symbols/msam10.720pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.720pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmti12.600pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmmi6.600pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmmi8.600pk> <c:/texlive/2023/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy8.600pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/amsfonts/symbols/msbm10.720pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy10.720pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.600pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmmi12.600pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.864pk> <c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.1244pk> <c:/texlive/2023/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk>
+Output written on output/653_notes.pdf (3 pages, 90950 bytes).
 PDF statistics:
- 214 PDF objects out of 1000 (max. 8388607)
- 62 compressed objects within 1 object stream
- 4 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 333 PDF objects out of 1000 (max. 8388607)
+ 88 compressed objects within 1 object stream
+ 12 named destinations out of 1000 (max. 500000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

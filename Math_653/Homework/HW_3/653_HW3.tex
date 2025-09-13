@@ -1,0 +1,151 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 653}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 3}
+
+\begin{enumerate}
+    \item[14.] We first show the conjugation map is a bijection. If $gag^{-1} = gbg^{-1}$, multiplication
+    on the left and right by $g$ gives $a = b$, which proves injectivity. For surjectivity, the element
+    $g^{-1}ag$ is mapped to $a \in G$.
+
+    The map is a homomorphism: $geg^{-1} = e$, and $gag^{-1}gbg^{-1} = g(ab)g^{-1}$. 
+
+    Now we show that the set $A$ of inner automorphisms form a normal subgroup of $\text{Aut}(G)$. Let $C_g$ be 
+    conjugation by some $g \in G$ and let $\phi \in \text{Aut}(G)$. Then for $x \in G$, we have 
+    \[
+        (\phi\circ C_g \circ \phi^{-1})(x) = \phi(C_g(\phi^{-1}(x))) = \phi(g) x \phi(g)^{-1} = C_{\phi(g)}(x).
+    \]
+    Moreover, $C_g = \phi \circ C_{\phi^{-1}(g)}\circ \phi^{-1}$, and so $\phi A \phi^{-1} = A$ for any 
+    $\phi \in \text{Aut}(G)$ and $A$ is normal.
+
+    \item[15.] Let $\phi: G \rightarrow H$ be a bijective group homomorphism. Then 
+    \[
+        \phi^{-1}(ab) = \phi^{-1}(\phi(\phi^{-1}(a))\phi(\phi^{-1}(b))) = \phi^{-1}(\phi(\phi^{-1}(a)\phi^{-1}(b)))
+        = \phi^{-1}(a)\phi^{-1}(b),
+    \]
+    and $\phi^{-1}(e_H) = e_G$ since $\phi(e_G) = e_H$ and $\phi$ is a bijection. Then $\phi^{-1}$ is 
+    a homomorphism.
+
+    \item[16.] Let $S$ be a subset of a group $G$, and define $a \sim b$ if and only if $ab^{-1} \in S$. 
+    We will start by supposing $S$ is a subgroup and showing $\sim$ is an equivalence relation. Because 
+    $e \in S$, we have $e = aa^{-1} \in S$ and thus $a \sim a$. If $a \sim b$, then $ab^{-1} \in S$,
+    and so $S$ contains the inverse $ba^{-1}$ and we have $b \sim a$ as well. Finally if $a \sim b$ and
+    $b \sim c$, this means $ab^{-1}, bc^{-1} \in S$. Then the product $ab^{-1}bc^{-1} = ac^{-1}$ is 
+    contained in $S$, so that $a \sim c$ and $\sim$ is indeed an equivalence relation on $G$.
+
+    Conversely suppose $\sim$ is an equivalence relation. Since $a \sim a$ for $a \in G$, this means $aa^{-1} = e \in S$.
+    Next let $a \in S$. Then $ae^{-1} \in S$ so that $a \sim e$ and $e \sim a$, which gives $ea^{-1} = a^{-1} \in S$.
+    Finally let $a,b \in S$. Then $a \sim e$ and $e \sim b^{-1}$, so $a \sim b^{-1}$ and $ab \in S$. Then $S$ 
+    is a subgroup.
+
+    \item[17.] (a.) Clearly $N_G(H)$ contains $H$ by problem 14. If $g, k \in N_G(H)$, then 
+    $(gk)H(gk)^{-1} = g(kHk^{-1})g^{-1} = gHg^{-1} = H$, so $gk \in N_G(H)$. We obviously have $e \in N_G(H)$,
+    as well as inverses, since $aHa^{-1} = H$ implies $H = a^{-1} H a$.
+
+    (b.) If $H$ is normal in $K$, we have $kHk^{-1} = H$ for any $k \in K$, and thus $K \subset N_G(H)$. 
+
+    (c.) Since both $H$ and $K$ contain identity, we have $e \in HK$. For inverses, if $kh \in KH$,
+    we have $h^{-1}k^{-1} = k^{-1}h' \in KH$ for some $h' \in H$ since $K \subset N_G(H)$ and $K$
+    is a subgroup. Finally if $kh, k'h' \in KH$, then $khk'h' = kk'h^*h' \subset KH$ for some $h^* \in H$.
+
+    To show $H$ is normal in $KH$, let $kh \in KH$. We have $kh H (kh)^{-1} = kh H h^{-1} k^{-1} = k H k^{-1} = H$.
+
+    \item[18.] We will construct a homomorphism from $G$ into the permutation group on $p$ elements. 
+    First we will show that right multiplication by elements of $G$ induces a permutation on the set $G/H$.
+    For $g \in G$, let $\pi_g: G \rightarrow G$ be the map $a \mapsto ga$. Then $\pi_g$ 
+    is a bijection $G \rightarrow G$, so we only must show that if $a, b \in G$ belong to the same coset, 
+    they will be mapped to the same coset under $\pi_g$. We let $aH = bH$, so that $b^{-1}a = h$ for $h \in H$,
+    and thus $b^{-1}g^{-1}ga = h$. Then $ga$ and $gb$ differ by an element of $H$, so $gaH = gbH$. Then we have
+    shown that $\pi_g$ permutes the cosets of $H$, of which there are $p$. 
+
+    Let $\phi: g \mapsto \pi_g$ be the map above. It maps $G \rightarrow \text{Sym}(G/H)$, the symmetric group 
+    on the $p$ cosets. Note $|\text{Sym}(G/H)| = p!$, so that the subgroup $\ima(\phi) \subset \text{Sym}(G/H)$
+    must have order dividing $p!$. 
+    However the order of the image of $\phi$ must also divide the order of $G$
+    by lagrange's theorem. Since $p$ is the smallest prime dividing $|G|$, we must have $|\ima(\phi)| = p$.
+    Then since every prime order group is cyclic, $\ima(\phi)$ must be a cycle of all $p$ cosets. 
+
+    Finally we want to show that $\ker\phi = H$. We note that if $h \in H$, $\pi_h$ fixes the coset $H$,
+    and since $\pi_h$ cycles each of the $p$ cosets, it must be the trivial permutation fixing each of them. 
+    Then $\phi(H) = e \in \text{Sym}(G/H)$, so $H \subset \ker \phi$. Since $|G| = |\ker\phi|\cdot[G: \ker\phi]
+    = |\ker\phi|\cdot |\ima(\phi)| = |\ker\phi|\cdot p$, we must have $|H| = |\ker\phi|$, so that in fact 
+    $H = \ker\phi$. 
+    
+    \item[19.] We will represent nonzero complex numbers as $ae^{i\theta}$ for $a > 0$ and $\theta \in \left[0, 2\pi\right)$.
+    We have $|1| = |1e^0| = 1$, and $|ae^{i\theta}be^{i\phi}| = |abe^{i(\theta + \phi)}| = |ab| = |a||b|$,
+    so $|\cdot|$ is a homomorphism. 
+
+    Its image is the multiplicative group of positive real numbers. The kernel contains all elements 
+    of unit norm, which are the elements of $S_1 \subset \CC$.
+
+    \item[20.] By one of the isomorphism theorems from class, since $\phi$ is a surjective homomorphism
+    with kernel $N$, we have $G/N \simeq H$. Then every subgroup $L$ of $H$ is a subgroup of $G/N$.
+    Then the problem amounts to showing there is a bijective correspondence between subgroup $K$ of $G$
+    which contain $N$ and subgroups $L$ of $G/N$, and the same for normal subgroups. 
+
+    Let $\pi$ be the canonical surjection $G \rightarrow G/N$. We will show $\pi$ is the desired bijection,
+    first in the non-normal case. Let $K \neq K'$ be two subgroups of $G$ containing $N$. Then WLOG choose 
+    some $k \in K\setminus K'$. Suppose $KN = K'N$. Then $k = k'n$ for $k' \in K'$, $n \in N$. Since 
+    $N \subset K'$ and $K'$ is a subgroup, this implies $k \in K'$, a contradiction. Then $\pi(K) \neq \pi(K')$,
+    and $\pi$ is injective. 
+
+    Let $L \subset G/N$ be a subgroup. Then $\pi^{-1}(A)$ is a subgroup in $G$, proving surjectivity. Thus 
+    we have the desired bijection between subgroups of $G$ containing $N$ and subgroups of $G/N$, and canonically
+    from subgroups of $G/N$ to subgroups of $H$. 
+
+    For the normal case, note that $\pi$ preserves normality. The injectivity condition still holds. 
+    Finally if $A \subset G/N$ is a normal subgroup, we must show that $\pi^{-1}(A)$ is normal in $G$. For
+    $g \in G$, we have 
+    \[
+        g\pi^{-1}(A) g^{-1} = \pi^{-1}(\pi(g)A \pi(g)^{-1}) = \pi^{-1}(A),
+    \]
+    and we are done. 
+
+\end{enumerate}
+
+\end{document}

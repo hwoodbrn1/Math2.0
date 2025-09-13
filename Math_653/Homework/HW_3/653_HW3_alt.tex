@@ -1,0 +1,70 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 653}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 3}
+
+\begin{enumerate}
+    \item[13.] Let $a \in G$, we will show $a(H \cap K) = (aH) \cap (aK)$. Let $x \in a(H \cap K)$.
+    Then $x = ar$ for some $r \in H \cap K$, thus $x \in aH \cap aK$. 
+
+    If $x \in (aH) \cap (aK)$, we have $x = ah = ak$ for $h \in H$, $k \in K$, and thus $h = k$ and 
+    $x \in a(H \cap K)$. 
+
+    Now suppose $H$ and $K$ have finite index. Let $\phi: G/H\cap K \rightarrow G/H \times G/K$ be 
+    the map $a(H\cap K) \mapsto (aH, aK)$. We will show $\phi$ is an injection, proving the theorem. 
+    First note that $\phi$ is well defined, since $a(H \cap K) = b(H \cap K)$ if and only if 
+    $(aH) \cap (aK) = (bH) \cap (bK)$, in which case $aH \cap bH \neq \emptyset$ and $aH = bH$.
+    similarly $aK = bK$. 
+
+    Then if $\phi(a(H\cap K)) = \phi(b(H \cap K))$, we must have $(aH, aK) = (bH, bK)$. This gives
+    $aH = bH$, $aK = bK$, meaning $(aH) \cap (aK) = (bH) \cap (bK)$ and finally $a(H\cap K) = b(H \cap K)$.
+    This proves $\phi$ is injective. Then we have an injection into a set of finite cardinality, so $G/H\cap K$
+    must have finite cardinality. 
+\end{enumerate}
+
+\end{document}
