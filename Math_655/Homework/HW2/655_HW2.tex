@@ -1,0 +1,74 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 655}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 2}
+
+\begin{enumerate}
+    \item[1.] Suppose $X$ is $\sigma(X, X^*)$ separable. Let $\{x_n\}$ be a countable 
+    $\sigma(X, X^*)$ dense set in $X$. Let $A = \overline{\operatorname{span}_\QQ\{a_n\}}^{\|\cdot\|}$ 
+    be the norm closure of the rational
+    span of the $a_n$'s. Then $A$ is a norm closed, convex set, and thus $A = \overline{A}^{\sigma(X ,X^*)}$
+    by Mazur's theorem. But $A$ contains $\{a_n\}$ whose weak closure is $X$, so we must have 
+    $A = X$. Then $\operatorname{span}_\QQ\{a_n\}$ is a countable set whose norm closure 
+    is $X$, and thus $X$ is separable. 
+
+    \item[2.] Suppose $(B_{X^*}, \sigma(X^*, X))$ is metrizable. Then $B_{X^*}$ is a $\sigma(X^*, X)$
+    compact, metrizable space. Thus the space $C(B_{X^*})$ of $\sigma(X^{*}, X)$-continuous functions $B_{X^*} \rightarrow \RR$
+    is separable in the supremum norm. Also note that the subspace of $C(B_{X^*})$ consisting 
+    of functions which are linear is exactly the image of $X$ under the canonical 
+    surjection $J: X \rightarrow X^*$.
+
+    Then it follows that $J(X)$ is separable as a subspace of $C(B_{X^*})$, and thus 
+    $X$ is separable since the map $J$ is an isometry. 
+
+    \item[3.] 
+
+\end{enumerate}
+
+\end{document}
