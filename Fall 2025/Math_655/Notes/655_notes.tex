@@ -599,4 +599,89 @@ that $J(X) = X^{**}$.
     \end{enumerate}
 \end{corollary}
 
+\textit{Proof.} (1.) Assume $X$ is reflexive. Then $(B_{X^*}, \sigma(X^*, X^{**})) \simeq (B_{X^*}, \sigma(X^*, X))$,
+and since the second space is compact, the unit ball in $X^*$ is weakly compact and thus $X^*$ is reflexive.
+
+(2.) Let $X$ be reflexive and $Y$ be a closed subspace. By assumption, $(B_X, \sigma(X, X^*))$ is compact. 
+The restriction of $\sigma(X, X^*)$ to $Y$ is $\sigma(Y, Y^*)$. Therefore, $(B_Y, \sigma(Y, Y^*))$ is compact because it is 
+a $\sigma(X, X^*)$ closed subset of $B_X$. 
+
+(3.) Compactness argument.
+
+(4.) Assume there exists $T: X \rightarrow Y$ such that $1/C\|x\| \leq \|Tx\| \leq C\|x\|$ for some $C> 0$. 
+Then $\frac{1}{C} B_Y \subset T(B_X) \subset C B_Y$. We have that $(B_X, \sigma(X, X^*))$ is compact. Since $T$ is 
+weak to weak continuous, $T(B_X)$ is $\sigma(Y, Y^*)$ compact. Finally, since $\frac{1}{C}B_Y$ is a $\sigma(Y,Y^*)$ 
+closed subset of a $\sigma(Y, Y^*)$ compact set, it is also $\sigma(Y, Y^*)$ compact. 
+
+(5.) $x_n$ bounded implies $x_n \subset c B_X$ for some $c$. Since the unit ball is weakly compact and thus weakly 
+sequentially compact by Eberlein-Smulian, there is a weakly convergent subsequence. \hfill \qed
+
+\begin{proposition}
+    If $X^*$ is reflexive, then $X$ is reflexive. 
+\end{proposition}
+
+\textit{Proof.} The above corollary implies that $X^{**}$ is reflexive in this case. Then $J(X)$ is a closed subspace
+of $X^{**}$ and thus $J(X)$ and $X$ are reflexive.
+
+\subsection*{Sequential/Geometric Characterization of Reflexivity}
+
+\begin{theorem}
+    Let $X$ be a Banach space. The following are equivalent:
+    \begin{enumerate}
+        \item $X$ is not reflexive.
+        \item For all $\theta \in (0,1)$, there exists a sequence $\{x_n\} \subset B_X$ and $\{x_n^*\} \subset B_{X^*}$ 
+        such that $x_n^*(x_n) = 0$ if $k < n$ and $\theta$ if $k \geq n$.
+        \item For all $\theta \in (0,1)$, there exists a sequence $\{x_n\} \subset B_X$ such that for all $k > 1$,
+        \[d(\operatorname{conv}\{x_1, \dots, x_k\}, \operatorname{conv}\{x_{n+1}, \dots\}) \geq \theta\]
+    \end{enumerate}
+\end{theorem}
+
+\subsubsection*{Moment Problem}
+
+Let $(X, \|\cdot\|)$ be a normed vector space. Let $x_1^*, \dots, x_n^* \in X^*$ and $c_1, \dots, c_n \in \RR$. 
+Does there exist $x \in X$ such that $x_i^*(x) = c_i$ for all $1 \leq i \leq n$. 
+
+\begin{theorem}[Helly's Theorem]
+    Let $x_1^*,\dots, x_n^* \in X^*$ , $c_1,\dots, c_n \in \RR$, and $k > 0$. Then the following are equivalent:
+    \begin{enumerate}
+        \item For all $\epsilon > 0$, there exists $x_\epsilon \in X$ such that $\|x_\epsilon\| \leq k + \epsilon$
+        \item For all $a_1,\dots, a_n \in \RR$, 
+        \[
+            \left|\sum_1^N a_i c_i\right| < k\left\| \sum_1^N a_i x_i^*\right\|
+        \]
+    \end{enumerate}
+\end{theorem}
+
+\textit{Proof.} $(1 \Rightarrow 2)$
+\[
+    \left|\sum a_i c_i\right| = \left| \sum a_i x_i^*(x_\epsilon)\right| = \|x_\epsilon\|\left\|\sum_1^N a_i x_i^*\right\|
+    \leq (x + \epsilon)\left\|\sum a_i x_i^*\right\|
+\]
+
+$(2 \Rightarrow 1)$ Without loss of generality, suppose not all $c_i = 0$. Say $c_{i_0} \neq 0$. Also suppose 
+not all $x_i^*$ are zero. 
+
+Therefore we can assume $x_1^*, \dots, x_k^*$ are linearly independent for $k \leq n$. Thus for all $1 \leq i \leq n$,
+$x_i^* = \sum_1^k \alpha_j^{(i)} x_j^*$.
+
+Given this assumption, if we show $2$ holds for the linearly independent elements, there is an argument to show
+that it holds for the rest of the elements. See notes.
+
+Then we can assume $x_1, \dots, x_n$ are linearly independent. 
+
+Consider $T: X \rightarrow \RR^n$, $x \mapsto (x_1^*(x), \dots, x_n^*(x))$. $T$ is linear. Because the $x_i^*$ are linearly
+independent, for all $1 \leq k \leq n$ we have $\bigcap_{i \neq k} \ker x_i^* \subset \ker(x_k^*)$. 
+
+For all $1 \leq k \leq n$, there exists $y_k \in \bigcap \ker x_i^* \setminus \ker x_k^*$ such that $x_k^*(y_k) = 1$,
+and $x_j^*(y_k) = 0$ for all $j \neq k$. Let $y = \sum_1^n c_j y_j$. Then $x_i^*(y) = \sum_1^n c_j x_j^*(y_j) = c_i$.
+
+Let $Z := \bigcap_1^n \ker x_i^*$, a set closed in $X$. By Hahn-Banach, there exists $x^* \in X^*$ such that 
+$x^*(y) = d(y,z)$. Since $\ker(x^*) \supset Z$, we have $x^* = \sum_1^n \alpha_i x_i^*$. 
+
+$d(y,Z) = x^*(y) = \sum_1^n \alpha_i x_i^*(y) = \sum \alpha_i c_i \leq k\left\|\sum_1^n \alpha_i x_i^*\right\|$.
+
+Fix $\epsilon > 0$. There exists $z \in Z$ such that $\|y - z\| \leq (k + \epsilon)\left\|\sum_1^n \alpha_i x_i^*\right\| = \|x^*\| = 1$.
+
+Then $x_\epsilon = y - z$ satisfies $\|x_\epsilon\| \leq k + \epsilon$.
+
 \end{document}

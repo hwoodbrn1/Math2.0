@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1757717640 "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Math_655/Notes/655_notes.tex" "output/655_notes.pdf" "655_notes" 1757717641 0
-  "655_notes.tex" 1757717639 27562 90af6aad2ec7b33ba8e77aff775983e0 ""
+["pdflatex"] 1757895761 "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Math_655/Notes/655_notes.tex" "output/655_notes.pdf" "655_notes" 1757895763 0
+  "655_notes.tex" 1757895761 32177 f12a4284533a77d041166d1b1f7bf27f ""
   "c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk" 1757603319 12644 fdb4aea1f2ee1bc74756e96c2bda5c5d ""
   "c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/amsfonts/symbols/msbm10.657pk" 1702788403 20124 9522f483a9427e3ab5ebac9621ee5442 ""
   "c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmbx10.657pk" 1702787503 12764 3a86a89c61d89f0ee4c694344ab6af30 ""
@@ -15,7 +15,7 @@
   "c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy6.600pk" 1756865136 8872 3502420c8db10d4d5a1dc3db32789dff ""
   "c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy8.600pk" 1702788402 11344 321e37b87684fc471609a0a9a3911438 ""
   "c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmti10.657pk" 1702787502 16520 b1154e655b8a4b3298ec7517b49c6c5a ""
-  "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Math_655/Notes/655_notes.tex" 1757717639 27562 90af6aad2ec7b33ba8e77aff775983e0 ""
+  "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Math_655/Notes/655_notes.tex" 1757895761 32177 f12a4284533a77d041166d1b1f7bf27f ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1702176780 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr6.pk" 1702175801 6912 5186bb5c879a613d13dd75addf1aeb47 ""
   "c:/texlive/2023/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk" 1702175801 8868 6802580824d038b2553e8b2aaa199234 ""
@@ -175,8 +175,8 @@
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1702346184 21659 9549f4fc8e79e9d02067102d2585a223 ""
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1702181049 8218288 c655096425ef0b18bac252dbfc92f94b ""
   "c:/texlive/2023/texmf.cnf" 1702180847 713 e69b156964470283e0530f5060668171 ""
-  "output/655_notes.aux" 1757717641 162 8041607b76d73e3dcbdb7e912bad98fd "pdflatex"
-  "output/655_notes.out" 1757717641 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "output/655_notes.aux" 1757895763 162 afb4ef04385f9e3622d558f5dc6a25fe "pdflatex"
+  "output/655_notes.out" 1757895762 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "output/655_notes.aux"
   "output/655_notes.log"
