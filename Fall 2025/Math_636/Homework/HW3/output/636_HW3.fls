@@ -1,9 +1,9 @@
-PWD c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Fall 2025/Math_655/Notes
+PWD c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Fall 2025/Math_636/Homework/HW3
 INPUT c:/texlive/2023/texmf.cnf
 INPUT c:/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Fall 2025/Math_655/Notes/655_notes.tex
-OUTPUT output/655_notes.log
+INPUT c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Fall 2025/Math_636/Homework/HW3/636_HW3.tex
+OUTPUT output/636_HW3.log
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/size11.clo
@@ -229,10 +229,10 @@ INPUT c:/texlive/2023/texmf-dist/tex/latex/tools/array.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/tools/array.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-INPUT output/655_notes.aux
-INPUT output/655_notes.aux
-INPUT output/655_notes.aux
-OUTPUT output/655_notes.aux
+INPUT output/636_HW3.aux
+INPUT output/636_HW3.aux
+INPUT output/636_HW3.aux
+OUTPUT output/636_HW3.aux
 INPUT c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -241,14 +241,14 @@ INPUT c:/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT c:/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT c:/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-INPUT output/655_notes.out
-INPUT output/655_notes.out
-INPUT output/655_notes.out
-INPUT output/655_notes.out
-INPUT output/655_notes.out
-INPUT output/655_notes.out
-OUTPUT output/655_notes.out
-OUTPUT output/655_notes.pdf
+INPUT output/636_HW3.out
+INPUT output/636_HW3.out
+INPUT output/636_HW3.out
+INPUT output/636_HW3.out
+INPUT output/636_HW3.out
+INPUT output/636_HW3.out
+OUTPUT output/636_HW3.out
+OUTPUT output/636_HW3.pdf
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
@@ -283,24 +283,21 @@ INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
-INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
 INPUT c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm
-INPUT output/655_notes.aux
-INPUT output/655_notes.out
-INPUT output/655_notes.out
-INPUT c:/texlive/2023/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr6.pk
-INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy6.600pk
-INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk
-INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmti10.657pk
+INPUT output/636_HW3.aux
+INPUT output/636_HW3.out
+INPUT output/636_HW3.out
 INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmmi6.600pk
-INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy10.657pk
-INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/amsfonts/symbols/msbm10.657pk
+INPUT c:/texlive/2023/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr6.pk
 INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmbx10.657pk
 INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmex10.657pk
-INPUT c:/texlive/2023/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk
-INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy8.600pk
+INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/amsfonts/symbols/msbm10.657pk
 INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmmi8.600pk
+INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy8.600pk
+INPUT c:/texlive/2023/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk
+INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmsy10.657pk
 INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmmi10.657pk
 INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.600pk
 INPUT c:/Users/Henry Woodburn/.texlive2023/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.1244pk

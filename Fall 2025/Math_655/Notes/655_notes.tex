@@ -630,7 +630,7 @@ of $X^{**}$ and thus $J(X)$ and $X$ are reflexive.
     \begin{enumerate}
         \item $X$ is not reflexive.
         \item For all $\theta \in (0,1)$, there exists a sequence $\{x_n\} \subset B_X$ and $\{x_n^*\} \subset B_{X^*}$ 
-        such that $x_n^*(x_n) = 0$ if $k < n$ and $\theta$ if $k \geq n$.
+        such that $x_n^*(x_k) = 0$ if $k < n$ and $\theta$ if $k \geq n$.
         \item For all $\theta \in (0,1)$, there exists a sequence $\{x_n\} \subset B_X$ such that for all $k > 1$,
         \[d(\operatorname{conv}\{x_1, \dots, x_k\}, \operatorname{conv}\{x_{n+1}, \dots\}) \geq \theta\]
     \end{enumerate}
@@ -683,5 +683,129 @@ $d(y,Z) = x^*(y) = \sum_1^n \alpha_i x_i^*(y) = \sum \alpha_i c_i \leq k\left\|\
 Fix $\epsilon > 0$. There exists $z \in Z$ such that $\|y - z\| \leq (k + \epsilon)\left\|\sum_1^n \alpha_i x_i^*\right\| = \|x^*\| = 1$.
 
 Then $x_\epsilon = y - z$ satisfies $\|x_\epsilon\| \leq k + \epsilon$.
+
+See notes for proof of sequential characterization of Reflexivity.
+
+\begin{theorem}
+    Let $X$ be a Banach space. The following are equivalent:
+    \begin{enumerate}
+        \item X is reflexive
+        \item Every bounded sequence in $X$ has a weakly convergent subsequence 
+        \item If $(C_n)$ is a nonincreasing sequence of nonempty, bounded, closed, convex sets, 
+        then $\cap C_n \neq \emptyset$
+    \end{enumerate}
+\end{theorem}
+
+\textit{Proof.} $(1 \rightarrow 2)$ follows by Eberlein-Smulian. 
+
+$(2 \rightarrow 3)$: Let $x_n \in C_n$ for all $n \geq 1$. $(x_n)$ is bounded and hence there exists 
+$x \in X$ such that $x_{n_k} \rightarrow x$ weakly for some $n_k$. 
+
+Claim: $x \in \cap_1^\infty C_n$. Assume otherwise. Then there is some $n_0$ such that $x \notin C_{n_0}$.
+By geoemtric Hahn-Banach, there exists $x^* \in S_{X^*}$ such that $x^*(x) > \sup_{C_{n_0}} x^*(z)$. 
+Note that $x^*(x) = \lim x^*(x_{n_k})$. But there exists $K \geq 1$ such that for all $k \geq K$, 
+$x_{n_k} \in C_{n_0}$ and hence $x^*(x_{n_k}) \leq \sup_{C_{n_0}} x^*(z)$ for all $k \geq K$. 
+Then we have a contradiction.
+
+$(3 \rightarrow 1)$: Assume $X$ is not reflexive. Then apply the sequential characterization
+to obtain some $\theta \in (0,1), x_n \in B_X, and x_n^* \in B_{X^*}$. Consider 
+$C_n = \overline{\operatorname{conv}\{x_k: k \geq n\}}$. Then $C_n$ is nonincreasing, nonempty,
+closed, and bounded. We claim $\cap C_n = \emptyset$. Suppose not. Then let $x \in \cap C_n$ and 
+observe that for all $\epsilon > 0$ and all $k \geq 1$, there exists $y \in C_n$ such that 
+$\|x - y\| < \epsilon$, where $y = \sum_1^{n_\epsilon} \lambda_i x_i$ for $\lambda_1 > 0$ 
+and where $y$ is a convex combination. 
+
+Then for all $n > n_\epsilon$, we have $|x_n^*(x - y)| = |x_n^*(x)| < \epsilon$
+and thus $\lim_{n \rightarrow \infty} x_n^*(x) = 0$. But because $x \in C_k$ for 
+$k \geq 1$, we have $x_k^*(x) \geq \theta/2$,a contradiction. 
+
+\subsection*{Finite Representability}
+
+\begin{definition}
+    Let $X, Y$ be Banach spaces and $\lambda \geq 1$. 
+    \begin{enumerate}
+        \item $Y$ is $\lambda$-finitely representable in $X$ if for every 
+        finite dimensional subspace $E \subset Y$, there exists an isomorphism 
+        $T: E \rightarrow X$ such that $\|T\|\|T^{-1}\| \leq \lambda$. In other words,
+        there exists $k \geq 0$ with $k^2 \leq \lambda$ such that for all $e \in E$, 
+        \[
+            \frac{\|e\|}{k} \leq \|Te\| \leq k\|e\|.
+        \]
+
+        \item $Y$ is finitely representable in $X$ if it is $(1 + \epsilon)$-finitely representable 
+        in $X$ for all $\epsilon > 0$. 
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    \begin{enumerate}
+        \item $L_p([0,1])$ is finitely representable in $\ell_p$ for $1 \leq p < \infty$.
+        \item Every Banach space is finitely representable in any Banach space which contains 
+        the $\ell_\infty^n$'s, such as $c_0, \ell_\infty, C([0,1])$, etc.
+    \end{enumerate}
+\end{example}
+
+\begin{lemma}
+    \begin{enumerate}
+        \item If $X_1$ is $\lambda_1$ finite representable in $X_2$ and $X_2$ is $\lambda_2$ finite 
+        representable in $X_3$, then $X_1$ is $\lambda_1 \lambda_2$ finite representable in $X_3$
+        
+        \item If $X_1$ is finitely representable in $X_2$ and $X_2$ is finitely representable 
+        in $X_3$, then $X_1$ is finitely representable in $X_3$
+    \end{enumerate}
+\end{lemma}
+
+\begin{definition}
+    Let $P$ be a property of Banach spaces. We say that a Banach space $X$ has super-$P$ if 
+    every Banach space that is finitely representable in $X$ has $P$.
+\end{definition}
+
+\begin{remark}
+    \begin{enumerate}
+        \item Super-$P$ implies $P$
+        \item Super-super-$P$ is equal to super-$P$
+    \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+    If $X$ is a Banach space, then $X^{**}$ is finitely representable in $X$.
+\end{theorem}
+
+The proof of this theorem is a consequence of the principle of local reflexivity.
+
+\subsubsection*{Ultraproducts}
+
+\begin{definition}
+    Let $I$ be a set, $\mathcal{U} \in \beta I$ an untrafilter on $I$, and $(X_i)_{i \in I}$ a collection
+    of Banach spaces. The Ultraproduct of $(X_i)$ with respect to $\mathcal{U}$ is 
+    $(\prod_{i \in I} X_i)_{\mathcal{U}} := \ell_\infty(I; (X_i)_i)/N_\mathcal{U}$, 
+
+    where $\ell_\infty(I; (X_i)i) := \{(x_i)_{i \in I}: \forall i \in I, x_i \in X_i, \sup \|x_i\|_{X_i} < \infty\}$
+    equipped with the sup norm, and $N_\mathcal{U} := \{(x_i)_{i \in I} \subset \ell_\infty(I, (x_i)_i):
+    \lim_{i, \mathcal{U}} \|x_i\|_{X_i} = 0\}$.
+\end{definition}
+
+One important notion used here is that of a limit along an ultrafilter. If $f:I \rightarrow (X,\tau)$,
+we say $\lim_{i, \mathcal{U}} f(i) = x$ iff for all neighborhoods $V$ of $x$, we have $f^{-1}(V) \in \mathcal{U}$.
+
+\begin{lemma}
+    If $(x_i)_\mathcal{U} \in (\prod_{i \in I} X_i)_\mathcal{U}$, then 
+    \[
+        \|(x_i)_\mathcal{U}\|_\mathcal{U} = \lim_{i, \mathcal{U}}\|x_i\|_{X_i}
+    \]
+    where the first norm is the quotient norm.
+\end{lemma}
+
+\begin{lemma}
+    If $\mathcal{U} \in \beta I$ is non-principle, then $\RR^{\mathcal{U}}$ is linearly isomorphic
+    to $\RR$. 
+\end{lemma}
+
+\begin{theorem}
+    Let $X$ be a Banach space, $\mathcal{U} \in \beta I$ non-principle. Then $X^{\mathcal{U}}$ is finitely 
+    representable in $X$.
+\end{theorem}
+
+See notes for proof.
 
 \end{document}

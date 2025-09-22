@@ -1,0 +1,163 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 636}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 3}
+
+\subsection*{Section 18}
+
+\begin{enumerate}
+    \item[4.] We will show the function $f$ is an embedding, and $g$ will follow in the same way. 
+    $f$ is clearly a bijection onto its image. We will show $f$ is open and continuous. 
+
+    Let $U$ be open in $X$. Then $f(U) = U \times \{y_0\}$ is open in the subspace topology. Also 
+    let $W$ be open in the subspace topology on $X \times \{y_0\}$ so that $W = V \cap (X \times \{y_0\})$
+    for some $V$ open in $X \times Y$. Then $f^{-1}(W) = \pi_X(V)$ is open in $X$, where $\pi_X$ is the 
+    projection onto $X$. 
+
+    \item[5.] We will show that $(a,b) \subset \RR$ is homeomorphic with $(0,1)$, and the same is true 
+    for the corresponding closed intervals. 
+
+    Let $f: \RR \rightarrow \RR$ be the map $x \mapsto \frac{x-a}{b-a}$ which maps $(a,b)$ to $[0,1]$ 
+    and $[a,b]$ to $[0,1]$.
+    $f$ is clearly a homeomorphism 
+    from $\RR$ to $\RR$, and the restriction of $f$ to $(a,b)$ ($[a,b])$ is continuous. Moreover the
+    same is true when restricting the inverse function to $(0,1)$ ($[0,1]$) and thus $f$ is a homeomorphism
+    in both cases.
+
+    \item[7a.] Suppose $f: \RR \rightarrow \RR$ is continuous from the right. Then for every $\epsilon > 0$,
+    there exists $\delta > 0$ such that $|x - a| < \delta$ implies $|f(x) - f(a)| < \epsilon$ when $x > a$.
+
+    Choose some open set $V$ in $\RR$ and choose some $x \in \RR$ such that $f(x) \in V$. Without loss of 
+    generality suppose $V = (f(x) - \epsilon, f(x) + \epsilon)$, otherwise choose a basic open set
+    in $V$ containing $f(x)$. Then using the $\delta$ from above, let $U \subset \RR$ be the set $\left[x, x + \delta\right)$.
+    Then $a \in U$ implies $|x - a| < \delta$ which implies $|f(x) - f(a)| < \epsilon$ and $f(a) \in V$. 
+    Then $f(U) \subset V$ and we are done. 
+
+    \item[8.] Let $Y$ be an ordered set equipped with its order topology. Let $f, g: X \rightarrow Y$ 
+    be continuous functions from a topological space $X$. 
+
+    (a.) We will show the set $\{x: f(x) \leq g(x)\}$ is closed in $X$. Define a function $h(x) = f(x) - g(x)$
+    which is also continuous mapping $X \rightarrow Y$. Then the set $h^{-1}(\{y \leq 0\})$ is closed 
+    in $X$ and is equal to the set $\{x: f(x) \leq g(x)\}$. 
+
+    (b.) Let $h(x)$ be the function $h(x) = \operatorname{min}\{f(x), g(x)\}$. We show $h$ is continuous. 
+    Let $A = \{x: f(x) \leq g(x)\}$ and $B = \{x: f(x) \geq g(x)\}$. Both are closed by the above result. 
+    Moreover, $f = g$ on $A \cap B$. Thus by the pasting lemma, the function 
+    \[
+        p(x) = \begin{cases}
+            f(x) & x \in A\\
+            g(x) & x \in B
+        \end{cases}
+    \]
+    is continuous and equal to $h(x)$. 
+    
+    \item[13.] Let $A \subset X$ and $f: A \rightarrow Y$ be continuous with $Y$ hausdorff. Suppose 
+    $g_1$ and $g_2$ are two continuous extensions of $f$ to the domain $\overline{A}$. 
+
+    Choose any $x_0 \in \overline{A} \setminus A$ and choose open sets $U_1$ and $U_2$ containing $g_1(x_0)$
+    and $g_2(x_0)$ respectively. Then $g_1^{-1}(U_1)$ and $g_2^{-1}(U_2)$ are two open sets containing $x_0$
+    in $X$, and thus their intersection $g_1^{-1}(U_1) \cap g_2^{-1}(U_2) = V$ is an open set containing $x_0$
+    as well, and must intersect $A$ as $x \in \overline{A} \setminus A$. Choose any point $y \in V \cap A$,
+    so that $g_1(y) = g_2(y)$ and thus $U_1 \cap U_2 \neq \emptyset$. 
+
+    Then we have shown that there are no disjoint sets containing $g_1(x_0)$ and $g_2(x_0)$, which together
+    with the hausdorffness of $Y$ implies that $g_1(x_0) = g_2(x_0)$, and thus this holds 
+    for any point in $\overline{A}$. Then the extension of $f$ is uniquely determined by its values on $A$. 
+\end{enumerate}
+
+\subsection*{Section 19}
+
+\begin{enumerate}
+    \item[6.] Let $\{\textbf{x}_i\}_1^\infty$ be a sequence in $\prod X_\alpha$ which converges to $\textbf{x}$.
+    We will show convergence in the product topology is equivalent to convergence pointwise in each coordinate.
+
+    First suppose $\textbf{x}_n$ converges in the product topology. Then for any $U_\alpha$ open in $X_\alpha$,
+    the set $\pi_\alpha^{-1}(U_\alpha)$ is open in the product space, and we can find some $N > 0$ such that 
+    $\textbf{x}_n \in \pi_\alpha^{-1}(U_\alpha)$ for $n > N$, implying $\pi_\alpha(\textbf{x}_n) \in U_\alpha$
+    for $n > N$. 
+
+    Conversely suppose $\pi_\alpha(\textbf{x}_n)$ converges in each $X_\alpha$. Choose any open set 
+    $U = \pi_{\alpha_1}^{-1}(U_{\alpha_1}) \cap \cdots \cap \pi_{\alpha_n}^{-1}(U_{\alpha_n})$ 
+    in the product topology. Choose $N = \text{min}\{N_1,\dots, N_n\}$ such that 
+    $\pi_{\alpha_i}(\textbf{x}_n) \in U_{\alpha_i}$ for $n > N_i$. Then $\textbf{x}_n \in U$ for 
+    $n > N$.
+
+    \item[8.] Let $(a_1, a_2, \dots)$ and $(b_1, b_2,\dots)$ be sequences with $a_i > 0$.
+    Let $h: \RR^\omega \rightarrow \RR^\omega$ be the function 
+    \[
+        h((x_1, x_2, \dots)) = (a_1 x_1 + b_1, a_2 x_2 + b_2,\dots).
+    \]
+
+    $h$ is clearly a bijection. Then we will show it is both open and continuous. 
+    Let $U = \prod_1^\infty U_n$ be an open set in either the box topology or the product topology,
+    in which case only finitely many $U_n \neq \RR$. We have $h(U) = (a_1 U_1 + b_1, a_2 U_2 + b_2, \dots)$,
+    and in either topology, for each $n$, these sets are open.
+
+    Moreover $h^{-1}(U) = (\frac{U_1 - b_1}{a_1}, \frac{U_2 - b_2}{a_2}, \dots)$, and again for each $n$ the sets
+    are open. Then $h$ is a homeomorphism in either topology.
+\end{enumerate}
+
+\subsection*{Section 20}
+
+\begin{enumerate}
+    \item[3.] Let $X$ be a metric space with metric $d$. 
+    (a.) We will show the metric is continuous as a function $d: X \times X \rightarrow \RR$. We can use 
+    the sequence criterion for continuity since $X\times X$ is a metric space. Let $(x_n, y_n) \rightarrow (x,y)$
+    in $X \times X$, so that $d(x_n, x) \rightarrow 0$ and $d(y_n, y) \rightarrow 0$. Then 
+    \[
+        d(x_n, y_n) \leq d(x_n, x) + d(x,y) + d(y, y_n),
+    \]
+    implying $\lim_{n \rightarrow \infty} d(x_n, y_n) \leq d(x,y)$. Moreover,
+    \[
+        d(x,y) \leq d(x, x_n) + d(x_n, y_n) + d(y, y_n),
+    \]
+    implying $d(x,y) \leq \lim_{n \rightarrow \infty} d(x_n,y_n)$. Then $d(x_n, y_n) \rightarrow d(x,y)$ and $d$ is continuous.
+\end{enumerate}
+
+\end{document}

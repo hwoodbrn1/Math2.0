@@ -1,0 +1,105 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 655}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 3}
+
+\begin{enumerate}
+    \item[1.] Let $(X, \tau)$ be a compact topological space and $\phi: (X ,\tau) \rightarrow \RR$ a 
+    lower semicontinuous function. 
+    
+    Let $a = \inf_{x \in X} \phi(x)$. For each $\lambda > a$, 
+    define $U_\lambda = \phi^{-1}(\left(-\infty, \lambda\right])$. Then the sets $U_\lambda$ are non-increasing
+    as $\lambda$ decreases to $a$, and each of them are closed sets by the lower semicontinuity of $\phi$.
+    Moreover, for any finite set $\lambda_1 < \cdots < \lambda_n$, we have 
+    \[
+        \bigcap_{i = 1}^n U_{\lambda_i} = U_{\lambda_1} \neq \emptyset,
+    \]
+    since $\lambda_1 > a$ and by the definition of infimum. Then since $X$ is compact, we have 
+    \[
+        \bigcap_{\lambda > a} U_\lambda \neq \emptyset.
+    \]
+    Choosing some $x_0 \in \bigcap_{\lambda > a} U_\lambda = \phi^{-1}(\left(-\infty, a\right])$, we 
+    have $\phi(x_0) = a$ and thus $\phi$ achieves its infimum at $x_0$.
+
+    \item[2.] Let $(X, \|\cdot\|)$ be a normed space and let $\phi: X \rightarrow \RR$ be a convex, 
+    lower semicontinuous function. We will show that $\phi$ is lower semicontinuous in the $\sigma(X, X^*)$ 
+    topology on $X$. Since we have that $\phi^{-1}(\left(-\infty, a\right])$ is norm-closed 
+    for any $a \in \RR$, we only need to show that these sets are convex, and then we can apply Mazur's
+    theorem to deduce that they are $\sigma(X, X^*)$-closed as well. 
+
+    Suppose $\phi^{-1}(\left(-\infty, a\right]) = A$ is not convex. Then there exist points $x_1, x_2 \in A$
+    and $t \in (0,1)$ such that $x_t = tx_1 + (1-t)x_2 \notin A$. In particular, we have 
+    $\phi(x_1), \phi(x_2) \leq a < \phi(x_t)$. Then since $\phi$ is convex, 
+    \[
+        a < \phi(x_t) \leq t\phi(x_1) + (1-t)\phi(x_2) \leq a,
+    \]
+    a contradiction. Then the sets $\phi^{-1}(\left(-\infty, a\right])$ are convex and thus weakly closed, 
+    and $\phi$ is lower semicontinuous in the $\sigma(X, X^*)$ topology. 
+
+    \item[3.] Let $X$ be a reflexive Banach space, and $C \subset X$ a closed, convex subset. Let 
+    $\phi: C \rightarrow \RR$ be a convex, lower semicontinuous function such that 
+    \[
+        \lim_{x \in C, \|x\| \rightarrow \infty} \phi(x) = + \infty.
+    \]
+    Then we show that $\phi(x)$ achieves its infimum $a$ on $X$. 
+
+    By (2.), we know that $\phi$ is lower semicontinuous in $\sigma(X, X^*)$ as well. Since $X$ is 
+    reflexive, the unit ball is compact in $\sigma(X,X^*)$. Then in order to apply
+    the result of (1.), we just need to show that for some $M > a$, the preimages 
+    $\phi^{-1}(\left(-\infty, \lambda\right])$ are contained in some closed ball about $0 \in X$. 
+
+    But by the limit condition for $\phi$, we have that for all $M > 0$, there exists $\epsilon > 0$ 
+    such that $\|x\| > \epsilon$ implies $\phi(x) > M$. Thus if $\phi(x) < M$, it must be that 
+    $\|x\| < \epsilon$. Fix some $M > a$. Then for every $a < \lambda < M$, we have $\phi^{-1}(\left(-\infty, \lambda\right])
+    \subset B(0, \epsilon)$. We note that $B(0, \epsilon)$ is compact by reflexivity. Then 
+    similar to (1.), there is some point $x_0 \in \phi^{-1}(\left(-\infty, a\right])$ and 
+    $\phi(x_0) = a$. 
+\end{enumerate}
+
+\end{document}
