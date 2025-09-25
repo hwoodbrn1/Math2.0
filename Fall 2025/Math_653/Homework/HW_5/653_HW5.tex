@@ -114,6 +114,102 @@
         \]
 
     \end{enumerate}
+
+    \item[2.] Let $\mathfrak{H} := \{z \in \CC: \operatorname{Im}(z) > 0\}$ be the upper half plane 
+    in the complex numbers. Let $G := SL(2, \RR)$. 
+    \[
+        \text{For}\ z \in \CC\ \text{and}\ \alpha = \begin{pmatrix} a & b \\ c & d \end{pmatrix},\ 
+        \text{let}\ a.z = \frac{az + b}{cz + d}.
+    \]
+    We will show that this defines an action on $\mathfrak{H}$. First we need to check that 
+    the action sends $\mathfrak{H}$ into $\mathfrak{H}$. Indeed, if $\alpha = \left(\begin{smallmatrix}
+        a & b \\ c & d
+    \end{smallmatrix}\right) \in SL(2, \RR)$ and $z \in \mathfrak{H}$, then 
+    \[
+        \operatorname{Im}\alpha. z = \operatorname{Im}\left(\frac{az + b}{cz + d}\right) = \frac{ad - bc}{|cz + d|^2}\operatorname{Im}(z) > 0.
+    \]
+    
+    For $e = \begin{pmatrix}
+        1 & 0 \\ 0 & 1
+    \end{pmatrix}$, we have 
+    \[
+        e.z = \frac{z}{1} = z.
+    \]
+    Finally, if $\alpha = \left(\begin{smallmatrix}
+            a & b \\ c & d
+        \end{smallmatrix}\right)$ and $\beta = \left(\begin{smallmatrix}
+            e & f \\ g & h
+        \end{smallmatrix}\right)$,
+    then 
+    \[
+        \beta .(\alpha . z) = \frac{(ea + cf)z + (eb + fd)}{(ag + ch)z + (gb + dh)} = (\beta\alpha).z
+    \]
+    as desired.
+
+    Now we will show the isotropy group of $i$ is the group 
+    \[
+        K := \left\{\begin{pmatrix}
+            \cos(\theta) & \sin(\theta) \\
+            -\sin(\theta) & \cos(\theta)
+        \end{pmatrix}: \theta \in \RR\right\}.
+    \]
+    Suppose $\frac{ai + b}{ci + d} = i$. Then $ai + b = di - c$, and we must have 
+    \begin{align*}
+        &a = d\\
+        &b = -c.
+    \end{align*}
+    Then together with $ad - bc = 1$, we must have $a^2 + b^2 = 1$. Then it is clear that the values of 
+    $a, b$ must equal $\cos(\theta)$ and $\sin(\theta)$ respectively, with $c$ and $d$ determined by 
+    the above equations as well.
+
+    Finally we will show that $G$ acts transitively on $\mathfrak{H}$. We must show that there is only one orbit. 
+    Equivalently, we may show that any element of $\mathfrak{H}$ may be obtained from the action of $G$ on one element,
+    namely $i$. This means that every element of $\mathfrak{H}$ is in the same orbit, and thus there is only one. 
+
+    We need to solve $\frac{ai + b}{ci + d} = z$ for an arbitrary $z = p + qi \in \mathfrak{H}$. we have 
+    $ai + b = cpi - cq + dp + dqi$, and thus 
+    \begin{align*}
+        &b = dp - cq\\
+        &a = cp + dq.
+    \end{align*}
+    Here we may set $c = 0$ as not all four values $a, b, c, d$ are uniquely determined. 
+
+    Then $b = dp, a = dq$, and thus using $ad - bc = 1$, we have $d^2q = 1$. Here, the positivity of $q$ 
+    ensures that $d$ is a real number. In total, we get $d = \frac{1}{\sqrt{q}}$, $a = \sqrt{q}$, and $b = \frac{p}{\sqrt{q}}$,
+    and indeed we get that 
+    \[
+        \frac{\sqrt{q}i + \frac{p}{\sqrt{q}}}{\frac{1}{\sqrt{q}}} = p + qi.
+    \]
+
+    \item[3.] Let $G$ be a group and $H$ a subgroup. Let $\operatorname{core}(H)$ be the 
+    intersection of all conjugates of $H$ by elements of $G$. Let $S$ be the set of left cosets 
+    of $H$ in $G$. For $g \in G$, define $g_*: S \rightarrow S$ by $g_*(xH) = gxH$.
+    \begin{enumerate}
+        \item[a.] We will show that $g_*$ is an element of the symmetric group on $S$. We know 
+        that left multiplication by $g$ is a bijection on $G$, so it is clearly surjective 
+        on $S$. Also, it could not map two cosets to the same coset, as this would
+        contradict the injectivity of left multiplication by $g$. Then we only must show 
+        that the map $g_*$ is well defined, sending different representatives of the same coset
+        to the same coset. Suppose $aH = bH$, so that $b^{-1}a \in H$. Then $b^{-1}g^{-1}ga = 
+        (gb)^{-1}ga \in H$, and thus $g_*(aH) = g_*(bH)$.
+
+        \item[b.] Let $\phi: G \rightarrow \operatorname{sym}(S)$ be the map $g \mapsto g_*$.
+        To show that $\phi$ is a homomorphism, we clearly have $\phi(e) = I$, the identity
+        map on $S$. 
+
+        Also, for any coset $aH$, we have $\phi(gh)(aH) = (gh)_*(aH) = ghaH = g_*(h_*(aH))
+        = (g_*\circ h_*)(aH) = \phi(g)\circ \phi(h)(aH)$, and thus $\phi(gh) = \phi(g)\circ\phi(h)$
+        and $\phi$ is a homomorphism $G \rightarrow \operatorname{sym}(S)$.
+        \bigbreak
+        Lastly we will show that the kernel of $\phi$ is exactly the core of $H$. Suppose 
+        $\phi(g) = I$. Then $gaH = aH$ for all $a \in G$, and we have $ga \in aH$, or 
+        $g \in aHa^{-1}$. Then $g$ is in the core of $H$. 
+
+        Alternatively, suppose $g \in \operatorname{core}(H)$. Then $g \in aHa^{-1}$ for all $a \in G$,
+        and thus $ga \in aH$ and we have $gaH = aH$. Then $\phi(g) = I$. 
+
+        Then we have shown that $\ker \phi = \operatorname{core}(H)$.
+    \end{enumerate}
 \end{enumerate}
 
 \end{document}
