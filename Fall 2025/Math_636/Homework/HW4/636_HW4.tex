@@ -1,0 +1,267 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 636}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 4}
+
+\subsection*{Section 20}
+\begin{enumerate}
+    \item[5.] Let $\RR^\infty$ be the subset of $\RR^\omega$ consisting of sequences which
+    are eventually $0$. Equip $\RR^\omega$ with the uniform topology induced by the 
+    uniform metric $D$.
+
+    \textbf{Claim:} The uniform closure of $\RR^\infty$ is $c_0$, the space of convergent 
+    sequences in $\RR$.
+    \bigbreak
+    Because the closure of $\RR^\infty$ is the smallest closed set containing $\RR^\infty$, 
+    to show that $\overline{\RR^\infty} \subset c_0$, we just need to show that $c_0$ is 
+    closed in the uniform topology. To do this, we will show $c_0$ contains all of its 
+    limit points. 
+
+    Let $(x_n)$ be a limit point of $c_0$ and suppose $x_n \rightarrow a > 0$. Then choose $\epsilon = a/2 > 0$, and 
+    we are guaranteed some $(y_n) \in c_0$ such that $D((x_n), (y_n)) < a/2$. But this implies $|y_i| > a/2 > 0$ for 
+    all $i$, contradicting that $|y_i| \rightarrow 0$. Then we must have $(x_n) \in c_0$ and $c_0$ is closed.
+
+    Conversely, in order to show $c_0 \subset \overline{\RR^\infty}$, it is enough to show that every point 
+    in $c_0$ is a limit point of $\RR^\infty$. Take any $(y_n) \in c_0$, and let $\epsilon > 0$. Choose 
+    $N > 0$ such that $|y_i| < \epsilon$ whenever $i \geq N$. Define a sequence in $\RR^\infty$ by
+    \[
+        (x_n) = \begin{cases} y_i & n < N\\ 0 & n \geq N\end{cases}.
+    \]
+    Clearly $(x_n)$ is eventually zero. 
+    Then we have 
+    \[
+        D(x_n, y_n) \leq \sup\limits_i |x_i - y_i| = \sup\limits_{i \geq N} |y_i| \leq \epsilon,
+    \]
+    and thus every $\epsilon$-ball about $(x_n)$ intersects $\RR^\infty$ at a point other than $(x_n)$.
+
+    Then $\overline{\RR^\infty} = c_0$.
+
+    \item[7.] Let $(a_n)_1^\infty$ and $(b_n)_1^\infty$ be sequences of real numbers. Consider the map
+    \begin{align*}
+        h: & \RR^\omega \rightarrow \RR^\omega\\
+        & (x_n) \mapsto (a_1 x_1 + b_1, a_2 x_2 + b_2, \dots)
+    \end{align*}
+    Let $f$ be the map $(x_n) \mapsto (a_1 x_1, a_2 x_2, \dots)$, and $g$ the map $(x_n) \mapsto (x_1 + b_1, x_2 + b_2,\dots)$.
+    Then $h = g \circ f$, and in order to show $h$ is continuous we may consider $f$ and $g$ separately.
+    \bigbreak
+    For $g$, i claim there is no restriction of the values of $b_i$ in order for $g$ to be continuous. This 
+    is because for any $g(x)$ in the image of $g$, the preimage of any open ball about $f(x)$ is just the open ball
+    of the same radius about $x$. Then it is clear that $g$ is continuous.
+
+    In order for $f$ to be continuous, I claim that the sequence of $|a_i|$'s must be bounded. First suppose this is 
+    the case, and we will show that $f$ is indeed continuous. Let $a = \sup_i |a_i|$ and choose $\epsilon > 0$. 
+    Let $(y_n) \in \RR^\omega$ such that $d((x_n), (y_n)) < \frac{\epsilon}{a}$. Then 
+    \[
+        |x_i - y_i| < \frac{\epsilon}{a}
+    \]
+    assuming $\frac{\epsilon}{a} < 1$, and thus 
+    \[
+        |f(x_i) - f(y_i)| = |a_i||x_i - y_i| \leq a|x_i - y_i| < \epsilon.
+    \]
+    Then $f$ is continuous, with $\delta = \frac{\epsilon}{a}$.
+
+    Now suppose $|a_i|$ is unbounded. For any $\delta > 0$, choose some $(y_n) \in \RR^\omega$
+    such that $|x_i - y_i| = \frac{\delta}{2}$. We see that 
+    \[
+        |f(x_i) - f(y_i)| = |a_i||x_i - y_i| = |a_i|\delta,
+    \]
+    and for any $N > 0$ there is some $i$ such that $|a_i| > N$ and $|f(x_i) - f(y_i)|$ is unbounded. Then 
+    this implies $f$ cannot be continuous if we choose $0 < \epsilon < 1$.
+
+    Together, as long as $|a_i|$ is bounded, the function $h$ will be continuous in the uniform metric. 
+
+    \item[8.] (a.) Let $X \subset \RR^\omega$ be the space of square summable sequences. We will show that 
+    on $X$ there are inclusions 
+    \[
+        \text{box topology}\ \supset\ \ell^2\ \text{topology}\ \supset\ \text{uniform topology}.
+    \]
+    Let $D$ be the uniform metric and $d$ be the $\ell^2$ metric.
+    \bigbreak
+    We will show the second inclusion first. Choose $\epsilon > 0$. Without loss of generality, consider
+    a uniform $\epsilon$ ball $B_{u, \epsilon}$ about $0$, and say $\epsilon < 1$. This works because for any uniform
+    open set $U$ and a point $x \in U$, we can translate $x$ to the origin. If $(y_n) \in X$ with $d((x_n), (y_n)) < \epsilon$,
+    then 
+    \[
+        \sum |x_i|^2 < \epsilon^2,\ \text{so that}\ |x_i|^2 < \epsilon^2\ \text{and}\ |x_i| < \epsilon\ \text{for all}\ i.
+    \]
+    Then $D((x_n), (y_n)) < \epsilon$ and the $\ell^2$ epsilon ball of radius $\epsilon$ is contained in $B_{u, \epsilon}$.
+    Then the uniform topology is contained in the $\ell^2$ topology.
+    \bigbreak
+    Now consider an $\ell^2$ ball $B_{2, \epsilon}$ of radius $\epsilon$ for some $\epsilon > 0$. Define an open 
+    set $U$ containing $0$ in the box topology by 
+    \[
+        U = \prod\limits_{i = 1}^\infty (-\epsilon 2^{i - 1}, \epsilon 2^{i - 1}).
+    \]
+    Then if $(x_i) \in U$, we have 
+    \[
+        d((x_i),0)^2 = \sum_1^\infty |x_i|^2 \leq \sum_1^\infty \epsilon^2 2^i = \epsilon^2,
+    \]
+    and thus $d((x_i), 0) < \epsilon$ and $(x_n) \in B_{2, \epsilon}$. Then the $\ell^2$ topology is contained 
+    in the box topology.
+
+    (b.) We will show that the uniform, box, product, and $\ell^2$ topologies are all different on $\RR^\infty$ as a subspace
+    of $X$. 
+
+    \textbf{Box topology is distinct:}
+    First, for $\epsilon > 0$,
+    \[
+        \prod\limits_{i = 1}^\infty (\epsilon, \epsilon)
+    \]
+    is an open set in the box topology which is not open in the product or $\ell^2$ topologies.
+
+    The set 
+    \[
+        \prod\limits_{i = 1}^\infty U_i
+    \]
+    where $U_i = X_i$ for all $i$ except some $j$, where $U_j = (-1, 1)$ is not open in the uniform topology.
+
+    \textbf{Product topology $\neq$ $\ell^2$ topology $\neq$ uniform topology:}
+
+    The set $\{x \in \RR^\infty: d(x, 0) < \epsilon\}$ is open in the $\ell^2$ topology but not in the product topology,
+    since an open set in the product topology cannot have infinitely many of its projections not all of $\RR$, but for every
+    $i$, we must have $d(x_i) < \epsilon$.
+    
+    Likewise it is not open in the uniform topology, since every uniform open ball contains sequences of arbitrarily 
+    large $\ell^2$ norm.
+
+    \textbf{Product topology $\neq$ uniform topology:}
+    The set $\{x \in \RR^\infty: D(x,0) < \epsilon\}$ is open in the uniform topology but is not open in the product topology,
+    for the same reason as above. 
+
+    Then all four topologies are distinct.
+    
+\end{enumerate}
+
+\subsection*{Section 21}
+
+\begin{enumerate}
+    \item[1.] Let $d$ be a metric on $X$ and let $A \subset X$ be a subspace. We will show that the restriction of $d$
+    to $A \times A$ induces the subspace topology that $A$ inherets from $X$. Let $d'$ be the restricted metric on $A$.
+    \bigbreak
+    First note that the collection of intersection of open balls in $X$ with $A$ forms a basis for the subspace topology
+    on $A$. Then if $U$ is a basic open set in $A$, we have $U = B_\epsilon(x) \cap A$ for some epsilon ball 
+    $B_\epsilon(x)$ centered at $x \in X$. For any $y \in U$, we have $d(x,y) < \epsilon$, and thus 
+    the $d'$ ball about $y$ of radius $\epsilon - d(x,y)$ is contained in $U$. Then every set from the subspace 
+    topology is open in the $d'$ metric topology. 
+
+    Conversely let $B'_\epsilon(x)$ be a $d'$ ball of radius $\epsilon$ at some $x \in A$. Then
+    $B'_\epsilon(x) = B_\epsilon(x) \cap A$, where $B_\epsilon(x)$ is a ball in the original metric. Thus $d'$ balls
+    are open in the subspace topology and we are done. 
+
+    \item[2.] First we show that $f$ is continuous. Choose $\epsilon > 0$. Then if $d_X(x,y) < \epsilon$, we have
+    $d_Y(f(x), f(y)) = d_X(x,y) < \epsilon$, and we are done. 
+
+    Now we show $f^{-1}$ is continuous as a map $f(X) \rightarrow X$. Suppose $d_Y(f(x), f(y)) < \epsilon$.
+    Then $d_X(x,y) = d_Y(f(x), f(y)) < \epsilon$ and we are done. 
+
+    Finally, we show $f$ is injective. This follows from $f$ being an isometry. If $f(x) = f(y)$, then 
+    \[
+        0 = d_Y(f(x), f(y)) = d_X(x,y),
+    \]
+    so $x = y$ since $d_X$ is a metric. 
+
+    \item[7.] Let $X$ be a set and $f_n: X \rightarrow \RR$ a sequence of functions. We will show that uniform convergence
+    of $f_n$ to $f$ is equivalent to convergence of $f_n$ to $f$ as elements of $\RR^X$ in the uniform topology. We can
+    suppose $f_n$ converges to $0$ without loss of generality, otherwise take $f_n - f$.
+
+    First suppose $f_n \rightarrow 0$ uniformly on $X$. Then for all $\epsilon > 0$ there exists $N > 0$
+    such that $|f_n(x)| < \epsilon$ for all $x \in X$ and $n > N$. Then with $d$ the uniform metric,
+    \[
+        d(f_n, 0) \leq \sup\limits_{x \in X} |f_n(x)| < \epsilon
+    \]
+    and thus $f_n$ converges to $0$ in the uniform topology as an element of $\RR^X$.
+
+    Conversely consider $f_n$ as an element of $\RR^X$ and suppose it converges in the uniform topology to $0$. 
+    Choose $0 < \epsilon < 1$ and $N > 0$ such that $d(f_n(x), 0) < \epsilon$ for $n > N$. Then
+    \[
+        |f_n(x)| < \epsilon < 1
+    \]
+    for all $x \in X$ and $n > N$, so $f_n$ converges uniformly as well.
+\end{enumerate}
+
+\subsection*{Section 22}
+
+\begin{enumerate}
+    \item[2.] (a.) Let $p: X \rightarrow Y$ be a continuous map and suppose there is a continuous map $f: Y \rightarrow X$ such that 
+    $p\circ f$ is the identity on $Y$. We will show $p$ is a quotient map.
+
+    For surjectivity of $p$, for any $y \in Y$, since $p(f(y)) = y$, the point $f(y)$ maps to $y$ under $p$.
+
+    Let $U \subset Y$. We already have that if $U$ is open in $Y$, $p^{-1}(U)$ must be open in $X$, since $p$ is continuous. Now suppose 
+    $p^{-1}(U)$ is open in $X$. Then $f^{-1}(p^{-1}(U))$ is open in $Y$. But this is just $U$, since the inverse 
+    of $p \circ f$, $f^{-1} \circ p^{-1}$, must also be the identity (as maps of sets).
+
+    (b.) Let $A \subset X$ and let $r: X \rightarrow A$ be a retraction. $r$ is clearly surjective since 
+    it is the identity on $A$. 
+
+    Let $U \subset A$. We only need to show $r^{-1}(U)$ open implies $U$ open since $r$ is continuous. In this case, 
+    we have $U = r^{-1}(U) \cap A$, and thus $U$ is open in the subspace topology on $A$.
+
+    \item[4.] (a.) Define an equivalence relation on $\RR^2$ by 
+    \[
+        x_0 \times y_0 \sim x_1 \times y_1\ \text{if}\ x_0+y_0^2 = x_1 + y_1^2,
+    \]
+    and let $X^*$ be the quotient space. Then $X^*$ is homeomorphic to the real line $\RR$. To see this define 
+    a map 
+    \begin{align*}
+        g: & \RR^2 \rightarrow \RR\\
+        & x\times y \mapsto x + y^2.
+    \end{align*}
+    Then the fibers of $g$ are exactly the equivalence classes under 
+    the relation above. Then by $22.3$, $X^*$ is homeomorphic to $\RR$ if $g$ is a quotient map. We can already see 
+    that $g$ is continuous and surjective. Also, $g$ is an open map because is it the composition of the map $x\times y 
+    \mapsto x - y^2 \times y$ and projection onto the $y$ axis. Then it is a quotient map. 
+
+    (b.) Define $g: \RR^2 \rightarrow \RR_{\geq 0}$ by $x\times y \mapsto x^2 + y^2$. Then $g$ is continuous and surjective,
+    and is an open map as it maps open sets to the segment of $\RR_{\geq 0}$ obtained by collecting all the 
+    points intersected by sweeping a ray from $0$ around $360$ degrees and then squaring.
+
+\end{enumerate}
+
+\end{document}

@@ -645,6 +645,7 @@ Does there exist $x \in X$ such that $x_i^*(x) = c_i$ for all $1 \leq i \leq n$.
     Let $x_1^*,\dots, x_n^* \in X^*$ , $c_1,\dots, c_n \in \RR$, and $k > 0$. Then the following are equivalent:
     \begin{enumerate}
         \item For all $\epsilon > 0$, there exists $x_\epsilon \in X$ such that $\|x_\epsilon\| \leq k + \epsilon$
+        and $x_i^*(x_\epsilon) = c_i$ for $1 \leq i \leq n$.
         \item For all $a_1,\dots, a_n \in \RR$, 
         \[
             \left|\sum_1^N a_i c_i\right| < k\left\| \sum_1^N a_i x_i^*\right\|
@@ -807,5 +808,118 @@ we say $\lim_{i, \mathcal{U}} f(i) = x$ iff for all neighborhoods $V$ of $x$, we
 \end{theorem}
 
 See notes for proof.
+
+\begin{theorem}
+    Let $X$ be a Banach space, $E \subset X^{**}$, $F \subset X^*$ both finite dimensional subspaces. For all $\epsilon > 0$,
+    there exists an injective operator $T: X \rightarrow X$ such that 
+    \begin{enumerate}
+        \item $Tx = x$ for all $x \in E \cap X$
+        \item $\|T\|\|T^{-1}\| \leq 1 + \epsilon$
+        \item For all $x^{**} \in E$ and $x^* \in F$, $x^{**}(x^{*}) = x^*(Tx^{**})$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    $X^{**}$ is finitely representable in $X$.
+\end{corollary}
+
+\begin{lemma}[Helly's Lemma]
+    Let $X$ be a Banach space and $G \subset X^*$ finite dimensional. For all $x^{**} \in X^*$ and $\epsilon > 0$,
+    there exists $x \in X$ such that 
+    \begin{enumerate}
+        \item $\|x\| \leq (1 + \epsilon)\|x^{**}\|$
+        \item For all $x^* \in G$, $x^{**}(x^*) = x^*(x) = J(x)(x^{**})$.
+    \end{enumerate}
+\end{lemma}
+
+\textit{Proof of Helly's lemma} 
+
+Let $G = \operatorname{span}\{x^*_i: 1 \leq i \leq n\}$ and let $c_i = x^{**}(x_i^*)$ for $1 \leq i \leq n$.
+
+Choose any $(\alpha_i)_1^\infty \subset \RR$. Then we have 
+\[
+    \left|\sum_1^n \alpha_i c_i\right| = \left|\sum_1^n \alpha_i x^{**}(x_i)\right| \leq \|x^{**}\|\left\|\sum_1^n \alpha_i x^*\right\|
+\]
+Then the conditions for Helly's theorem are satisfied, and there exists $x \in X$ such that $\|x\| \leq (1 + \epsilon)\|x^{**}\|$
+and $x_i^*(x) = c_i = x^{**}(x_i^*)$ for $1 \leq i \leq n$. Then by linearity, we can extend this to 
+\[
+    \text{for all}\ x^* \in G, x^*(x) = x^{**}(x^*)
+\]
+\hfill\qed
+
+\begin{remark}
+    Let $X$ be a real vector space. Then there is a canonical identification of $L(\RR, X)$ with $X$, where 
+    $f \mapsto f(1)$. Then we have $L(\RR,X)^{**} \equiv X^{**} \equiv L(\RR, X^{**})$. 
+\end{remark}
+
+Thus, we can restate Helly's Lemma as follows:
+\begin{lemma}[Generalized Helly's Lemma]
+    Let $X$ be a Banach space, $E \subset X$ and $F \subset X^*$ finite dimensional subspaces. For all $S \in L(E, X^{**})$
+    and all $\epsilon > 0$, there exists $T \in L(E, X)$ such that 
+    \[
+        \|T\| \leq (1 + \epsilon)\|S\|
+    \]
+    and for all $x^* \in F$ and $e \in E$, $(Se)(x^*) = x^*(Te)$.
+\end{lemma}
+
+\textit{Proof of GHL}
+For all $x \in E$ and $x^* \in F$, define 
+\begin{align*}
+    x \otimes x^*: L(E, X)& \rightarrow \RR\\
+    A &\rightarrow x^*(Ax)
+\end{align*}
+
+Then $x \otimes x^*$ is linear, and we have $\|x\otimes x^*\| \leq \|x\|\|x^*\|$. Then
+$x\otimes x^* \in L(E, X)^*$ for all $x \in E, x^* \in F$.
+\bigbreak
+Define $G:= \operatorname{span}\{x\otimes x^*: x \in E, x^* \in F\}$, a finite dimensional subspace of $L(E, X)^*$.
+By Helly's lemma on $G \subset L(E, X)^*$, for all $S \in L(E, X)^{**}$ and $\epsilon > 0$, there exists 
+$T \in L(E, X)$ such that $\|T\|\leq (1 + \epsilon)\|S\|$, and 
+\[
+    \text{for all}\ R \in G, S(R) = R(T),
+\]
+i.e. for all $x \in E$ and $x^* \in F$, $S(x\otimes x^*) = (x \otimes x^*)(T) = x^*(Tx)$.
+\bigbreak
+Then if for all $\tilde{S} \in L(E, X)^{**}$ we can find an $S \in L(E, X^{**})$ such that 
+\[
+    (\tilde{S}e)(x^*) = S(e\otimes x^*)\ \text{for all}\ e \in E, x^* \in F,
+\]
+we will be done. We will save the proof of this fact until after proving PLR.
+
+\textit{Proof of PLR}
+
+Let $E \subset X^{**}, F \subset X^*$ be finite dimensional subspaces. Consider 
+\begin{align*}
+    S: E & \rightarrow X^{**}\\
+    x^{**} & \mapsto x^{**}.
+\end{align*}
+By Generalized Helly's Lemma, for all $\epsilon > 0$, there exists some bounded operator $T: E \rightarrow X$ 
+such that 
+\begin{enumerate}
+    \item $\|T\| \leq (1 + \epsilon)\|S\|\leq (1 + \epsilon)$
+    \item For all $x^* \in F$ and $e \in E$, $(Se)(x^*) = x^*(Te)$.
+\end{enumerate}
+The problem is that we do not know if $T$ is injective or if $\|T\| \leq 1$.
+\bigbreak
+We need to enlarge $F$ in order to get these results. Let $\delta > 0$ and choose a $\delta/2$ net 
+$\{x_1^{**}, \dots, x_n^{**}\} \subset S_E$, and let $x_i^* \in S_{X^*}$ such that $x_i^{**}(x_i^*) \geq 1 - \delta$
+for $1 \leq i \leq n$. Let $\tilde{F} = \operatorname{span}\{F \cup \{x_i^*: 1 \leq i \leq n\}\}$, and observe that 
+$\tilde{F}$ is also a finite dimensional subspace of $X^*$. Now apply GHL to $\tilde{F}$. Then for all $\epsilon > 0$,
+there exists $T \in L(E, X)$ such that
+\begin{enumerate}
+    \item $\|T\| \leq (1 + \epsilon)$
+    \item For all $x^* \in \tilde{F}$ and all $x^{**} \in E$, $x^{**}(x^*) = x^*(Tx^{**})$
+\end{enumerate}
+\bigbreak
+Next we will prove that $T$ is the identity on $E$. Let $x \in E$. Then for all $x^* \in F$, 
+$x^*(Tx - x) = 0$. Assume by contradiction that $Tx \neq x$. Pick some $x_{i_0}^{**} \in S_E$ such that 
+\[
+    \left\|\frac{Tx - x}{\|Tx - x\|} - x_{i_0}^{**}\right\| \leq \delta.
+\]
+But then 
+\begin{align*}
+    1 - \delta \leq |x^{**}_{i_0}(x_{i_0}^*)| = \left|\left(x_{i_0}^* - \frac{Tx - x}{\|Tx-x\|}\right)(x_{i_0}^*)\right|
+    \leq \left\|x_{i_0}^* - \frac{Tx - x}{\|Tx - x}\right\|\|x_{i_0}^*\| < \delta
+\end{align*}
 
 \end{document}

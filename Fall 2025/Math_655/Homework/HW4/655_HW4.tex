@@ -1,0 +1,143 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 655}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 4}
+
+\begin{enumerate}
+    \item Let $(x_n)_1^\infty \in \ell^\infty$. We will show that 
+    \[
+        d((x_n)_1^\infty, c_0) = \limsup\limits_n |x_n|.
+    \]
+
+    By definition, 
+    \[
+        d((x_n)_1^\infty, c_0) = \inf\limits_{(y_n) \in\ c_0} d((x_n), (y_n)),
+    \]
+    where $d\left((x_n), (y_n)\right) = \sup\limits_n |x_n - y_n|$. 
+    
+    To show that the distance $d((x_n), c_0)$ is at most $\liminf\limits_n |x_n|$, define a family of 
+    sequences in $c_0$ as follows: Let 
+    \[
+        (y_n^k) := \begin{cases}
+            x_n & n < k\\
+            0   & n \geq k
+        \end{cases},
+    \]
+    so that 
+    \[
+        d((x_n), (y_n^k)) = \sup\limits_n |x_n - y_n^k| = \sup\limits_{n \geq k} |x_n|.
+    \]
+    Then we have
+    \[
+        d((x_n), c_0) \leq \inf\limits_k d((x_n), (y_n^k)) = \inf\limits_k \sup\limits_{n \geq k} |x_n| = \liminf\limits_n |x_n|,
+    \]
+    which proves one direction. On the other hand, for any $(y_n) \in c_0$, 
+    \[
+        d((x_n), (y_n)) = \sup\limits_n |x_n - y_n| \geq \sup\limits_n |x_n| - |y_n| = \sup\limits_n |x_n|
+        \geq \limsup\limits_n |x_n|,
+    \]
+    and thus $d((x_n), c_0) = \inf\limits_{(y_n) \in c_0} d((x_n), (y_n)) \geq \limsup\limits_n |x_n|$. 
+    Then we have shown $d((x_n), c_0) = \limsup\limits_n |x_n|$.
+
+    \item Let $\mathcal{U}$ be a non-principal ultrafilter on a set $I$, $(X_i)_{i \in I}$ a collection 
+    of Banach spaces, and $(\prod_{i \in I} X_i)^{\mathcal{U}}$ its ultraproduct with respect to $\mathcal{U}$.
+
+    We will show that for some $(x_i)_{i \in I}$, 
+    \[
+        \|(x_i)\|_{\mathcal{U}} = \lim\limits_{i, \mathcal{U}}\|x_i\|_{X_i}.
+    \]
+
+    Let $\lim\limits_{i, \mathcal{U}} \|x_i\|_{X_i} = a$. By the definition of the ultrafilter limit, 
+    if we choose some $\epsilon > 0$ we get a set $U \in \mathcal{U}$ such that for $i \in U$,
+    $|\|x_i\|_{X_i} - a| < \epsilon$. Then we know $\|x_i\| < a + \epsilon$ for all $i \in U$.
+    
+    Define a sequence 
+    \[
+        y_i = \begin{cases}x_i & i \notin U\\ 0 & i \in U\end{cases}
+    \]
+    so that 
+    \[
+        d((x_n),(y_n)) = \sup\limits_{i} \|x_i - y_i\| = \sup\limits_{i \in U} \|x_i\| < a + \epsilon.
+    \]
+    We know that $(y_n)_{i \in I}$ is an element of $N_\mathcal{U}$ since for any $\epsilon > 0$, the set of $i \in I$ for which 
+    $\|y_i\|_{X_i} < \epsilon$ contains the set $U$ and thus is an element of $\mathcal{U}$. 
+
+    Moreover, 
+    \[
+        \|(x_i)\|_{\mathcal{U}} = \inf\limits_{(z_n) \in N_\mathcal{U}} d((x_n), (z_n)) \leq d((x_n), (y_n)) < a + \epsilon.
+    \]
+
+    Then this holds for any $\epsilon > 0$, so in fact $\|(x_i)\|_\mathcal{U} \leq a = \lim\limits_{i, \mathcal{U}}\|x_i\|_{X_i}$.
+    \bigbreak
+    In the other direction, let $(y_n) \in N_{\mathcal{U}}$ and choose $\epsilon > 0$. Then there is a set 
+    $U \in \mathcal{U}$ such that for $i \in U, \|y_i\| < \epsilon$, and a set $V \in \mathcal{U}$ such that 
+    for $i \in V, \|x_i\| \geq a - \epsilon$. So
+    \[
+        d((x_n), (y_n)) = \inf\limits_i \|x_i - y_i\| \geq \sup\limits_{i \in U \cap V} \|x_i\| - \|y_i\|
+        \geq a - 2\epsilon.
+    \]
+    Then $d((x_n), (y_n)) \geq \lim\limits_{i, \mathcal{U}} \|x_i\|$ for any $(y_n) \in N_\mathcal{U}$,
+    and thus 
+    \[
+        \|(x_i)\|_{\mathcal{U}} = \inf\limits_{(y_n) \in N_\mathcal{U}} d((x_i), (y_n)) \geq \lim\limits_{i, \mathcal{U}} \|x_i\|
+    \]
+    and we are done.
+
+    \item We will show that $\RR \simeq \RR^\mathcal{U}$, the ultrapower of $\RR$ with respect to $\mathcal{U}$.
+    
+    Define a map $\Phi: \RR^\mathcal{U} \rightarrow \RR$ by $(x_i) \mapsto \lim\limits_{i, \mathcal{U}}|x_i|$. The map
+    is linear because of the linearity of the limit. It is an isometry since
+    \[
+        \|(x_i)\|_\mathcal{U} = \lim\limits_{i, \mathcal{U}}|x_i| = |\lim\limits_{i, \mathcal{U}}x_i|
+    \]
+    as $\lim\limits_{i, \mathcal{U}}x_i$ always exists. It is clearly surjective, since for any $x \in \RR$ 
+    we can take $(x_n) = x$ for all $n$. Then the two spaces are isometrically isomorphic.
+\end{enumerate}
+
+\end{document}

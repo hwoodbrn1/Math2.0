@@ -1,0 +1,202 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 636}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 6}
+
+\subsection*{Section 26}
+
+\begin{enumerate}
+    \item[4.] We must show that every compact subset of a metric space is closed and bounded. 
+    
+    Let $X$ be a metric space and $A$ a compact subspace of $X$. Then choose any point $a \in A$. The
+    collection of balls centered at $a$ with radius $r = 1, 2, \dots$ is an open cover of $A$, since 
+    these balls cover $X$. Then there is a finite subcover, and we can choose the largest ball out of this 
+    subcover, say of radius $r$. Then $A$ is contained in a ball of radius $r$ and thus each of its points 
+    are within $2r$ distance of one another. 
+
+    Since every metric space is hausdorff, $A$ is closed, since a compact subset of a hausdorff space is 
+    closed.
+    \bigbreak
+    Now we give an example of a metric space in which not every closed bounded subpace is compact. 
+    Consider the space $C([0,1])$ of continuous functions mapping $[0,1]$ into $\RR$, equipped with 
+    the metric 
+    \[
+        d(f,g) = \sup_{x \in [0,1]} |f(x) - g(x)|.
+    \]
+    Define $A := \{f \in C([0,1]): |f(x)| \leq 1\ \text{for all}\ x \in [0,1]\}$. $A$ is bounded 
+    in the sup metric since the distance between any two of its elements is bounded by $2$. 
+    Is is closed by the sequential characterization, since if $f_n \rightarrow f$ for some $\{f_n\} \subset A$,
+    then for $x \in [0,1]$, $f_n(x) \rightarrow f(x)$ and thus $|f(x)| \leq 1$. 
+
+    However, it is not compact, since the sequence 
+    \[
+        f_n(x) = \begin{cases} -nx + 1 & 0 \leq x \leq \frac{1}{n}\\ 0 & \frac{1}{n} < x \leq 1\end{cases}
+    \]
+    does not converge to any element of $A$. This is because for any $n$, we can choose $m > n$ 
+    such that the distance between $f_n$ and $f_m$ is greater than $1/2$. Then suppose there was some $f$ 
+    such that for any $\epsilon > 0$ we could choose $N$ such that $d(f_n, f) < \epsilon/2$ for all $n > N$.
+    For $n > N$, we could choose $m > n$ such that 
+    \[
+        1/2 \leq d(f_n, f_m) \leq d(f_n, f) + d(f_m, f) \leq \epsilon
+    \]
+    which is a contradiction for $\epsilon < 1/2$. 
+
+    \item[6.] Let $f: X \rightarrow Y$ for $X$ compact and $Y$ hausdorff. We will show $f$ takes closed sets to closed sets. 
+
+    Let $A \subset X$ be closed. Then $A$ is compact because a closed subset of a compact space is compact. Then $f(A)$ 
+    is compact in $Y$ because continuous functions map compact sets to compact sets. Then $f(A)$ is closed in $Y$ 
+    because compact subsets of hausdorff spaces are closed. 
+\end{enumerate}
+
+\subsection*{Section 27}
+
+\begin{enumerate}
+    \item[2.] Let $X$ be a metric space with the metric $d$, and $A \subset X$ a nonempty subset. 
+    \begin{enumerate}
+        \item[a.] Show that $d(x, A) = 0$ if and only if $x \in \overline{A}$.
+        
+        First suppose $d(x, A) = 0$. Then by the definition of infimum, for every $n = 1, 2, \dots$, there is a 
+        point $x_n \in A$ such that $d(x, x_n) < 1/n$. Then $x_n \rightarrow x$ and thus $x \in \overline{A}$ 
+        since $X$ is a metric space. 
+
+        Now suppose $x \in \overline{A}$. Then $X$ is a limit point of $A$, so there must be a sequence $x_n$ 
+        converging to $x$, since $X$ is first countable. Then is is clear that $d(x, A) = 0$, as we can get 
+        arbitrarily close to $x$ by points in $A$. 
+
+        \item[b.] Now suppose $A$ is compact, and we will show there is a point $a$ such that $d(x, A) = d(x, a)$.
+        Choose a sequence $x_n \in A$ such that $d(x_n, x) \rightarrow d(A, x)$ by the argument above. Since 
+        $X$ is a metric space, $A$ is sequentially compact and there is a subsequence $x_{n_k}$ converging 
+        to some $a \in A$. By the continuity of the metric, we have $d(x_{n_k}, x) \rightarrow d(a, x)$, 
+        and we already know that $d(x_{n_k}, x) \rightarrow d(A, x)$ because subsequences of convergent 
+        sequences converge to the same limit. Then by uniqueness of limits in $\RR$, we have $d(x, a) = d(x, A)$.
+
+        \item[c.] We will show the $\epsilon$-neighborhood of $A$ is the union of balls of radius $\epsilon$ 
+        with centers in $A$. 
+
+        First suppose $x \notin \bigcup_{a \in A} B(a, \epsilon)$. Then the distance between $x$ and every $a \in A$
+        is at least $\epsilon$, so $d(x, A) \geq \epsilon$. Then $x \notin U(A, \epsilon)$. 
+
+        Conversely suppose $x \in \bigcup_{a \in A} B(a, \epsilon)$. Then $x$ is in some $\epsilon$-ball with its 
+        center in $A$, and thus the distance to $A$ is less than epsilon. So $x \in U(A, \epsilon)$.
+
+        Then $\bigcup_{a \in A} B(a, \epsilon) = U(A, \epsilon)$.
+
+        \item[d.] Suppose $A$ is compact and $U$ is an open set containing $A$. We will show that 
+        some $\epsilon$-neigborhood of $A$ is contained in $U$. 
+
+        The function $a \mapsto d(a, U^c)$ for $a \in A$ is a continuous function, using the definition of 
+        $d(a, U^c)$ and the triangle inequality. It is defined on a compact set, and thus achieves a minimum. Suppose
+        this minimum is $0$. Then there is a point $a \in A$ such that $d(a, U^c) = 0$. But this means that 
+        $a \in U^c$ which is a contradiction since $A \subset U$. Then there is some $\epsilon > 0$ such that 
+        $d(a, U^c) \geq \epsilon$ for all $a \in A$, and thus the $\epsilon$ neighborhood of $A$ is entirely contained in $U$.
+
+        \item[e.] We will construct a closed set $A$ and an open set $U \supset A$ such that no $\epsilon$ neighborhood of $A$
+        is contained in $U$. 
+
+        Let
+        \[
+            A = \bigcup_1^\infty [n-0.5, n - \frac{1}{3n}]
+        \]
+        and let 
+        \[
+            U = \bigcup_1^\infty = (n-1, n).
+        \]
+        Then $A$ is closed, $U$ is open, $A \subset U$, but points in $A$ can be arbitrarily close to points in $U$. 
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Section 28}
+
+\begin{enumerate}
+    \item[4.] Suppose $X$ is a T1 space. Then we show that countable compactness is equivalent to limit point compactness.
+    
+    First suppose $X$ is countably compact, and let $A$ be a subset. We will prove the contrapositive, that if $A$ has no 
+    limit points then $A$ is finite. Then suppose $A$ has no limit points. We know $A$ is closed vacuously. Choose some 
+    $x_1 \in A$; there exists an open set $U_1$ containing $x_1$ such that $U_1$ is disjoint from $A$ except at $x_1$
+    since $x_1$ is not a limit point. Then continue for $n = 2, 3, \dots$ to obtain a sequence $x_n$ and a countable 
+    collection of open sets $U_n$. Then the $U_n$'s, together with the open set $X \setminus A$, form a countable 
+    open cover of $X$. Then take a finite subcover which may contain $X\setminus A$ along with $U_{n_1}, \dots, U_{n_k}$
+    open sets which cover $X$. But $\{x_n\} \not\subset X\setminus A$, and each $U_{n_i}$ may contain only one $x_n$. Then 
+    the set $\{x_n\}$ must be finite, and it follows that there can be no countable subset of $A$, hence $A$ is finite. 
+
+    Conversely, suppose $X$ is limit point compact, but that there is a countable open cover $\{U_n\}$ which has no finite 
+    open cover. For each $n = 1, 2, \dots$, choose a point $x_n \in X \setminus \left(\cap_1^n U_n\right)$. Then $\{x_n\}$ 
+    is an infinite set, and thus has a limit point $x$ which must be contained in some $U_N$. But since $X$ is T1, every 
+    neighborhood of $x$ must intersect $\{x_n\}$ at infinitely many points, which contradicts the construction of the sequence
+    $\{x_n\}$, as only the first $N$ terms may be contained in $U_N$.
+\end{enumerate}
+
+\subsection*{Section 29}
+
+\begin{enumerate}
+    \item[5.] Let $f: X_1 \rightarrow X_2$ be a homeomorphism of locally compact spaces. We will show that $f$ extends 
+    to a homeomorphism $F: Y_1 \rightarrow Y_2$, the one point compactifications of $X_1$ and $X_2$ respectively. 
+
+    Extend $f$ to $Y_1$ by mapping $\infty_1$ to $\infty_2$. It is clear that $f$ is still a bijection. To show it is continuous, 
+    first consider some open $U \subset Y_2$ which does not contain $\infty$ and is open in $X_2$. 
+    Since $f$ is a homeomorphism $X_1 \rightarrow X_2$, we know $F^{-1}(U) = f^{-1}(U)$ is open. 
+    Now suppose $V = Y_2 \setminus C$ is an open set in $Y_2$ with $C \subset X_2$. Then $F^{-1}(V) = F^{-1}(Y_2)\setminus F^{-1}(C) = 
+    Y_1 \setminus f^{-1}(C)$. Since $f^{-1}$ is continuous and takes compact sets to compact sets, $Y_1 \setminus f^{-1}(C)$
+    is open in $Y_1$. 
+
+    The proof that $F^{-1}$ is continuous is the same.
+
+    \item[10.] Let $X$ be locally compact at a point $x \in X$ and let $U$ be an open set containing $x$. We will show that 
+    there is an open set $V$ containing $x$ such that $\overline{V}$ is compact and $\overline{V}\subset U$. 
+
+    Since $X$ is locally compact at $x$, there is a compact neighborhood $C$ which contains an open neighborhood $E$ of $x$.
+    Then $Q := U \cap E$ is an open set within $C$, so that $Q^c \cap C$ is a closed set contained in a compact set 
+    and is compact. Then there exist disjoint open sets $V \ni x$ and $W \supset Q^c \cap C$. Now the set $W^c \cap C$ is 
+    a closed set contained in $Q$ and thus contained in $U$, and $V$ we can assume $V$ is contained in $W^c \cap C$ by 
+    intersecting it with $Q$. Thus $\overline{V}$ is contained in $W^c \cap C$ since this is a closed set, and thus 
+    $\overline{V} \subset U$. Also since $V$ is contained in $C$, we know that $\overline{V}$ is compact. 
+\end{enumerate}
+
+\end{document}

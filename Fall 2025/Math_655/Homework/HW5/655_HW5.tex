@@ -1,0 +1,166 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 655}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 5}
+\ \bigbreak
+\noindent
+Let $(h_n)_{n \geq 1}$ be the Haar system. 
+
+\begin{enumerate}
+    \item[1.] We will prove that this is a monotone basis for the space $L_p([0,1])$ for $p \in \left[1, \infty\right)$. 
+    By the Grunbaum criterion, it is enough to show there exists a $C$ such that for all $(a_i)_{i \geq 1} \subset \RR$ and $m > n$, 
+    we have 
+    \[
+        \|\sum_1^n a_i h_i\|_p \leq \|\sum_1^m a_i h_i\|_p,
+    \]
+    and that the closure of the span of $(h_n)$ is all of $L_p([0,1])$.
+    Moreover, $(h_i)$ is monotone iff $C = 1$. 
+
+    It is enough to show that 
+    \begin{equation}\label{test}
+        \|\sum_1^n a_i h_i\|_p \leq C\|\sum_1^{n+1} a_i h_i\|_p
+    \end{equation}
+    for any $n$. In this case, the function $\sum_1^n a_i h_i$ will be a constant value, say $r$, on the support of $h_{i + 1}$. 
+    We can write
+    \[
+        \left\|\sum_1^n a_i h_i\right\|_p^p = \int_{[0,1]} {\left|\sum_1^n a_i h_i(t)\right|}^p dt = 
+        \int_{\text{supp}(h_i)} {\left|r\right|}^p dt + 
+        \int_{[0,1]\setminus\text{supp}(h_i)} {\left|\sum_1^n a_i h_i(t)\right|}^p dt,
+    \]
+    \[
+        \left\|\sum_1^{n+1} a_i h_i\right\|_p^p = 
+        \int_{\text{supp}(h_i)} {\left|r + h_{n + 1}\right|}^p dt + 
+        \int_{[0,1]\setminus\text{supp}(h_i)} {\left|\sum_1^n a_i h_i(t)\right|}^p dt,
+    \]
+    and thus the inequality \ref{test} holds if and only if we have 
+    \[
+        \int_{\text{supp}(h_i)} {\left|r\right|}^p dt 
+        \leq \int_{\text{supp}(h_i)} {\left|r + h_{n + 1}\right|}^p dt.
+    \]
+    Then it clearly suffices to show that for any $a, b$, we have 
+    \[
+        \int_0^1 |a|^p \leq \int_0^1 |a + bh_1|^p = \int_0^{1/2}|a+b|^p + \int_{1/2}^1 |a-b|^p = \frac{|a-b|^p + |a+b|^p}{2}.
+    \]
+    But this is true by the convexity of the function $|x|^p$, since for any convex $\phi$, we have
+    \[
+        \phi\left(\frac{x + y}{2}\right) \leq \frac{\phi(x) + \phi(y)}{2},
+    \]
+    and thus 
+    \[
+        |a|^p = {\left|\frac{a + b + a - b}{2}\right|}^p \leq \frac{|a + b|^p + |a - b|^p}{2}.
+    \]
+    \bigbreak
+    Note that the span of $(h_n)$ is dense in the set of indicator functions on diadic interals. For example,
+    the function $\chi_[0,0.5] = 0.5 h_1 + 0.5 h_2$. These functions are dense in the space of simple functions,
+    which are dense in $L_p[0,1]$. Then $(h_n)$ is dense in $L_p[0,1]$.
+
+    Another way to solve this is by using biorthogonal functionals. Define
+    \[
+        h_{2^k + r}^*(f) = \int_0^1 2^k h_{2^k + r}f.
+    \]
+    These are clearly linear functionals on $L_p[0,1]$. Then we have 
+    \[  
+        h_i^*(h_j) = \begin{cases} 1 & i = j \\ 0 & i \neq j\end{cases}.
+    \]
+
+    Then to prove that $(h_n)$ is a basis, we need to show that we can express any $x \in L_p[0,1]$ as a sum
+    \[
+        x = \sum_1^\infty h_i^*(x) h_i
+    \]
+
+    My idea was to first show this sum converges to some element in $L_p$. 
+    
+    After having done this, suppose that $h_i^*(f) = 0$ for all $i$ for some $f \in L_p[0,1]$.
+    Denote the average value of $f$ on the interval $[a,b]$ by $A[a,b]$. From the functionals evaluating 
+    to zero on $f$, we know that we must have $A[0,0.5] = A[0.5, 1]$. Moreover, since the average 
+    value $A[0,1]$ is the average of the two above, we know that $A[0,0.5] = A[0,1]$, and the same for $A[0.5, 1]$. 
+    Then we can continue this process to show that $f$ must have the same average value on every diadic interval.
+    Moreover, $h_0^*(f) = \int_0^1 f = 0 = A[0,1]$. Then since the average value on an interval of radius $r$ 
+    containing $x$ converges to $f(x)$ almost everywhere for any locally integrable function, we must have 
+    that $f(x) = 0$ for almost every $x$. 
+
+    Then note that $h_i(x - \sum_0^\infty h_i^*(x)h_i) = h_i^*(x) - h_i^*(x) = 0$, so that indeed
+    $x = \sum_1^\infty h_i^*(x) h_i$.
+
+    \item[2.] Here we can use either approach as well. First note that for any $N$ and $(a_i)_1^{N+1}$, 
+    the function $\sum_1^N a_i \phi_i$ must achieve its maximum at either the endpoints of $[0,1]$
+    or at the center of one of the supports of $\phi_i$, $1 \leq i \leq N$. Then adding $\phi_{N+1}$
+    to this sum cannot decrease the supremum, which shows that 
+    \[
+        \left\|\sum_1^N a_i \phi_i \right\| \leq \left\|\sum_1^{N+1} a_i \phi_i\right\|.
+    \]
+
+    We can define linear functionals 
+    \[
+        \phi_{2^k + 1}^*(f) = \int_0^1 2^k h_{2^k + r - 1} f'
+    \]
+    \[
+        \phi_0^*(f) = f(0)
+    \]
+    on the dense subspace $C^1$ of $C[0,1]$, and then extend these to $C[0,1]$ using Hahn-Banach. One can see that 
+    these functionals have the desired property evaluated at each $\phi_i$. 
+    
+    Similar to above,
+    we must somehow show that the sum 
+    \[
+        \sum_1^\infty \phi_i^*(f) \phi_i
+    \]
+    converges.
+
+    Having done this, note that for $f \in C^1[0,1]$, if $\phi_i^*(f) = 0$ for all $i$, we must have that $f(0) = 0$, and that 
+    the derivative of $f$ is zero everywhere. Then $f = 0$. The same applies then for continuous functions by density.
+    Thus 
+    \[
+        f = \sum_1^\infty \phi_i^*(f) \phi_i
+    \]
+    and we are done. 
+\end{enumerate}
+
+\end{document}

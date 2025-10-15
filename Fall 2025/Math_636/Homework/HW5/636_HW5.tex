@@ -1,0 +1,199 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 636}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 5}
+
+\subsection*{Topological Groups}
+
+\begin{enumerate}
+    \item[4.] Since $G$ is a topological group, the multiplication operation is a continuous
+    map $G\times G \rightarrow G$. Then the map sending $x \mapsto \alpha\cdot x$ is just the 
+    composition of the projection in the first coordinate onto $\alpha$ with the multiplication
+    map. Both are continuous, so the map $x \mapsto \alpha \cdot x$ is also. The same is true 
+    for right multiplication by $\alpha$.
+
+    Also, it is well known that left (right) multiplication by an element is a bijection $G \rightarrow G$.
+
+    The inverse map $f_{\alpha^{-1}}$ is also continuous, thus $f_{\alpha}$ is a homeomorphism. 
+
+    Then for any pair $x, y \in G$, the map $f_{yx^{-1}}$ is a homeomorphism sending $x$ to $y$.
+
+    \item[5.] Let $H$ be a subgroup of $G$ and give $G/H$ the quotient topology. 
+    \begin{enumerate}
+        \item Let $f_\alpha$ be the map from question $4$ and let $f_\alpha'$ be the induced map on
+        $G/H$ the set of cosets of $H$ in $G$. Specifically, $f_\alpha'$ sends an element $x \in G/H$
+        corresponding to a coset $xH$ into the coset $\alpha xH$, and returns the corresponding
+        element $\alpha x$ in $G/H$. It is well known that this map is a 
+        bijection on $G/H$ the set of cosets of $H$.
+
+        Let $U$ be an open set in $G/H$. We will show $f_\alpha'^{-1}(U)$ is open. 
+        $U$ corresponds to a set of cosets we will denote by $U\cdot H$. This 
+        set is open in $G$ by the definition of the quotient topology on $G/H$. The map 
+        $f_\alpha'^{-1}$ sends $U\cdot H$ to $\alpha^{-1}\cdot (U\cdot H)$. Of course, $\alpha^{-1}\cdot(U\cdot H)$ is a subset of $G$ which is the image of 
+        the set $U\cdot H$ under the map $f_\alpha^{-1}$. Thus $\alpha^{-1}\cdot U\cdot H$ is open in $G$ by problem (4.). On the other hand, 
+        we know that $f_\alpha^{-1}$ sends entire cosets to entire cosets, so that $\alpha^{-1}\cdot U\cdot H$ is saturated in the 
+        projection map onto $G/H$. Then by the definition of the quotient map, $\alpha^{-1} U$ is in fact an open set in 
+        $G/H$.
+
+        The inverse map $f_\alpha'^{-1} = f_{\alpha^{-1}}'$ is continuous by the same reasoning, and we have already mentioned that 
+        $f_\alpha'$ is a bijection. Thus it is a homemomorphism of $G/H$. If $xH$ and $yH$ are two cosets in $G/H$,
+        the homeomorphism $f_{yx^{-1}}'$ sends $xH$ to $yH$.
+    
+        \item Let $H$ be a closed set in $G$. Then a single point set $\{xH\} \in G/H$ is closed if and only if the 
+        set $xH$ is closed as an element of $G$ by the definition of a quotient map. By problem (4.) we know that this is true.
+        
+        \item Let $U \subset G$ be an open set. We cannot say whether $p(U)$ is open in $G$ because $U$ may not be saturated. 
+        However, the image of $U$ under $p$ is the same as the image of its "saturation", $p^{-1}(p(U))$, which shows 
+        $p(U)$ is open
+        in the quotient topology on $G/H$.
+
+        \item We will use the map $p$ from the previous part. If $H$ is closed and normal, $G/H$ forms a group with 
+        multiplication $(xH)\cdot(yH) = (xy)H$. It satisfies the T1 property by part (c.). Let $m: G \times G \rightarrow G$
+        be the multiplication map, and $m'$ the multiplication on $G/H$.
+        \bigbreak
+        If $UH \subset G/H$ is open, then $m'^{-1}(U) = \{(xH,yH) \in G/H \times G/H: xyH \in U\}$.
+        This is equivalent to the set $A = \{(x,y) \in G \times G: xy \in UH\}$, since $xyH = zH$ for $zH \in U$ if and only if 
+        $xy \in zH$. But $A$ is the preimage $m^{-1}(UH)$, and we know $UH$ is open in $G$. Then $A$ is open in $G$ as well.
+        
+        Then $m'^{-1}(U) = (p \times p)(A)$. We know $p$ is an open map, and for a basic open set $E\times F$ in $G/H \times G/H$,
+        $(p \times p)(E \times F) = (p(E),p(F))$, an open set in $G/H \times G/H$. Since open sets are unions of basic open 
+        sets and $(p \times p)(A \cup B) = (p\times p)(A) \cup (p \times p)(B)$, we know that $(p \times p)$ is an open 
+        map, and thus $m'^{-1}(U) = (p \times p)(A)$ is open in $G/H \times G/H$. 
+
+        To show the map $j: xH \rightarrow x^{-1}H$ is continuous is the same as part (a.), where 
+        we need to show that for some open $U \in G/H$, $U^{-1}\cdot H$ is open and saturated in $G$. This is again true
+        by the well-definedness of the group operation on $G/H$ when $H$ is normal. 
+    \end{enumerate}
+\end{enumerate}
+
+\subsection*{Section 23}
+
+\begin{enumerate}
+    \item[3.] Let $A_\alpha$ and $A$ be connected subspaces of $X$, and suppose $A \cap A_\alpha \neq \emptyset$ for all $\alpha$.
+    By Theorem 23.3, for each $\alpha$, $A \cup A_\alpha$ is connected since they have nonempty intersection. 
+    Then 
+    \[
+        A \cup (\bigcup A_\alpha) = \bigcup (A \cup A_\alpha)
+    \]
+    is a union of sets each sharing a common point, namely any point in $A$, and is connected by 23.3.
+
+    \item[8.] Give $\RR^\omega$ the uniform topology. Let $A$ be the set of bounded sequences in $\RR^\omega$. I claim that 
+    $A$ is both open and closed.
+    \bigbreak
+    To show $A$ is closed, let $(x_n)$ be a limit point of $A$. Then by the definition of the uniform metric, for every
+    $\epsilon > 0$ there is some $(y_n) \in A$ which is not equal to $(x_n)$, such that $|x_n - y_n| < \epsilon$ for 
+    all $n$. Thus if $|y_n| < M$ for all $n$, then $|x_n| < M + \epsilon$ for all $n$, and thus $(x_n) \in A$. Then
+    $A$ contains all of its limit points and is closed. 
+
+    Now we show $A$ is open. Let $(x_n) \in A$ with $|x_n| < M$ for all $n$. 
+    Then for any $0 < \epsilon < 1$, the $\epsilon$-ball centered at $(x_n)$
+    contains only sequences which are bounded by $M + \epsilon$, and thus is contained in $A$. Then $A$ is open.
+
+    Since $A$ is not the entire space, $\RR^\omega$ is disconnected by the alternate formulation of connectedness.
+
+    \item[11.] Let $p: X \rightarrow Y$ be a quotient map, with $Y$ connected and $p^{-1}(y)$ connected for each $y \in Y$. 
+    Suppose $X = A \cup B$ for open and disjoint sets $A$ and $B$. Since $p^{-1}(y)$ is connected, we must have 
+    $p^{-1}(y)$ entirely contained in either $A$ or $B$ for all $y \in Y$. Then the sets $A$ and $B$ are saturated open sets,
+    so $p(A)$ and $p(B)$ are open and disjoint, with $Y = p(A) \cup p(B)$. Since $Y$ is connected, either set must be empty
+    and thus one of $A$ and $B$ must be empty. Then $X$ has no disconnection.
+\end{enumerate}
+
+\subsection*{Section 24}
+
+\begin{enumerate}
+    \item[4.] Let $X$ be an ordered set equipped with the order topology and suppose $X$ is connected. To show that $X$ is a 
+    linear continuum, we must show that for all $x < y$, there is some $z \in X$ with $x < z < y$, and that 
+    every set has a least upper bound. 
+    \bigbreak
+    The first condition is easy. If this is not true, then $(-\infty, y)\cup(x, \infty)$ is a separation of $X$ which is a 
+    contradiction. 
+
+    For the least upper bound property, let $A$ be a set in $X$. Let 
+    \[
+        F := \bigcap_{y \in A}\{x \in X: x \geq y\}
+    \]
+    be the intersection of all closed rays going to infinity starting from elements of $A$. Then $F$ is closed 
+    since it is an intersection of closed sets in the order topology. 
+    Similarly let 
+    \[
+        E = \bigcup\limits_{y \in X\\ y > A} \{x \in X: x > y\}
+    \]
+    be the union of open rays to infinity starting from points greater than every element in $X$. It is open.
+
+    It is clear that $E \subset F$. But if $E = F$, then $F$ is a set which is both open and closed. Moreover,
+    $F$ is not $X$ since it does not contain $A$. Then this contradicts that $X$ is connected. 
+
+    Then there must be some point $x \in F \setminus E$. Since $x \in F$, we know that $x$ is an upper bound. 
+    Since $x \notin E$, we have $x \leq y$ for all upper bounds $y$ of $A$. Then $x$ is a least upper bound for $A$.
+
+    \item[8.] 
+    \begin{enumerate}
+        \item[a.] The product of path connected spaces is path connected. Let $X$ and $Y$ be path connected and 
+        choose points $(x_1, y_1), (x_2, y_2) \in X \times Y$. Let $f: \RR \rightarrow X$ be a path from $x_1$
+        to $x_2$, and $g: \RR \rightarrow Y$ be a path from $y_1$ to $y_1$. Then the function
+        \[
+            g := \begin{cases} (f(2t), y_1) & 0 \leq t < \frac{1}{2}\\ (x_2, g(2t-1)) & \frac{1}{2} \leq t \leq 1\end{cases}
+        \]
+        is a path from $(x_1, y_1)$ to $(x_2, y_2)$.
+
+        \item[b.] The closure of a path connected space is not path connected. The set $\{(x, sin(\frac{1}{x})): x > 0\}$
+        is path connected, but its closure is not.
+
+        \item[c.] Let $f: X \rightarrow Y$ be continuous and suppose $X$ is path connected. Let $f(x), f(y) \in f(X)$.
+        If $g$ is a path from $x$ to $y$ in $X$, then $f\circ g$ is a path from $f(x)$ to $f(y)$ in $f(X)$. Hence,
+        $f(X)$ is path connected.
+
+        \item[d.] Let $A_\alpha$ each be path connected subspaces of $X$ and suppose there is some $a \in \cap A_\alpha$.
+        Then for any $x, y \in \bigcup A_\alpha$, we can make a path from $x$ to $y$ by joining the path from $x$ to $a$
+        with the path from $a$ to $y$, which both exist by the connectedness of the $A_\alpha$s. This process is the same
+        as in part (a.).
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
