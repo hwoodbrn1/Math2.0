@@ -1,0 +1,141 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 636}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 7}
+
+\subsection*{Section 30}
+
+\begin{enumerate}
+    \item[1.] (a.) We show every point in a first countable T1 space $X$ is a $G_\delta$ set. 
+    
+    Let $\mathcal{B}_x$ be a basis at $x \in X$. Let $U = \cap_{B \in \mathcal{B}_x} B$. Then we need to show $U = \{x\}$. 
+    Choose any $y \neq x$. Then there is an open set $V \ni x$ with $y \notin V$. Then 
+    there is some basis element $B \in \mathcal{B}_x$ such that $B \subset V$, and thus $y \notin B$. 
+    Then $y \notin U$. Then $U$ contains only $x$.
+
+    (b.) Take $\RR$ with the discrete topology. Then every point is a countable intersection of 
+    the intervals $(x-1/n, x+1/n)$, but $\RR$ with this topology is clearly not first countable.
+    If there were any countable basis at $x$, we could construct another open set which 
+    contains $x$ but no basis element by removing one point from each basis element and taking their 
+    union. 
+
+    \item[4.] We show every compact metric space $X$ has a countable basis. Cover 
+    $X$ in balls of radius $1/n$ and take a finite subcover. Call this set $\mathcal{B}_n$. 
+    Let the countable basis be $\mathcal{B} = \cup_{n = 1}^\infty \mathcal{B}_n$. To verify this,
+    choose any $x \in X$ and any open set $U$ containing $x$. Then choose an epsilon 
+    ball $x \in B_\epsilon(x) \subset U$. Then choose $n$ such that $1/n < \epsilon$. We know
+    that there is some ball $B \in \mathcal{B}$ which contains $x$. Then every point in $B$
+    is less than $\epsilon$ away from $x$, so $B \subset B_\epsilon(x) \subset U$.
+
+    \item[11.] Let $f: X \rightarrow Y$ be continuous. We show that if $X$ is lindelof or has a countable
+    dense subset, then so does $f(X)$. 
+    
+    First suppose $X$ is lindelof. Let $\{U_\alpha\}_{\alpha \in A}$ be a cover of $f(X)$. 
+    Then $\{f^{-1}(U_\alpha)\}_{\alpha \in A}$ is a cover of $X$. Take a countable 
+    subcover $\{U_n\}_1^\infty$. Then 
+    \[
+        f(X) = f(\cup(f^{-1}(U_n)) = \cup_1^\infty U_n
+    \]
+    and thus $U_n$ is a countable cover of $f(X)$.
+\end{enumerate}
+
+\subsection*{Section 31}
+
+\begin{enumerate}
+    \item[5.] Let $f, g: X \rightarrow Y$ be continuous and suppose $Y$ is hausdorff. We have shown
+    that $Y$ is hausdorff iff the diagonal in $Y \times Y$ is closed. We have $(f,g): X \rightarrow Y \times Y$
+    continuous, so the preimage of the diagonal is a closed set in $X$. This is exactly the set 
+    we desired to show was closed.
+
+    \item[6.] Let $p:X \rightarrow Y$ be a closed surjective map. Let $A, B$ be closed disjoint sets in $Y$. 
+    Then $p^{-1}(A)$ and $p^{-1}(B)$ are closed in $X$ and thus we can choose disjoint open 
+    $U, V$ containing $p^{-1}(A)$ and $p^{-1}(B)$. Then $U^c$ and $V^c$ are both closed,
+    so $E := p(U^c)^c$ and $F := p(V^c)^c$ are open. These sets are disjoint since if $x$ is in both,
+    then it is not in the image of either $U^c$ or $V^c$. But every point is in the 
+    image of one of these sets, since $U^c \cup V^c = (U \cap V)^c = X$. 
+
+    Let $x \in A$ and suppose $x \notin E$. Then $x \in p(U^c)$, but this is impossible 
+    since $p^{-1}(A) \subset U$.
+\end{enumerate}
+
+\subsection*{Section 32}
+    
+\begin{enumerate}
+    \item[6.] We show a space $X$ is completely normal iff there exist disjoint 
+    open neighborhoods of every separated pair of sets.
+    
+    First suppose every subspace of $X$ is normal. Let $A, B$ be separated sets. Then 
+    $E := X \setminus(\overline{A} \cap \overline{B})$ is an open set. Also,
+    $E$ contains both $A$ and $B$ by the separation condition. Then $\overline{A} \cap E$
+    and $\overline{B} \cap E$ are closed disjoint sets in $E$ and there exist open (in $E$) disjoint sets 
+    $U$ and $V$ containing them respectively. But an open subset of an open set is open in the original
+    space. Then we are done, since clearly $U$ and $V$ contain $A$ and $B$ as their closures 
+    in $E$ contain them. 
+
+    Now suppose the other condition holds. Let $Y$ be a subspace of $X$ and suppose $A$ and $B$
+    are closed and disjoint in $Y$. Then $A$ and $B$ are separated subsets of $X$ and there exist 
+    $U$ and $V$ open disjoint neighborhoods of $A$ and $B$. Then we can intersect these with $Y$ 
+    to show that $Y$ is normal. 
+\end{enumerate}
+
+\subsection*{Section 33}
+
+\begin{enumerate}
+    \item[2.] (a.) Let $X$ be a connected normal space with more than one point, say $x_1$ and $x_2$. Then
+    by Urysohn's lemma there is a continuous function such that $f(x_1) = 0$ and $f(x_2) = 1$. Since the 
+    image of a connected space is connected, $f(X)$ is a connected subset of $\RR$ and thus contains 
+    uncountably many points. Then $X$ must be uncountable as well.
+
+    (b.) Let $X$ be a regular and lindelof space. We know that every such space is normal. To see this one 
+    can replicate the proof that every regular second countable space is normal. Then we can apply (a.) 
+    to finish.
+\end{enumerate}
+
+\end{document}

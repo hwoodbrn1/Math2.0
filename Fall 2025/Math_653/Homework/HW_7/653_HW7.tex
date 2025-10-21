@@ -1,0 +1,233 @@
+\documentclass[12pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 653}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 7}
+
+\begin{enumerate}
+    \item[37.] Let $G$ be a group of order $3825$ with a normal subgroup $H$ of order $17$. 
+    Because $H$ is normal in $G$, $G$ acts on $H$ by conjugation inducing a map
+    \[
+        \varphi: G \rightarrow \text{aut}(H).
+    \]
+
+    Because $H$ is cyclic, we know that $|\text{aut}(H)| = \phi(17) = 16$. Moreover, the 
+    kernel of this map will be the centralizer. We know that $\text{Im}(\varphi)$ is 
+    a subgroup of $\text{aut}(H)$, so its order must be $1, 2, 4, 8,$ or $16$.
+    From lagrange's theorem, we know that $|G| = |\text{Im}(\varphi)||\text{ker}(\varphi)|$, 
+    and thus the order of $|\text{Im}(\varphi)|$ divides $3825$. Then $|\text{Im}(\varphi)| = 1$
+    and $\text{ker}(\varphi) = G$. Then $ghg^{-1} = h$ for all $g \in G, h \in H$, and thus $H \subset Z(G)$.
+
+    \item[38.] First we clearly have the trivial semi-direct product $(S_2)^2 \times S_2$. 
+    
+    Aside from this one, we must consider homomorphisms $S_2 \rightarrow \text{aut}((S_2)^2)$. We note that
+    $(S_2)^2 \simeq Z_2 \oplus Z_2$, and $S_2 \simeq Z_2$. I claim that $\text{aut}(Z_2 \oplus Z_2) = S_3$. There are clearly $6$ possible
+    permutations of the nonzero elements of $Z_2 \oplus Z_2$. 
+    
+    Moreover, each of these permutations defines an 
+    automorphism of $Z_2 \oplus Z_2$. It is helpful to regard $Z_2 \oplus Z_2$ with the presentation 
+    $\{a, b, c: a^2 = b^2 = c^2 = e, ab = c\}$. Here, we will use $a = (1,0), b = (0,1), c = (1,1)$. 
+    As long as $\phi: Z_2 \oplus Z_2 \rightarrow Z_2 \oplus Z_2$ is injective 
+    and maps $e \mapsto e$, we will have $\phi(ab) = \phi(c) = \phi(a)\phi(b)$. 
+
+    The only nontrivial homomorphisms $Z_2 \rightarrow S_3$ are the ones sending $1 \mapsto (ij)$ for $i,j \in \{a,b,c\}$.
+    Without loss of generality suppose $\phi: 1 \mapsto (ab)$. Construct a semi-direct product 
+    $(Z_2 \oplus Z_2) \rtimes_\phi Z_2$. The element $(a, 1)$ is order $4$: 
+    \begin{align}
+        (a, 1)(a, 1) = (c, 0)\\
+        (c, 0)(a, 1) = (b, 1)\\
+        (b, 1)(a, 1) = (e, 0).
+    \end{align}
+    The element $(c, 1)$ can similarly be verified to be of order $2$. Moreover, we have
+    \[
+        (c,1)(a,1)(c,1) = (c,1)(b, 0) = (b, 1) = (a,1)^{-1}
+    \]
+    and thus $(Z_2 \oplus Z_2) \rtimes_\phi Z_2 \simeq D_4$. The other two homeomorphisms create the same group.
+
+    \item[39.] Let $N = Z_2 \oplus Z_2$. We have already determined that $\text{aut}(N) = S_3$. Then
+    to identify the group $N\rtimes \text{aut}(N)$, we need to find all possible homomorphisms 
+    $\varphi: S_3 \rightarrow S_3$. Clearly we have the trivial map which induces the ordinary product. 
+    We know the kernel of $\varphi$ will be a normal subgroup of $S_3$. Then the only other options are for 
+    $\varphi$ to have kernel $\langle (123)\rangle$ or to be injective.
+
+    We will again use the presentation $Z_2 \oplus Z_2 = \{a, b, c: a^2 = b^2 = c^2 = e, ab = c\}$.
+
+    \textbf{($\varphi$ not injective)}
+    First let $\varphi: (ij) \mapsto (12)$ for all $ij \in [3]$, and let all 3-cycles be mapped to $e$. Then
+    notice that this group contains three copies of $D_4$ due to problem 38, by taking $(a, (ij))$ instead
+    of $(a, 1)$. This group is not $S_4$ because the element $(a, (abc))$ is order $6$. 
+
+    \textbf{($\varphi$ injective)}
+    In this case $\varphi$ will be some permutation of the 2-cycles. We can take $\varphi$ to be the identity
+    map, and the other cases will generate the same group. 
+
+    We again get $3$ copies of $D_4$ and some other elements, but none of order greater than $4$. We can 
+    show that this group must be $S_4$. 
+
+    \item[40.] (a.) Let $A$ and $A'$ be free on a set $S$. By the universal property of free groups, for every
+    map $S \rightarrow B$ into an abelian group $B$, we get a unique homomorphism $A \rightarrow B$ of which
+    the restriction to $S$ is equal to the first map. 
+    
+    Since $A$ and $A'$ are free on $S$, there is a map $f: S \rightarrow A'$ such that $f(S)$ is a basis
+    of $A'$, and a map $g: S \rightarrow A$ so $g(S)$ is a basis for $A$.
+    By the universal property we get a unique map $\phi: A \rightarrow A'$ such that 
+    $\phi(x) = f(x)$ for any $x \in S$. This map is clearly an ismorphism since $g(S)$ is a basis for $A$. 
+
+    Moreover if any other map $\psi: A \rightarrow A'$ is an isomorphism, we know that $\psi(S) = f(S) \subset A'$. 
+    Then because the map $\phi$ above is the unique map with this property, we have $\psi = \phi$. Then $\phi$ is 
+    the unique isomorphism $A \rightarrow A'$. 
+
+    (b.) Let $M$ be a commutative monoid and $K(M)$ its grothendieck group. Suppose $G$ is a group 
+    with a map $\gamma: M \rightarrow G$ such that for any abelian group $B$, the pullback map
+    \[
+        \text{Hom}_{\text{ab-gp}}(G, B) \rightarrow \text{Hom}_{\text{monoid}}(M, B)
+    \]
+    is a bijection. 
+
+    Let $\phi: M \rightarrow K(M)$ be the universal homomorphism into its grothendieck group. 
+
+    By the universal property of $K(M)$, the map $\gamma$ induces a map $f: K(M) \rightarrow G$ such that 
+    $\gamma = f\circ \phi$. 
+
+    Moreover, the map $\phi$ induces a map $g: G \rightarrow K(M)$ such that $\phi = g \circ \gamma$. 
+    Together, we have $\gamma = (f \circ g)\circ \gamma$. 
+
+    Finally, since $\gamma: M \rightarrow G$, there is a unique homomorphism $p: G \rightarrow G$ such 
+    that $\gamma = p \circ \gamma$. But $\text{id}: G \rightarrow G$ satisfies this property, so 
+    $p = \text{id}$. Since also $(f \circ g)$ satisfies this property, we must have $f \circ g = \text{id}$.
+
+    \item[41.] \begin{enumerate}
+        \item[a.] \textbf{Groups of order 3} There is only one, the cyclic group $\ZZ_3$. Its automorphism
+        group is $\ZZ_2$, since we must either fix the generators $\{1, 2\}$ or send one to another. 
+
+        \textbf{Groups of order 4} There are 2 such groups, either $\ZZ_4$ or $\ZZ_2 \oplus \ZZ_2$. 
+
+        We have shown that $\text{aut}(\ZZ_2 \oplus \ZZ_2) = S_3$. 
+
+        To calculate $\text{aut}(\ZZ_4)$, we know that there will be $\phi(4) = 2$ automorphisms, and thus 
+        this group must be $\ZZ_2$. 
+
+        \item[b.] Let $G$ be a group of order 12 and let $N_3$ and $N_2$ be 3 and 2-sylow subgroups. 
+        We have shown that either $N_2$ or $N_3$ is normal in $G$, and they clearly have trivial intersection. 
+        Then $G = N_2 N_3 = N_3 N_2$. Then one of $N_2$ or $N_3$ act on the other by conjugation, say $N_3$ is normal
+        and $N_2$ acts on it by conjugation. Then 
+        \[
+            xyx'y' = x\phi(y)(x')yy'
+        \]
+        where $\phi(y)(x')$ is conjugation of $x'$ by $y$. So this is a semidirect product with the automorphism 
+        given by conjugation of one subgroup by another. This is true in both cases, so we have 
+        that $G$ is a semidirect product of $N_3$ with $N_2$ or vice versa. 
+
+        \item[c.] \textbf{($N_2 = \ZZ_4$)} If we take the action of $N_3$ on $N_2$ to be trivial, we get the 
+        ordinary product $\ZZ_4 \times Z_3 \simeq \ZZ_{12}$. 
+
+        Otherwise we first consider homomorphisms $Z_3 \rightarrow \text{aut}(\ZZ_4) = Z_2$. There are none 
+        except the trivial one. 
+
+        Alternatively what are the possible homomorphisms $Z_4 \rightarrow \text{aut}(\ZZ_3) = \ZZ_2$? 
+        There is the trivial one which we have already covered. There is also the one sending $0, 2 \mapsto 0$
+        and $1, 3 \mapsto 1$. 
+
+        We can calculate that $(0,1)$ is an element of order $4$, and that $(1,2)$ is an element of order $6$. 
+        Then this is not $A_4$, $\ZZ_3 \oplus \ZZ_4$, $\ZZ_2\oplus \ZZ_6$, $\ZZ_{12}$, or $D_6$. Then it must be another
+        group.
+
+        \textbf{($N_2 = \ZZ_2 \oplus \ZZ_2$)} First we consider homomorphisms $\ZZ_2 \oplus \ZZ_2 \rightarrow \text{aut}(Z_3)
+        = Z_2$. We have either the map $(a,b) \mapsto a$, or $(a,b) \mapsto b$, or $(a,b)\mapsto a+b$. I claim 
+        these all generate the same semi-direct product. Consider $(a,b) \mapsto a$. We get many elements of 
+        order $2$, such as $(0,(1,1)), (0, (0,1))$, etc. Moreover the element $(1, (0,1))$ is order $6$, and we have
+        \[
+            (1,(1,1))(1,(0,1))(1,(1,1)) = (2,(0,1)) = (1,(1,1))^{-1}
+        \]
+        so we have the group $D_6$. The other cases also yeild this group.
+
+        If we have the trivial homomorphism, this is the group $\ZZ_2 \oplus \ZZ_2 \oplus \ZZ_3 = \ZZ_2\oplus \ZZ_6$.
+
+        For homomorphisms $\ZZ_3 \rightarrow \text{aut}(\ZZ_2\oplus \ZZ_2) = S_3$, we have the trivial one covered above,
+        and the ones sending elements into the $3$-cycle. These both give the same semi-direct product. We can 
+        see that there are $6$ elements of order $2$, four element of order $3$, the identity, and one element 
+        of order $4$. This is clearly $A_4$. 
+
+        \item[d.] We can calculate that $\ZZ_2 \oplus S_3 \simeq D_6$ based on the orders of the elements. Then 
+        we have created each of the listed groups, plus one additional group which contains elements of order $4$ 
+        and $6$. 
+    \end{enumerate}
+    
+    \item[42.] (a.) Suppose $X$ is linearly independent. Then if 
+    \[
+        x = \sum a_i x_i = \sum b_i x_i
+    \]
+    we have 
+    \[
+        \sum(a_i - b_i) x_i = 0,
+    \]
+    and thus $a_i = b_i$ and there is a unique representation of the elements in the group it generates. 
+
+    Now suppose every element in $\langle X \rangle$ has a unique representation. Suppose $\sum_1^n a_i x_i = 0$. 
+    Then $\sum_1^{n-1} a_i x_i = a_n x_n = x$, and unless every $a_i = 0$, we have written the element 
+    $x$ as two different linear combination of elements of $X$. 
+
+    (b.) Let $F$ be a free abelian group of rank $n$ and let $B$ be linearly independent. Let $B = \{b_i\}_1^n$
+    and let $\{x_i\}_1^n$ be a basis for $F$. Construct a map $\phi: F \rightarrow \langle B \rangle$ which extends the map $x_i \mapsto b_i$ 
+    to all of $F$ by linearity. Let $x \in F$ with $x = \sum a_i x_i$, and suppose $\phi(x) = 0$.
+    Then $\sum a_i \phi(x_i) = \sum a_i b_i = 0$, and thus $a_i = 0$ for all $i$ since $b_i$ is a 
+    basis for the set it generates. Then $x = 0$ and $\phi$ is injective. Thus $F \sim \langle B \rangle$ and 
+    $B$ generates $F$. 
+
+    (c.)
+
+    (d.) Let $V$ be a generating set of $F$. Place a partial order on the set of linearly independent subsets of $V$ by inclusion.
+    Note that every totally ordered subset contains an upper bound, namely its union. Then by Zorn's lemma,
+    there is a maximal element $B = \{x_i\}$. Suppose $B$ does not generate $F$. Then there is another element 
+    $x \in F$ which is not in the span of $B$. Then we cannot write $\sum a_i x_i + \alpha x = 0$ unless 
+    every coefficient is zero. Then $x \cup B$ is a larger linearly independent set than $B$, which contradicts
+    the maximality of $B$. So $B$ is a basis of $F$.
+
+\end{enumerate}
+
+\end{document}

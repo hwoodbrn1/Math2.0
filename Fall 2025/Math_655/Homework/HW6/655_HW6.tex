@@ -1,0 +1,172 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 655}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 6}
+
+\textbf{Problem 1:} Let $(X, \|\cdot\|)$ be a Banach space.
+
+\begin{enumerate}
+    \item[1.] Let $E^* \subset X^*$ be a finite dimensional subspace, and let $S$ be a subset
+    of $X^*$ such that $0$ is contained in the weak* closure of $S$ but not in the norm closure. We will 
+    show that for any $\epsilon > 0$, there exists a point $x^* \in S$ such that we have 
+    \[
+        \|e^*\| \leq (1 + \epsilon)\|e^* + \lambda x^*\|
+    \]
+    for all $e^* \in E$ and all $\lambda \in \RR$. Note that it suffices to show this for $e^* \in S_{E^*}$ by 
+    homogeneity, since we can multiply by any scalar $c \in \RR$ and take $c x^*$ instead.
+
+    We are given some $\epsilon > 0$. First choose $\delta > 0$ such that $1 - \delta > \frac{1}{1 + \epsilon}$.
+    Take $\{e_i^*\}_1^N$ a $\delta/4$ net in $S_{E^*}$ by compactness, and choose $\{e_i\}_1^N \subset X$ such that 
+    $e_i^*(e_i) > 1 - \delta/2$ for $i = 1, \dots, N$. 
+
+    Since $0$ is not in the norm closure of $S$, we know $\inf_{s \in S}\|S\| = \nu > 0$. But we have that $0$ is
+    in the weak* closure of $S$, so any weak* neighborhood of $0$ intersects $S$. Then we can choose some $x^* \in S$
+    such that $x^*(e_i) < \frac{\delta \nu}{8}$ for $i = 1, \dots, N$. 
+
+    Then choose any $e^* \in S_{E^*}$ and any $\lambda \in \RR$. First, if $\lambda \geq \frac{2}{\|x^*\|}$, we have 
+    \[
+        \|e^* + \lambda x^*\| \geq \|\lambda x_n\| - \|e^*\| \geq 1 \geq 1 - \delta.
+    \]
+
+    Then suppose $\lambda < \frac{2}{\|x^*\|}$. Choose $i \in \{1, \dots, N\}$ so that $\|e^* - e_i^*\| < \frac{\delta}{4}$. 
+    Then we have 
+    \begin{align*}
+        \|e^* + \lambda x^*\| &\geq \|e_i^* + \lambda x^*\| - \|e_i^* - e^*\|\\
+        & \geq \|e_i^* + \lambda x^*\| - \frac{\delta}{4}\\
+        & \geq |(e_i^* + \lambda x^*)(e_i)| - \frac{\delta}{4}\\
+        & \geq |e_i^*(e_i)| - |\lambda||x^*(e_i)| - \frac{\delta}{4}\\
+        & \geq 1 - \frac{\delta}{2} - \frac{\delta}{4} - \frac{\delta}{4} = 1 - \delta
+    \end{align*}
+
+    and we are done.
+
+    \item[2.] Let $S$ be a subset as in part (1.). 
+    
+    Choose $\{\epsilon_i\} \subset (0, \infty)$ and choose some $x_1^* \in S$. Then $E_1 = \RR x_1^*$ is a finite
+    dimensional subspace of $X$, so by (1.) we can choose some $x_2^* \in S$ such that 
+    \[  
+        \|a_1 x_1^*\| \leq (1 + \epsilon_1)\|a_1 x_1^* + a_2 x_2^*\|
+    \]
+    for any $a_1 x_1^* \in \RR x_1$ and $a_2 \in \RR$. Now $E_2 = \text{span}\{x_1^*, x_2^*\}$ is another finite dimensional
+    subspace, so we can choose $x_3^* \in S$ such that
+    \[
+        \|a_1 x_1^* + a_2 x_2^*\| \leq (1 + \epsilon_2)\|a_1 x_1^* + a_2 x_2^* + a_3 x_3^*\|
+    \]
+    for any $a_1 x_1^* + a_2 x_2^* \in E_2$ and $a_3 \in \RR$.
+
+    Inductively, there exists $x_{n + 1}^*$ such that for any $\sum_1^n a_i x_i^* \in E_n$ and any $a_{n + 1} \in \RR$,
+    we have
+    \[
+        \|\sum_1^n a_i x_i^*\| \leq (1 + \epsilon_{n + 1})\|\sum_1^{n+1}a_i x_i^*\|.
+    \]
+
+    We can show $\{x_i^*\}_1^\infty$ satisfies the criterion for basic sequences and has basis coefficient
+    smaller than $(1 + \epsilon)$. Let $m < n$ so that
+    \[  
+        \left\|\sum_1^m a_i x_i^*\right\| \leq (1 + \epsilon_{m+1})\left\|\sum_1^{m+1}a_i x_i^*\right\|
+        \leq \left(\prod_{i = m+1}^n (1 + \epsilon_i)\right)\left\|\sum_1^n a_i x_i^*\right\|.
+    \]
+    Then we have the desired result as long as we choose $\epsilon_i$ such that
+    \[
+        \prod_{i = 1}^\infty (1 + \epsilon_i) < (1 + \epsilon).
+    \]
+
+    \item[3-4.] First we will address (4.) by showing that if $\{x_n\}_1^\infty$ is a weakly null sequence in 
+    an infinite dimensional Banach space such that $\inf \|x_n\| > 0$, for every $\epsilon > 0$ there
+    is a subsequence of $\{x_n\}_1^\infty$ which is a basic sequence with basis constant at most 
+    $(1 + \epsilon)$. Then we will show that $0$ belongs to the weak closure of the unit sphere of any 
+    infinite dimensional Banach space, which will allow us to solve (3.) in almost the same way as (4.). 
+    We first prove a lemma.
+
+    \textbf{Lemma 1:}
+    Suppose $\{x_n\}_1^\infty$ is a weakly null sequence in an infinite dimensional Banach space, and 
+    let $E$ be a finite dimensional subspace. Then for any $\epsilon > 0$ and $N > 0$, 
+    there is some $n_0 > N$ such that 
+    \[
+        \|e\| \leq (1 + \epsilon)\|e + \lambda x_{n_0}\|
+    \]
+    for all $e \in E$ and $\lambda \in \RR$. Again we can take $e \in S_E$ without loss of generality.
+
+    First choose $\delta > 0$ such that $1 - \delta > \frac{1}{1 + \epsilon}$. Choose a $\frac{\delta}{2}$-net
+    $\{e_i\}_1^N$ in $S_E$ since it is compact, and choose $\{e_i^*\}_1^N \subset X^*$ such that
+    $e_i^*(e_i) = 1$ for all $i$ using Hahn-Banach. 
+
+    By similar reasoning as in (1.), we can choose $n_0 > N$ such that $e_i^*(x_{n_0}) < \frac{\delta \inf \|x_n\|}{4}$
+    for all $i$ since $\{x_n\}$ is weakly convergent but bounded by a positive number in norm. 
+
+    Now let $e \in S_E$ and choose $j$ such that $\|e - e_j\| < \frac{\delta}{2}$ and any $\lambda \in \RR$. 
+    Similar to (1.), if $\lambda \geq \frac{2}{\|x_{n_0}}$, we immediately get
+    \[  
+        \|e + \lambda x_{n_0}\| \geq 1 - \delta,
+    \]
+    and in the other case this can be shown using almost exactly the same string of inequalities as in (1.),
+    except with $|e_i^*(e_i)| = 1$ instead.
+
+    Then we can carry out basically the same process as in (2.) to show that there is a subsequence of $\{x_n\}_1^\infty$
+    which is a basic sequence. Start with $x_{n_1} = x_1$, and get an $x_{n_2}$ with $n_1 < n_2$ using $N = n_1$
+    in lemma 1 with $\RR x_{n_1}$ as the finite dimensional subspace. Continue for $i = 1, \dots, \infty$
+    to get a subsequence $\{x_{n_i}\}_1^\infty$ which is a basic sequence with basis constant at most $(1 + \epsilon)$,
+    by choosing small $\epsilon_i$ at each step in the process as in (2.). 
+
+    For (3.), let $\{\phi_1, \dots, \phi_n\}$ be linear functionals. Then $\cap_1^n \ker \phi_i$ is a set 
+    with finite codimension, so it must be infinite dimensional since $X$ is infinite dimensional. Then 
+    we can choose some $x \in S_X$ such that $\phi_i(x) = 0$ for $i = 1,\dots, n$. 
+
+    We note that in the lemma, the sequence did not need to be weakly null; the same result holds for
+    any set which is bounded below in norm and contains a point $s$ for all $\epsilon > 0$ such that 
+    $e_i^*(s) < \epsilon$ for all $i = 1, \dots, n$. Then clearly another version of lemma 1 holds 
+    with the unit sphere $S_X$ instead of the weakly null sequence. Here we dont need to worry about 
+    $N$. 
+
+    Now we can finish to show there is a basic sequence in $S_X$ by the same process as in (2.).
+
+\end{enumerate}
+
+\end{document}
