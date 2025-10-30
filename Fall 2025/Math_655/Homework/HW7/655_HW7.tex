@@ -1,0 +1,109 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 655}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 7}
+
+\begin{enumerate}
+    \item[1.] Suppose $T: X \rightarrow Y$ is a compact operator. To show that $T$ is bounded, we use 
+    the fact that a compact set is bounded. Then clearly $T(B_X)$ is bounded as well, so $T$ is a bounded operator.
+
+    Now suppose $T$ is not strictly singular. Then there is a subspace $A \subset X$ which is infinite dimensional,
+    such that $T$ is an isomorphism of $A$ onto its image $T(A)$. Then $T(B_A) \subset T(B_X)$, so $\overline{T(B_A)}$ is 
+    a compact subset of $Y$ and therefore of $T(A)$. But then
+    \[
+        T\big|_{A}^{-1}(\overline{T(B_A)})
+    \]
+    is compact, since bounded operators take compact sets to compat sets. Finally, 
+    \[
+        B_A = T\big|_A^{-1}(T(B_A)) \subset T\big|_{A}^{-1}(\overline{T(B_A)})
+    \]
+    implying $B_A$ is a compact subset of $A$, since it is a closed subset of a compact set. But this is 
+    a contradiction, since the unit ball in any infinite dimensional space is not compact. Then
+    $T$ must be strictly singular. 
+
+    \item[2.] Let $T: X \rightarrow Y$ be a compact operator. We will show that $T$ is completely continuous,
+    meaning it sends weak convergent sequences to strongly convergent sequences. Let $\{x_n\}$ be a weakly convergent
+    sequence in $X$, and suppose $x_n \rightarrow_w x$ weakly. We know that $\{x_n\}$ is norm bounded by the uniform boundedness
+    principle. Then $\{T(x_n)\}$ is contained in a relatively compact set. Consider some arbitrary subsequence $\{T(x_{n_k})\}$.
+    Then there is a further subsequence $\{T(x_{n_{k_j}})\}$ which converges to some $y$. 
+
+    But bounded operators take weakly convergent sequences to weakly convergent sequences: For any $f^* \in Y^*$, the 
+    functional $f^*(T(\cdot))$ is in $X^*$. Then $T(x_n)$ converges weakly to $T(x)$. Then since strong convergence implies 
+    weak convergence, the above subsequence must also converge to $T(x)$ by uniqueness of weak limits. Then all subsequences 
+    have a subsequence which converges to $T(x)$, and thus the entire sequence $\{T(x_n)\}$ converges strongly to $T(x)$. 
+
+    For the converse, take the identity map $\ell_1 \rightarrow \ell_1$. It is clearly bounded, and since $\ell_1$ has the schur 
+    property, it is completely continuous. But it is not compact since the unit ball of an infinite dimensional space
+    is not compact.
+
+    \item[3.] Let $T: X \rightarrow Y$ be a bounded and completely continuous operator. We will show that $T(B_x)$ is relatively compact
+    by showing every sequence in $T(B_X)$ has a convergent subsequence, converging in $Y$. This is equivalent to showing 
+    every sequence in the closure has a subsequence which converges in the closure, which is equivalent to relative compactness
+    in a metric space. 
+
+    Let $\{x_n\}$ be a sequence in $T(B_X)$. Then choose $\{y_n\} \subset B_X$ such that $T(y_n) = x_n$. Since $x$ is reflexive, 
+    the unit ball $B_X$ is weakly sequentially compact, so there is a subsequence $\{y_{n_k}\}$ which converges weakly.
+    Then $\{x_{n_k}\} = \{T(x_{n_k})$ converges strongly since $T$ is completely continuous, and thus every sequence
+    in $T(B_X)$ has a convergent subsequence, and $T(B_X)$ is relatively compact. 
+
+    \item[4.] Let $1 \leq p < q < \infty$ and let $X$ be a closed subspace of $\ell_q$. Suppose $T: X \rightarrow \ell_p$ is 
+    bounded. Since $X$ is a closed subspace of a reflexive space, $X$ is reflexive. 
+    Then to show $T$ is compact, by problem 3 it is enough to show that $T$ is completely continuous. 
+
+    Suppose $T$ is not completely continuous, and take a weakly null sequence $\{x_n\}$ in the unit sphere of $X$
+    such that $T(x_n)$ does not converge to $0$ in norm. By passing to a subsequence, we can assume that $\{x_n\}$ is 
+    equivalent to the canonical basis of $\ell_q$. By passing to a further subsequence, we can assume that $\|T(x_n)\| > a > 0$ 
+    for all $n$, and we also know that $\{T(x_n)\}$ is weakly null since $T$ is bounded. By passing to a further subsequence 
+    we can assume that $\{T(x_n)\}$ is equivalent to a basis of $\ell_p$. Then $T$ is a bounded map from $\ell_q$ to $\ell_p$
+    which is impossible, hence $T$ must be completely continuous.
+
+\end{enumerate}
+
+\end{document}

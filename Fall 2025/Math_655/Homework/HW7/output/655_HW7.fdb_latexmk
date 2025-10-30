@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1761235449.82575 "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Fall 2025/Math_653/Homework/HW8/653_HW8.tex" "output/653_HW8.pdf" "653_HW8" 1761235451.20406 0
-  "653_HW8.tex" 1761235449 11498 f065b1736ec6392c757e2523370fe603 ""
-  "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Fall 2025/Math_653/Homework/HW8/653_HW8.tex" 1761235449 11498 f065b1736ec6392c757e2523370fe603 ""
+["pdflatex"] 1761435112.21701 "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Fall 2025/Math_655/Homework/HW7/655_HW7.tex" "output/655_HW7.pdf" "655_HW7" 1761435113.80218 0
+  "655_HW7.tex" 1761435110 5581 c8d18e0888f0c2e5ba0b2cf6f5bb9f4e ""
+  "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Fall 2025/Math_655/Homework/HW7/655_HW7.tex" 1761435110 5581 c8d18e0888f0c2e5ba0b2cf6f5bb9f4e ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1758478193 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1758474978 1004 54797486969f23fa377b128694d548df ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1758474978 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -29,11 +29,9 @@
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1758474978 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1758474978 35469 dcf3a5f2fc1862f5952e3ee5eb1d98c4 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1758474978 35752 024fb6c41858982481f6968b5fc26508 ""
-  "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1758474978 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1758474978 32726 39f0f9e62e84beb801509898a605dbd5 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1758474978 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1758474978 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
-  "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1758474978 34694 870c211f62cb72718a00e353f14f254d ""
   "c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1758480539 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "c:/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty" 1758476069 40635 c40361e206be584d448876bba8a64a3b ""
   "c:/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty" 1758476086 33961 6b5c75130e435b2bfdb9f480a09a39f9 ""
@@ -165,11 +163,11 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1758484728 5574153 af86687748baf417d9e7d549313527be ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1758485016 3621638 2f152774f3ada12d62dba33e33b31994 ""
   "c:/texlive/2025/texmf.cnf" 1758484704 713 e69b156964470283e0530f5060668171 ""
-  "output/653_HW8.aux" 1761235451 162 fa61bf9ecf9314f94d51aa32222a725c "pdflatex"
-  "output/653_HW8.out" 1761235450 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "output/655_HW7.aux" 1761435113 162 55205a9e8a8eca30d36afb389b0617bf "pdflatex"
+  "output/655_HW7.out" 1761435113 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
-  "output/653_HW8.aux"
-  "output/653_HW8.log"
-  "output/653_HW8.out"
-  "output/653_HW8.pdf"
+  "output/655_HW7.aux"
+  "output/655_HW7.log"
+  "output/655_HW7.out"
+  "output/655_HW7.pdf"
   (rewritten before read)
