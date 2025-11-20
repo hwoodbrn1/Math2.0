@@ -1,0 +1,166 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 636}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 8}
+
+\subsection*{Section 33}
+
+\begin{enumerate}
+    \item[4.] We will show that if $X$ is a normal space with $A \subset X$, then 
+    $A$ is a closed $G_\delta$ set if and only if there is a function $f$ such that $f(x) = 0$ for $x \in A$
+    and $f(x) > 0$ for $x \notin A$. 
+
+    First suppose $A$ is a closed $G_\delta$ set, and say $A = \cup_1^\infty A_n$. For each
+    $n$, apply Urysohn's lemma to get a function $f_n: X \rightarrow [0, 2^{-n}]$ which 
+    is $0$ on $A$ and $2^{-n}$ on the closed set $A_n^c$. Define 
+    the function $f = \sum_1^\infty f_n$. Then $f$ converges uniformly by the Weierstrass M-test, 
+    since each $f_n$ is uniformly bounded by $2^{-n}$, which sums to $1$. Moreover $f$ is continuous
+    since each $f_n$ is continuous, and by the uniform convergence theorem. 
+
+    Finally note that $f(x) = 0$ for all $x \in A$ by construction, and if $x \notin A$, then 
+    there must be some $n$ with $x \in A^c$, and thus $f(x) > 0$. 
+
+    Conversely suppose $A$ is a set such that there is a function $f$ for which $f(x) = 0$ for $x \in A$
+    and $f(x) > 0$ for $x \notin A$. Then $A$ is closed, as $A$ is the preimage of the closed set $\{0\}$
+    under the continuous map $f$. For $n = 1, 2, \dots$, define a set $A_n = f^{-1}(\left[0, 1/n\right))$.
+    The $A_n$'s are open as preimages of open sets. Also if $x \in A_n$ for all $n$, 
+    we must have $f(x) < 1/n$ for all $n$, so $f(x) = 0$ and $x \in A$. If $x \in A$, then clearly
+    $x \in A_n$ for all $n$. Then $A = \cap A_n$.
+\end{enumerate}
+
+\subsection*{Section 34}
+
+\begin{enumerate}
+    \item[3.] We show that a compact Hausdorff space $X$ is metrizable if and only if it has a 
+    countable basis. 
+
+    First suppose $X$ is metrizable. Then $X$ is a compact metric space, and we have previously shown
+    that this implies $X$ is second countable by taking finite subcovers of open covers of increasingly 
+    small balls and taking their centers.
+
+    Conversely suppose $X$ has a countable basis. Then $X$ is normal (hence regular) and second countable, and 
+    so $X$ is metrizable by the Urysohn metrization theorem. 
+
+    \item[6.] Let $X$ be a space in which one point sets are closed. Suppoose $\{f_\alpha\}_{\alpha \in J}$
+    is an indexed family of continuous functions $f_\alpha: X \rightarrow \RR$ which separates points 
+    and closed sets. Then the function $F: X \rightarrow \RR^J$ defined by 
+    \[
+        F(x) = (f_\alpha(x))_{\alpha \in J}
+    \]
+    is an embedding of $X$ into $\RR^J$. If $f_\alpha$ maps $X$ into $[0,1]$, then $F$ embeds $X$ 
+    into $[0,1]^J$. 
+
+    \textbf{Proof.} $F$ is injective, since for any $x \neq y$ there is some map $f_{\alpha_0}$ 
+    such that $f_{\alpha_0}(x) = 0$ and $f_{\alpha_0}(y) > 0$, and thus $F(x) \neq F(y)$. 
+
+    It is continuous in the product topology on $\RR^J$ since each component is continuous. 
+
+    Then we must show it is open. Take some open $U \subset X$. Choose $z_0 \in F(U)$. Let $x_0$ be 
+    the point in $U$ such that $F(x_0) = z_0$. Choose some $\alpha_0$ where $f_{\alpha_0}(x_0) > 0$
+    and $f_\alpha(X \setminus U) = 0$. Take 
+    \[
+        V = \pi_{\alpha_0}^{-1}((0, \infty)),
+    \]
+    where $\pi_{\alpha_0}$ is the projection onto the $\alpha_0$ component, and let $W = V \cap F(X)$. 
+    Then $W$ is open in $F(X)$ in the subspace topology, and we just need to show that 
+    $z_0 \in W \subset F(U)$. First, we have $z_0 \in W$ since  
+    \[
+        \pi_{\alpha_0}(z_0) = \pi_{\alpha_0}(F(x_0)) = f_{\alpha_0}(x_0) > 0.
+    \]
+
+    We have $W \subset F(U)$ since if $z \in W$, then $z = F(x)$ for some $x \in X$ and $\pi_{\alpha_0}(x) > 0$.
+    Then since $\pi_{\alpha_0}(z) = f_{\alpha_0}(x)$, and we know $f_{\alpha_0}$ vanishes outside $U$, 
+    we must have $x \in U$ and thus $z \in F(U)$. Then $z_0 \in W \subset F(U)$. 
+
+    The same proof works for the case where $f_{\alpha}: X \rightarrow [0,1]$. 
+\end{enumerate}
+
+\subsection*{Section 35}
+
+\begin{enumerate}
+    \item[1.] Assume the conclusion of the Tietze Extension Theorem. Suppose $X$ is normal, with
+    closed disjoint subsets $A$ and $B$. Then the function on $A \cup B$ defined by $f(x) = a$ if 
+    $x \in A$, and $f(x) = b$ if $x \in B$ is continuous. By Tietze extension theorem, $f$ extends to 
+    a function $\tilde{f}: X \rightarrow [a, b]$, and thus we have proved Urysohn's lemma. 
+\end{enumerate}
+
+\subsection*{Categories}
+
+\begin{enumerate}
+    \item[a.] The identity morphism on $X \in \mathcal{C}$ is defined by the property that for $A, B 
+    \in \mathcal{C}$, and maps $f \in \text{Mor}(X, A)$ and $g \in \text{Mor}(B, X)$, we have 
+    \[
+        f \circ \text{id}_X = f, \quad \text{id}_X \circ g = g.
+    \]
+
+    Then suppose we have two identity maps on $X$, $\text{id}_X$ and $\text{id}'_X$. The above property 
+    tells us that 
+    \[
+        \text{id}_X = \text{id}_X \circ \text{id}'_X = \text{id}'_X
+    \]
+    since both map $X \rightarrow X$. Then the two must be equal. 
+
+    \item[b.] A functor $\mathcal{F}$ has the properties that $\mathcal{F}(\text{id}_X) = \text{id}_{\mathcal{F}(X)}$,
+    and that $\mathcal{F}(g \circ f) = \mathcal{F}(g) \circ \mathcal{F}(f)$. 
+
+    Now let $A, B \in \mathcal{C}$ and suppose $f \in \text{Mor}(A, B)$ is an isomorphism, so that 
+    there is a map $g \in \text{Mor}(B, A)$ such that $g \circ f = \text{id}_A$ and $f \circ g = \text{id}_B$.
+
+    Then by the properties of $\mathcal{F}$, we have 
+    \[
+        \mathcal{F}(g) \circ \mathcal{F}(f) = \mathcal{F}(g\circ f) = \mathcal{F}(\text{id}_A)
+        = \text{id}_{\mathcal{F}(A)}
+    \]
+    and similarly to show $\mathcal{F}(f) \circ \mathcal{F}(g) = \text{id}_{\mathcal{F}(B)}$. Then
+    $\mathcal{F}(f)$ is an isomorphism $\mathcal{F}(A) \rightarrow \mathcal{F}(B)$ with inverse 
+    $\mathcal{F}(g)$.
+\end{enumerate}
+
+\end{document}

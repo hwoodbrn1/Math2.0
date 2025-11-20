@@ -50,6 +50,17 @@
 \renewcommand{\headsep}{20pt}
 \thispagestyle{fancy}
 
-{\Huge \bfseries \noindent TITLE}
+Let $f: \RR \rightarrow \RR$ be a function. Show the set of points at which $f$ is continuous is a borel set.
+
+Proof: For each $n = 1, 2, \dots$, Let $U_n$ be the union of all open intervals $V$ such that $|f(x) - f(y)| < 1/n$ for all 
+$x, y \in V$.
+
+Suppose $f$ is continuous at $x \in \RR$. Then for every $\epsilon > 0$, there exists a $\delta$ such that
+$|f(y) - f(x)| < \epsilon$ for all $y \in (y-\delta, y+\delta)$. For a given $n$, choose $\epsilon < 1/n$ etc.
+
+
+Then let $U = \cap_n U_n$. Then I claim the set of points at which $f$ is continuous is precisely $U$. 
+
+
 
 \end{document}

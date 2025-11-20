@@ -1,0 +1,134 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 636}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 9}
+
+\subsection*{Section 51}
+
+\begin{enumerate}
+    \item[1.] Let $h, h': X \rightarrow Y$ and $k, k': Y \rightarrow Z$ each be homotopic
+    pairs of maps. Let $F: X \times I \rightarrow Y$ and $G: Y \times I \rightarrow Z$ be
+    homotopies from $h$ to $h'$ and $k$ to $k'$ respectively. 
+
+    Then define a function
+    \begin{align}
+        H: & X \times I \rightarrow Z\\
+        &(x,t) \mapsto G(H(x,t),t).
+    \end{align}
+    $H$ is continuous since it is a composition of continuous functions. It is a path 
+    homotopy from $k \circ h$ to $k' \circ h'$ since we have $H(x,0) = G(H(x,0),0) = G(h(x), 0) = (k \circ h)(x)$,
+    and $H(x, 1) = G(H(x,1),1) = k'\circ h'(x)$. 
+
+    \item[2.] (a.) Let $[X,I]$ be the set of homotopy classes of maps $X \rightarrow I$. 
+    Let $f: X \rightarrow I$ be a continuous map. Then define 
+    \[
+        F(x,t) = (1-t)f(x).
+    \]
+    This is a path homotopy from $f$ to the constant path at $0$: We have $F(x,0) = f(x)$, $F(x,1) = 0$.
+
+    Then the only element of $[X,I]$ is the class $[e]$, where $e(x) = 0$. 
+
+    (b.) Let $f$ and $g$ be two paths in $Y$, a path connected space. Then connect $f(1)$ with $g(0)$ by a 
+    path $h$. Then $f*h*g$ is a path containing $f$ and $g$, and there is a clear homotopy between 
+    the two by moving the time interval $[0,1]$ along the path from $f$ to $g$. 
+\end{enumerate}
+
+\subsection*{Section 52}
+
+\begin{enumerate}
+    \item[2.] Let $\alpha$ be a path from $x_0$ to $x_1$ and let $\beta$ be a path from $x_1$ to $x_2$. 
+    Let $\gamma = \alpha * \beta$. Then we have 
+    \[
+        \hat{\gamma}([f]) = [\overline{\gamma}]*[f]*[\gamma] = [\overline{\beta}]*[\overline{\alpha}]*
+        [f]*[\alpha]*[\beta] = \hat{\beta}([\overline{\alpha}]*
+        [f]*[\alpha]) = \hat{\beta}\circ\hat{\alpha}([f]),
+    \] 
+    verifying that $\hat{\gamma} = \hat{\beta}\circ\hat{\alpha}$
+
+    \item[3.] Let $X$ be a path connected space with $x_0, x_1 \in X$. We will show
+    that $\pi_1(X, x_0)$ is abelian if and only if for every pair of paths $\alpha, \beta$ from $x_0$ to $x_1$,
+    we have $\hat{\alpha} = \hat{\beta}$. 
+
+    First suppose the second condition holds. Then 
+    \[
+        \hat{\alpha}([\beta]) = [\hat{\alpha}]*[\beta]*[\alpha] = \hat{\beta}([\beta]) = \beta,
+    \]
+    and hence $[\alpha]*[\beta] = [\beta]*[\alpha]$.
+
+    Conversely suppose $\pi_1(X, x_0)$ is abelian. Then 
+    \[
+        \hat{\alpha}([f]) = [\overline{\alpha}]*[f]*[\alpha] = [\overline{\alpha}]
+        *[f]*[\alpha]*[\overline{\beta}]*[\beta] = [\overline{\alpha}]
+        *[\alpha]*[\overline{\beta}]*[f]*[\beta] = [\overline{\beta}]*[f]*[\beta]
+        = \hat{\beta}([f])
+    \]
+    since $[\alpha]*[\overline{\beta}]$ is a loop at $x_0$ and thus commutes with $[f]$. 
+    
+    \item[4.] Let $r$ be a retraction of $X$ onto a subspace $A$. Let $a_0 \in A$. Then the map
+    \[
+        r_*: \pi_1(X, a_0) \rightarrow \pi_1(A, a_0)
+    \]
+    is a surjection. 
+
+    Take a loop $\tilde{f}$ in $\pi_1(A, a_0)$. Then consider this as a map $f$ from $I$ to $X$. Then
+    we have $r \circ f = f$, since $f(t)$ is in $A$ for all $t \in [0,1]$. 
+
+    \item[5.] Let $A$ be a subspace of $\RR^n$ and let $h: (A, a_0) \rightarrow (Y, y_0)$. Suppose $h$ can be extended 
+    to a map $\tilde{h}$ with domain all of $\RR^n$. 
+
+    Let $f \in \pi_1(A, a_0)$. Then the function
+    \[
+        \tilde{h}((1-t)f(s) + ta_0)
+    \]
+    is a path homotopy from $h\circ f$ to $h(a_0) = y_0$, and hence the image of every element of $\pi_1(A, a_0)$
+    under $h$ is homotopic to the identity element, and $h$ is a trivial homomorphism. 
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,178 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 655}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 9}
+
+Let $(x_n)$ be a sequence in a Banach space $X$.
+
+\begin{enumerate}
+
+\item[1.] (1.) We will show the following assertions are equivalent:
+\begin{enumerate}
+    \item[a.] The series $\sum_n x_n$ is weakly unconditionally cauchy
+    \item[b.] There exists $C > 0$ such that $\sum_{n=1}^\infty |x^*(x_n)| \leq C\|x^*\|$ for all $x^* \in X^*$.
+    \item[c.] There exists $C > 0$ such that $\sup_{k \in \NN}\|\sum_{n=1}^k \lambda_n x_n\| \leq C\|\lambda\|_{\infty}$ 
+    for all $\lambda \in \ell_\infty$
+    \item[d.] For all $\lambda \in c_0$, the series $\sum_n \lambda_n x_n$ converges
+    \item[e.] There exists $C > 0$ such that $\sup_{(\epsilon_k) \subset \{-1,1\}}\|\sum_{n \in F} \epsilon_n x_n\| \leq C$
+    for all finite subsets $F \subset \NN$.
+\end{enumerate}
+
+$(b.) \Rightarrow (a.)$ is obvious.
+
+$(a.)\Rightarrow (b.)$: Construct a map $T: X^* \rightarrow \ell_1$ by 
+$x^* \mapsto (x^*(x_n))$. We know $\|(x^*(x_n))\|_{\ell_1} < \infty$ from (a.). Also $T$ is clearly linear. 
+
+We use the closed graph theorem to show $T$ is bounded. Suppose $x^*_n \rightarrow x^*$ and $Tx^*_n \rightarrow y$. 
+Then $Tx^*_n$ must converge pointwise to $y$, so $y = x^*(x_n) = Tx^*$ and we are done.
+
+Then if $C = \|T\|$, we have
+\[
+    \|(x^*(x_n))\|_{\ell_1} = \sum_1^\infty |x^*(x_n)| \leq C\|x^*\|
+\]
+for all $x^* \in X^*$. 
+
+$(b.) \Rightarrow (c.)$: For any $\lambda \in \ell_\infty$ and any $x^* \in X^*$, we have
+
+\[
+    \left|x^*\left(\sum_1^m \lambda_n x_n\right)\right| = \left|\sum_1^m \lambda_n x^*(x_n)\right| \leq 
+    \sum_1^m |\lambda_n x^*(x_n)| \leq \|\lambda\|_{\infty} \sum_1^m |x^*(x_n)| \leq C\|\lambda\|_\infty\|x^*\| = C\|\lambda\|_\infty
+\]
+Then since the $J$ map is an isometry, we have 
+\[
+    \|sum_1^m \lambda_n x_n\| \leq C \|\lambda\|_\infty
+\]
+for all $m$, and the result follows by taking the supremum over all $m$. 
+
+$(c.) \Rightarrow (e.)$ This implication is easy, since for all $(\epsilon_n)$ and all finite 
+subsets $F \subset \NN$, the modified sequence $(\epsilon'_n)$ which is equal to the original sequence on $F$
+and zero elsewhere is an element of $\ell_\infty$ with norm 1, and thus we have 
+\[
+    \|\sum_1^k\epsilon'_n x_n\| = \|\sum_{n \in F} \epsilon_n x_n\| \leq C.
+\]
+
+$(d.) \Rightarrow (a.)$: Suppose (a.) does not hold. Then there exists $x^* \in X^*$ and a sequence $n_j$ with $n_1 = 1$ such that
+$\sum_{n_j}^{n_{j+1}-1}|x^*(x_n)| \geq j$. For each $n$ choose $j$ such that $n_j \leq n < n_{j + 1}$ and let $\beta_n$
+be a scalar such that $|\beta_n| = j^{-1}$ and $\beta x^*(x_n) = j^{-1}|x^*(x_n)|$. Then
+\[
+    \sum_1^\infty \beta_n x^*(x_n) = \infty,
+\]
+
+from which it follows that $\sum_1^N \beta_n x_n$ cannot converge, otherwise $x^*(\sum_1^N \beta_n x_n) = \sum_1^N \beta_n x^*(x_n)$
+would converge to something finite. 
+
+$(e.) \Rightarrow (a.)$: Again suppose (a.) does not hold, and choose a sequence $\epsilon_n$ in a similar fashion,
+so that $\epsilon x^*(x_n) = |x^*(x_n)|$. Then similarly, we have
+\[
+    \sum_1^\infty \epsilon_n x^*(x_n) = \infty.
+\]
+
+Then it follows that condition (e.) cannot hold. Suppose it does. Then 
+\[
+    \sum_1^N \epsilon_n x^*(x_n) = \left|x^*\left(\sum_1^N \epsilon_n x_n\right)\right| \leq \|x^*\|\left\|\sum_1^N \epsilon_n x_n\right\| \leq C\|x^*\|
+\] 
+for all $N$, contradicting that the term on the left grows arbitrarily large in $N$.
+
+This completes the proof.
+
+(2.) Every unconditionally convergent series is weakly unconditionally cauchy. Since $\sum x_{\sigma(n)}$ is
+finite for all permutations $\sigma$, we have that $\sum x^*(x_n)$ is unconditionally convergent,
+which implies it is absolutely convergent since a sequence of real numbers is unconditionally convergent 
+if and only if it is absolutely convergent. 
+
+(3.) Every weakly unconditionally cauchy series is also weakly convergent, since absolute convergence implies
+convergence, in the case of $\sum|x^*(x_n)|$.
+
+\item[2.] (1.) We prove that 
+\[
+    \lim_{N \rightarrow \infty} \sup_{x^* \in B_{X^*}} \sum_N^\infty |x^*(x_n)| = 0.
+\]
+
+We need that for any $\epsilon > 0$ there is an $N$ 
+such that $\sup_{(\epsilon_n) \in \{-1,1\}}\|\sum_N^\infty \epsilon_n x_n\| < \epsilon$. If this did not 
+hold, we could choose blocks stretching out to infinity each corresponding to a different sequence $(\epsilon_n)$, 
+and then could piece these sequences together so that $\sum \epsilon_n x_n$ diverges. 
+
+Then fix $\epsilon > 0$ and choose such an $N$. 
+
+For any $x^* \in B_{X^*}$, we can choose a sequence $(\epsilon_n) \subset \{-1,1\}$ such that 
+$\sum |x^*(x_n)| = \sum \epsilon_n x^*(x_n)$. Then
+\[
+    \sum_N^\infty |x^*(x_n)| = \sum_N^\infty \epsilon_n x^*(x_n) \leq \|x^*\|\left\|\sum_N^\infty \epsilon_n x_n\right\|
+    \leq \epsilon.
+\]
+
+It follows that $\sup_{x^* \in B_{X^*}}\sum_N^\infty |x^*(x_n)| < \epsilon$, and we are done. 
+
+(2.) We prove that a series $\sum x_n$ is unconditionally convergent if for all $(\lambda_n) \in \ell_\infty$, the 
+series $\sum \lambda_n x_n$ is convergent. 
+
+If $\sum \lambda_n x_n$ is convergent for all $(\lambda_n) \in \ell_\infty$, we have subsequence convergence of $\sum x_n$ 
+and thus $\sum x_n$ is unconditionally convergent.
+
+Conversely, suppose $\sum x_n$ is unconditionally convergent and let $(\lambda_n) \in \ell_\infty$ be a sequence of norm 1 
+without loss of generality. 
+
+By the previous part, choose $N$ such that $\sum_n^\infty |x^*(x_n)| < \epsilon$ for all $x^* \in B_{X^*}$ for all $n > N$. 
+Then fix any $n_1 < n_2$, with $n_1 < N$ and choose $x^* \in B_{X^*}$ such that 
+\[
+    \left|x^*(\sum_{n_1}^{n_2} \lambda_n x_n)\right| = \left\|\sum_{n_1}^{n_2} \lambda_n x_n\right\|.
+\]
+Then 
+\[
+    \left\|\sum_{n_1}^{n_2} \lambda_n x_n\right\| = \left|\sum_{n_1}^{n_2}\lambda_n x^*(x_n)\right|
+    \leq \sum_{n_1}^{n_2}|\lambda_n||x^*(x_n)| \leq \sum_{n_1}^{n_2} |x^*(x_n)| \leq \sum_{n_1}^\infty |x^*(x_n)| \leq \epsilon,
+\]
+implying $\sum \lambda_n x_n$ is cauchy in norm and thus convergent.
+
+
+\end{enumerate}
+
+\end{document}

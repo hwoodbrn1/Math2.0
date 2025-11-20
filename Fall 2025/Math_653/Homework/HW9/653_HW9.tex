@@ -1,0 +1,266 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 653}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 9}
+
+\begin{enumerate}
+    \item[1.] Let $p$ be a prime. We have natural surjections $f_m^n: \ZZ/p^n \ZZ \twoheadleftarrow \ZZ/p^m \ZZ$ for $n < m$. 
+    We also have surjections $\phi_n: \ZZ \twoheadrightarrow \ZZ/p^n \ZZ$ defined in the usual way, with
+    $\phi_n = f_m^n \circ \phi_m$. Then by the universal 
+    property of the inverse limit, there is a unique homomorphism $u: \ZZ \rightarrow \hat{\ZZ}_p$ and we have 
+    a commutative diagram 
+    \[
+        \begin{tikzcd}
+                         & \mathbb{Z} \arrow[d, "u"] \arrow[ldd, "\phi_n"', bend right] \arrow[rdd, "\phi_m", bend left] &                                              \\
+                         & \hat{\mathbb{Z}}_p \arrow[ld, "\eta_n"'] \arrow[rd, "\eta_m"]                                 &                                              \\
+\mathbb{Z}/p^n\mathbb{Z} &                                                                                               & \mathbb{Z}/p^m\mathbb{Z} \arrow[ll, "f_m^n"]
+\end{tikzcd},
+    \]
+    where $\eta_n$ are the maps obtained from the inverse limit construction.
+
+    Now take $a \in \ZZ$ and suppose $u(a) = 0 \in \hat{\ZZ}_p$. Then for all $n$, $\eta_n(u(a)) = 0$ since $\eta_n$
+    is a homomorphism, and thus $\phi_n(a) = 0$ by the commutativity of the diagram. Then $a$ must equal zero, 
+    otherwise it would have to be divisible by every power of $p$. Thus $u$ is an injective map. 
+
+    Similarly for the next case, we have maps $\phi_m: \ZZ \rightarrow \ZZ/m\ZZ$ for every integer $m$ which 
+    are compatible in the above manner with the surjections $\ZZ/nm\ZZ \twoheadrightarrow \ZZ/m\ZZ$, and thus 
+    there is a unique map $v: \ZZ \rightarrow \hat{\ZZ}$ with a commuting diagram similar to the 
+    one given above. 
+
+    To show $v$ is injective is the same. Take $a \in \ZZ$ and suppose $v(a) = 0 \in \hat{\ZZ}$. Then by commutativity,
+    we have $\phi_m(a) = 0$ for all $m$, and $a$ must be zero, or else it would need to be divisible by every positive integer.
+
+    Finally, we show existence of an injection $\hat{\ZZ}_p \rightarrow \hat{\ZZ}$. Note that for any $m \in \mathbb{P}$, 
+    we can write $m = p^a n$ where $n$ and $p^a$ are relatively prime. Then $\ZZ/m\ZZ$ is isomorphic to the direct 
+    sum $\ZZ/p^a \ZZ \oplus \ZZ/n\ZZ$. We already have maps $\eta_a: \hat{\ZZ}_p \rightarrow \ZZ/p^a\ZZ$ for every $a$ by the 
+    inverse limit construction. Then define a map $\phi_m: \hat{\ZZ}_p \rightarrow \ZZ/m\ZZ$ by $\phi_m(x) = (\eta_a(x), 0)$,
+    where $a$ is determined by the given $m$. Moreover, if $n$ divides $m$, $n$ must contain a lesser power of $p$, 
+    and the map $\ZZ/m\ZZ \rightarrow \ZZ/n\ZZ$ is compatible with the maps $\phi_i$ by mapping their $p$ power component 
+    using the previously mentioned map, and the rest by taking some quotient. Then the universal property 
+    gives us a map $k: \hat{\ZZ}_p \rightarrow \hat{\ZZ}$. 
+
+    Let $s \in \hat{\ZZ}_p$ and suppose $k(s) = 0$. Then in particular, $\phi_{p^a}(s) = 0$ for every $a$, and 
+    by considering $\hat{\ZZ}_p$ as a sequence, every coordinate of $a$ must be zero, and thus $a = 0$. 
+
+    \item[2.] Let $A, B, C, D$ be abelian groups with homomorphisms 
+    \[
+        f: A \rightarrow B, g: A \rightarrow C, h: B \rightarrow D, k: C \rightarrow D
+    \]
+    (a.) Lang defines the fiber product $B \times_D C$ of abelian groups as the subset of elements $(b,c)$ of $B \times C$ such that 
+    $h(b) = k(c)$. Now suppose we have a commuting square 
+    \[
+        \begin{tikzcd}
+                  & G \arrow[ld, "\gamma"'] \arrow[rd, "\rho"] &                    \\
+B \arrow[rd, "h"] &                                            & C \arrow[ld, "k"'] \\
+                  & D                                          &                   
+\end{tikzcd}
+    \]
+    for some other abelian group $G$ and homomorphisms $\gamma$ and $\rho$. Define a map $u: G \rightarrow B\times_D C$
+    by $u(g) = (\gamma(g), \rho(g))$. We know $(\gamma(g), \rho(g))$ is an element of the fiber product since
+    $h(\gamma(g)) = k(\rho(g))$ from the commutative diagram. 
+
+    Let $p_1$ and $p_2$ be the projections from $B\times_D C$ into $B$ and $C$ respectively. Then we indeed 
+    have a commutative diagram
+    \[
+        \begin{tikzcd}
+             & G \arrow[ld, "\gamma"'] \arrow[d, "u"] \arrow[rd, "\rho"] & \\
+            B &\arrow[l, "p_1"] B \times_D C \arrow[r, "p_2"'] & C 
+        \end{tikzcd},
+    \]
+    since $p_1(u(g)) = p_1(\gamma(g), \rho(g)) = \gamma(g)$, and the same for the other side. 
+
+    Finally we must show $u$ is unique. Suppose we have some other map $k: G \rightarrow B\times_D C$ 
+    such that a similar diagram commutes. Then the first component of $k$ must be $\gamma(g)$ and the second
+    must be $\rho(g)$. Thus $k = u$, and $u$ is the unique map which gives a commutative diagram. 
+
+    (b.) Suppose the map $k$ is surjective. Then we will show $p_1$ is surjective. Take any $b \in B$. 
+    Then by the surjectivity of $g$, there is an element $c \in C$ such that $k(c) = h(b)$. Then 
+    $(b,c)$ is an element of $B\times_D C$, and we have $p_1(b,c) = b$. Thus $p_1$ is surjective. 
+
+    (c.) Lang defines the fibered coproduct as the quotient of $B \oplus C$ by the subgroup $W$ of elements 
+    of the form $(f(a), -g(a))$. Let $q_1: B \rightarrow B \oplus C/W$ be the map $b \mapsto (b,0) + W$,
+    and similarly for $q_2: C \rightarrow B\oplus C/W$. This gives us a commutative diagram
+    \[
+        \begin{tikzcd}
+                  & A \arrow[ld, "f"'] \arrow[rd, "g"] &                    \\
+B \arrow[rd, "q_1"] &                                            & C \arrow[ld, "q_2"'] \\
+                  & B\oplus C/W                                          &                   
+\end{tikzcd},
+    \]
+    since $q_1(f(a)) = f(a) + W = g(a) + W$ by a change of variables within the definition of $W$.
+
+    Suppose we have another abelian group $T$ with maps $\gamma: B \rightarrow T$
+    and $\nu: C \rightarrow T$ such that $\gamma\circ f = \nu \circ g$.
+
+    We can define a map $u: B \oplus C \rightarrow T$ by $u(b,c) = \gamma(b) + \nu(c)$. Then we have 
+    $W \subset \ker(u)$, since $u(f(z), -g(z)) = \gamma(f(z)) - \nu(g(z)) = 0$. Thus 
+    there is an induced map $\overline{u}: B \oplus C/W \rightarrow T$ by the universal property of quotients,
+    such that $\overline{u}((b,c) + W) = u(b, c)$. Then we have $\gamma = \overline{u}\circ q_1$, since
+    $\overline{u}\circ q_1(b) = \overline{u}((b,0) + W) = u(b,0) = \gamma(b)$, and the same for $\nu$ as desired. 
+
+    Finally we need to show $\overline{u}$ is unique. Suppose there was another such map $\overline{k}: B \oplus C/W \rightarrow T$ so that
+    its diagram commutes. Then there is an induced map $k: B \oplus C \rightarrow T$ such that $k(W) = 0$. Then by 
+    the universal property of direct sums, we have $\gamma = k \circ p_1$ where $p_1$ is the canonical injection
+    of $B \rightarrow B \oplus C$. Then $k \circ p_1(b) = k(b, 0) = \overline{k}(b,0) = \gamma(b)$,
+    and the same in the second coordinate. Thus the components of $k$ are determined by $\gamma$ and $\nu$, and
+    thus so is $\overline{k}$. Then $u$ is unique.
+
+    (d.) Now suppose $g$ is injective. We will show $q_1$ is injective. Suppose $q_1(b) = 0$. Then by the definition
+    of $q_1$, we have $(b, 0) \in W$ and $b = f(a)$ for some $a \in A$ and $g(a) = 0$. Then $a = 0$ 
+    since $g$ is injective, and thus $f(a) = 0 = b$. 
+
+    (e.) The two constructions have nothing in common since one incorporates arrows into $B$ and $C$ from another
+    group, and the other has arrows out of $B$ and $C$ to an unrelated group. 
+    
+    \item[3.] (a.) Let $A$ be an object of a locally small category $\mathcal{C}$. Then we are given that 
+    $\text{Mor}(A, A)$ contains an identity morphism, and that the arrows satisfy the associative property. 
+    This is exactly the definition of a monoid. 
+
+    (b.) $text{Aut}(A)$ contains a monoid by the argument above, and also has the property that for every $g \in \text{Aut}(A)$,
+    there is an inverse $f$ such that $g \circ f = f \circ g = id_A$. Then $\text{Aut}(A)$ is a group. 
+
+    \item[4.] Let $G$ be a group and let $\mathcal{C}$ be the category of $G$-sets with maps between $G$-sets
+    compatible with the group action. We will verify that this forms a category.
+
+    We clearly have a collection of objects and morphisms. Let $S, T, U$ be $G$-sets. We will check for a composition
+    map $\text{Mor}(T, U) \times \text{Mor}(S, T) \rightarrow \text{Mor}(S, U)$. Let 
+    $g \in \text{Mor}(S, T)$ and $h \in \text{Mor}(T, U)$. Then $h \circ g$ is a well defined map $S \rightarrow U$.
+    Moreover, for any $k \in G$ we have
+    \[
+        h \circ g(k \cdot s) = h(k\cdot g(s)) = k\cdot(h\circ g(s))
+    \]
+    so that $h \circ g \in \text{Mor}(S, U)$. 
+
+    This map satisfies the associative property since function composition is associative. Moreover, the
+    morphism sets are well defined, i.e. disjoint, since we know this to be true in the category of sets, and
+    morphisms in this category are the subset of these maps compatible with the group action. 
+
+    \item[5.] Let $\mathcal{G}$ be the category of groups, and $\mathcal{A}b$ the category of abelian groups.
+    
+    (a.) Let $\phi: G \rightarrow H$ be a group homomorphism. This induces a map $\overline{\phi}: G \rightarrow \text{ab}(H)$ 
+    by $g \mapsto \phi(g)[H,H]$. Then since we have a map $G$ into an abelian group, this factors 
+    through the abelianization of $G$, and hence we have a map $\text{ab}(\phi): \text{ab}(G) \rightarrow \text{ab}(H)$
+    such that $\text{ab}(\phi)(g[G, G]) = \phi(g)[H, H]$. 
+
+    (b.) Now we show that $\text{ab}$ is a functor. We just need to show it respects composition of morphisms and 
+    sends identity to identity. 
+
+    But $\text{ab}(\text{id}_G)(g[G,G]) = g[G,G]$ by the definition of the abelianized maps above, and 
+    thus $\text{ab}(\text{id}_G) = \text{id}_{\text{ab}(G)}$.
+
+    For composition, let $f: G \rightarrow H$ and $g: H \rightarrow K$. Then 
+    \[
+        \text{ab}(g) \circ \text{ab}(f)(a[G, G]) = \text{ab}(g)(f(a)[H, H]) = (g\circ f)(a)[K, K] = \text{ab}(g \circ f)(a[G, G])
+    \]
+    as desired. Then $\text{ab}$ is a functor from groups to abelian groups. 
+
+    (c.) We have that the abelianization functor is adjoint to the forgetful functor $i$ on abelian groups, i.e.
+    for a group $H$ and an abelian group $G$, there is a natural bijection
+    \[
+        \text{Hom}_{\text{ab gp}}(\text{ab}(H), G) \simeq \text{Hom}_{\text{gp}}(H, i(G)).
+    \]
+    For any map $f: \text{ab}(H) \rightarrow G$, we can compose $f$ with the projection onto the abelianization of 
+    $H$ to get a unique map $f': H \rightarrow G$. Also for any $g: H \rightarrow i(G)$, there is a 
+    unique map $\text{ab}(g): \text{ab}(H) \rightarrow G$. This is the bijective correspondence. 
+
+    \item[6.] We will show that every nonidentity element of a free group has infinite order. Each nonidentity
+    element is of the form 
+    \[
+        s = s_1^{a_1} \cdots s_n^{a_n}
+    \]
+    where $F$ is free on $S$ and $s_i \in S$, and $a_i \in \mathbb{Z}$. If $n$ is odd, multiplying $s$ by itself
+    could only cancel at most the terms to the left of the middle term with the terms to the right of 
+    the middle element, producing a new element of the form
+    \[
+        s_1^{a_1} \cdots s_m^{2a_n} s_{m+1}^{a_{m+1}} \cdots s_n^{a_n}
+    \]
+    where $s_m$ is the middle term. If not all elements cancel between the middle terms, the situation is worse. 
+    Then clearly repeated multiplication of $s$ with itself will never yeild the identity, as the middle terms cannot cancel.
+
+    The case for even word length is similar, as there will be two middle terms which do not cancel, and even 
+    if there is some cancellation, we will always be left with products of these middle two terms which cannot be 
+    reduced. 
+
+    \item[7.] Let $F$ be a free gorup and define $N$ to be the subgroup of all $n$-th power elements for some $n \in \mathbb{P}$.
+    This is a normal subgroup: For any $g \in F$, we have $g x^n g^{-1} = \left(gxg^{-1}\right)^n$, as 
+    $gg^{-1} = e$. Then $gNg \in N$, and likewise $g^{-1}Ng \subset N$, so we are done. 
+
+    \item[8.] Let $G * H$ be the free product of $G$ with $H$. We have maps $p_1: G \rightarrow G*H$ 
+    which send $g \in G$ to the element $g$ of the free product, and similarly $p_2: H \rightarrow G*H$. 
+    Elements of the free product are of the form $g_1^{a_1}h_1^{b_1}\cdots g_n^{a_n}h_n^{b_n}$
+    for $g_i \in G$, $h_i \in H$, and $a_i, b_i \in \ZZ$. This is after reducing words in the free product
+    until they are formed by alternating elements of $G$ and $H$. 
+
+    Suppose $i: G \rightarrow A$ and $j: H \rightarrow A$ are two homomorphisms into another group $A$. Then
+    define a map $\phi: G * H \rightarrow A$ by 
+    \[
+        \phi(g_1^{a_1}h_1^{b_1}\cdots g_n^{a_n}h_n^{b_n}) = i(g_1^{a_1})j(h_1^{b_1})\cdots i(g_n^{a_n})j(h_n^{b_n}).
+    \]
+    We have a commutative diagram
+    \[
+        \begin{tikzcd}
+            G \arrow[r, "p_1"] \arrow[rd, "i"] & G * H \arrow[d, "\phi"] & H \arrow[dl, "j"] \arrow[l, "p_2"]\\
+            & A
+        \end{tikzcd}
+    \]
+    since $\phi\circ p_1(g) = i(g)$ and similar for the other side.
+
+    Moreover, suppose we have some other homomorphism $\psi: G * H$ which makes the diagram commute. 
+    This means $\psi(g) = i(g)$ for $g \in G$ and $\psi(h) = j(h)$ for $h \in H$. Also, we have
+    \[
+        \psi(g_1^{a_1}h_1^{b_1}\cdots g_n^{a_n}h_n^{b_n}) = \psi(g_1^{a_1})\psi(h_1^{b_1})\cdots \psi(g_n^{a_n})\psi(h_n^{b_n}) = i(g_1^{a_1})j(h_1^{b_1})\cdots i(g_n^{a_n})j(h_n^{b_n})
+    \]
+    for any element of $F$, and thus $\psi$ is equal to the map $\phi$ and $\phi$ is unique.
+
+
+
+\end{enumerate}
+
+\end{document}
