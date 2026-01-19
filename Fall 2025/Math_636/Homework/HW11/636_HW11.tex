@@ -1,0 +1,141 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 636}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 11}
+
+\subsection*{Section 55}
+
+\begin{enumerate}
+    \item[1.] Suppose $A$ is a retract of $B^2$. We prove every continuous map $f: A \rightarrow A$
+    has a fixed point. 
+
+    Let $f$ be such a map. Then we have maps 
+    \[
+        \begin{tikzcd}
+            B^2 \arrow[r, "r"] & A \arrow[r, "f"] & A \arrow[r, "i"] & B^2
+        \end{tikzcd}
+    \]
+
+    where $r$ is a the retraction $B^2 \rightarrow A$ and $i$ is the inclusion map $A \rightarrow B^2$. 
+    Then the map $i \circ f \circ r$ has a fixed point $x$ since it is a continuous map $B^2 \rightarrow B^2$. 
+    But the image of $i$ is $A$, so we must have $x \in A$. Then since both $r$ and $i$ fix points in $A$,
+    we must have $f(x) = i \circ f \circ r(x) = x$.
+\end{enumerate}
+
+\subsection*{Section 57}
+
+\begin{enumerate}
+    \item[2.] Let $g: S^2 \rightarrow S^2$ be continuous with $g(x) \neq g(-x)$ for all $x \in S^2$. We
+    will prove $g$ is surjective. 
+
+    Suppose it is not surjective, say $p \notin \text{im}(g)$. Then there is a homeomorphism $\phi: S^2\setminus\{p\}
+    \rightarrow R^2$. Then $\phi \circ g$ is a map $S^2 \rightarrow \RR^2$, so there must be a point $x \in S^2$
+    such that $\phi \circ g(x) = \phi\circ g(-x)$. Then we have $g(x) = g(-x)$, a contradiction, since $\phi$ is 
+    injective. So we must have that $g$ is a surjection. 
+
+    \item[3.] Let $h: S^1 \rightarrow S^1$ be continuous and antipode preserving with $h(b_0) = b_0$. We 
+    prove that $h_*$ sends a generator of $\pi_1(S^1, b_0)$ to an odd power of itself.
+
+    To do this, we show that the map $k_*$ from the proof of theorem 57.1 does the same. Let $\tilde{f}$ be the 
+    an injective path from $b_0$ to $-b_0$. Let $f = q \circ \tilde{f}$, a generator. Then $k_*[f] = [k\circ(q\circ f)]
+    = [q \circ h \circ \tilde{f}]$. But $q \circ \tilde{f}$ is also a path beginning at $b_0$ and ending
+    at $-b_0$. Then $k_*[f] = [q \circ h \circ \tilde{f}]$ cannot be an even power of a generator,
+    since $q$ is the map $z \mapsto z^2$, implying the preimage under $q$, $[h \circ \tilde{f}]$, iwould be a loop.
+
+    Finally, since $q_* \circ h_* = k_* \circ q_*$, $h_*$ cannot send a generator to an even power. Suppose it does. Let $a$ be 
+    a generator. Then there would be integers $r, s$ such that 
+    \[
+        (a^{2r})^2 = (a^2)^{2s + 1},
+    \]
+    which is impossible. Then $h$ must send a generator to an odd power as well. 
+\end{enumerate}
+
+\subsection*{Section 58}
+
+\begin{enumerate}
+    \item[2.] (a.) Infinite cyclic
+    
+    (b.) Figure 8
+
+    (c.) Infinite cyclic
+
+    (d.) Infinite cyclic
+
+    (e.) Figure 8
+
+    \item[5.] Suppose $X$ is contractible. Let $i: X \rightarrow \{x\}$ be the constant map to some point $x \in X$, 
+    and let $j: \{x\} \rightarrow X$ be the inclusion map into $X$. Then $i \circ j$ is the unique map $\{x\} \rightarrow\{x\}$,
+    the identity map, and $j \circ i: X \rightarrow X$ is the map sending all of $X$ to the point $x$, which is homotopic
+    to the identity by hypothesis. Then $X$ has the same homotopy type as a point. 
+
+    Conversely suppose $X$ has the same homotopy type as a point. Let $i: X \rightarrow \{x\}$ be the map
+    sending all elements to a point $x \in X$, and let $g$ be its homotopy inverse. Then $g \circ i$ is the constant map
+    to some point in $x$, as the image of $g$ must be a single point. Since $g$ is a homotopy inverse of $i$,
+    $g \circ i$ must be homotopic to the identity on $X$, and thus $X$ is nullhomotopic. 
+
+    \item[7.] Let $A \subset X$, let $j: A \rightarrow X$ be the inclusion map, and $f: X \rightarrow A$ be continuous.
+    Suppose $H: X \times I \rightarrow X$ is a homotopy from $j \circ f$ to the idnetity on $X$.
+
+    (a.) If $f$ is a retraction, then $f \circ j$ is just the constant map on $A$, meaning $j$ is a homotopy 
+    equivalence with inverse $f$ and $j_*$ is an isomorphism. 
+
+    (b.) If $H|_{A \times I}$ maps into $A$, then $H|_{A \times I}(x, 0) = j \circ f|_{A}(x)$ takes values in $A$,
+    thus equals $f|_A(x) = f\circ j(x)$, and $H|_{A \times I}(x, 1) = \text{id}_X|_A(x) = \text{id}_A(x)$. Then
+    $H|_{A \times I}$ is a homotopy from $f \circ j$ to the identity on $A$, so $j$ is a homotopy equivalence and $j_*$ is an
+    isomorphism.
+
+    (c.) Let $X = B^1$, $A = S^1$, and $f$ be the map sending points in $B^1$ directly to the left to the boundary. Then $f$
+    maps continuously into the left half of $S^1$. $j \circ f = f$ is homotopic to the identity, but $j_*$ is the trivial
+    homomorphism from $S^1$ into $B^1$. 
+\end{enumerate}
+
+\end{document}

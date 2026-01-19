@@ -1,0 +1,120 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 622}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 1}
+
+\begin{enumerate}
+    \item[1.] Let $F: \text{Mat}_{n\times n}(\RR) \rightarrow \RR$ be given by $F(A) : = \text{det} A$.
+    
+    (a.) $F$ is a polynomial in the $n^2$ entries of the matrix. It is thus differentiable as a map
+    $\RR^{n^2} \rightarrow \RR$. The space $\RR^{n^2}$ is isomorphic to the space of $n\times n$ matrices as a finite
+    dimensional normed vector space. 
+
+    (b.) Suppose $A$ is invertible. We are looking for a linear map $D_A F: \text{Mat}_{n \times n}(\RR) \rightarrow
+    \text{Mat}_{n \times n}(\RR)$ such that 
+    \[  
+        F(A + H) = F(A) + D_A F(H) + r(H)
+    \]
+    where $r(H) = o(\|H\|)$. We have
+    \[
+        F(A + H) = \det(A + H) = \det(A)\det(I + A^{-1}H),
+    \]
+    and we can write
+    \[
+        \det(I + A^{-1}H) = 1 + \text{Tr}(A^{-1}H) + r(H),
+    \]
+    where $r(H)$ consists of terms in the determinate of at least order $2$ in the components of $A^{-1}H$.
+    
+    We can bound $|r(H)|$ by a sum of absolute values of monics in elements of $A^{-1}H$ of orders 
+    at least $2$. Then use $(A^{-1}H)_{ij} \leq \|A^{-1}H\| \leq \|A^{-1}\|\|H\|$, so that 
+    \[
+        \lim_{\|H\| \rightarrow 0}\frac{|r(H)|}{\|H\|} = 0.
+    \]
+
+    Then we have
+    \[
+        \det(A + H) = \det(A) + \det(A)\text{Tr}(A^{-1}H) + \det(A)r(H),
+    \]
+    where of course the last term is still $o(\|H\|)$, and where $D_A F(H) = \det(A)\text{Tr}(A^{-1}H)$
+    is a linear map. 
+
+    (c.) Using the formula for the inverse of an invertible matrix $A$, we have 
+    \[
+        D_A F(H) = \det(A)\text{Tr}(A^{-1}H) = \det(A)\frac{1}{\det(A)}\text{Tr}(\text{adj}(A)H) = \text{Tr}(\text{adj}(A)H).
+    \]
+    Since the set of invertible matrices is dense in $\text{Mat}_{n \times n}(\RR)$, we can 
+    approach a non-invertible matrix $B$ by a sequence of invertible matrices $\{A_j\}_{j = 1}^\infty$
+    so that $A_j \rightarrow B$.
+    Since $F$ is continuously differentiable, $\lim_{j \rightarrow \infty} D_{A_j} F(H) = D_{B} F(H)$.
+    Then $\lim_{j \rightarrow infty} D_{A_j} F(H) = \text{Tr}(\text{adj}(A_j)H) = \text{Tr}(\text{adj}B)$,
+    as trace and adjoint are continuous functions. 
+
+    \item[2.] Suppose $\Gamma: \RR \rightarrow GL_n(\RR)$ is a smooth map such that $\Gamma(t)$ is orthogonal
+    for every $t \in \RR$. By the product rule, we have
+    \[
+        \frac{d}{dt}(\Gamma(t)^T\Gamma(t)) = \frac{d}{dt}(\Gamma(t)^T)\Gamma(t) + \Gamma(t)^T \frac{d}{dt}\Gamma(t) = 0.
+    \]
+    And we also see that 
+    \[
+        \frac{d}{dt}(\Gamma(t)^T) = \lim_{h \rightarrow 0}\frac{\Gamma(t + h)^T - \Gamma(t)^T}{h}
+        = \lim_{h \rightarrow 0}\frac{\left(\Gamma(t + h) - \Gamma(t)\right)^T}{h} = \left(\frac{d}{dt}\Gamma(t)\right)^T.
+    \]
+
+    Then 
+    \[
+        \left(\Gamma(t)^{-1}\frac{d}{dt}\Gamma(t)\right)^T = \left(\Gamma(t)^T\frac{d}{dt}\Gamma(t)\right)^T
+        = \left(\frac{d}{dt}\Gamma(t)\right)^T\Gamma(t) = -\Gamma(t)^T \frac{d}{dt}\Gamma(t) = -\Gamma(t)^{-1} \frac{d}{dt}\Gamma(t)
+    \]
+
+\end{enumerate}
+
+\end{document}
