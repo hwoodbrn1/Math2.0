@@ -1,0 +1,109 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 655}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 8}
+
+\begin{enumerate}
+    \item[1.] Suppose $\ell_1$ does not have the Schur property: then without loss of generality, there is a sequence $\{x_n\}$ which converges 
+    weakly to $0$ but
+    not in norm. Then by the Bessage-pelczynski selection principle, there is a subsequence $\{x_{n_k}\}$ which
+    is equivalent to a block-basic sequence of the standard basis of $\ell_1$, which in turn is equivalent
+    to the standard basis of $\ell_1$. Then $[\{x_{n_k}\}]$ is isomorphic to $\ell_1$.
+
+    We want to show there is a bounded linear functional $\phi$ given by
+    \[
+        x = \sum_1^\infty a_k x_{n_k} \mapsto_\phi \sum_1^\infty a_k.
+    \]
+
+    Then we need to show this map is well defined, i.e. that the series converges.
+
+    Note that 
+    \[
+        \frac{1}{C}\left\|\sum_1^\infty a_k e_k\right\| \leq \left\|\sum_1^\infty a_k x_{n_k}\right\|
+        \leq C \left\|\sum_1^\infty a_k e_k\right\|
+    \]
+
+    where $\{e_k\}$ is the standard basis of $\ell_1$. Then 
+
+    \[
+        \left|\ \phi\left(\sum_1^\infty a_k x_{n_k}\right)\right| \leq \sum_1^\infty |a_k| = \left\|\sum_1^\infty a_k e_k\right\|
+        \leq C \left\|\sum_1^\infty a_k x_{n_k}\right\|,
+    \]
+
+    which shows $\phi$ is well defined and bounded, and linearity is obvious. 
+
+    Then we can extend this to a functional $\phi \in \ell^\infty$ by Hahn-Banach. But then we have 
+    \[
+        \phi(x_{n_k}) = 1
+    \]
+    for all $k$, contradicting the weak convergence of $\{x_{n_k}\}$ to zero. So $\ell_1$ must have the schur property.
+
+    \item[2.] Let $X$ be a Banach space with the Schur property and suppose $A$ is a weakly compact subset. 
+    By Eberlein-Smulian, $A$ is also sequentially weakly compact, and thus norm sequentially compact, 
+    since every weak convergent subsequence is also norm convergent. Then since $X$ is a metric space,
+    sequential norm compactness is equivalent to norm compactness, and thus $A$ is compact.
+
+    Conversely suppose $A$ is a norm compact subset of $X$. Since every weak open cover is also a norm open
+    cover, we can always reduce to a finite subcover. Thus $A$ is weakly compact.
+
+    \item[3.] Let $X$ be a reflexive Banach space with the Schur property. By the topological characterization of 
+    reflexivity, the unit ball in $X$ is weakly compact, and thus norm compact by problem 2. Then $X$ must
+    be a finite dimensional space, since the unit ball in a normed vector space is compact if and only if 
+    the space is finite dimensional. 
+
+    \item[4.] Let $X$ be a reflexive space and suppose $T: X \rightarrow \ell_1$ is a bounded operator. 
+    Since $X$ is reflexive, the unit ball is weakly compact. Note that $T$ is also weakly bounded. Then 
+    the image of the unit ball $T(B_X)$ is weakly compact in $\ell_1$, and thus norm compact by problem 
+    $2$. Since $X$ is hausdorff, this is a stronger condition than the closure $\overline{T(B_X)}$ being 
+    compact, and thus $T$ is a compact operator. 
+
+\end{enumerate}
+
+\end{document}

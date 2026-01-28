@@ -1,0 +1,108 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 655}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 10}
+
+\begin{enumerate}
+    \item[1.] (a.) Take $(y_i^k)_{i = 1}^\infty = \begin{cases}
+        1 & i \leq k\\
+        0 & i > k
+    \end{cases}.$
+    Then for any $x^* \in \ell_1$, we have
+    \[
+        x^*(y_i^k) = \sum_{i=1}^k x_i^* \leq \sum_1^k |x_i^*| \rightarrow_k \|x^*\|_{\ell_1}
+    \]
+    meaning $(y_i^k)$ is weakly cauchy. However, it is clear by taking the limit against
+    unit vectors $e_i$ that if we did have $y_i^k \rightarrow_k (y_i)$ in norm,
+    we must have $y_i = 1$ for all $i$. But this is not an element of $c_0$. 
+
+    (b.) Suppose $X$ has the schur property. Take a weakly cauchy sequence $x_n$. Then 
+    for every $x^* \in X^*$, we must have 
+    \[
+        x^*(x_n - x_m) \rightarrow 0
+    \]
+    in $n$ and $m$. Then for every pair of increasing sequences $n_k$ and $m_k$, $x_{n_k} - x_{m_k}$
+    is weakly convergent to zero and thus strongly convergent, by the schur property. Then this 
+    is equivalent to $x_n$ being norm cauchy. To see this we can suppose it is not, and this would 
+    allow us to find a pair of sequences such that the limit does not converge to zero in norm.
+
+    Then since $X$ is complete, $x_n$ converges to some element in norm and thus weakly.
+
+    \item[2.] Suppose every closed subspace of $\ell_1$ is complemented. We know that $\ell_p$ is 
+    isomorphic to the quotient $\ell_1/M$ for some closed subspace $M$. Then $M$ is complemented, 
+    and we can decompose $\ell_1 = M \oplus N$, and $N$ will be isomorphic to $\ell_p$. But then 
+    $\ell_1$ contains a subspace $N$ isomorphic to $\ell_p$, which is impossible.
+
+    Moreover, since $\ell_p$ is not isomorphic to $\ell_q$ for $p \neq q$, there are uncountably many
+    non-isomorphic separable Banach spaces. Each must correspond to a unique uncomplemented closed subspace $M_p$
+    of $\ell_1$ such that $\ell_p = \ell_1/M_p$. Then there must be uncountably many such subspaces.
+
+    \item[3.] Let $T: X \to \ell_1$ be the composition of the projection onto 
+    $X/M$ with the isomorphism with $\ell_1$. 
+    Let $(e_n)$ be the canonical basis of $\ell_1$ and choose a bounded sequence
+    $(x_n) \in X$ such that $T(x_n) = e_n$ using the open mapping theorem.
+    Then $(e_n)$ is equivalent to $(x_n)$: We first have
+    \[
+        \left\|\sum_1^\infty a_n x_n\right\| \leq \sum_1^\infty |a_n|\|x_n\| \leq C\sum_1^\infty |a_n|
+    \]
+    since $x_n$ is bounded. We also have 
+    \[
+        \|T\|\left\|\sum_1^\infty a_n x_n\right\| \geq \|\sum_1^\infty a_n e_n\| = \sum_1^\infty |a_n|.
+    \]
+
+    Now let $S: \ell_1 \to X$ be the map sending $e_n$ to $x_n$ and extend to $X$ by linearity. 
+    Then $S$ is an isomorphism of $[x_n]$ with $\ell_1$. Also, the subspace is complemented with $P = ST$
+    since $STST = S(TS)T$, and $TS$ is the identity on $\ell_1$. 
+
+\end{enumerate}
+
+\end{document}

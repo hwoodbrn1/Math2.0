@@ -1,0 +1,88 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 653}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Extra Problem}
+\bigbreak\noindent
+Let $D$ be a division ring.  Let $S$ be the ring of $n\times n$ matrices, $n > 1$. 
+
+\begin{enumerate}
+    \item[1.] $S$ has no proper ideals besides the zero ideal.
+    
+    We proved on homework 10 that the only ideals in such a matrix ring are of the form $M_n(I)$ for $I \subset D$ 
+    an ideal. Since $D$ is a division ring, the only ideals are $D$ and the zero ideal. Then the only ideals 
+    of $S$ are $S$ and the zero ideal. 
+
+    \item[2.] $S$ has zero divisors: as long as $n > 1$, we have
+    \[
+        \begin{bmatrix}
+            1 & 0 & \dots & 0\\
+            0 & \ddots & \dots & 0\\
+            \vdots  & & & \vdots\\
+            0 & & & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            0 & 1 & 0 & \dots & 0\\
+            0 & \ddots & & \dots & 0\\
+            \vdots  & & & & \vdots\\
+            0 & & & & 0
+        \end{bmatrix}
+        = 0.
+    \]
+
+    \item[3.] Since $S$ is non-commutative, we must use the more general version of prime ideals.
+    Suppose $AB \subset \langle 0 \rangle$. Since $D$ has no proper ideals, the only possibilities for 
+    $A$ and $B$ are $0$ and $S$ itself. If both $A$ and $B$ are $S$, clearly their product is not contained
+    in the trivial ideal. Then one or both of $A$ and $B$ must be equal to $0$ and thus the ideal $0$
+    is prime. 
+\end{enumerate}
+
+\end{document}
