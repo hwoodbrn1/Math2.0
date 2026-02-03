@@ -95,8 +95,8 @@
     approach a non-invertible matrix $B$ by a sequence of invertible matrices $\{A_j\}_{j = 1}^\infty$
     so that $A_j \rightarrow B$.
     Since $F$ is continuously differentiable, $\lim_{j \rightarrow \infty} D_{A_j} F(H) = D_{B} F(H)$.
-    Then $\lim_{j \rightarrow infty} D_{A_j} F(H) = \text{Tr}(\text{adj}(A_j)H) = \text{Tr}(\text{adj}B)$,
-    as trace and adjoint are continuous functions. 
+    Then $\lim_{j \rightarrow \infty} D_{A_j} F(H) = \lim_{j \rightarrow \infty}\text{Tr}(\text{adj}(A_j)H) = \text{Tr}(\text{adj}B)$,
+    as trace and adjoint are both continuous functions. 
 
     \item[2.] Suppose $\Gamma: \RR \rightarrow GL_n(\RR)$ is a smooth map such that $\Gamma(t)$ is orthogonal
     for every $t \in \RR$. By the product rule, we have
@@ -114,6 +114,53 @@
         \left(\Gamma(t)^{-1}\frac{d}{dt}\Gamma(t)\right)^T = \left(\Gamma(t)^T\frac{d}{dt}\Gamma(t)\right)^T
         = \left(\frac{d}{dt}\Gamma(t)\right)^T\Gamma(t) = -\Gamma(t)^T \frac{d}{dt}\Gamma(t) = -\Gamma(t)^{-1} \frac{d}{dt}\Gamma(t)
     \]
+    
+    \item[3.] (a.) First we write down the action of $\widehat{V_1} \circ \widehat{V_2} - \widehat{V_2}\circ\widehat{V_1}$
+    on a function $f \in C^\infty(U)$:
+    \begin{align*}
+        & \widehat{V_1} \circ \widehat{V_2} - \widehat{V_2}\circ\widehat{V_1}(f) 
+        = \widehat{V_1}\left(\sum_{i=1}^n V_2^i \frac{\partial f}{\partial x_i}\right) 
+        - \widehat{V_2}\left(\sum_{i = 1}^n V_1^i \frac{\partial f}{\partial x_i}\right)\\
+        & = \sum_{j = 1}^n \sum_{i = 1}^n \left[V_1^j \frac{\partial V_2^i}{\partial x_j}\frac{\partial f}{\partial x_i}
+        + V_1^j V_2^i \frac{\partial^2 f }{\partial x_j \partial x_i}\right]
+        - \sum_{j = 1}^n \sum_{i = 1}^n V_2^j \left[\frac{\partial V_1^i}{\partial x_j}\frac{\partial f}{\partial x_i}
+        + V_2^j V_1^i \frac{\partial^2 f}{\partial x_j \partial x_i}\right]\\
+        & = \sum_{j = 1}^n \sum_{i = 1}^n V_1^j \frac{\partial V_2^i}{\partial x_j}\frac{\partial f}{\partial x_i}
+        - \sum_{j = 1}^n \sum_{i = 1}^n V_2^j \frac{\partial V_1^i}{\partial x_j}\frac{\partial f}{\partial x_i}.\\
+        & = \sum_{i = 1}^n \sum_{j = 1}^n V_1^j \frac{\partial V_2^i}{\partial x_j}\frac{\partial f}{\partial x_i}
+        - \sum_{i = 1}^n \sum_{j = 1}^n V_2^j \frac{\partial V_1^i}{\partial x_j}\frac{\partial f}{\partial x_i}.
+    \end{align*}
+
+    Then we see that $\widehat{V_1}\circ\widehat{V_2} - \widehat{V_2} \circ \widehat{V_1}$ 
+    corresponds to a vector field $W$ with components 
+    \[
+        W_i = \sum_{j = 1}^n \left[V_1^j \frac{\partial V_2^i}{\partial x_j} - V_2^j \frac{\partial V_1^i}{\partial x_j}\right].
+    \]
+
+    (b.) We calculate the Lie bracket of the vector fields $V_1 = \frac{\partial}{\partial x^1}$ and 
+    $V_2 = \frac{\partial}{\partial x^2} + (x^1)^2 \frac{\partial}{\partial x^3}$ to find
+    \[
+        [V_1, V_2] = (2x^1)\frac{\partial}{\partial x^3}.
+    \]
+
+    In order for $[V_1, V_2](x) \in \text{span}{V_1(x), V_2(x)}$, we need $a, b \in \RR$ such that 
+    \[  
+        (0, 0, 2x^1) = (a, b, b(x^1)^2),
+    \]
+    which is only possible if $x = (0, 0, 0)$ and $a = b = 0$. 
+
+    \item[4.] Assume the Implicit Function Theorem holds. Let $F: X \rightarrow Y$ be a $C^1$ map, where $X, Y \in \RR^n$,
+    and let $x_0 \in X, y_0 \in Y$ such that $y_0 = F(x_0)$, with $D_{x_0}F$ non-singular.
+
+    Define a new function $\tilde{F}: \RR^n \times \RR^n \rightarrow \RR^n$ by $\tilde{F}(x,y):= F(x)-y$. Then
+    $D_{x_0}\tilde{F}_1 = D_{x_0}F$, thus $D_{x_0}\tilde{F}_1$ is non-singular. By the Implicit Function Theorem in the
+    first variable instead of the second, with $\tilde{F}(x_0, y_0) = 0 = z_0$, there exist neighborhoods $U \ni x_0$ and $V \ni y_0$ and a $C^1$ function 
+    $G: V \rightarrow U$ such that an element $(x,y) \in U \times V$ satisfies $\tilde{F}(x,y) = 0$ if and only if $x = G(y)$,
+    and thus $F(x) = y$ if and only if $x = G(y)$. Then 
+    \[
+        F(G(y)) = y \qquad G(F(x)) = x
+    \]
+    for all $x \in U, y \in V$. Then it is clear that $G = F^{-1}$, and $F$ is a $C^1$ diffeomorphism $U \rightarrow V$.
 
 \end{enumerate}
 

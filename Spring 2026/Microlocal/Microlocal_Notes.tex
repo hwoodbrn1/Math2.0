@@ -1,0 +1,164 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\sing}{\text{sing\ supp}}
+\newcommand{\supp}{\text{supp}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{January 2026}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Microlocal Notes}
+
+These notes are following ``Microlocal Analysis for Pseudodifferential Operators'' by Grigis and 
+Sjostrand. This will be an informal collection of notes on my reading.
+
+\section*{Chapter 3: Pseudodifferential Operators}
+
+A Pseudodifferential operator is a Fourier integral operator $A: C_0^\infty(X) \to \mathcal{D}'(X)$
+of the form
+\begin{equation}\label{def1}
+    Au(x) = \frac{1}{(2\pi)^n}\int \int e^{i(x-y)\theta}a(x,y,\theta)u(y)dyd\theta,
+    \quad u \in C_0^\infty(X),
+\end{equation}
+where $a \in S_{\rho, \delta}^m(X\times X\times \RR^n).$ The space of such operators is 
+denoted by $L_{\rho,\delta}^m$, and we say $a \in L_{\rho,\delta}^m$ is of type $(\rho,\delta)$
+and order $m$. 
+
+\begin{example}
+    Every ordinary differential operator is a pseudodifferential operator. In fact, 
+    let $A = \sum_{|\alpha|\leq m}a_{\alpha}(x) D_x^\alpha$ be a differential operator with 
+    $a_\alpha \in C^\infty(X)$. Using the Fourier Inversion formula, we have
+    \begin{align*}
+        Au(x) & = \sum_{|\alpha| \leq m} a_\alpha(x) \int e^{ix \xi} D^\alpha \hat{u}(\xi)d\xi
+        = \sum_{|\alpha| \leq m} a_\alpha(x) \int e^{ix\xi}\xi^\alpha \hat{u}(\xi)d\xi\\ 
+        & = \int e^{ix\xi}\sum_{|\alpha| \leq m}a_\alpha(x)\xi^\alpha \hat{u}(\xi)d\xi
+        = \int e^{ix\xi}a(x,\xi)\hat{u}(x)d\xi = \int\int e^{i(x-y)\xi} a(x,\xi) u(y)dy \frac{d\xi}{(2\pi)^n},
+    \end{align*}
+
+    so that $A \in L_{1,0}^m(X)$.
+
+    Moreover we see that the distribution kernel is given by 
+    \[
+        K_A(x,y) = \int e^{i(x-y)\xi} a(x,\xi)\frac{d\xi}{(2\pi)^n}.
+    \]
+\end{example}
+
+We now list some important facts about FIO's:
+\begin{enumerate}
+    \item[1.] If $K_A \in \mathcal{D}'(X\times X)$ is the distribution kernel of $A \in L_{\rho,\delta}^m(X)$,
+    then $\sing(K_A) \subset \Delta(X\times X)$. This is due to the fact that the phase
+    $\phi(x,y,\theta) = (x-y)\theta$ has vanishing differential in $\theta$ when $x = y$. 
+
+    \item[2.] Since $(x-y)\theta$ is a phase function in either variable $x$ or $y$ for $\theta
+    \neq 0$, the pseudodifferential operators in $L_{\rho,\delta}^m$ are continuous 
+    $C_0^\infty(X) \to C^\infty(X)$ and have continuous extensions $\mathcal{E}'(X) \to 
+    \mathcal{D}'(X)$. Both $(1.)$ and $(2.)$ use results from the end of chapter $1$.
+
+    \item[3.] $\sing Au \subset \sing u$ for all $u \in \mathcal{E}'(X)$. To see this, 
+    let $u \in \mathcal{E}'(X)$, and choose some $x_0 \in X\setminus \sing (u)$. We choose 
+    disjointly supported $\phi,\psi \in C_0^\infty(X)$ 
+    such that $\phi = 1$ in a neighborhood of $x_0$ and
+    $\psi = 1$ in a neighborhood of $\sing(u)$. Then $Au \equiv A\psi u \mod C^\infty(X)$,
+    since $(u - \psi u) \in C_0^\infty(X)$. Moreover, $\phi A\psi$ is a smoothing operator,
+    with $\phi(x)\psi(y)K_A(x,y) \in C^\infty(X)$ by $(1.)$, as $\phi$ and $\psi$ have disjoint
+    supports. Then $\phi A \psi u \in C^\infty$.
+
+    So we have proven that $Au$ is $C^\infty$ at any point not in the singular support of $u$, and
+    thus $\sing Au \subset \sing u$.
+\end{enumerate}
+
+\subsection{Properly Supported Operators}
+
+If $C$ is a closed subset of $X\times Y$, we say that $C$ is \textbf{proper} if 
+both of its projections are proper, meaning the inverse image of any compact set is compact. 
+Often we will view $C$ as the graph of a relation $Y \rightarrow X$, so that 
+$C(K) = \{x \in X: \exists y \in K\ \text{s.t.}\ (x,y) \in C\} = \Pi_{y}^{-1}(K)$ for example.
+
+An operator $A: C_0^\infty(Y) \to \mathcal{D}'(X)$ is called \textbf{properly supported} if the set
+$\supp K_A \subset X \times Y$ is proper. Letting $C = \supp K_A$, we notice that 
+$\supp Au \subset C(\supp u)$, and thus if $A$ is properly supported, $A$ is continuous
+$C_0^\infty(Y) \to \mathcal{E}'(X)$. 
+
+By the other projection on $C$, we get a unique continuous extension $\tilde{A}: C^\infty(Y)
+\to \mathcal{D}'(X)$.  We put $\tilde{A}u = A\chi_{\tilde{X}}u$, where $\chi_{\tilde{X}}\in 
+C_0^\infty(Y)$ is equal to $1$ near $C^{-1}(\overline{\tilde{X}})$.
+
+If $A \in L_{\rho,\delta}^m(X)$ is properly supported, then $A$ is continuous 
+\begin{align*}
+    C_0^\infty(X) \to C_0^\infty,\ & C^\infty(X) \to C^\infty(X),\\
+    \mathcal{E}'(X) \rightarrow \mathcal{E}'(X),\ & \mathcal{D}'(X) \to \mathcal{D}'(X)
+\end{align*}
+
+Thus we can compose finitely many pseudodifferental operators as long as all but one of
+them is properly supported.
+
+We also have the existence of a function $\chi(x,y)$ for which $\supp \chi$ is proper and
+$\chi = 1$ in a neighborhood of the diagonal $\Delta(X\times X)$. 
+
+Using this new function, we discover that every $A \in L_{\rho,\delta}^m(X)$ has a decomposition 
+$A = A' + A''$, where $A' \in L_{\rho,\delta}^m(X)$ is properly supported and $L'' \in L^{-\infty}$.
+This is seen by using the functions $\chi(x,y)$ and $(1 - \chi(x,y))$ in the
+integral $\ref{def1}$. One term will have a distribution kernel with proper support,
+and the other will be a smoothing operator. 
+
+The next theorem is about expressing the symbol without dependence on $y$. 
+
+\begin{theorem} Let $A \in L_{\rho,\delta}^m(X)$ be properly supported. Assume $\rho > \delta$. 
+    Then $b(x,\xi) := e^{-ix\xi}A(e^{i(\cdot)\xi})$ belongs to $S_{\rho,\delta}^m (X \times \RR^n)$
+    and has the asymptotic development 
+    \[
+        b(x,\xi) \sim \sum_{\alpha \in \mathbb{N}^n} \frac{i^{-|\alpha|}}{\alpha !} (\partial_\xi^\alpha
+        \partial_y^\alpha a(x,y,\xi))|_{y = x}.
+    \]
+
+        Moreover, $Au(x) = \int e^{ix\xi}b(x,\xi)\hat{u}(\xi)d\xi, u \in C_0^\infty(X)$.
+\end{theorem}
+
+We call $b(x,\xi)$ the \textbf{complete symbol} of $A$. 
+
+\end{document}
