@@ -166,15 +166,17 @@
     $\{e_{[g]}: g \in N\}$ and its dimension is equal to the size of this set, the number 
     of conjugacy classes in $G$. 
 
-    \item[5.] Let $R$ be a ring and $G$ be an infinite multiplicative cyclic group with generator $\xi$.
-    Then $R[G]$ is not isomorphic to the polynomial ring $R[x]$. This is because the group of units of $R[x]$ 
-    consists of only the units of $R$, as the product of two nonconstant polynomials will have degree
-    equal to the sum of degrees of each polynomial, and therefore cannot be one. Then the only 
-    elements which can be units are the constant polynomials given by elements of $R$. 
+    \item[5.] For an arbitrary ring $R$ and an infinite cyclic group $G$ with generator $\xi$, the group ring
+    $R[G]$ is not necessarily isomorphic to the polynomial ring in one variable $R[x]$. 
+    
+    To see this, consider $R = \ZZ$. We will show the group of units of $\ZZ[G]$ is not isomorphic
+    to the group of units of $\ZZ[x]$. The units of $\ZZ[x]$ are only the constant polynomials $1$ and 
+    $-1$, as multiplication of any two polynomials in $\ZZ[x]$ results in a polynomial of equal or higher
+    degree. In particular, you will never get $1$. However, the units of $\ZZ[G]$ include the constant 
+    polynomials $1$ and $-1$, as well as the elements $\xi^n$ for $n \in \ZZ$. Then the group of 
+    units of $\ZZ[G]$ is infinite, and thus cannot be isomorphic to the two element group of units
+    of $\ZZ[x]$. Then the two rings cannot be isomorphic. 
 
-    But the units of $R[G]$ include both those in $R$ and the elements $\xi^n$ for $n \in Z$, as well 
-    as others. This is not isomorphic to just the group of units of $R$. Then $R[G]$ cannot be isomorphic 
-    to $R[x]$, as their groups of units would have to be isomorphic as well. 
 
 \end{enumerate}
 
