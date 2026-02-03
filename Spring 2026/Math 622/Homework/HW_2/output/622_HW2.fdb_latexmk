@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1769631855 "/Users/henrywoodburn/Desktop/Math2.0/Math2.0/Fall 2025/Math_655/Homework/HW10/655_HW10.tex" "output/655_HW10.pdf" "655_HW10" 1769631856 0
-  "/Users/henrywoodburn/Desktop/Math2.0/Math2.0/Fall 2025/Math_655/Homework/HW10/655_HW10.tex" 1769631855 4100 0fdf719699ecd6ea5d44c184ae97b3b3 ""
+["pdflatex"] 1769648774 "/Users/henrywoodburn/Desktop/Math2.0/Math2.0/Spring 2026/Math 622/Homework/HW_2/622_HW2.tex" "output/622_HW2.pdf" "622_HW2" 1769648775 0
+  "/Users/henrywoodburn/Desktop/Math2.0/Math2.0/Spring 2026/Math 622/Homework/HW_2/622_HW2.tex" 1769648773 11836 71e201f5cbba5f8e6ebbcc73bd69e529 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -31,7 +31,10 @@
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1248133631 32587 1788b0c1c5b39540c96f5e42ccd6dae8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1248133631 31764 459c573c03a4949a528c2cc7f557e217 ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1248133631 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
   "/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1575674566 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty" 1576625341 40635 c40361e206be584d448876bba8a64a3b ""
@@ -211,12 +214,12 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1702149744 4714755 e1d2d4965cdfe9f6eb84d314610dcbf8 ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1702149773 8218504 f5898b3fe9b1c26105fd1df93dd7c144 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "655_HW10.tex" 1769631855 4100 0fdf719699ecd6ea5d44c184ae97b3b3 ""
-  "output/655_HW10.aux" 1769631856 162 55205a9e8a8eca30d36afb389b0617bf "pdflatex"
-  "output/655_HW10.out" 1769631856 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "622_HW2.tex" 1769648773 11836 71e201f5cbba5f8e6ebbcc73bd69e529 ""
+  "output/622_HW2.aux" 1769648775 162 fa61bf9ecf9314f94d51aa32222a725c "pdflatex"
+  "output/622_HW2.out" 1769648775 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
-  "output/655_HW10.aux"
-  "output/655_HW10.log"
-  "output/655_HW10.out"
-  "output/655_HW10.pdf"
+  "output/622_HW2.aux"
+  "output/622_HW2.log"
+  "output/622_HW2.out"
+  "output/622_HW2.pdf"
   (rewritten before read)

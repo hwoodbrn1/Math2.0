@@ -1,0 +1,245 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 622}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 2}
+
+\begin{enumerate}
+    \item[1.] Let $f: \RR^2 \rightarrow \RR$ be a $C^\infty$ map. Then $f$ is not injective.
+    
+    Consider two cases. First, if $D_{(x,y)}f = (0,0)$ for all $(x,y) \in \RR^2$, then by the 
+    fundamental theorem of calculus, $f$ is constant. 
+
+    Otherwise, without loss of generality we can find a point $(x_0, y_0)$ such that $D_{y_0}f \neq 0$.
+    Let $z_0 := f(x_0,y_0)$. Then it follows from the implicit function theorem that there
+    is a smooth function $g: U \rightarrow V$, where $U$ and $V$ are open neighborhoods in $\RR$ of 
+    $x_0$ and $y_0$ respectively, such that we have $f(x, g(x)) = z_0$ for all $x \in U$. In particular,
+    this implies $f$ is not injective.
+
+    \item[2.] (a.) Let $\pi$ denote the stereographic projection $S^n \setminus\{N\} \rightarrow \RR^n$,
+    given by $\pi(x_1, \dots, x_{n+1}) = \frac{(x_1, \dots, x_n)}{1 - x_{n+1}}$.
+
+    We prove that $u = \pi(x)$ is the point at which the line through $x$ and $N$ intersects the
+    linear subspace defined by $x_{n + 1} = 0$. 
+
+    A point $y$ on this line is given by a sum of the form $y = t(x) + (1-t)(N)$ for $t \in \RR$.. We calculate the 
+    value of $t$ such that $y_{n + 1} = 0$. We see that
+    \[
+        y_{n + 1} = t x_{n + 1} + (1-t),
+    \]
+    and the value $t = \frac{1}{1 - x_{n+1}}$ gives $y_{n + 1} = 0$. Then subsituting this 
+    into our equation, we see that the rest of the coordinates of $y$ are given by $y_i = \frac{x_i}{1 - x_{n+1}}$
+    for $i = 1, \dots, n$, and of course we can regard $y$ as an $n-tuple$ within the subspace 
+    $\RR^{n+1}|_{x_{n+1} = 0} \simeq \RR^n$.
+
+    We also see that the projection with respect to the south pole given by $\tilde{\pi}(x) = -\pi(-x)$
+    is the map obtained from first changing coordinates to be in the first situation, projecting, and
+    returning to the original coordinates. Then this map has the same property.
+
+    (b.) We can derive the inverse $\pi^{-1}: \RR^n \rightarrow S^n\setminus\{N\}$ in a similar way.
+    Namely, for $u \in \RR^n$, consider the line between $(u,0)$ and $N$ given by
+    $y = t(u,0) + (1-t)N$ for $t \in \RR$. In this case, we need to solve for $\|y\| = 1$, 
+    or equivalently $\|y\|^2 = 1$. Since the vectors $(u,0)$ and $N$ are orthogonal, 
+    we simply have
+    \[
+        \|y\|^2 = t^2 \|u\|^2 + (1-t)^2,
+    \]
+
+    which we can use to solve for $t$ by setting this equal to $1$. We obtain $t = \frac{2}{\|u\|^2 + 1}$.
+    Define $\phi(u)$ to be the value of the above equation at this given $t$. Then
+    \[
+        \phi(u) = \frac{(2u, \|u\|^2 - 1)}{\|u\|^2 + 1}.
+    \]
+
+    Then it is clear that the maps $\phi$ and $\pi$ are inverses of each other, so $\phi = \pi^{-1}$
+    and $\pi$ is bijective.
+
+    (c.) We compute the transition map $\tilde{\pi}\circ\pi^{-1}$ for the charts $(U, \pi)$, $(V, \tilde{\pi})$,
+    with $U = S^n \setminus \{N\}$ and $V = S^n \setminus \{S\}$. To show this defines a smooth
+    structure, we show $\tilde{\pi}\circ\pi^{-1}: \pi(U \cap V) \rightarrow \tilde{\pi}(U \cap V)$
+    is smooth, where $U \cap V = S^n \setminus \{N, S\}$, $\pi(U \cap V) = \tilde{\pi}(U \cap V) = \RR^n \setminus\{0\}$.
+    
+    Both maps $\pi$ and $\tilde{\pi}$ only involve scalings of the first $n$ coordinates of the input 
+    variable, and similarly $\pi^{-1}$, in its first $n$ coordinates, involves only a scaling
+    of the input variable. Then we can expect $\tilde{\pi}\circ\pi^{-1}$ to be a function of 
+    $\|u\|$ only. So it suffices to consider the special case of $n = 1$. 
+
+    I claim that in general, $\tilde{\pi}\circ\pi^{-1}$ is the map $u \mapsto \frac{u}{\|u\|^2}$. 
+    In one dimension we will obtain $\tilde{\pi}\circ\pi^{-1}(u) = \frac{u}{|u|^2}$ and the result 
+    will extend to arbitrary dimension by the discussion above. 
+
+    Consider a point $U \in \RR \setminus \{0\}$. Let $UN$ be the line segment from $U$ to $N$. Denote
+    point at the intersection of $UN$ with $S^1$ by $C$, and denote by $CS$ the line 
+    segment from $C$ to $S$. Let $O$ be the origin. 
+    Let $B$ denote the point at the intersection of $CS$ and the $x$-axis.
+    By Thale's theorem from basic geometry, the line $CS$ meets $UN$ at a right angle. 
+    Thus the traingle $\triangle UCB$ is a right triangle, and clearly so is $\triangle BOS$. 
+    Moreover we see that the angles $\angle UBC$ and $\angle OBS$ are equal. Thus $\triangle UCB \sim
+    \triangle BOS$, and we have the relation
+    \[
+        \frac{|UO|}{|NO|} = \frac{|OS|}{|OB|}.
+    \]
+    In other words, $B = \frac{1}{U}$, now considering these as real numbers. Then indeed the map 
+    is given by $U \mapsto \frac{U}{|U|^2}$ and extends to the case $\RR^n$ in the obvious way. 
+    This map is smooth $\RR^n \rightarrow \RR^n$. The other transition map is defined in the 
+    same way. Then we have verified that these charts define a smooth structure. 
+
+    (d.) Let $(U^{\pm}_i, \phi^\pm_i)$ be the given atlas for $S^n$, and let $(U, \pi), (V, \tilde{\pi})$
+    be the atlas from above. To check that these two atlases are smoothly compatible, it will suffice
+    to check that the charts $(\phi^\pm_{n+1}, U^\pm_{n + 1})$ are both compatible with 
+    $(U, \pi)$, and that charts $(\phi^\pm_{i}, U^\pm_{i})$ are both compatible with $(U, \pi)$ for
+    some $i < n+1$. The other cases are proven similarly. 
+
+    First, $U^+_{n+1} \cap U$ is the ``upper'' half ($x_{n+1} > 1$) of the sphere minus the north pole.
+    Then $\phi^+_{n + 1} \circ \pi^{-1}$ has domain $\{x \in \RR^n: \|x\| > 1$, and we can calculate
+    that 
+    \[
+        \phi^+_{n + 1}\circ \pi^{-1}(u) =  \frac{2u}{\|u\|^2 + 1},
+    \]
+    so this map is clearly smooth. Similarly we have
+    \[
+        \pi \circ {(\phi^+_{n + 1})}^{-1}(u) = \frac{u}{1 - \sqrt{1- \|u\|^2}}
+    \]
+    which is also smooth, noting that $0 < \|u\| < 1$ in this case.
+
+    The opposite chart $(U^-_{n+1}, \phi^-_{n+1})$ can be seen to be compatible with $(U, \pi)$ as well.
+
+    Now for $0 \leq i < n+1$, we have that $\phi^+_{i}\circ\pi^{-1}$ maps $\{x \in \RR^n: x_i \geq 0\}$
+    to $\{x \in \RR^n: \|x\| \leq 1\ \text{and}\ x_i \geq 0\}$, and that the composition
+    is smooth is due to the fact that $\pi^{-1}$ is smooth on the given domain, and $\phi$ is smooth
+    on the image of this domain under $\pi^{-1}$. The rest of the charts are similar.
+
+    \item[3.] Let $\tilde{\RR}$ be the smooth manifold with a single chart $(\tilde{\RR}, \phi)$
+    where $\phi(x) = x^3$. Let $f: \RR \rightarrow \RR$ be smooth in the usual sense. 
+
+    (a.) To show that $f$ is smooth as a map $\RR \rightarrow \tilde{\RR}$, we must show
+    that its coordinate representation $\phi \circ f \circ \text{id}^{-1} = \phi \circ f = f^3$ is
+    a smooth map $\RR \rightarrow \RR$. It is, since it is a composition of smooth maps $\RR \rightarrow \RR$.
+    
+    (b.) Let $f: \tilde{\RR} \rightarrow \RR$ be a map. First suppose it is smooth. By taylor's theorem,
+    we can write
+    \[
+        f(x) = f(0) + f'(0)x + f''(0)x^2 + f'''(0)x^3 + r(x)
+    \]
+    where $r(x) = 0(x^3)$, and thus we have
+    \[
+        f(x^{1/3}) = f(0) + f'(0)x^{1/3} + f''(0)x^{2/3} + f'''(0)x + r(x^{1/3}).
+    \]
+
+    That $f$ is a smooth map between manifolds implies $f(x^{1/3})$ is a smooth map $\RR \rightarrow \RR$.
+    But we see by taking one or two derivatives on the right side that unless $f'(0) = f''(0) = 0$, 
+    this cannot be true. We may have $f^{(3n)}(0)$ nonzero, but for all other derivatives
+    the value at zero must vanish, or else we can derive a similar contradiction.
+
+    conversely suppose all derivatives of $f$ order not a multiple of $3$ vanish at $0$. Again we can 
+    write
+    \[
+        f(x) = f(0) + f'''(0)x^3 + r(x)
+    \]
+    where $r(x) = o(x^3)$. Then substituting $x^{1/3}$, we have
+    \[
+        g(x) = f(x^{1/3}) = f(0) + f'''(0)x + r(x^{1/3}),
+    \]
+    and thus $g$ is a smooth function since $r(x^{1/3}) = o(x)$. Then $f$ is a smooth map $\tilde{\RR} 
+    \rightarrow \RR$.
+
+    \item[4.] Let $P = \text{span}\{e_1, \dots, e_k\}$, $Q = \text{span}\{e_{k + 1}, \dots, e_n\}$ 
+    be subspaces of $\RR^n$. Let $S$ be a $k$-dimensional subspace which intersects $Q$ trivially. 
+
+    The map $\phi$ assigns to $S$ a $(n-k)\times k$ matrix $B$ such that 
+    \[
+        S = \{v + B v: v \in P\} = \left\{\begin{pmatrix}
+        I_k\\ B
+        \end{pmatrix}v: v \in P \right\}.
+    \]
+    Then since $P = \text{span}\{e_1, \dots, e_k\}$, we have
+    \[
+        S = \text{span}\left\{\begin{pmatrix}
+        I_k\\ B
+        \end{pmatrix} e_i\right\}_{i = 1}^k.
+    \]
+    In other words, the columns of $\begin{pmatrix}
+        I_k\\ B
+        \end{pmatrix}$ span $S$.
+
+    For uniqueness, suppose there is another such matrix $K$. Then in other words, 
+    $S$ is the graph of the linear map $K: P \rightarrow Q$. But by the discussion from the book,
+    there is a unique map whose graph is equal to $S$. Then we must have $B = K$, and $B$ is unique. 
+
+    \item[5.] Let $M$ be a smooth $n$ dimensional manifold which is also a group, such that the group operation
+    is a smooth map $M \times M \rightarrow M$. Fix some $x \in M$. Choose charts $(U, \phi),
+    (U', \phi)$ with $x \in U$ and $x^{-1} \in U'$. Also let $(V, \psi)$ be a chart with $e \in V$.
+    
+    Let $F: \phi(U) \times \phi'(U') \rightarrow \psi(V)$ be the map $F(s,t) = 
+    \psi\left(\phi^{-1}(s)\cdot \phi'^{-1}(t)\right)$. Fix $s_0 = \phi(x)$. Let $F_{s_0}(t) = F(s_0,t)$. 
+    Without carefully defining the charts, we can 
+    construct a map $G$ which maps a neighborhood of $\psi(e)$ in $\RR^n$ to a neighborhood of $\phi'(x^{-1})$
+    such that $F_{s_0}\circ G$ is the identity on its domain.
+    Similarly construct a map $H$ which maps a neighborhood of $\phi(s)$ in $\RR^n$ to a neighborhood
+    of $\psi(e)$ in $\RR^n$ such that $H \circ F_{s_0}$ is the identity on its domain. 
+    Both $G$ and $H$ should map from $\RR^n$ into $M$, multiply by $x^{-1}$, and map back into $\RR^n$. 
+
+    Then by the chain rule, we have 
+    \[
+        D_{\phi'(x^{-1})}F \circ D_{e}G = D_{e}H \circ D_{\phi'(x^{-1})}F = I
+    \]
+    which verifies that the map $F$ has nonsingular differential in the second coordinate at the 
+    point $(\phi(x), \phi'(x^{-1}))$. By the implicit function theorem, there exists $U \ni \phi(x)$ 
+    and $V \ni \phi'(x^{-1})$ and a smooth function $g: U \rightarrow V$. This is the coordinate 
+    representation of the map $x \mapsto x^{-1}$, and thus the map $x \mapsto x^{-1}$ is a 
+    smooth map $M \rightarrow M$.
+
+
+    
+
+\end{enumerate}
+
+\end{document}

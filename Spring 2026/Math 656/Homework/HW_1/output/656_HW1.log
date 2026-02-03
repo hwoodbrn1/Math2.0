@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.9)  28 JAN 2026 14:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.9)  29 JAN 2026 18:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/henrywoodburn/Desktop/Math2.0/Math2.0/Fall 2025/Math_655/Homework/HW10/655_HW10.tex"
-(/Users/henrywoodburn/Desktop/Math2.0/Math2.0/Fall 2025/Math_655/Homework/HW10/655_HW10.tex
+**"/Users/henrywoodburn/Desktop/Math2.0/Math2.0/Spring 2026/Math 656/Homework/HW_1/656_HW1.tex"
+(/Users/henrywoodburn/Desktop/Math2.0/Math2.0/Spring 2026/Math 656/Homework/HW_1/656_HW1.tex
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-12-08>
 (/usr/local/texlive/2023/texmf-dist/tex/latex/base/article.cls
@@ -561,8 +561,8 @@ Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
 File: l3backend-pdftex.def 2023-11-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count322
 \l__pdf_internal_box=\box76
-) (output/655_HW10.aux)
-\openout1 = `655_HW10.aux'.
+) (output/656_HW1.aux)
+\openout1 = `656_HW1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
 LaTeX Font Info:    ... okay on input line 44.
@@ -602,9 +602,9 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package hyperref Info: Link coloring OFF on input line 44.
- (output/655_HW10.out) (output/655_HW10.out)
+ (output/656_HW1.out) (output/656_HW1.out)
 \@outlinefile=\write4
-\openout4 = `655_HW10.out'.
+\openout4 = `656_HW1.out'.
 
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
@@ -664,24 +664,24 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-] (output/655_HW10.aux)
+] (output/656_HW1.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-12-08>
  ***********
-Package rerunfilecheck Info: File `655_HW10.out' has not changed.
+Package rerunfilecheck Info: File `656_HW1.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 34001 strings out of 474177
- 808447 string characters out of 5745846
- 1945470 words of memory out of 5000000
- 55789 multiletter control sequences out of 15000+600000
+ 33999 strings out of 474177
+ 808380 string characters out of 5745846
+ 1947470 words of memory out of 5000000
+ 55787 multiletter control sequences out of 15000+600000
  563817 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 101i,11n,107p,809b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on output/655_HW10.pdf (1 page, 107907 bytes).
+ 101i,11n,107p,810b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on output/656_HW1.pdf (1 page, 105241 bytes).
 PDF statistics:
  66 PDF objects out of 1000 (max. 8388607)
  42 compressed objects within 1 object stream
