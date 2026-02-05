@@ -1,0 +1,134 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 656}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 2}
+
+\subsection*{Section 19}
+
+\begin{enumerate}
+
+    \item[2.] 
+
+\end{enumerate}
+
+\subsection*{Section 20}
+
+\begin{enumerate}
+
+    \item[2.] Let $R: \ell^2 \to \ell^2$ be the map
+    $(a_0, a_1, \dots) \mapsto (0, a_0, a_1, \dots)$. First, it is clear that
+    zero is not an eigenvalue, since $R$ is invertible. With $x = (a_0, a_1, \dots)$, suppose 
+    $Rx = \lambda x$ for $\lambda \in \CC$. Then
+    \[
+        (0, a_0, a_1, \dots) = (\lambda a_0, \lambda a_1, \dots),
+    \]
+    so $\lambda a_0 = 0, \lambda a_1 = a_0,$ etc. Then $a_0 = 0$, implying $a_i = 0$ for all $i$.
+    Then $\lambda$ is not an eigenvalue. 
+
+    \item[3.] A similar argument from the $p = 2$ case applies. Fix $1 \leq p < \infty$. It is still clear
+    that the $\ell^p$ norm of $\textbf{L}$ and $\textbf{R}$ is $1$, and the same for
+    any integer power. Then the spectral radius will be $1$ of both operators. We 
+    will show that all $\lambda$ in the open disk are eigenvalues of $L$. Suppose 
+    $\textbf{L}x = \lambda x$. This is equivalent to 
+    \[
+        (a_1, a_2, \dots) = \lambda(a_0, a_1, \dots).
+    \]
+    So $a_n = \lambda^n a_0$. Then since $x \in \ell^p$, we have $\sum_{1}^\infty |a_n|^p < \infty$.
+    This is satisfied iff $|\lambda| < 1$. Then every $\lambda$ in the open unit disk 
+    is an eigenvalue and thus in the spectrum. Since the spectrum is closed,
+    the spectrum is exactly the closed unit disk. 
+    If $p$ and $q$ are conjugate exponents, then $\textbf{R}: \ell^q \to \ell^q$
+    is the adjoint to $\textbf{L}$, and thus has the same spectrum. Then for $1 < p < \infty$,
+    the spectrum of $\textbf{R}$ and $\textbf{L}$ is the closed unit disk in $\CC$.
+    The case $\textbf{R}: \ell^\infty \to \ell^\infty$ is handled as well by taking
+    the adjoint of $\textbf{L}: \ell^1 \to \ell^1$. The final case 
+    is $\textbf{L}: \ell^\infty \to \ell^\infty$, which handles $\textbf{R}: \ell^1 \to \ell^1$ as
+    well. 
+
+    The spectral radius of $\textbf{L}$ for $p = \infty$ is still $1$ by the same argument.
+    We need $a_n = \lambda^n a_0$ to be bounded, which is true if and only if $|\lambda| < 1$. 
+    Then taking the closure we see that the spectrum is again the closed unit disk. 
+
+    \item[4.] Let $\{\lambda_n\}$ be a bounded sequence of complex numbers, $X = \ell^2$. 
+    Define $M: X \to X$ by 
+    \[
+        (a_0, a_1, \dots) \mapsto (\lambda_0 a_0, \lambda_1 a_1, \dots)
+    \]
+
+    First, it is clear that each $\lambda_i$ is in the spectrum, since $M e_i = \lambda_i e_i$.
+
+    Next, take $\lambda$ not a limit point of $\{\lambda_n\}$. Then $|\lambda - \lambda_i| > \epsilon$
+    for all $i = 0, 1,2, \dots$. Then we can construct an inverse $N$ of $(\lambda - M)$ by defining
+    \[
+        N^{-1}(a_0, a_1, \dots) = \left(\frac{1}{\lambda - \lambda_0}a_0, \frac{1}{\lambda - \lambda_1}a_1, \dots\right)
+    \]
+
+    and this is a bounded operator as well, since $\frac{1}{\lambda - \lambda_i} < \epsilon^{-1}$
+    for all $i$. Then $\lambda$ is not an eigenvalue. Since the spectrum is closed
+    and thus contains all limit points of $\{\lambda_n\}$, it is exactly
+    the closure of $\{\lambda_n\}$.
+
+    \item[6.] Let $K(s,t)$ be a continuous function on $[0,1]\times[0,1]$, $t \leq s$. Define
+    \[
+        Kf(s) = \int_0^s K(s,t)f(t)dt.
+    \]
+
+    Since $K$ is continuous on a compact domain, we can choose $\delta$ so that $|K(a,t) - K(b,t)| < \epsilon$  
+    for all $t \in [0,1]$, whenever $|a-b| < \delta$. Then for $a < b$, we have
+    \[
+        \left| Kf(a) - Kf(b)\right| = \left| \int_0^a K(a,t)f(t)dt - \int_0^b K(b,t)f(t)dt\right|
+        \leq \int_0^a |K(a,t) - K(b,t)||f(t)|dt + \int_a^b |K(b,t)||f(t)|dt
+    \]
+
+\end{enumerate}
+
+\end{document}
