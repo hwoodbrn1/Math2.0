@@ -122,12 +122,14 @@
         Kf(s) = \int_0^s K(s,t)f(t)dt.
     \]
 
+    We may choose $M$ such that $|K(s,t)| < M$ everywhere.
     Since $K$ is continuous on a compact domain, we can choose $\delta$ so that $|K(a,t) - K(b,t)| < \epsilon$  
-    for all $t \in [0,1]$, whenever $|a-b| < \delta$. Then for $a < b$, we have
-    \[
+    for all $t \in [0,1]$, whenever $|a-b| < \delta$. Then for $a < b$, $|a-b|< \delta$, we have
+    \begin{align*}
         \left| Kf(a) - Kf(b)\right| = \left| \int_0^a K(a,t)f(t)dt - \int_0^b K(b,t)f(t)dt\right|
-        \leq \int_0^a |K(a,t) - K(b,t)||f(t)|dt + \int_a^b |K(b,t)||f(t)|dt
-    \]
+        \leq \int_0^a |K(a,t) - K(b,t)||f(t)|dt + \int_a^b |K(b,t)||f(t)|dt\\
+        \leq \epsilon M  + 
+    \end{align*}
 
 \end{enumerate}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.9)  5 FEB 2026 17:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.9)  5 FEB 2026 17:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -655,8 +655,8 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 67.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-Overfull \hbox (3.66808pt too wide) detected at line 130
-[] \OT1/cmr/m/n/10.95 = [] \OMS/cmsy/m/n/10.95 ^^T [][] j\OML/cmm/m/it/10.95 K\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 a; t\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 K\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 b; t\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 jj\OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 t\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 dt \OT1/cmr/m/n/10.95 + [][] \OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 K\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 b; t\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 jj\OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 t\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 dt
+Overfull \hbox (13.40123pt too wide) detected at line 132
+[]
  []
 
 
@@ -668,7 +668,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-] (output/656_HW2.aux)
+] [2] (output/656_HW2.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-12-08>
@@ -677,18 +677,18 @@ Package rerunfilecheck Info: File `656_HW2.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 34010 strings out of 474177
- 808496 string characters out of 5745846
+ 34013 strings out of 474177
+ 808558 string characters out of 5745846
  1948470 words of memory out of 5000000
- 55792 multiletter control sequences out of 15000+600000
+ 55794 multiletter control sequences out of 15000+600000
  565351 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 101i,11n,107p,810b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,12n,107p,810b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on output/656_HW2.pdf (1 page, 116068 bytes).
+Output written on output/656_HW2.pdf (2 pages, 116657 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
- 47 compressed objects within 1 object stream
- 4 named destinations out of 1000 (max. 500000)
+ 77 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
+ 5 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
