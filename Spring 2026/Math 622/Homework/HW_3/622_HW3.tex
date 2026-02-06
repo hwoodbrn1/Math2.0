@@ -1,0 +1,192 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+\usepackage{mathptmx}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 622}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 3}
+
+\begin{enumerate}
+    \item[1.] Define $Z := \{(x, a, b, c) \in \RR^4: ax^2 + bx + c = 0, a \neq 0\}$.
+    
+    (a.) We show that $Z$ is a smooth submanifold of $\RR^4$ by showing it is
+    the level set of a map $\RR^4 \to \RR$ such that the differential at 
+    each point is onto. Consider the smooth map $F: \RR^4 \to \RR$ given by
+    $F(x, a, b, c) = ax^2 + bx + c$. Its differential is given by
+    \[
+        D_{(x,a,b,c)}F = (2ax + b, x^2, x, 1).
+    \]
+    In particular, it is always onto since the last coordinate is constant.
+
+    (b.) Let $\pi: Z \to \RR^3$ be the projection onto $(a,b,c)$. We will find the 
+    critical values of the map $\pi$. 
+
+    If the polynomial $ax^2 + bx + c$ does not intersect the $x$-axis, the level set will be empty,
+    and in particular $(x,a,b,c)$ is a regular value of $F$. 
+    
+    Suppose instead the polynomial does have at least one root, and let $(x,a,b,c) \in F^{-1}(0)$.
+    By the implicit function theorem, since $\partial_c F$ is always nonzero, 
+    there is a neighborhood of $(x,a,b,c)$ in which $F^{-1}(0)$ is the graph of a 
+    function in the variables $(x,a,b)$. We let the coordinate map $\phi$ be the projection onto these
+    coordinates. We can see that $\pi\circ \phi^{-1}$ is the map $(x,a,b) \mapsto (a,b,\phi(x,a,b))$.
+    Then the coordinate representation of the differential of $\pi$ at $\phi(x,a,b,c)$ is given 
+    by the matrix
+    \[
+        D = \left[\begin{matrix}
+            0 & 1 & 0 \\
+            0 & 0 & 1 \\
+            \frac{\partial \phi}{\partial x} & \frac{\partial \phi}{\partial a} & \frac{\partial \phi}{\partial b}
+        \end{matrix}\right].
+    \]
+
+    The differential at $(x,a,b,c)$ of $F^{-1}(0)$ is of full rank if and only if $D$ is. Moreover, 
+    by differentiating $F(x,a,b,\phi(x,a,b)) = 0$, we see that $\partial_x F = -\partial_x \phi$ at
+    the points $(x,a,b,c)$ and $(x,a,b)$ respectively, using the chain rule. Then $\partial_x \phi$ 
+    vanishes whenever $\partial_x F$ does. Thus, if $ax^2 + bx + c$ has a single root, the 
+    derivative will vanish at this $x$ value and thus $\partial_x F$ will vanish at $(x,a,b,c)$. In 
+    this case, the differential will not be onto, making $(x,a,b,c)$ a critical value.
+    
+    In the case that $ax^2 + bx + c$ has two roots, the differnetial will be onto at
+    either of these values as the partial derivative in $x$ will not vanish. 
+
+    The critical case will happen when the vertex of the polynomial has $y$-value zero. We can
+    solve $2ax + b = 0$ to get the $x$-value of $\frac{-b}{2a}$. Then plugging this into our polynomial, we get
+    \[
+        \frac{b^2 - 2b^2 + 4ac}{4a} = 0.
+    \]
+    Thus whenever $-b^2 + 4ac = 0$, $(x,a,b,c)$ will be a critical value, and all other values are regular. 
+
+    One can relate this to the notion of the discriminant, the distance from the middle of a
+    polynomial to its roots. When this is zero, the critical case occurs. 
+
+    \item[2.] Let $F: \RR^4 \rightarrow \RR^2$ be defined by $F(x,y,s,t) = (x^2 + y, x^2 + y^2 + s^2 + t^2 + y)$.
+    (a.) We show that $(0,1)$ is a regular value of $F$. We have
+    \[ 
+        D_{(x,y,s,t)}F = \begin{bmatrix}
+            2x & 1 & 0 & 0\\
+            2x & 2y + 1 & 2s + 2t
+        \end{bmatrix}.
+    \]
+    By a calculation, the first $2\times 2$ square matrix is of full rank whenever $x$ is nonzero. In the 
+    case that $x = 0$, we also have $y = 0$ since $x^2 + y = 0$. Then either $s$ or $t$ must be nonzero,
+    and it is clear that the differential is onto as well. 
+
+    (b.) Since $x^2 + y = 0$, the value of $y$ is completely determined by $x$. Then the projection 
+    $(x,y,s,t) \mapsto (x,s,t)$ is a diffeomorphism, as we are modifying $y$ by the smooth function $x^2$
+    to map it to zero. We see that the coordinates of the projection satisfy $x^4 + y^2 + z^2 = 1$, 
+    which is easily seen to be diffeomorphic to the unit sphere $S^2$ by the coordinate transform $x^2 \mapsto x$. 
+    Then the composition of diffeomorphisms is a diffeomorphism $F^{-1}(0,1) \mapsto S^2$.
+
+    \item[3.] For each $a \in \RR$, let $M_a$ be the subset of $\RR^2$ defined by
+    \[
+        M_a = \{(x,y): y^2 = x(x-1)(x-a)\}.
+    \]
+    Let $F_a = x(x-1)(x-a) - y^2$. We see that $M_a = F_a^{-1}(0)$. By a result from class, the level
+    set of a smooth map is an embedded submanifold if the differential is onto at every point. A critical
+    point will only happen when $y = 0$. Then only when $x(x-1)(x-a)$ has a critical point 
+    on the $x$-axis will $F$ have a critical point. This happens when $a = 0$ or $1$. In the absence of these
+    two cases, $M_a$ will indeed be an embedded submanifold. If $a = 0$, both the $x$ and $y$ second derivatives
+    of $F$ will be negative, and thus there is an isolated point in $M_a$. In this case, we can still embed 
+    $M_a$. If $a = 1$, there will be a saddle point in $F$, and this creates a crossing in 
+    $M_a$. Thus $M_a$ cannot be a submanifold of either type. 
+
+    However if $a = 1$, $M_a$ is the image of a non-injective immersion of the real line. 
+
+    \item[4.] (a.) Let $F: \text{Mat}_{2n \times 2n}\operatorname{Skew}_{2n\times 2n}(\RR)$ be the map
+    $A \mapsto A^T J A$, where $J$ is as defined in the homework. Then $\text{Sp}_{2n}(\RR) = F^{-1}(J)$.
+    By the result from class, $\text{Sp}_{2n}(\RR)$ is an embedded submanifold of $\text{Mat}_{2n\times 2n}$ 
+    if the differential of $F$ at every point in $F^{-1}(J)$ is of full rank, in this case onto. 
+    We can calculate that 
+    \[
+        F(A + H) = A^T J A^T + A^T J H + H^T J A + H^T J H.
+    \]
+
+    Then $D_A F: H \mapsto A^T J H + H^T J A$, and $H^T J H$ is the higher order term. We see that
+    indeed the image of $D_A F$ is the space of skew symmetric matrices. We just need
+    to solve, for every $A \in F^{-1}(J)$, the equation $D_A F H = S$ for $H$, where $S \in \text{Skew}_{2n\times 2n}(\RR)$.
+
+
+    Let $H = -\frac{1}{2}AJS$, so that indeed
+    \[
+        -\frac{1}{2}A^T JAJS - \frac{1}{2}SJA^TJA = -\frac{1}{2}JJS - \frac{1}{2} SJJ = S,
+    \]
+    
+    and the differential is onto at every point in the level set, making this an embedded submanifold. 
+
+    moreover, the dimension of $\text{Sp}_{2n}(\RR)$ is given by $\dim \text{Mat}_{2n \times 2n} - \dim \text{Skew}_{2n\times 2n}(\RR)
+    = (2n)^2 - \frac{2n(2n - 1)}{2} = \frac{2n(2n + 1)}{2}$.
+
+    (b.) We showed in class that the tangent space of $\text{Sp}_{2n}(\RR)$ at the identity is given by the kernel 
+    of the differential of $F$ at $I_{2n}$. We have 
+    \[
+        D_{I_{2n}}FH = JH + H^T J.
+    \]
+
+    Thus the kernel consists of matrices $H$ such that $JH = -H^T J$, or $H = JH^T J$.
+    With $H = \begin{bmatrix}A & B \\ C & D\end{bmatrix}$, we can calculate that
+    \[
+        \begin{bmatrix}A & B \\ C & D\end{bmatrix} = H = JH^T J = J\begin{bmatrix}-c^T & A^T \\ -D^T & B^T\end{bmatrix}
+        = \begin{bmatrix} - D^T & B^T \\ C^T & -A^T\end{bmatrix}.
+    \]
+    We see that the tangent space $T_{I_{2n}}\text{Sp}_{2n}$ is given by matrices $\begin{bmatrix}A & B \\ C & D\end{bmatrix}$
+    with $B = B^T$, $C = C^T$, and $A = -D^T$. 
+
+    \item[5.] Let $G$ be the manifold consisting of $k$ element sets of vectors in $\RR^n$ which are an orthonormal
+    basis for their linear span. By arranging these $k$ vectors in an $n\times k$ matrix, we can view this manifold
+    as a subset of $\RR^{n\times k}$. Let $F: \text{Mat}_{n \times k}(\RR) \to \text{Sym}_{k \times k}$ be the
+    map $A \mapsto A^T A$. We can calculate similar to problem $4$ that the differential of $F$ is given by 
+    $D_A F H = A^T H + H^T A$. Its image is indeed the symmetric $k \times k$ matrices. Moreover, it is 
+    surjective. For any $S \in \text{Sym}_{k \times k}(\RR)$, we can solve $A^T H + H^T A = S$ by letting
+    $H = \frac{1}{2}AS \in \text{Mat}_{n \times k}$. Thus, $G$ is an embedded submanifold of $\RR^{n\times k}$
+    of dimension $nk - \frac{k(k-1)}{2}$.
+
+\end{enumerate}
+
+\end{document}

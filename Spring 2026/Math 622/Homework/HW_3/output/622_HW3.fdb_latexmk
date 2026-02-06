@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1770082120.79427 "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Spring 2026/Microlocal/Microlocal_Notes.tex" "output/Microlocal_Notes.pdf" "Microlocal_Notes" 1770082122.52056 0
-  "Microlocal_Notes.tex" 1770082119 7173 112fe23fa721b3b4abd20e5c50993291 ""
-  "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Spring 2026/Microlocal/Microlocal_Notes.tex" 1770082119 7173 112fe23fa721b3b4abd20e5c50993291 ""
+["pdflatex"] 1770270322.58048 "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Spring 2026/Math 622/Homework/HW_3/622_HW3.tex" "output/622_HW3.pdf" "622_HW3" 1770270324.30998 0
+  "622_HW3.tex" 1770270321 9467 24f7e7057fc99ea90f1d2aadc6d797b0 ""
+  "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Spring 2026/Math 622/Homework/HW_3/622_HW3.tex" 1770270321 9467 24f7e7057fc99ea90f1d2aadc6d797b0 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1758477438 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1758478193 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1758483095 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -29,14 +29,12 @@
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1758474978 35752 024fb6c41858982481f6968b5fc26508 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1758474978 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1758474978 34694 870c211f62cb72718a00e353f14f254d ""
-  "c:/texlive/2025/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb" 1758482464 16077 4737ac34f0fb5608550f3780a0202c22 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/urw/symbol/usyr.pfb" 1758483095 33709 b09d2e140b7e807d3a97058263ab6693 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb" 1758483632 44729 fea0975e20ec51c992338362f05f1146 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb" 1758483632 46026 687528a208fbfc1f00832bb96cccebbb ""
   "c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb" 1758483632 45458 504e2b06fa82109d168c7a0afb09e145 ""
   "c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf" 1758483632 1372 788387fea833ef5963f4c5bffe33eb89 ""
   "c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf" 1758483632 1380 0ea3a3370054be6da6acd929ec569f06 ""
-  "c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmri7t.vf" 1758483632 1384 a9d8adaf491ce34e5fba99dc7bbe5f39 ""
   "c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/zptmcm7m.vf" 1758483632 1132 27520247d3fe18d4266a226b461885c2 ""
   "c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/zptmcm7t.vf" 1758483632 1108 d271d6f9de4122c3f8d3b65666167fac ""
   "c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/zptmcm7v.vf" 1758483632 1012 046369ac6a83af997c3aa05a43256ad5 ""
@@ -219,11 +217,11 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1758484728 5574153 af86687748baf417d9e7d549313527be ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1758485016 3621638 2f152774f3ada12d62dba33e33b31994 ""
   "c:/texlive/2025/texmf.cnf" 1758484704 713 e69b156964470283e0530f5060668171 ""
-  "output/Microlocal_Notes.aux" 1770082122 376 e46e3380e3178212c2b85204f50204c9 "pdflatex"
-  "output/Microlocal_Notes.out" 1770082122 194 43231fd9942ab81e6856f5b765ae8034 "pdflatex"
+  "output/622_HW3.aux" 1770270324 162 87159b23cce7c2b923b11c85495bbd6d "pdflatex"
+  "output/622_HW3.out" 1770270323 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
-  "output/Microlocal_Notes.aux"
-  "output/Microlocal_Notes.log"
-  "output/Microlocal_Notes.out"
-  "output/Microlocal_Notes.pdf"
+  "output/622_HW3.aux"
+  "output/622_HW3.log"
+  "output/622_HW3.out"
+  "output/622_HW3.pdf"
   (rewritten before read)
