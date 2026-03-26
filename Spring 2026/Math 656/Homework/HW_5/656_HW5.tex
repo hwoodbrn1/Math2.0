@@ -1,0 +1,133 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 656}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 5}
+
+\begin{enumerate}
+    \item[2.] Let $M$ be bounded self adjoint, and let $A$ be the positive square root obtained using the functional calculus, and let 
+    $B$ be another positive operator such that $B^2 = M$. $B$ is symmetric because it is positive.
+    This can be seen by expanding $\langle B(x + y), x + y\rangle$ and $\langle B(x + iy), x + iy\rangle$.
+
+    We know that $B$ commutes with $M$ from $BM = B^3 = MB$. Then since $A$ is the limit of a polynomial in $M$,
+    we have that $B$ commutes with $A$. Then $B^2 - A^2 = (B - A)(B + A) = 0$, since $A^2 = B^2 = M$. Then
+    $(B - A)$ is zero on the range of $(B + A)$. Then it follows that $B-A$ is zero on the closure of the range 
+    of $B + A$, $\mathcal{R}(B + A)^c$. Since $H$ is a Hilbert space, there is a decomposition 
+    \[
+        H = \mathcal{R}(B + A)^c \oplus \ker(B + A).
+    \]
+
+    Suppose now that $(B + A)x = 0$. Then $\langle (B + A)x, x\rangle = 0$, and from $0 \leq A, B \leq A + B$,
+    we obtain $\langle Ax, x\rangle = \langle Bx, x\rangle = 0$ for all such $x$. Then since $A$ and $B$
+    are self adjoint, we have $Ax = Bx = 0$ for all such $x$. This again can be seen by expanding 
+    the inner product 
+    \[
+        \langle B(x + y), x + y\rangle = 0 = 2\text{Re}(\langle Bx, y).
+    \]
+
+    Since the spectrum of $B$ is real, this implies $\langle Bx, y\rangle = 0$ for all $x, y \in \ker{A + B}$,
+    and thus $B = 0$. The same holds for $A$. Then $(B - A) = 0$ on all of $H$, and $B = A$. 
+
+    We can choose a different square root, not necessarily positive, for each choice of a sign on a point in
+    the spectrum of $M$. If the eigenspaces are more than one dimension, we have an uncountable
+    choice of square root since reflection about any line in $\RR^2$ is a square root of the identity on
+    that eigenspace. 
+
+    \item[5.] (i.) Let $f \in H$ be the sum $f = \sum_{j} f_j$ for $f_j \in K_j$. Let $f_j(x)$ be the corresponding
+    $L^2(m_j)$ function. Then $E(S)f_j$ is the element represented by $\chi_S(x)f_j(x)$. The inner product
+    on $K_j$ is equivalent to the $L^2(m_j)$ inner product. Then 
+    \[
+        \langle E(S)f_j, g_j\rangle = \langle \chi_S(x) f_j(x), g_j(x)\rangle = \langle f_j(x), \chi_S(x)g_j(x)\rangle
+    \]
+    since $\chi_S$ is real. Then the adjoint operator is defined by the Riesz representation theorem on $K_j$ as 
+    the map $g_j \mapsto E(S)g_j$. Then over the entire $H$, we have $E^*(S)g = E(S)g$.
+
+    (ii.) For $f \in H$ such that $\|f\| \leq 1$, we have
+    \[
+        \|E(S)f\|^2 = \sum_j \|E(S)f_j\|^2 = \sum_j \int \chi_S dm_{f_j,f_j}\leq \sum_j \|f_j\| = \|f\|
+    \]
+    where some norms are taken in $K_j$. 
+
+    (iii.) The operator on each $K_j$ corresponding to $E(\sigma)$ is the zero function, and 
+    thus is zero on each subspace. 
+
+    (iv.) If $S$ and $T$ are disjoint, then $E(S \cup T)$ corresponds to the function $\chi_{S \cup T} = 
+    \chi_S + \chi_T$, and thus $E(S \cup T) = E(S) + E(T)$ since the map from $L^2$ to each $K_j$ is 
+    a bijection. 
+
+    (v.) The operator $M$ is multiplication by the function $f(x) = x$. Then 
+    on $K_j$, since $\chi_S$ commutes with $x$, $M$ commutes with $E(S)$. 
+
+    (vi.) $E(S \cap T)$ corresponds to $\chi_{S \cap T} = \chi_S \cdot \chi_T$, and thus $E(S \cap T) = E(S)E(T)$. 
+
+    (vii.) Each $E(S)$ is a projection since $\chi_S^2 = \chi_S$. 
+    
+    (viii.) This follows since $L^2$ functions commute. 
+
+    To verify $9'$, we just apply the convergence of step functions to $L^2$ functions in the
+    $L^2(m_j)$ on each representation of
+    $K_j$ to deduce the integral converges in norm on each $K_j$ and thus on $H$.
+
+    \item[10.] The spectrum is bounded below in magnitude by $1$ since $U - \lambda$ is invertible whenever
+    $|\lambda| < 1$. It is upper bounded by $1$ as well by the formula for the spectral radius,
+    since $\|U\| = 1$. Then the spectrum lies in the unit circle.
+
+    \item[11.] If $M$ is symmetric, we use the functional calculus to deduce that $U^* = (M + ik)(M -ik)^{-1}$,
+    and thus $U*U = 1$. 
+
+    For the converse, if $U$ is unitary then $M$ is symmetric since their cayley transforms coincide.
+
+    \item[12.] From the functional calculus, we know that the spectrum of $M$ is the cayley transform of that
+    of $U$, in particular is contained in $\RR$.
+
+\end{enumerate}
+
+\end{document}

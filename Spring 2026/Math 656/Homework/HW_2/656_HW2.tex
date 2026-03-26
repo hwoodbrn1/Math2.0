@@ -56,7 +56,7 @@
 
 \begin{enumerate}
 
-    \item[2.] 
+    \item[2.] I did not know how to solve this problem from complex analyis.
 
 \end{enumerate}
 
@@ -117,19 +117,42 @@
     and thus contains all limit points of $\{\lambda_n\}$, it is exactly
     the closure of $\{\lambda_n\}$.
 
-    \item[6.] Let $K(s,t)$ be a continuous function on $[0,1]\times[0,1]$, $t \leq s$. Define
+    \item[6.] (a.) Let $K(s,t)$ be a continuous function on $[0,1]\times[0,1]$, $t \leq s$. Define
     \[
         Kf(s) = \int_0^s K(s,t)f(t)dt.
     \]
 
     We may choose $M$ such that $|K(s,t)| < M$ everywhere.
     Since $K$ is continuous on a compact domain, we can choose $\delta$ so that $|K(a,t) - K(b,t)| < \epsilon$  
-    for all $t \in [0,1]$, whenever $|a-b| < \delta$. Then for $a < b$, $|a-b|< \delta$, we have
+    for all $t \in [0,1]$, whenever $|a-b| < \delta$. Moreover, for any $f \in C[0,1]$, 
+    we have $|f|< L$ for some $L > 0$. Then for $a < b$, $|a-b|< \delta$, we have
     \begin{align*}
         \left| Kf(a) - Kf(b)\right| = \left| \int_0^a K(a,t)f(t)dt - \int_0^b K(b,t)f(t)dt\right|
         \leq \int_0^a |K(a,t) - K(b,t)||f(t)|dt + \int_a^b |K(b,t)||f(t)|dt\\
-        \leq \epsilon M  + 
+        \leq \epsilon L + \delta M L,
     \end{align*}
+    implying $Kf$ is a continuous function.
+
+    (b.) Similar to the book, for the operator $K^n$, we can write
+    \begin{align*}
+        |(K^n f)(x)| = \left|\int_0^x K(x,x_{n-1}) \int_0^{x_{n-1}} K(x_{n-1}, x_{n-2})
+        \int_0^{x_{n-2}} \cdots \int_0^{x_1} K(x_1, x_0)f(x_0)dx_{0} \cdots d_{x_{n-1}}\right|\\
+        = \left| \int_0^{x}\int_0^{x_{n-1}} \cdots \int_0^{x_1}K(x, x_{n-1})K(x_{n-1}, x_{n-2})
+        \cdots K(x_1, x_0)f(x_0)dx_0 \cdots dx_{n-1}\right|\\
+        \leq \|f\| \int_0^{x}\int_0^{x_{n-1}} \cdots \int_0^{x_1} M^n dx_0 \cdots dx_{n-1}\\
+        = \|f\| \int_0^{x}\int_0^{x_{n-1}} \cdots \int_0^{x_2}M^n x_1 dx_1 \cdots dx_{n-1}
+        = \cdots = \frac{M^n \|f\|}{n!},
+    \end{align*}
+
+    where $x_i$ are dummy variables and $\|f\|$ is the sup norm of $f$. Then we see that 
+    \[
+        \|K^n\| \leq \frac{M^n}{n!},
+    \]
+    so that 
+    \[
+        \lim_{n} \|K^n\|^{1/n} = 0.
+    \]
+    Then the spectral radius is zero. Then $\sigma(K) = \{0\}$, since the spectrum is nonempty.
 
 \end{enumerate}
 

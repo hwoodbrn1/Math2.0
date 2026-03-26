@@ -1,0 +1,225 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 622}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 5}
+
+\begin{enumerate}
+    \item[1.] (a.) We will show that $\text{Ad}(F)Y$ is a derivation by showing it maps $C^\infty(M) \to C^\infty(M)$
+    and satisfies the product rule. First, for $\phi \in C^\infty(M)$, we have
+    \[
+        (\text{Ad}(F)Y)(\phi) = \hat{F}\circ Y \circ {(\hat{F})}^{-1}(\phi) = \hat{F}\circ Y(\phi\circ F^{-1}) = Y(\phi \circ F^{-1})\circ F,
+    \]
+    which is smooth since $F$ is a diffeomorphism and $Y$ is a derivation on $M$. 
+
+    It also satisfies the product rule: if $f, g \in C^\infty(M)$,
+    \begin{align*}
+        &(\text{Ad}(F)Y)(fg) = Y(fg\circ F^{-1})\circ F\\
+        &= Y((f \circ F^{-1})(g\circ F^{-1}))\circ F\\
+        &= Y(f \circ F^{-1})(g\circ F^{-1})\circ F + (f \circ F^{-1})Y(g\circ F^{-1})\circ F \\
+        &= (\text{Ad}(F)Y)(f)g + f(\text{Ad}(F)Y)(g)
+    \end{align*}
+
+    (b.) For $\phi \in C^\infty(N)$, we can write
+    \begin{align*}
+        \text{Ad}(F^{-1})X(\phi) = (\hat{F})^{-1}(X(\phi \circ F)) = X(\phi \circ F) \circ F^{-1},
+    \end{align*}
+    and evaluating at $p$ we have
+    \[
+        X_{F^{-1}(p)}(\phi \circ F) = d_{F^{-1}(p)}F(X_{F^{-1}(p)}\phi) = (F_* X)_p \phi.
+    \]
+    Since this holds for all $p \in N$, we have $\text{Ad}(F^{-1})X = F_* X$.
+
+    (c.) For $X$ and $Y$ vector fields on $M$ and $\phi \in C^\infty(N)$, we have
+    \begin{align*}
+        F_*[X, Y](\phi) = \text{Ad}(F^{-1})[X,Y](\phi) = ((\hat{F})^{-1}\circ[X,Y] \circ F)(\phi)\\
+        = (\hat{F})^{-1}[X,Y](\phi \circ F) = (\hat{F})^{-1}(XY(\phi \circ F) - YX(\phi \circ F))\\
+        = XY(\phi \circ F) \circ F^{-1} - YX(\phi \circ F) \circ F^{-1} = \text{Ad}(F^{-1})(XY)(\phi) - \text{Ad}(F^{-1})(YX)(\phi),
+    \end{align*}
+
+    and moreover
+    \[
+        \text{Ad}(F^{-1})(XY) = (\hat{F})^{-1}(XY)\circ\hat{F} = (\hat{F})^{-1}\circ \hat{F}\circ (\hat{F})^{-1}\circ Y \circ \hat{F}
+        = \text{Ad}(F)X\circ \text{Ad}(F^{-1})Y = F_* X F_* Y.
+    \]
+    Thus $F_*[X, Y] = [F_* X, F_* Y]$.
+
+    \item[2.] Let $V = \frac{\partial}{\partial x}$, $\tilde{V} = \frac{\partial}{\partial x} + x \frac{\partial}{\partial y}$, $W = 
+    \frac{\partial}{\partial x}$. Then
+    \[
+        [V, W]|_{(0,0)} = (V(1) - W(1))\frac{\partial}{\partial x} + (V(0) - W(0))\frac{\partial}{\partial y} = 0
+    \]
+    and similarly
+    \[  
+        [\tilde{V}, W]|_{(0,0)} = -\frac{\partial}{\partial y}.
+    \]
+
+    \item[3.] Let $X = x \frac{\partial}{\partial x} - y \frac{\partial}{\partial y}$ and $Y = x \frac{\partial}{\partial y} + 
+    y \frac{\partial}{\partial x}$. To find the flow of $X$, we need to find $(f(t), g(t))$ solving the system
+    \begin{align*}
+        & f'(t) = f(t)\\
+        & g'(t) = -g(t),\\
+        & (f(0), g(0)) = (x,y)
+    \end{align*}
+    for some $(x,y)$.
+    We can easily find the solution $f(t) = xe^t, g(t) = ye^{-t}$. 
+
+    To find the flow of $Y$ we similarly solve
+    \begin{align*}
+        & f'(t) = g(t)\\
+        & g'(t) = f(t),\\
+        & (f(0), g(0)) = (x,y)
+    \end{align*}
+    to get $f(t) = xe^{\frac{y}{x}t}, g(t) = ye^{\frac{x}{y}t}$.
+
+    Letting $\Phi^t$ and $\Phi^s$ be the flows of $X$ and $Y$ respectively, we have
+    \[
+        \Phi^t \circ \Phi^s(x,y) = (xe^{\frac{y}{x}s}e^t, ye^{\frac{x}{y}s}e^{-t}),
+    \]
+    and
+    \[
+        \Phi^s \circ \Phi^t(x,y) = (xe^t e^{\frac{y}{x}e^{-2t}s}, ye^{-t}e^{\frac{x}{y}e^{2t}s}).
+    \]
+    Both are defined for all $(s,t) \in \RR^2$, however they are unequal when $t = s = 1$, since
+    \[
+        \Phi^t \circ \Phi^s(x,y)|_{s = t = 1} = (xe^{\frac{y}{x}}e, ye^{\frac{x}{y}}e^{-1})
+    \]
+    but
+    \[
+        \Phi^s \circ \Phi^t(x,y)|_{s = t = 1} = (xe^{\frac{y}{x}e^{-2}}, ye^{-1}e^{\frac{x}{y}e^2}).
+    \]
+
+    \item[4.] (a.) Let $X$ be a smooth vector field on $M$ with $X(p) \neq 0$. Then by the theorem of existence
+    and uniqueness of ODE's, there is a unique integral curve $\theta_p(t)$ with $\theta_p(0) = p$ defined on an open interval 
+    $-\epsilon_p \leq t \leq \epsilon_p$. By smooth dependence on initial conditions, there is some open 
+    set $U \ni p$ such that $\theta_q(t)$ is defined on an open interval $-\epsilon \leq t \leq \epsilon$
+    for $q \in U$. Then $\theta_q(t)$ is a flow of $X$ on $U$. 
+
+    We can choose a coordinate system so that $X(p) = \frac{\partial}{\partial x_1}$ and centered at $p$. Now set 
+    $\Theta := \{(x_1, \dots, x_n) \in U: x_1 = 0\}$. Define $F: (-\epsilon, \epsilon)\times \Theta \to M$ 
+    by $F(t,p) = \theta(t,p)$. Then $dF_p$ takes $(1,\dots, 0)$ to $X(p)$, and $(0, x_2,\dots, x_n)$
+    to itself, since $X$ points normal to $\Theta$ at $p$. Thus $dF_p$ is invertible, and 
+    is a diffeomorphism in some neighborhood $V \subset (-\epsilon,\epsilon)\times \Theta$. Then relabel $t = x_1$, and let
+    the remaining $x_2, \dots, x_n$ be the same. Then $(F^{-1}, F(V)\cap U)$ is a chart on $F(V)\cap U$,
+    and we can see that in these coordinates, $X = \frac{\partial}{\partial x_1}$. 
+
+    (b.) Let $V = y \frac{\partial}{\partial x} + \frac{\partial}{\partial y}$. Similar to above, we can
+    calculate the flow $\theta(x,y,t) = (\frac{t^2 + 2yt}{2} + x, t + y)$. Since $V(1,0) = \frac{\partial}{\partial y}$,
+    we want to make $y$ the $t$ coordinate and leave the others fixed. We center coordinates at $(1,0)$. Then
+    we set $y = 0$ and use $F(x,t) = \theta(x, 0, t) = (\frac{t^2}{2} + x, t)$ as our new coordinates. These
+    are defined globally in fact. To find the coordinate chart, we need the inverse 
+    \[
+        F^{-1}(x,y) = (x - \frac{y^2}{2}, y).
+    \]
+
+    Let $X = x \frac{\partial}{\partial x} + 3y \frac{\partial}{\partial y}$. Then we have the flow
+    \[
+        \theta(x,y,t) = (xe^t, ye^{3t}).
+    \]
+    Now since $X(1,0) = \frac{\partial}{\partial x}$, we want to instead fix $x = 1$ and vary $y$ and $t$. 
+    We set $G(t,y) = \theta(1, y, t) = (e^t, ye^{3t})$. Then our new coordinate map is 
+    \[
+        G^{-1}(x,y) = (\log(x), \frac{y}{x^3}),
+    \]
+    defined on the subset of $\RR^2$ where $x$ is positive. 
+
+    \item[5.] We have a map $E^* \otimes F^* \to (E\otimes F)^*$ given by 
+    \[
+        e^*\otimes f^* \mapsto L_{e^* \otimes f^*},
+    \]
+    where $\langle L_{e^* \otimes f^*},x\otimes y\rangle = \langle e^*, x\rangle\langle f^*, y\rangle$.
+
+    To show this map is injective, suppose $L_{e^*\otimes f^*} = 0$. Choose bases $(e_1,\dots, e_n),
+    (f_1, \dots, f_m)$ and dual bases $(e^1, \dots, e^n), (f^1, \dots, f^m)$, and write
+    $e^*\otimes f^* = \sum_{i,j} a_{ij}e^i\otimes f^j$. Then $\langle L_{e^* \otimes f^*}, e_k\otimes f_l\rangle
+    = a_{kl} = 0$ for all $k,l$. Then $e^*\otimes f^* = 0$. 
+
+    To show it is surjective, suppose $T: E \otimes F \to \mathbb{K}$. Then $T$ is determined by its action
+    on basis elements $e_i \otimes f_j$. Let $t_{ij} = T(e_i \otimes f_j)$. Define an element $v$ of $E^* \otimes F^*$
+    by $v = \sum_{i,j} t_{ij}e^i\otimes f^j$, so that $\langle L_v, e_k\otimes f_l\rangle = t_{kl} = T(e_k\otimes f_l)$.
+    Then $T$ and $L_v$ agree on basis elements, so they are equal as linear maps $E\otimes F \to \mathbb{K}$. 
+
+    Finally, to show linearity, if $g = \sum_{i,j}g_{ij}e^i\otimes f^j$ and $h = \sum_{i,j}h_{ij}e^i \otimes f^j$, 
+    we have 
+    \[
+        \langle L_{g + h}, e_{k}\otimes f_{l}\rangle = \sum_{i,j}(g_{ij} + h_{ij})\langle e^i, e_k\rangle
+        \langle f^j, f_l\rangle = g_{kl} + h_{kl} = \langle L_g + L_h, e_k\otimes f_l\rangle.
+    \]
+    Also, for $r \in \RR$,
+    \[
+        \langle L_{rg}, e_k\otimes f_l\rangle = \sum_{i,j}3\langle e^i, e_k\rangle \langle f^j, f_l\rangle
+        = 3g_{kl} = \langle 3L_{g}, e_k\otimes f_l\rangle.
+    \]
+    Then the given map is an isomorphism.
+
+    \item[6.] If $V$ is at least dimension $2$, let $(e_1, \dots, e_n)$ be a basis. Then 
+    the element $e_1\otimes e_2 + e_2 \otimes e_1$ is not decomposable. Suppose it was, and we could 
+    write $e_1 \otimes e_2 + e_2 \otimes e_1 = u\otimes v$, with $u = \sum_{i}u_i e_i$ 
+    and $v_2 = \sum_{i} v_i e_i$, so that $u \otimes v = \sum_{ij}u_i v_j e_i \otimes e_j$, and thus
+    $u_1 v_1 = 0, u_2 v_2 = 0, u_1 v_2 = 1, u_2 v_1 = 1$. But this is impossible, since the last two
+    conditions mean none of the first two coordinates of $u$ and $v$ are zero, but this makes 
+    the first two conditions impossible. 
+
+    More generally, we want to know when it is possible to express a tensor $\sum_{i,j}a_{ij}e_i \otimes e_j$
+    as a simple tensor $u\otimes v$, with $u = \sum_{i}u_i e_i$ and $v = \sum_{i} v_i e_i$. 
+    We see that $u\otimes v = \sum_{i,j}u_i v_j e_i\otimes e_j$. Then the given element defined
+    by $a_{ij}$ is decomposable if and only if the matrix $a_{ij}$ can be expressed in the form 
+    $u_i v_j$ for some vectors $u$ and $v$. This is equivalent to $a_{ij}$ being a rank one matrix,
+    since each of its columns (or rows) are multiples of the same matrix. 
+
+    More generally for a type $(r,s)$ tensor, given by coefficients $a_{i_1, \dots, i_{r}, j_1, \dots, j_s}$,
+    this condition translates to requiring that fixing all but two indices, we will get a rank one matrix.
+    We will then be able to write $a_{i_1,\dots, i_r, j_1,\dots, j_s} = u_{1,i_1}u_{2, i_2}\cdots u_{r, i_r}
+    v_{1, j_1}\cdots v_{s, j_s}$. 
+
+\end{enumerate}
+
+\end{document}

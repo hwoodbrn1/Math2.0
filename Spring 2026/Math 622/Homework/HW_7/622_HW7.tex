@@ -1,0 +1,136 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 622}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 7}
+
+\begin{enumerate}
+    \item[1.] Let $\omega_1, \dots \omega_p$, $\theta_1, \dots, \theta_p$ be 1-forms on a $d$-dimensional
+    manifold $M$ such that 
+    \[
+        \sum_{i = 1}^p \omega_i \wedge \theta_i = 0.
+    \]
+    Since $\{\omega_i\}|_m$ is a set of $p$ linearly independent vectors for every $m \in M$, we can 
+    complete it to a set $\{\omega_i\}_{i = 1}^d$ for a fixed $m \in M$ on an open set $U \subset M$
+    containing $m$. 
+
+    Then we can express each $\theta_i$ as
+    \[
+        \theta_i = \sum_{j = 1}^d A_{i,j}\omega_j,
+    \]
+    $j = 1, \dots, p$. To show the coefficients are smooth, choose vector fields $V_1, \dots, V_d$ on $U$ such 
+    that $\omega_j(V_i) = \delta_{j}^i$. Then 
+    \[
+        A_{i,j} = \theta_i(V_j),
+    \]
+    so $A_{i,j}$ is smooth since by definition, any one form applied to a smooth vector field yields a 
+    smooth function. 
+
+    Now we write
+    \begin{align*}
+        &0 = \sum_{i = 1}^p \theta_i \wedge \omega_i = \sum_{i = 1}^p\left(\sum_{j = 1}^d A_{j,i}\omega_j\right)
+        \wedge \omega_i\\
+        &= \sum_{i=1}^p \sum_{j = 1}^d A_{j,i}\omega_j \wedge \omega_i = \sum_{i,j = 1}^p A_{j,i} \omega_j \wedge \omega_i
+        + \sum_{i = 1}^p \sum_{j = p + 1}^d A_{j,i} \omega_j \wedge \omega_i\\
+        &= \sum_{i < k} A_{j,i}\omega_j \wedge \omega_i + \sum_{i = 1}^p \sum_{j = p + 1}^d A_{j,i} \omega_j \wedge \omega_i\\
+        &= \sum_{i \leq k}(A_{i,j} - A_{j,i})\omega_i \wedge \omega_j + \sum_{i = 1}^p \sum_{j = p + 1}^d -A_{j,i} \omega_i \wedge \omega_j.
+    \end{align*}
+
+    Since $\omega_i \wedge \omega_j$, $i < j$, forms a basis for the space of $2$-forms, and $i < j$ for every
+    element of the last sum, we have both 
+    \[
+        A_{j,i} = 0\ \text{for} j = p+ 1, \dots, d, i = 1, \dots, p
+    \]
+    and
+    \[
+        A_{j,i} = A_{i,j}\ \text{for} 1 \leq i,j \leq p.
+    \]
+    Then in particular, we can write
+    \[
+        \theta_j = \sum_{i = 1}^p A_{i,j} \omega_i
+    \]
+    where $A_{i,j}$ are smooth.
+
+    \item[2.] Let $X$ be a smooth vector field, $m$ a covariant $s$-tensor field. Let $p \in M$. 
+    Choose local coordinates $\frac{\partial}{\partial x_i}$, $1 = 1, \dots, n$ such 
+    that $X = \frac{\partial}{\partial x_1}$. Then by definition, we have
+    \[
+        \mathcal{L}_X \omega|_p = \frac{d}{dt}|_{t = 0}(\theta_t^* \omega)|_p,
+    \]
+    where $\theta_t$ is the flow of $X$. Then $\mathcal{L}_X$ acts on a tensor
+    field by taking the partial derivate with respect to $x_1$. 
+    Let $\{u^i\}$ be a dual frame to $\{x_i\}$. For $s$ vector
+    field $Y_j$, $j = 1, \dots, s$, we first have
+    \begin{align*}
+        \omega(Y_1, \dots, Y_s) = \omega_{i_1, \dots, i_s}u^{i_1}\otimes \cdots\otimes u^{i_s}
+        \left(\left(Y^{1, j_1}x_{j_1}\right)\otimes \cdots\otimes \left(Y^{s, j_s}x_{j_s}\right)\right)\\
+        = \omega_{i_1, \dots, i_s}u^{i_1, \dots, i_s}\left(Y^{1, j_1} \cdots Y_{s, j_s} x_{j_1, \dots, j_s}\right)\\
+        = \omega_{i_1, \dots, i_s}Y_{1, i_1}\cdots Y_{s, i_s}.
+    \end{align*}
+
+    Then we apply the product rule, so that 
+    \begin{align*}
+        \mathcal{L}_X(\omega(Y_1, \dots, Y_s)) = \left(\frac{\partial}{\partial x_1}\omega_{i_1, \dots, i_s}\right)Y_{1, i_1}\cdots Y_{s, i_s}
+        + \omega_{i_1, \dots, i_s}\left(\frac{\partial}{\partial x_1} Y_{1, i_1}\right) Y_{2, i_2}\cdots Y_{s , i_s}\\
+        = \mathcal{L}_X(\omega)(Y_1, \dots, Y_s) + A(\mathcal{L}_X Y_1, \dots, Y_s) + \cdots + A(Y_1, \dots, \mathcal{L}_X Y_s).
+    \end{align*}
+
+    To finish, we use that $\mathcal{L}_X f = X(f)$ and $\mathcal{L}_X(Y) = [X,Y]$ and move terms so that
+    \[
+        \mathcal{L}_X\omega(Y_1, \dots, Y_s) = X(\omega(Y_1, \dots, Y_s)) - 
+    \omega([X, Y_1], \dots, Y_s) - \cdots - \omega(Y_1, \dots, [X, Y_s])
+    \]
+
+    \item[3.] 
+
+\end{enumerate}
+
+\end{document}

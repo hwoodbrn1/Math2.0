@@ -1,0 +1,131 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 656}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 3}
+
+\begin{enumerate}
+    \item[3.] We can modify the proof of (i) to remove the factor of $2$. For any $0 < \delta < 1$,
+    we can choose $y_n$ in $Y_n$ such that 
+    \[  
+        |y_n| = 1, \quad |y_n - y| < \delta
+    \]
+    for all $y \in Y_{n-1}$. This turns (25) into 
+    \[
+        |\textbf{C} y_n - \textbf{C} y_m| \geq \epsilon |\lambda_n|,
+    \]
+
+    and (26) becomes 
+    \[
+        N(\epsilon) \leq C(\epsilon, \delta^{-1}\textbf{C}(B)).
+    \]
+    Since this holds for all $\epsilon < 1$, we can remove the factor of epsilon altogether.
+
+    \item[4.] Since $(\zeta - \textbf{C})$ has a pole of order $i$ at $\lambda$, the function 
+    $(\zeta - \lambda)^i (\zeta - \textbf{C})^{-1}$ is analytic in a neighborhood of $\lambda$. This means 
+    we can write a power series 
+    \[
+        (\zeta - \lambda)^i (\zeta - \textbf{C})^{-1} = \sum_{n = 0}^\infty A_n (\zeta - \lambda)^n,
+    \]
+    and thus 
+    \[
+        (\zeta - \textbf{C})^{-1} = \sum_{n = 0}^infty A_n(\zeta - \lambda)^{n-i},
+    \]
+    or 
+    \[
+        (\zeta - \textbf{C})^{-1} = \sum_{n = -i}^\infty \tilde{A}_n (\zeta - \lambda)^n.
+    \]
+
+    From theorem 6 of chapter 17, we see that by how the operators $\tilde(A)_n$ are constucted, by a line
+    integral surrounding an isolated point in the spectrum, we see that these operators are projections, by the result
+    concerning the functional calculus. I could not finish.
+
+    \item[6.] We know from functional calculus that the spectrum of $\textbf{B}^n$ is exactly the $n$-th power 
+    of the spectrum of $\textbf{B}$. We apply a previous result to see that the number of eigenvalues of $\textbf{B}^n$
+    greater than $\epsilon^n$, $N'(\epsilon^n)$, can be estimated by
+    \[
+        N'(\epsilon^n) \leq C(\epsilon, \textbf{B}^n(B)),
+    \]
+    and we know the set of eigenvalues of $\textbf{B}^n$ of norm greater than $\epsilon^n$ is the same 
+    as the set of eigenvalues of $\textbf{B}$ with norm greater than $\epsilon$. Then we have
+    \[
+        N(\epsilon) \leq C(\epsilon^n, \textbf{B}^n(B)).
+    \]
+
+    \item[8.] Consider the hilbert space $\ell^2(\mathbb{N}) = \ell^2$, and let $M_i$ be the projection onto 
+    the first $i$ coordinates. $M_i$ is compact since the range is finite dimensional. Moreover, $M_i$ converges
+    strongly (pointwise for every $x \in \ell^2)$ to the identity operator on $\ell^2$. However, the identity operator
+    is clearly not compact. 
+
+    \item[9.] Let $X$ be a Banach space. Suppose $M_n$ converges to $M$ strongly and $C$ is a compact operator. Then
+    $M_n x$ converges in norm to $Mx$ for all $x \in X$. We want to show 
+    \[
+        \lim_{n \to \infty}\sup_{x \in B}|CM_n x - CM x| = \lim_{n \to \infty} \sup_{x \in B}|C(M_n - M)x| = 0
+    \]
+
+    and
+
+    \[
+        \lim_{n \to \infty}\sup_{x \in B}|(M_n - M)Cx| = 0.
+    \]
+    Since the image of the unit ball under $C(M_n - M)$ and $(M_n - M)C$ is compact, this must be true. Suppose not,
+    that the limit does not go to zero. Then we can choose a sequence $x_k$ and a subsequence $n_k$ such that
+    \[
+        |C(M_{n_k} - M)x_k| > \epsilon
+    \]
+    for all $k$, and an analagous expression for the opposite composition. But since the image is compact, there must 
+    be a convergent subsequence $k_j$. Since the norms of $M_n$ are bounded, it follows that $\lim_j |C(M_{n_{k_j}} - M)x_{k_j}| = 0$,
+    contradicting the earlier lower bound. Then $CM_n$ must converge to $CM$ uniformly, and $M_n C$ must converge
+    to $MC$ uniformly. 
+
+\end{enumerate}
+
+\end{document}

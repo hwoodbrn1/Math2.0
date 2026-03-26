@@ -1,0 +1,184 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 622}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 4}
+
+\begin{enumerate}
+    \item[1.] Let $M$ be the open submanifold of $\RR^2$ where both $x$ and $y$ are positive, and let 
+    $F: M \to M$ be the map $F(x,y) = (xy, y/x)$. 
+
+    $F$ is clearly smooth when $x, y > 0$. Its inverse is given by $F^{-1}(u,v) = (\frac{\sqrt{uv}}{v}, \sqrt{uv})$.
+    This is smooth as well, and here we choose the positive square roots. 
+
+    Let 
+    \[
+        X = x \frac{\partial}{\partial x} + y \frac{\partial}{\partial y},\quad Y = y \frac{\partial}{\partial x}. 
+    \]
+
+    The jacobian matrix of $F$ is given by
+    \[
+        \mathfrak{J}(F) = \begin{bmatrix}y & x \\ \frac{-y}{x^2} & \frac{1}{x}\end{bmatrix}.
+    \]
+
+    Then
+    \[
+        F_* X_{(u,v)} = d F_{F^{-1}(u,v)}X_{F^{-1}(u,v)} = 
+        \begin{bmatrix}\sqrt{uv} & \frac{\sqrt{uv}}{v}\\ \frac{-v\sqrt{uv}}{u} & \frac{v}{\sqrt{uv}}\end{bmatrix}
+        \begin{bmatrix}\frac{\sqrt{uv}}{v} \\ \sqrt{uv}\end{bmatrix} = 
+        \begin{bmatrix}2u \\ 0\end{bmatrix} = 2u \frac{\partial}{\partial u}.
+    \]
+
+    We also have 
+    \[
+        F_* Y_{(u,v)} = 
+        \begin{bmatrix}\sqrt{uv} & \frac{\sqrt{uv}}{v}\\ \frac{-v\sqrt{uv}}{u} & \frac{v}{\sqrt{uv}}\end{bmatrix}
+        \begin{bmatrix}\sqrt{uv} \\ 0\end{bmatrix} = 
+        \begin{bmatrix}uv \\ -v^2\end{bmatrix} = uv \frac{\partial}{\partial u} - v^2 \frac{\partial}{\partial v}.
+    \]
+
+    \item[2.] Let $\phi: \RR^2_+ \to \RR^2_+$ be the map
+    \[
+        \phi(x,y) = (\sqrt{x^2 + y^2}, \tan^{-1}(y/x))
+    \]
+    and
+    \[
+        \phi^{-1}(r, \theta) = (r\cos(\theta), r\sin(\theta)).
+    \]
+
+    Let 
+    \[
+        Y = x \frac{\partial}{\partial y} - y \frac{\partial}{\partial x} \quad Z = (x^2 + y^2) \frac{\partial}{\partial x}
+    \]
+    We want to compute the pushforwards $\phi_* Y$ and $\phi_* Z$. As in problem 1, we have
+    \[
+        \phi_* Y = \begin{bmatrix}\cos(\theta) & \sin(\theta) \\ \frac{-\sin(\theta)}{r} & \frac{\cos(\theta)}{r}\end{bmatrix}
+        \begin{bmatrix}-r\sin(\theta)\\ r\cos(\theta)\end{bmatrix} = \frac{\partial}{\partial \theta},
+    \]
+    and  
+    \[
+        \phi_* Z = \begin{bmatrix}\cos(\theta) & \sin(\theta) \\ \frac{-\sin(\theta)}{r} & \frac{\cos(\theta)}{r}\end{bmatrix}
+        \begin{bmatrix}r^2 \\ 0\end{bmatrix} = r^2\cos(\theta)\frac{\partial}{\partial r} - r\sin(\theta)\frac{\partial}{\partial \theta}.
+    \]
+
+    \item[3.] We first convert to angular coordinates by the map $\theta \mapsto (\cos(\theta), \sin(\theta))$, for $\theta \in (0, 2\pi)$.
+    Then we write $\phi(t) = \frac{\cos(\theta)}{1 - \sin(\theta)}$. We have $\phi'(\theta) = \frac{1}{1 - \sin(\theta)}$. Then
+    we need to solve for $Y_p$ in the equation 
+    \[  
+        dF_p Y_p = X_{F(p)},
+    \]
+    and we know $X_{F(p)} = \frac{\cos^n(\theta)}{(1-\sin(\theta))^n}$. Then 
+    \[
+        Y_\theta = \frac{\cos^n(\theta)}{(1-\sin(\theta))^{n-1}}.
+    \]
+    To determine whether $Y_\theta$ extends to a smooth vector field on $S^1$, we just need to check that the limit as $\theta \to \frac{\pi}{2}$
+    from the left and the right exist and are equal. By considering their taylor series near $\theta = \frac{\pi}{2}$, we see that 
+    $\cos(\theta)$ goes to zero linearly, and $(1-\sin(\theta))$ goes to zero like $x^2$. Then the limit exists when $n \geq 2n - 2$, 
+    or when $n \leq 2$. 
+
+    \item[4.] (a.) The sets $E^+_n(\RR)$ and $ASO_n(\RR)$ are clearly in bijection. For composition, we have
+    \[
+        \begin{bmatrix} 1 & 0\\ a & A\end{bmatrix}\begin{bmatrix} 1 & 0 \\ b & B\end{bmatrix} = \begin{bmatrix}1 & 0 \\ a + Ab & AB\end{bmatrix},
+    \]
+    and for the corresponding composition of rigid transformations we also get $x \mapsto a + A(b) + ABx$. Then the groups are isomorphic.
+
+    To show it is a lie subgroup, let $F: GL_n(\RR) \to \RR \times \text{Sym}_n(\RR) \times R^n$ be the map 
+    \[
+        \begin{bmatrix}A_{1,1} & A_{1,2} \\ A_{2,1} & A_{2,2}\end{bmatrix} \mapsto (A_{1,1}, A_{2,2}A_{2,2}^T, A_{1,2}),
+    \]
+    where $A_{1,1}$ is the $1\times 1$ minor, and $A_{2,1} \in \RR^{n-1}$. The differential at 
+    \[
+        A = \begin{bmatrix}A_{1,1} & A_{1,2}\\ A_{2,1} & A_{2,2}\end{bmatrix}
+    \]
+    is given by
+    \[
+        D_A FH = (H_{1,1}, A_{2,2}H_{2,2}^T + H_{2,2}A_{2,2}^T, H_{2,1}).
+    \]
+    The second component is surjective onto $\text{Sym}_n(\RR)$, since to solve $AH^T + HA^T = S$ for some $S \in \text{Sym}_n(\RR)$, we 
+    can let $H = \frac{1}{2}SA$. The other components are clearly surjective. Then 
+    $ASO_n(\RR)$ is the connected component of $F^{-1}(1, I_n, 0)$ containing the identity, where $0$ is the zero vector in $\RR^n$. 
+
+    (b.) The Lie algebra of $ASO_n(\RR)$ is the tangent space at the identity. This is given by the kernel of the differential of 
+    $F$ at the identity. Then the Lie algebra consists of matrices 
+    \[
+        \left\{\begin{bmatrix}0 & 0 \\ a & A\end{bmatrix}: A + A^T = 0\right\},
+    \]
+    In other words, $A$ is an $n\times n$ skew-symmetric matrix. 
+
+    \item[5.] The elements of $SO(3)$ are of the form
+    \[
+        \begin{bmatrix} 0 & -a & -b \\ a & 0 & -c \\ b & c & 0\end{bmatrix}.
+    \]
+    We calculate that
+    \[  
+        \left[\begin{bmatrix} 0 & -a & -b \\ a & 0 & -c \\ b & c & 0\end{bmatrix}, 
+        \begin{bmatrix} 0 & -d & -e \\ d & 0 & -f \\ e & f & 0\end{bmatrix}\right] = 
+        \begin{bmatrix} 0 & ec - bf & af -dc\\ fb-ec & 0 & bd - ea \\ dc - af & ea - bd & 0\end{bmatrix},
+    \]
+    which is the cross product $(a,c,b)\times(d,f,e) = (ce - bf, bd - da, dc - af)$, after correctly orienting coordinates. The two 
+    are clearly isomorphic as real vector spaces. 
+
+    (b.) Let $A$ be the subspace of the space of vector fields on $\RR^3$ spanned by $\{X,Y,Z\}$, where
+    \[  
+        X = y\frac{\partial}{\partial z} - z \frac{\partial}{\partial y}\quad Y = z \frac{\partial}{\partial x} - x \frac{\partial}{\partial z}
+        \quad Z = x\frac{\partial}{\partial y} - y \frac{\partial}{\partial x}.
+    \]
+    We can calculate that
+    \[
+        [Z,Y] = y\frac{\partial}{\partial z} - z\frac{\partial}{\partial y} = X,
+    \]
+    and similarly that $[Y,X] = Z$ and $[X,Z] = Y$. So we see that the cross product agrees with the Lie bracket on basis vectors $e_1, e_2, e_3$.
+    Then by the linearity of the Lie bracket and cross product, they are equal on the entire span. The vector spaces
+    are clearly isomorphic as well. 
+
+\end{enumerate}
+
+\end{document}
