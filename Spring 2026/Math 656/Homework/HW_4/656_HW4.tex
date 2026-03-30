@@ -1,0 +1,237 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 656}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 4}
+\begin{enumerate}
+    \item[1.] Let $T$ be a compact operator. Then $s_j(T)$, the $j$th singular value of $T$,
+    is a continuous function of $T$ in the operator norm topology. 
+
+    Suppose $T_n$ is a sequence of compact operators converging to $T$ in the operator norm topology.
+    Let $T_n = U_n A_n$ and $T = UA$ be polar decompositions. First, we show that $A_n \to A$ 
+    in the operator norm topology as well. We have 
+    \[
+        \|T_n^* T_n - T^* T\| \leq \|T_n^* - T^*\|\|T_n\| + \|T^*\|\|T_n - T\| \to 0
+    \]
+    since $\|T^*\| = \|T\|$ and $\|T_n\|$ is bounded since it is a convergent sequence. Then 
+    it follows that $A_n = \sqrt{T_n^* T_n} \to \sqrt{T^* T} = A$, since the square root of a positive operator
+    is a continuous function in the norm topology. 
+
+    We will apply fischer's principle: Denote the eigenvalues of $A$ in decreasing order 
+    by $\alpha_k$, $k = 1, 2, \dots$. Then 
+    \[
+        \alpha_N = \max_{S_N} \min_{x \in S_N} R_A(x).
+    \]
+
+    We have
+    \begin{align*}
+            \max_{S_N} \min_{x \in S_N} R_A(x) = &\max_{S_N} \min_{x \in S_N} \langle Ax, x\rangle 
+            \leq \max_{S_N} \min_{x \in S_N} \langle A_n x, x\rangle + \langle (A - A_n)x, x \rangle \\
+            &\leq \|A_n - A\| + \max_{S_N} \min_{x \in S_N} R_{A_n}(x).
+    \end{align*}
+    By symmetry, we obtain
+    \[
+        |\max_{S_N} \min_{x \in S_N} R_A(x) - \max_{S_N} \min_{x \in S_N} R_{A_n}(x)| < \|A_n - A\|,
+    \]
+    and thus the $N$th eigenvalue of $A_n$ converges to that of $A$.
+
+    \item[4.] We prove that the trace class operators form a complete linear space under the trace norm.
+    
+    Suppose $T_n$ is a cauchy sequence in the trace norm. Then $T_n$ is cauchy in the operator norm,
+    since $\|T\| \leq \|T\|_{\text{tr}}$, and thus $T_n$ converges to some bounded operator $T$ 
+    in the operator norm. 
+
+    Then we must prove $T$ is trace class, and that $T_n$ converges to $T$ in the trace norm. 
+
+    In our text, it was shown that we can compute the trace norm using the formula 
+    \[
+        \|T\|_{\text{tr}} = \sum_0^\infty \langle T z_n, w_n\rangle,
+    \]
+    where $z_n$ is an orthonormal basis for $H$ consisting of eigenvectors of the absolute value $|T|$,
+    and $w_n$ is the completion of the orthonormal set $U z_n$ to a basis for all of $H$, where $T = U|T|$.
+    Moreover, 
+    \[
+        \|T\|_{\text{tr}} = \sup \sum_n |\langle T f_n, e_n\rangle|,
+    \]
+
+    where the supremum is taken over all pairs of orthonormal bases $\{f_n\}$ and $\{e_n\}$.
+
+    Let $z_n$ and $w_n$ be such bases as above, for the operator norm limit $T$ of the sequence $T_n$. Using the fact
+    that operator norm convergence implies strong operator convergence, for any $N > 0$, we can write
+    \[
+        \sum_1^N |\langle T z_n, w_n\rangle| = \lim_j \sum_1^N |\langle T_j z_n, w_n\rangle|
+        \leq \limsup \|T_j\|_{\text{tr}} < \infty,
+    \]
+    since cauchy sequences are bounded. As this holds for all $N$, $T$ is bounded in the trace norm. 
+
+    To show convergence in the trace norm, let $z_n$ and $w_n$ be as above. Fix $j$. Then 
+    \[
+        \sum_1^N|\langle (T - T_j) z_n, w_n\rangle|  = \lim_\ell \sum_1^N |\langle(T_\ell - T_j)z_n, w_n\rangle|
+        \leq \limsup_\ell \|T_j - T_\ell\|_{\text{tr}}
+    \]
+    for all $N > 0$. As $\limsup\limits_\ell \|T_j - T_\ell\|$ converges to $0$ in $j$, we have $T_n \to T$ in the 
+    trace norm. It follows that the trace class operators are a complete linear space under the trace norm,
+    using also that the trace norm satisfies the triangle inequality.
+
+    \item[8.] Let $V$ be the operator on $L^2[0,1]$ defined by integration of a function from $0$ to $s$. 
+    The continuity of $Vu(s)$ for $u \in L^2[0,1]$ follows cauchy-schwartz:
+    \[
+        \left|\int_a^b u(t)dt\right| \leq \|u\|_{L^2}|b - a|.
+    \]
+    In fact, for $u \in B$, the unit ball of $L^2[0,1]$, we have 
+    \[
+        \|u\|_{L^2}|b-a| \leq |b-a|,
+    \]
+    implying equicontinuity of $V(B)$. Together with the fact that every function in $V(B)$ takes 
+    the value $0$ at $x = 0$, this implies pointwise boundedness of $V(B)$. 
+
+    By Arzela-Ascoli theorem, $V(B)$ is a compact subset of $C[0,1]$.
+    
+    \item[9.] Let $V$ be the operator from the previous exercise. Its integral kernel 
+    is the function
+    \[
+        K(s,t) = \begin{cases}
+        1 & t < s\\
+        0 & t > s
+        \end{cases}.
+    \]
+    Then the integral kernel of the adjoint (in $L^2[0,1]$) is the function
+    \[
+        K^*(s,t) = K(t,s) = \begin{cases}
+            1 & s < t\\
+            0 & s > t
+        \end{cases}.
+    \]
+
+    From this we can deduce that
+    \[
+        V^* V(u)(s) = \int_s^1 \int_0^r u(t) dt dr.
+    \]
+
+    By the fundamental theorem of calculus, we obtain
+    \[
+        (V^* V(u))'(s) = - \int_0^r u(t)dt
+    \]
+    and 
+    \[
+        (V^* V(u))''(s) = -u(t).
+    \]
+    Thus the inverse of $V^* V$ is the differential operator $-\partial_x^2$. 
+    
+    By the results of our functional calculus, the eigenvalues of $V^* V$ are squares of those of $|V|$. 
+    Denote $A = V^* V$. We seek the values $\lambda$ such that 
+    \[
+        Au = \lambda u,
+    \]
+    and thus
+    \[
+        u = -\lambda \partial_x^2 u.
+    \]
+
+    Then we must solve the differential equation
+    \[
+        u'' + \frac{1}{\lambda}u = 0.
+    \]
+    We can get the boundary data from
+    \[
+        0 = (Au)(1) = \lambda u(1),
+    \]
+    thus $u(1) = 0$, and from
+    \[
+        0 = (Au)'(0) = \lambda u'(0),
+    \]
+    thus $u'(0) = 0$. 
+
+    Then we can solve the ODE to obtain solutions $u(t) = \cos(nx)$ for $n = \frac{\pi}{2} + k\pi$ for 
+    $k = 0, 1, \dots$, and the eigenvalues of $A$ are of the form
+    \[
+        \frac{1}{(\frac{\pi}{2} + k\pi)^2}.
+    \]
+
+    By the remark above, the singular values are 
+    \[
+        \frac{1}{\frac{\pi}{2} + k\pi}
+    \]
+    for $k = 0, 1, \dots$. Since these behave like $\frac{1}{k}$, they are not summable. Thus $V$ is 
+    not trace class.
+
+    \item[10.] Suppose $F$ is a pseudoinverse of $G$, with
+    \[
+        GF = 1 - T,\quad FG = 1 - S,
+    \]
+    for $S$ and $T$ compact operators. 
+    
+    Let $\lambda$ be an eigenvalue of $T$, $\lambda \neq 1$, and $e$ be a corresponding eigenvalue. Then
+    \[
+        Te = \lambda e = e - GFe,
+    \]
+
+    so that 
+    \begin{equation}\label{one}
+        (1 - \lambda)e = GFe.
+    \end{equation} Applying $F$ to both sides, we obtain
+    \[
+        FGFe = (1 - S)Fe = (1- \lambda)Fe,
+    \]
+    so that $\lambda Fe = SF e$. Then $Fe$ is an eigenvector of $S$ with eigenvalue $\lambda$. This
+    shows every eigenvalue of $T$ is one of $S$. Moreover, \ref{one} implies that if $e \neq 0$, 
+    then $Fe \neq 0$ as well, and also that if $Fe = 0$, then $e = 0$. Thus the map $x \mapsto Fx$ 
+    is injective as a map from the eigenspace of $\lambda$ under $T$ to the eigenspace of $\lambda$ under $S$.
+
+    By symmetry, one has that $G$ is an injective map from the eigenspace of $\lambda$ under $S$
+    to the eigenspace of $\lambda$ under $T$.
+
+    From this, we have that the dimension of both eigenspaces are equal and thus the eigenvalues have the 
+    same multiplicity. 
+
+\end{enumerate}
+
+\end{document}
