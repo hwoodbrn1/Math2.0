@@ -1,0 +1,181 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 622}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 8}
+
+\begin{enumerate}
+    \item[1.] (a.) Let 
+    \begin{gather*}
+        g(\theta, \phi) = \left((\cos\phi + 2)\cos\theta,(\cos\phi + 2)\sin\theta, \sin\phi\right)\\
+        \ \\
+        \omega = y dz\wedge dx
+    \end{gather*}
+
+    To compute $g^*\omega$, we can use the formula 
+    \[
+        F^*\left(\sum_I \omega_I dy^{I_1}\wedge \cdots\wedge dy^{I_k}\right) = \sum_I
+        (\omega_I \circ F)d(y^{I_1}\circ F) \wedge \cdots \wedge d(y^{I_k}\circ F).
+    \]
+
+    Then we have
+    \begin{align*}
+        &g^*\omega = (y \circ g)d(z\circ g)\wedge(x \circ g)\\
+        &= ((\cos\phi + 2)\sin\theta)d(\sin\phi)\wedge d((\cos\phi +2)\cos\theta)\\
+    \end{align*}
+
+    For the term $d((\cos\phi + 2)\cos\theta)$, we use the product rule:
+    \begin{align*}
+        &d((\cos\phi + 2)\cos\theta) = d(\cos\phi + 2)\cos\theta + (\cos\phi + 2)d\cos\theta\\
+        & = -\sin\phi\cos\theta d\phi - (\cos\phi + 2)\sin\theta d\theta.
+    \end{align*}
+
+    Putting this together, we have
+    \begin{align*}
+        &g^*\omega = ((\cos\phi + 2)\sin\theta)\cos\phi d\phi\wedge (-\sin\phi\cos\theta d\phi - (\cos\phi + 2)\sin\theta d\theta)\\
+        &= -((\cos\phi + 2)\sin\theta)\cos\phi d\phi \wedge (\cos\phi + 2)\sin\theta d\theta\\
+        &= -(\cos\phi + 2)^2 \sin^2\theta\cos\phi d\phi \wedge d\theta,
+    \end{align*}
+    since $d\phi \wedge d\phi = 0$.
+
+    To compute $d\omega$, we will use the derivation property as well as the formula
+    \[
+        d(f dz \wedge dx) = \frac{\partial f}{\partial x} dy \wedge dz \wedge dx,
+    \]
+    which is immediate from the definition of the exterior derivative, since only the $\frac{\partial f}{\partial y}$ term survives
+    in the sum. Then it is immediate that 
+    \[
+        d(y dz\wedge dx) = d(y dz) \wedge dx - y dz \wedge d(dx) = dy \wedge dz \wedge dx.
+    \]
+
+    Since $d\omega$ is a three form, and the domain of $g$ is a two dimensional manifold, the pullback $g^*(d\omega) = 0$. Likewise,
+    $d(g^*\omega) = 0$ as well, since $g^*\omega$ is a top form, so its exterior derivative must be zero. 
+
+    (b.) Next we let 
+    \begin{gather*}
+        g(u,v) = (u, v, \sqrt{1 - u^2 - v^2})\\
+        \omega = \frac{x dy \wedge dz + y dz \wedge dx + z dx \wedge dy}{(x^2 + y^2 + z^2)^{3/2}}.
+    \end{gather*}
+
+    Let $r = (x^2 + y^2 + z^2)$. We first compute $d\omega$. For 
+    \[
+        \omega = f dy \wedge dz + g dz \wedge dx + h dx \wedge dy,
+    \]
+    we have 
+    \[
+        d\omega = (\frac{\partial f}{\partial x} + \frac{\partial g}{\partial y} + \frac{\partial h}{\partial z}) dx \wedge dy \wedge dz.
+    \]
+    In our case,
+    \[
+        \frac{\partial f}{\partial x} = \frac{\partial}{\partial x}\left(\frac{x}{r^{3/2}}\right) = \frac{r - 3x^2}{r^{5/2}}.
+    \]
+    Then
+    \[
+        d\omega = \frac{3r - 3x^2 - 3y^2 - 3z^2}{r^{5/2}}dx \wedge dy\wedge dz = \frac{3r - 3r}{r^{5/2}}dx \wedge dy \wedge dz = 0.
+    \]
+
+    Let $r = \sqrt{1 - u^2 - v^2}$. For $g^*\omega$, we calculate
+    \begin{align*}
+        &d(x\circ g) = d(u) = du\\
+        &d(y \circ g) = dv\\
+        &d(z \circ g) = d(r) = \frac{-2u du - 2v dv}{2r} = s
+    \end{align*}
+    Then 
+    \[
+        g^*\omega = u dv \wedge s + v s \wedge du + r du \wedge dv = \frac{u^2 + v^2}{r} du \wedge dv + r du \wedge dv = \frac{1}{r}du \wedge dv
+    \]
+
+    after cancelling $du \wedge du$ and $dv \wedge dv$ terms. Again, $g^*(d\omega) = d(g^*\omega) = 0$. 
+
+    \item[2.] Let $M = \RR^3$ with coordinates $(x,y,z)$ and $g$ the standard flat metric. Let $X = P \frac{\partial}{\partial x} + Q 
+    \frac{\partial}{\partial y} + R \frac{\partial}{\partial z}$. 
+
+    The Hodge star operator $*$ acts on one forms by 
+    \[
+        *(a dx + b dy + c dz) = a dy \wedge dz + b dz \wedge dx + c dx \wedge dy,
+    \]
+    where we have chosen $dx \wedge dy \wedge dz$ to be positively oriented, and it is its own inverse. 
+
+    The operator $W$ is the map
+    \[
+        W(a \frac{\partial}{\partial x} + b \frac{\partial}{\partial y} + c \frac{\partial}{\partial z}) = a dx + b dy + c dz,
+    \]
+    since the action of $a dx + b dy + c dz$ on an arbitrary vector field is the same as the euclidean inner product of these
+    two vector fields. The inverse is clear.
+
+    (a.) We compute 
+    \begin{align*}
+        * \circ d \circ * \circ W(X) & = * \circ d \circ *(P dx + Q dy + R dz)\\
+        &= *\circ d(P dy  \wedge dz + Q dz \wedge dx + R dx \wedge dy)\\
+        &= *\left(\left(\frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}\right)dx \wedge dy \wedge dz\right)\\
+        &= \left(\frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}\right)
+    \end{align*}
+
+    (b.) Again,
+    \begin{align*}
+        W^{-1}\circ * \circ d \circ W(X) & = W^{-1}\circ * \circ d(P dx + Q dy + Rdz)\\
+        & = W^{-1}\circ *\left(\frac{\partial P}{\partial y}dy \wedge dx  +\frac{\partial P}{\partial z} dz \wedge dx 
+        + \frac{\partial Q}{\partial x} dx \wedge dy + \frac{\partial Q}{\partial z} dz \wedge dy + \frac{\partial R}{\partial x} dx \wedge dz
+        + \frac{\partial R}{\partial y} dy \wedge dz\right)\\
+        & = W^{-1}\circ *\left(\left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) dx \wedge dy
+        + \left(\frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z}\right)dy \wedge dz
+        + \left(\frac{\partial P}{\partial z} - \frac{\partial R}{\partial x}\right)dz \wedge dx\right)\\
+        & = W^{-1}\left(\left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) dz
+        + \left(\frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z}\right)dx
+        + \left(\frac{\partial P}{\partial z} - \frac{\partial R}{\partial x}\right)dy\right)\\
+        & = \left(\frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z}\right)\frac{\partial}{\partial x}
+        + \left(\frac{\partial P}{\partial z} - \frac{\partial R}{\partial x}\right)\frac{\partial}{\partial y}
+        + \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) \frac{\partial}{\partial z}.
+    \end{align*}
+
+\end{enumerate}
+
+\end{document}
