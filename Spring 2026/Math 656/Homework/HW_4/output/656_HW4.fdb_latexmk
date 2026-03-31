@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1774551906 "/Users/henrywoodburn/Desktop/Math2.0/Math2.0/Spring 2026/Math 622/Homework/HW_7/622_HW7.tex" "output/622_HW7.pdf" "622_HW7" 1774551907 0
-  "/Users/henrywoodburn/Desktop/Math2.0/Math2.0/Spring 2026/Math 622/Homework/HW_7/622_HW7.tex" 1774551905 11003 e775433c67cea174dd3754c46d57de95 ""
+["pdflatex"] 1773515000 "/Users/henrywoodburn/Desktop/Math2.0/Math2.0/Spring 2026/Math 656/Homework/HW_4/656_HW4.tex" "output/656_HW4.pdf" "656_HW4" 1773515002 0
+  "/Users/henrywoodburn/Desktop/Math2.0/Math2.0/Spring 2026/Math 656/Homework/HW_4/656_HW4.tex" 1773515000 8486 d0684d495a9db7f92768a5976998e974 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -32,7 +32,6 @@
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
-  "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1248133631 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
   "/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1575674566 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty" 1576625341 40635 c40361e206be584d448876bba8a64a3b ""
@@ -212,12 +211,12 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1702149744 4714755 e1d2d4965cdfe9f6eb84d314610dcbf8 ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1702149773 8218504 f5898b3fe9b1c26105fd1df93dd7c144 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "622_HW7.tex" 1774551905 11003 e775433c67cea174dd3754c46d57de95 ""
-  "output/622_HW7.aux" 1774551907 199 226da34f7c8794f930bdd0a5a59a768c "pdflatex"
-  "output/622_HW7.out" 1774551907 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "656_HW4.tex" 1773515000 8486 d0684d495a9db7f92768a5976998e974 ""
+  "output/656_HW4.aux" 1773515002 197 997d2d9d93002ef9a04fce11ec1a1c27 "pdflatex"
+  "output/656_HW4.out" 1773515002 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
-  "output/622_HW7.aux"
-  "output/622_HW7.log"
-  "output/622_HW7.out"
-  "output/622_HW7.pdf"
+  "output/656_HW4.aux"
+  "output/656_HW4.log"
+  "output/656_HW4.out"
+  "output/656_HW4.pdf"
   (rewritten before read)

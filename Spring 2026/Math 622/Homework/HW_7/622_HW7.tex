@@ -129,6 +129,7 @@
     \omega([X, Y_1], \dots, Y_s) - \cdots - \omega(Y_1, \dots, [X, Y_s])
     \]
 
+<<<<<<< HEAD
     \item[3.] We will make use of the formula 
     \[
         i_{X}(\omega^1 \wedge \cdots \wedge \omega^k) = \sum{i = 1}^k (-1)^{i - 1} \omega^i(X)\wedge \cdots
@@ -137,6 +138,116 @@
     which is proven in Lee. 
 
     Here it suffices to suppose $\omega$ and $\nu$ are decomposable. 
+=======
+    \item[3.] We will use the formula from Lee which states that 
+    \begin{equation}\label{wedge}
+        i_X(\omega^1 \wedge \omega^k) = \sum_{i = 1}^k (-1)^{i-1}\omega^i(X)\omega^i\wedge 
+        \cdots \wedge \hat{\omega^i} \wedge \cdots \wedge \omega^k.
+    \end{equation}
+    To prove this formula, we let $X = X_0$, and let $X_1, \dots, X_{k - 1}$ be $k-1$ vector fields.
+    We first know 
+    \[
+        i_X(\omega^1 \wedge \cdots \wedge \omega^k)(X_1,\dots, X_{k-1})
+        = (\omega^1\wedge \cdots\wedge \omega^k)(X_0, \dots, X_{k-1}) = \det(\omega^j(X_{i})).
+    \]
+    Next we notice that the right side of $\ref{wedge}$ is exactly the expansion of this determinate 
+    by the first column. This proves the formula.
+
+    Since every $s$-form is a linear combination of decomposable $s$-forms, by bilinearity of the 
+    wedge product, it suffices to prove the lemma for decomposable forms. Let $omega = \omega^1 \wedge \cdots \wedge \omega^s$
+    and $\nu = \omega^{s+1}\wedge \cdots \wedge \omega^{s + t}$ be $s$ and $t$ forms. Then
+    \begin{align*}
+        &i_X{\omega \wedge \nu} = i_X(\wedge^1 \wedge \cdots \wedge \omega^{s + t})\\
+        &= \sum_{i = 1}^{s+t}(-1)^{i-1}\omega^i(X)\omega^1 \wedge \cdots \wedge \hat{\omega^i}\wedge \cdots \wedge \omega^{s + t}\\
+        &= \sum_{i = 1}^s (-1)^{i-1}\omega^i(X)\omega^1 \wedge \cdots \wedge \hat{\omega^i}\wedge \cdots \wedge \omega^{s + t}
+        + \sum_{i = s+1}^{s + t} (-1)^{i-1}\omega^i(X)\omega^1 \wedge \cdots \wedge \hat{\omega^i}\wedge \cdots \wedge \omega^{s + t}\\
+        &= \left(\sum_{i = 1}^s (-1)^{i-1}(-1)^{i-1}\omega^i(X)\omega^1 \wedge \cdots \wedge \hat{\omega^i}\wedge \cdots \wedge \omega^{s}\right)
+        \wedge \left(\omega^{s+1}\wedge \cdots\wedge\omega^{s+t}\right)\\
+        & + \sum_{i = 1}^{t}(-1)^{s+i-1}\left(\omega^1\wedge \cdots\wedge\omega^s\right)
+        \wedge\left(\omega^{s+1}\wedge\cdots\wedge\hat{\omega^i}\wedge\cdots\wedge\omega^{s+t}\right)\\
+        &= (i_X \omega)\wedge \nu + (-1)^s\omega\wedge(i_X\nu)
+    \end{align*}
+
+    and we are done. 
+
+    \item[4.] First assume $\omega$ is a $p$-form on $M\times N$ such that both conditions 
+    $i_X \omega = 0$ and $\mathcal{L}_X\omega = 0$ for all $X$ with $d\pi(X) = 0$. We let 
+    $x_1,\dots, x_s$ and $x_{s+1},\dots, x_{s+t}$ be local coordinates for $M$ and $N$ in some neighborhood, and let the corresponding
+    dual bases have upper indices. The last condition tells us that
+    \[
+        X = \sum_{i = 1}^s X_i(m,n)\frac{\partial}{\partial x_i}.
+    \]
+
+    Suppose first that $\omega = x^I$ for 
+    some $I$ a multi-index of size $p$ by linearity. Choosing $X = \frac{\partial}{\partial x_i}$, we can write 
+    \[
+        0 = i_X\omega = \sum_{j = 1}^{s+t} (-1)^{j-1}m^{I_j}(\frac{\partial}{\partial x_i})m^{I_1}\wedge\cdots\wedge
+        \hat{m^{I_j}}\wedge\cdots\wedge m^{I_{s+t}}
+        = (-1)^{j-1}m^i(\frac{\partial}{\partial x_i}).
+    \]
+    But the last term would be nonzero if any $I_j \leq s$. Then $\omega$ must be a sum of 
+    wedges of forms only from the cotangent space of $N$. 
+
+    Now we show the coefficients of $\omega$ must also not depend on $M$. 
+
+    First note that for an arbitrary vector field $V$, we have
+    \[
+        d\pi[X,V] = [d\pi X, d\pi V] = 0
+    \]
+    if $d\pi(X) = 0$. Then by a previous exercise,
+    \[
+        0 = \mathcal{L}_X\omega(V_1, \dots, V_p) = X(\omega(V_1,\dots, V_p)) - \omega([X,V_1], \dots, V_p)
+        - \cdots - \omega(V_1, \dots, [X, V_p]) = X(\omega(V_1, \dots, V_p)),
+    \]
+
+    using the result mentioned above for lie brackets, since this means $i_{[X,V]}\omega = 0$.
+
+    Now with 
+    \[
+        \omega = \sum_{I} a_I(m,n) m^I,
+    \]
+
+    we choose vector fields $V_1, \dots, V_p$ so that $\omega(V_1, \dots, V_p) = a_I$ for any given
+    index $I$. Then we have
+    \[
+        0 = X(\omega(V_1, \dots, V_p)) = X(a_I(m,n))
+    \]
+    for any $X$ as above. This means the $a_I$ do not depend on inputs in $M$. Then 
+    we can just let $\alpha = \sum_I a_I m^I$, with all $m^{I_i}$ in $T^*N$, so that 
+    \[
+        \omega(V_1, \dots, V_p) = \omega(\{0\}\times d\pi(V_1),\dots,\{0\}\times d\pi(V_p))
+        = \alpha(d\pi(V_1),\dots,d\pi(V_p)) = \pi^*\alpha(V_1,\dots,V_p).
+    \]
+    
+    Conversely, suppose $\omega = \pi^*\alpha$ for $\alpha$ a $p$-form on $N$. Then 
+    $\omega = \sum_{I} a_I(n) dm^I$, where the $dm^I$ all come from $N$, where we view
+    the $a_I(n)$ as functions on $M\times N$ which are constant across $M$, and where the elements
+    of $T^*N$ are naturally considered as elements of $T*(M\times N)$. Then it is obvious
+    that if $d\pi(X) = 0$, $i_X(\omega) = 0$, since $X$ only takes derivatives in $M$. Similar
+    to the opposite direction, we can use the formula for the Lie derivative to deduce that
+    $\mathcal{L}_X\omega = X\circ\omega$, and that this equals zero since the coefficients of
+    $\omega$ only depend on values in $N$. 
+
+    \item[5.] (a.) We apply Cartan's magic formula:
+    \[
+        \mathcal{L}_X \Omega = i_X(d\Omega) + d(i_X\Omega).
+    \]
+
+    Since $\Omega$ is a top-form, $d\Omega = 0$. Then $d(i_X \Omega) = \mathcal{L}_X \Omega = \text{div}_\Omega X \Omega$
+    by definition.
+
+    (b.) Let $M = \RR^n$, $X = \sum_{i} X^i \frac{\partial}{\partial x^i}$, $\Omega = dx^1 \wedge \cdots \wedge dx^n$.
+    Then 
+    \begin{align*}
+        \text{div}_\Omega X \Omega = d(i_X\Omega) = d\left(\sum_{i = 1}^n (-1)^{i-1} X^i
+        dx^1 \wedge \cdots \wedge \hat{dx^i}\wedge\cdots\wedge dx^n\right)\\
+        = sum_{j = 1}^n \sum_{i = 1}^n \frac{\partial X^j}{\partial x^i}(-1)^{i-1} dx_j\wedge dx^1 \wedge \cdots \wedge \hat{dx^i}\wedge\cdots\wedge dx^n\\
+        = \sum_{i=1}^n \frac{\partial x_i}{\partial x^i}dx^1\wedge\cdots \wedge dx^n
+        = \left(\sum_{i = 1}^n \frac{\partial X_i}{\partial x^i}\right) \Omega.
+    \end{align*}
+
+    Then $\text{div}_\Omega X = \sum \frac{\partial X_i}{\partial x^i}$. 
+>>>>>>> 20d82943e97e28887e835582274edf57856fc70e
 
 \end{enumerate}
 

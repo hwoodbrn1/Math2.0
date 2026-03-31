@@ -1,0 +1,99 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 622}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 6}
+
+\begin{enumerate}
+    \item[1.] We show that 
+    \[
+        V_1^* \otimes \cdots V_k^* \otimes W \simeq \text{Mult}(V_1\times \cdots \times V_k, W),
+    \]
+    where $\text{Mult}(V_1\times \cdots \times V_k, W)$ is the space of multilinear maps $V_1 \times \cdots \times V_k
+    \to W$.
+
+    We proved in class the isomorphism 
+    \[
+        V_1^*\otimes \cdots\otimes V_k^* \simeq (V_1 \otimes \cdots \otimes V_k)^*,
+    \]
+    so that
+    \[
+        V_1^*\otimes \cdots \otimes V_k^*\otimes W \simeq 
+        (V_1^*\otimes \cdots \otimes V_k^*)\otimes W \simeq (V_1 \otimes \cdots \otimes V_k)^*\otimes W.
+    \]
+
+    Moreover, we proved in class that $U^*\otimes V \simeq \text{Hom}(U, V)$. Applying this above, we have 
+    \[
+        (V_1 \otimes \cdots \otimes V_k)^*\otimes W \simeq \text{Hom}(V_1 \otimes\cdots\otimes V_k, W).
+    \]
+    To finish, we must show $\text{Hom}(V_1 \otimes\cdots\otimes V_k, W) \simeq \text{Mult}(V_1\times \cdots \times V_k, W)$.
+
+    For each $\phi \in \text{Mult}(V_1\times \cdots \times V_k, W)$, by the universal property of the tensor
+    product, there is a unique map $\tilde{\phi} \in \text{Hom}(V_1 \otimes\cdots\otimes V_k, W)$ such
+    that $\tilde{\phi}(v_1 \otimes \cdots \otimes v_k) = \phi(v_1, \dots, v_k)$. Let 
+    $\Phi$ be the map $\phi \mapsto \tilde{\phi}$. It is injective by the uniqueness mentioned above. 
+    
+    To show surjectivity, let $g \in \text{Hom}(V_1 \otimes\cdots\otimes V_k, W)$. Then 
+    the map $h(v_1,\dots, v_k) = g(v_1\otimes \cdots \otimes v_k)$ is multilinear and satisfies $\Phi(h) = g$. 
+
+    $\Phi$ is also a linear map, since for $g, h \in \text{Mult}(V_1\times \cdots \times V_k, W)$,
+    \begin{align*}
+        \Phi(g + h)(v_1\otimes \cdots \otimes v_k) &= (g + h)(v_1, v_2,\dots, v_k)
+        = \alpha g(v_1, \dots, v_k) + h(v_1, \dots, v_k) \\
+        &= \Phi(g)(v_1\otimes \cdots\otimes v_k) + \Phi(h)(v_1\otimes \cdots\otimes v_k).
+    \end{align*}
+    Then we have shown the isomorphism.
+
+    \item[2.] 
+    
+\end{enumerate}
+
+\end{document}

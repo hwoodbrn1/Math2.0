@@ -1,9 +1,9 @@
-PWD /Users/henrywoodburn/Desktop/Math2.0/Math2.0/Spring 2026/Math 622/Homework/HW_7
+PWD /Users/henrywoodburn/Desktop/Math2.0/Math2.0/Spring 2026/Math 656/Homework/HW_4
 INPUT /usr/local/texlive/2023/texmf.cnf
 INPUT /usr/local/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/henrywoodburn/Desktop/Math2.0/Math2.0/Spring 2026/Math 622/Homework/HW_7/622_HW7.tex
-OUTPUT output/622_HW7.log
+INPUT /Users/henrywoodburn/Desktop/Math2.0/Math2.0/Spring 2026/Math 656/Homework/HW_4/656_HW4.tex
+OUTPUT output/656_HW4.log
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/base/size11.clo
@@ -295,10 +295,10 @@ INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/tools/array.sty
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/tools/array.sty
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-INPUT output/622_HW7.aux
-INPUT output/622_HW7.aux
-INPUT output/622_HW7.aux
-OUTPUT output/622_HW7.aux
+INPUT output/656_HW4.aux
+INPUT output/656_HW4.aux
+INPUT output/656_HW4.aux
+OUTPUT output/656_HW4.aux
 INPUT /usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -307,14 +307,14 @@ INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.st
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-INPUT output/622_HW7.out
-INPUT output/622_HW7.out
-INPUT output/622_HW7.out
-INPUT output/622_HW7.out
-INPUT output/622_HW7.out
-INPUT output/622_HW7.out
-OUTPUT output/622_HW7.out
-OUTPUT output/622_HW7.pdf
+INPUT output/656_HW4.out
+INPUT output/656_HW4.out
+INPUT output/656_HW4.out
+INPUT output/656_HW4.out
+INPUT output/656_HW4.out
+INPUT output/656_HW4.out
+OUTPUT output/656_HW4.out
+OUTPUT output/656_HW4.pdf
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
@@ -347,9 +347,9 @@ INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm
 INPUT /usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT output/622_HW7.aux
-INPUT output/622_HW7.out
-INPUT output/622_HW7.out
+INPUT output/656_HW4.aux
+INPUT output/656_HW4.out
+INPUT output/656_HW4.out
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
@@ -360,4 +360,3 @@ INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
-INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
