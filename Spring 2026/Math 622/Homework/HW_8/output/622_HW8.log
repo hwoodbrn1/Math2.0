@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.21)  29 MAR 2026 16:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.21)  1 APR 2026 20:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -667,8 +667,24 @@ Overfull \hbox (35.494pt too wide) detected at line 177
 
 
 [2]
+Overfull \hbox (22.64235pt too wide) detected at line 183
+\OML/cmm/m/it/10.95 d!\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 X[]; X[]; [] ; X[]\OT1/cmr/m/n/10.95 ) = [](\OMS/cmsy/m/n/10.95 ^^@\OT1/cmr/m/n/10.95 1)[]\OML/cmm/m/it/10.95 X[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 !\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 X[]; [] ; []; [] ; X[]\OT1/cmr/m/n/10.95 )) + [](\OMS/cmsy/m/n/10.95 ^^@\OT1/cmr/m/n/10.95 1)[]\OML/cmm/m/it/10.95 !\OT1/cmr/m/n/10.95 ([\OML/cmm/m/it/10.95 X[]; X[]\OT1/cmr/m/n/10.95 ]\OML/cmm/m/it/10.95 ; X[]; [] ; []; [] ; []; [] ; X[]\OT1/cmr/m/n/10.95 )
+ []
 
-[3] (output/622_HW8.aux)
+
+
+[3]
+Overfull \hbox (11.86212pt too wide) detected at line 230
+[]
+ []
+
+
+
+[4]
+
+[5]
+
+[6] (output/622_HW8.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
@@ -677,18 +693,18 @@ Package rerunfilecheck Info: File `622_HW8.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 34287 strings out of 467797
- 811224 string characters out of 5435982
+ 34290 strings out of 467797
+ 811242 string characters out of 5435982
  1351162 words of memory out of 5000000
  62425 multiletter control sequences out of 15000+600000
  632573 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  116i,12n,121p,823b,565s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on output/622_HW8.pdf (3 pages, 115045 bytes).
+Output written on output/622_HW8.pdf (6 pages, 137571 bytes).
 PDF statistics:
- 79 PDF objects out of 1000 (max. 8388607)
- 51 compressed objects within 1 object stream
- 4 named destinations out of 1000 (max. 500000)
+ 93 PDF objects out of 1000 (max. 8388607)
+ 62 compressed objects within 1 object stream
+ 7 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

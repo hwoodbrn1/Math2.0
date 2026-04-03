@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1774821222.78389 "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Spring 2026/Math 622/Homework/HW_8/622_HW8.tex" "output/622_HW8.pdf" "622_HW8" 1774821224.46397 0
-  "622_HW8.tex" 1774821222 7581 ba823cc8f554b21cf03726920667dd2d ""
-  "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Spring 2026/Math 622/Homework/HW_8/622_HW8.tex" 1774821222 7581 ba823cc8f554b21cf03726920667dd2d ""
+["pdflatex"] 1775092223.20824 "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Spring 2026/Math 622/Homework/HW_8/622_HW8.tex" "output/622_HW8.pdf" "622_HW8" 1775092224.92483 0
+  "622_HW8.tex" 1775092222 16430 70d2cac8369b7d4b91b205a5669e9e93 ""
+  "c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Spring 2026/Math 622/Homework/HW_8/622_HW8.tex" 1775092222 16430 70d2cac8369b7d4b91b205a5669e9e93 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1758478193 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1758474978 1004 54797486969f23fa377b128694d548df ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1758474978 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -208,8 +208,8 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1758484728 5574153 af86687748baf417d9e7d549313527be ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1758485016 3621638 2f152774f3ada12d62dba33e33b31994 ""
   "c:/texlive/2025/texmf.cnf" 1758484704 713 e69b156964470283e0530f5060668171 ""
-  "output/622_HW8.aux" 1774821224 162 fa61bf9ecf9314f94d51aa32222a725c "pdflatex"
-  "output/622_HW8.out" 1774821224 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "output/622_HW8.aux" 1775092224 162 f042405b684a8c860cba07045d113040 "pdflatex"
+  "output/622_HW8.out" 1775092224 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "output/622_HW8.aux"
   "output/622_HW8.log"

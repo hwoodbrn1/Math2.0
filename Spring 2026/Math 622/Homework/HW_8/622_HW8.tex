@@ -176,6 +176,174 @@
         + \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) \frac{\partial}{\partial z}.
     \end{align*}
 
+    \item[3.] Let $\omega$ be an $r$-form. We will prove that 
+    \[
+        d\omega(X_0, X_1, \dots, X_r) = \sum_{i = 0}^r (-1)^i X_i(\omega(X_0, \dots, \hat{X_i}, \dots, X_r))
+        + \sum_{0 \leq i < j \leq r} (-1)^{i + j}\omega([X_i, X_j], X_0, \dots, \hat{X_i}, \dots, \hat{X_j}, \dots, X_r)
+    \]
+    using induction on the order of $\omega$. 
+
+    We first prove for $r = 0$. Let $f$ be a $0$-form, or a function. Then
+    \[  
+        df(X_0) = X_0(f).
+    \]
+    This is the formula above, since in this case the second sum is empty.
+
+    For induction, suppose it has been proven for $r-1$-forms. 
+
+    We have Cartan's magic formula,
+    \[
+        \mathcal{L}_{X}(\omega) = i_{X}(d\omega) + d(i_{X}\omega),
+    \]
+    which tells us that 
+    \begin{gather*}
+        d\omega(X_0, \dots, X_r) = (-1)^r i_{X_r}\omega(X_0, \dots, X_{r-1}) = 
+        \left((-1)^r \mathcal{L}_{X_r}\omega - (-1)^r d(i_{X_r}\omega)\right)(X_0, \dots, X_{r-1}).
+    \end{gather*}
+
+    Starting from the formula we derived in the last homework,
+    \begin{align*}
+        (\mathcal{L}_{X_r}\omega)(X_0, \dots, X_{r-1}) & = X_r(\omega(X_0, \dots, X_{r-1})) - 
+        \omega([X_r, X_0], X_1, \dots, X_{r-1}) - \cdots - \omega(X_0, \dots, [X_r, X_{r-1}])\\
+        & = X_r(\omega(X_0, \dots, X_{r-1})) - \sum_{i = 0}^{r-1}(-1)^i\omega([X_r, X_i], \dots, \hat{X_i},\dots, X_{r-1})\\
+        & = X_r(\omega(X_0, \dots, X_{r-1})) + \sum_{i = 0}^{r-1}(-r)^i\omega([X_i, X_r], \dots, \hat{X_i}, \dots, X_{r-1}, \hat{X_r}).
+    \end{align*}
+
+    By the induction hypothesis, 
+    \begin{align*}
+        d(i_{X_r}\omega) &= \sum_{i = 0}^{r-1} (-1)^i X_i(i_{X_r}\omega(X_0, \dots, \hat{X_i}, \dots, X_{r-1}))\\
+        & + \sum_{0 \leq i < j \leq r-1}(-1)^{i + j}i_{X_r}\omega([X_i, X_j], \dots, \hat{X_i}, \dots, \hat{X_j}, \dots, X_{r-1})\\
+        & = \sum_{i = 0}^{r-1} (-1)^i X_i(\omega(X_r, X_0, \dots, \hat{X_i}, \dots, X_{r-1}))\\
+        & + \sum_{0 \leq i < j \leq r-1}(-1)^{i + j}\omega(X_r, [X_i, X_j], \dots, \hat{X_i}, \dots, \hat{X_j}, \dots, X_{r-1})\\
+        & = (-1)^r \sum_{i = 0}^{r-1} (-1)^i X_i(\omega(X_0, \dots, \hat{X_i}, \dots, X_{r}))\\
+        & + (-1)^r\sum_{0 \leq i < j \leq r-1}(-1)^{i + j}\omega([X_i, X_j], \dots, \hat{X_i}, \dots, \hat{X_j}, \dots, X_{r}).
+    \end{align*}
+
+    Putting this all together,
+    \begin{align*}
+        d\omega(X_0, \dots, X_r) 
+        & = (-1)^r X_r(\omega(X_0, \dots, X_{r-1})) + \sum_{i = 0}^{r-1}(-1)^{i + r}\omega([X_i, X_r], \dots, \hat{X_i}, \dots, X_{r-1}, \hat{X_r})\\
+        & + \sum_{i = 0}^{r-1} (-1)^i X_i(\omega(X_0, \dots, \hat{X_i}, \dots, X_{r}))
+         + \sum_{0 \leq i < j \leq r-1}(-1)^{i + j}\omega([X_i, X_j], \dots, \hat{X_i}, \dots, \hat{X_j}, \dots, X_{r})\\
+         & = \sum_{i = 0}^r (-1)^i X_i(\omega(X_0, \dots, \hat{X_i}, \dots, X_r))
+        + \sum_{0 \leq i < j \leq r} (-1)^{i + j}\omega([X_i, X_j], X_0, \dots, \hat{X_i}, \dots, \hat{X_j}, \dots, X_r).
+    \end{align*}
+
+    \item[4.] Let $(X_1, \dots, X_n)$ be a frame on a manifold $M$ and $(\omega^1, \dots, \omega^n)$ the dual coframe. 
+    (a.) Since $[X_i, X_j]$ is a smooth vector field for every $i, j$, it can be expressed at each point in the basis 
+    given by the frame. Then there are coefficients $c_{ij}^k$, $1 \leq i,j,k \leq n$ such that 
+    \[
+        [X_i, X_j] = \sum_{k = 1}^n c_{ij}^k X_k.
+    \]
+    Using the identity $[X_i, X_j] = -[X_j, X_i]$, we see that 
+    \[
+        \sum_{k = 1}^n c_{ij}^k X_k = \sum_{k = 1}^n c_{ji}^k X_k,
+    \]
+    so that
+    \[
+        \sum_{k = 1}^n (c_{ij}^k - c_{ji}^k) X_k = 0,
+    \]
+    and thus $c_{ij}^k = c_{ji}^k$ by linear independence. 
+
+    To prove smoothness of the coefficients, we use the fact that the pairing of a one form with a vector field results in 
+    a smooth function on $M$. In general, if $Y = \sum_{i = 1}^n y^i X_i$ is a vector field, we apply the covector field
+    $\omega^i$:
+    \[
+        \omega^i(Y) = y_i.
+    \]
+    Then the coefficients of $Y$ are smooth functions. This applies to the Lie bracket above. 
+
+    In the dual case, we have a basis for $\Lambda^2 M$ given by $\omega^i \wedge \omega^j$ for $1 \leq i < j \leq n$. Since
+    $d\omega^k$ is a $2$-form, we can write
+    \[
+        d\omega^k = \sum_{1 \leq i < j \leq n} \tilde{e}_{ij}^k \omega^i \wedge \omega^j.
+    \]
+    Then let $e_{ij}^k = \frac{\tilde{e}_{ij}^k}{2}$ for $i < j$ and $e_{ij}^k = -\frac{\tilde{e}_{ji}^k}{2}$ for $j < i$. 
+    Note the diagonals of both matrices are zero. Then 
+    \begin{align*}
+        & \sum_{1 \leq i, j \leq n} e_{ij}^k \omega^i \wedge \omega^j 
+        = \sum_{1 \leq i < j \leq n}(e_{ij}^k - e_{ji}^k)\omega^i \wedge \omega^j\\
+        & = \sum_{1 \leq i < j \leq n}\left(\frac{\tilde{e}_{ij}^k + \tilde{e}_{ij}^k}{2}\right)
+        = \sum_{1 \leq i < j \leq n}\tilde{e}_{ij}^k \omega^i \wedge \omega^j = d\omega^k.
+    \end{align*}
+
+    We also have $e_{ij}^k = - e_{ji}^k$ by definition. The coefficients are smooth since 
+    $d\omega^k(X_i, X_j) = e_{ij}^k$, and a smooth 2-form applied to two vector fields gives a smooth function. 
+
+    (b.) We use the formula from (3.):
+    \[
+        d\omega^k(X_i, X_j) = X_i(\omega^k(X_j)) - X_j(\omega^k(X_i)) - \omega^k([X_i, X_j]).
+    \]
+    In this case, since $\omega^k(X_j)$ takes the value zero or one, the first two terms are zero. For the last term,
+    \[
+        \omega^k([X_i, X_j]) = \omega^k\left(\sum_{k = 1}^n c_{ij}^k X_k\right) = c_{ij}^k.
+    \]
+    In part (a.) we showed that $d\omega^k(X_i, X_j) = e_{ij}^k$. Then $e_{ij}^k = c_{ij}^k$.
+
+    \item[5.] Let $\omega$ be a closed non-degenerate $2$ form on $M$. 
+    (a.) Given a coordinate neighborhood, any 2-form is represented 
+    by a skew-symmetric matrix, say $A$. In detail, we let
+    \[
+        A_{ij} = \omega\left(\frac{\partial}{\partial x_i}, \frac{\partial}{\partial x_j}\right).
+    \]
+    It is clear that $A$ is skew symmetric. We have 
+    \[
+        \omega(X, Y) = Y^t A X
+    \]
+
+    for vector fields $X$ and $Y$, where the transpose is only to describe the action of $A$. 
+    The non-degeneracy condition means that if $AX = 0$, then $X$ is zero. This means $A$ is an
+    invertible matrix. 
+
+    Let $h$ be a smooth function. We want to find a vector field $H$ such that $i_{H}\omega = -dh$. In 
+    other words, we want to solve $i_H\omega (X) = X^t A H = -dh(X)$ for $H$, where $X$ is an arbitrary vector field. 
+    But we can do this, since $A$ is invertible. Let $X = \frac{\partial}{\partial x_i}$ be a vector field in local
+    coordinates for a fixed $i$. Then 
+    \begin{align*}
+        X^t A H = (A H)_i dx^i = -dh = -\sum_{i = 1}^n \frac{\partial h}{\partial x_i} dx^i = -\frac{\partial h}{\partial x_i}dx^i,
+    \end{align*}
+
+    and we can take $H_i = -{(A^{-1})}_i^j(\frac{\partial h}{\partial x_j})$.
+
+    (b.) We use Cartan's magic formula: $\mathcal{L}_{H}\omega = i_H(d\omega) + d(i_H\omega)$. Here $d\omega = 0$ since $\omega$
+    is closed, and the second term is zero since $i_H\omega$ is exact. Then $\mathcal{L}_H \omega = 0$. 
+
+    Moreover, the Lie derivative is the derivative of the pushforward $(e^{tH})^*\omega$ at time $t = 0$, but we 
+    can choose any $t$ which our flow is defined to take our derivative, since the derivative 
+    at $t = s$ is the same as taking the derivative at $t = 0$ of the related flow which is $s$ ahead of the original
+    flow. But these determine the same vector field. Then the pushforward is constant for all time. But we know 
+    that $(e^{0})^*\omega = \omega$, so $(e^{iH})^*\omega = \omega$ for all $t$. 
+
+    (c.) (i.) Let $\lambda = (q,p)$ and $v \in T_\lambda(T^*M)$. We define 
+    \[
+        s(\lambda)(v) = p(d\pi(v)).
+    \]
+    We can write $v = \sum a_i \frac{\partial}{\partial x_i}|_q + \sum b_i \frac{\partial}{\partial y_j}|_p$, so
+    that $d\pi(v) = \sum a_i \frac{\partial}{\partial x_i}$. 
+
+    We know that $s$ has some coefficients $s_j, r_j$ such that 
+    \[
+        s = \sum s_j dx^i + \sum r_j dy^i.
+    \]
+    If we let $v = \frac{\partial}{\partial x_i}$, we see that 
+    \[
+        s_i = p(d\pi(v)) = y_i.
+    \]
+    It is also clear that the $r_j$'s must be zero because of the projection. 
+
+    (ii.) Taking the differential, we see that
+    \[
+        ds = \sum dy_i \wedge dx_i.
+    \]
+
+    Let $X = \sum a_i \frac{\partial}{\partial x_i} + \sum b_i \frac{\partial}{\partial y_i}$. 
+    Suppose $i_X \omega = 0$. We can represent $i_X \omega$ in terms of the coordinate basis 
+    for $T^*M$. We have 
+    \[
+        i_X\omega(\frac{\partial}{\partial x_i}) = \sum b_i dx^i - \sum a_i dy^i.
+    \]
+    Then if $i_X \omega = 0$, each of the coefficients of $X$ must be zero by linear independence. 
+
 \end{enumerate}
 
 \end{document}
