@@ -1,0 +1,93 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 622}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 9}
+
+\begin{enumerate}
+    \item[1.] Let $M$ be a manifold and $\{U_i, \phi_i\}$ at atlas for $M$. Restricting to some neighborhood
+    $U_i$, define a $(0,2)$ tensor $\omega_i = \phi_i^*(\cdot, \cdot)_{\RR^n}$, the pullback of the usual inner product 
+    on $\RR^n$, where $n$ is the dimension of $M$. In order to show $\omega_i$ defines an inner product on every $T_p M$ 
+    for every $p \in U_i$, we must show it is symmetric and postive definite. Fix $p \in U_i$. For any $u, v \in T_p M$, 
+    \[
+        \omega_i(u, v) = (d\phi(u), d\phi(v))_{\RR^n} = (d\phi(v), d\phi(u))_{\RR^n} = \omega_i(v,u),
+    \]
+    and 
+    \[
+        \omega_i(u,u) = (d\phi(u),d\phi(u))_{\RR^n} > 0
+    \]
+    unless $u = 0$ since $d\phi$ is injective. 
+
+    Let $\{f_i\}$ be a partition of unity subordinate to $\{U_i\}$. We can extend $\omega_i$ to be a $(0,2)$-tensor 
+    on all of $M$ by taking $\tilde{\omega}_i = f_i\omega_i$. Finally define a $(0,2)$-tensor 
+    \begin{equation}\label{omega}
+        \omega = \sum f_i \omega_i.
+    \end{equation}
+    I claim that $\omega$ defines a riemannian structure on $M$. The symmetry of $\omega$ is immediate from its definition.
+    For positivity at each $T_p M$, suppose $\omega|_p(u,u) = 0$. Since each $\omega_i$ and $f_i$ is non-negative,
+    every element of the sum \ref{omega} must be zero. In particular, if $U_j$ is an open set containing $p$,
+    $\omega_j|_p(u,u) = 0$ and thus $u = 0$. 
+    
+    \item[2.] Let $F: \left(0,2\pi\right)\times \left(0,2\pi\right) \to T^2$ be the map 
+    \[
+        (s,t) \mapsto (cos(s), sin(s), cos(t), sin(t)).
+    \]
+    We view the domain $(0,2\pi)\times(0,2\pi)$ as an open submanifold of the quotient space 
+    $\left([0,2\pi]\times[0,2\pi]\right)/\sim$, 
+    which identifies each point on the boundary of the square with the one opposite to it. This space
+    is diffeomorphic to our original $T^2$, since both are defined as products of copies of $S^1$. We compute
+    the integral of the pullback $F^*\omega$ on the open submanifold, as $F$ is a diffeomorphism of the submanifold.
+    Since the complement of the submanifold has measure zero, this integral will be equal to the integral
+    over the entire manifold of the pullback. 
+
+\end{enumerate}
+
+\end{document}

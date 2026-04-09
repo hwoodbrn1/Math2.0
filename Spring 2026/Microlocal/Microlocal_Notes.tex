@@ -15,7 +15,6 @@
 \usepackage{array}   % for \newcolumntype macro
 \newcolumntype{L}{>{$}l<{$}}
 
-\usepackage{mathptmx}
 
 \theoremstyle{plain}
 \newtheorem*{theorem}{Theorem}
@@ -176,7 +175,25 @@ We call $b(x,\xi)$ the \textbf{complete symbol} of $A$.
     \]
 
     (b.) This exercise asks us to show the linear map $\RR^n \to \RR^{n-d}$ sending a
-    schwartz function to its restriction to the subspace $x'' = 0$, where $(x', x'') \in \RR^{n-d} \times \RR^d$.
+    schwartz function $u$ to its restriction $\tilde{u} = u|_{x'' = 0}$ is continuous
+    $H^s(\RR^n) \to H^{s-d/2}(\RR^{n-d})$.
+    
+    Using the Fourier Inversion formula, we can write
+    \[
+        u(x', 0) = \int_{\RR^{n-d}}\int_{\RR^d} e^{ix'\cdot \xi'} \hat{u}(\xi', \xi'')d\xi''d\xi' = 
+        \mathcal{F}_{x'}^{-1}\left(\int_{\RR^d}\hat{u}(\xi',\xi'')d\xi''\right).
+    \]
+    Then after taking the fourier transform of the restricted function, we have
+    \[
+        \mathcal{F}_{x'}\left(\tilde{u}\right) = \int_{\RR^d}\hat{u}(\xi',\xi'')d\xi''.
+    \]
+    Now we can write
+    \[
+        \|\langle \xi\rangle^{s-d/2}\hat{\tilde{u}}\|_{L^2(\RR^{n-d})}
+        = \|\|\langle \xi\rangle^{s-d/2}{\left|\int_{\RR^d}\hat{\tilde{u}}(\xi',\xi'')d\xi''\right|}^2\|_{L^2(\RR^{n-d})}
+        \leq \|\langle \xi\rangle^{s-d/2}\int_{\RR^d}|\hat{\tilde{u}}(\xi',\xi'')d\xi''\|_{L^2(\RR^{n-d})}.
+    \]
+    Using Cauchy-Schwartz, 
     
 
 \end{enumerate}
