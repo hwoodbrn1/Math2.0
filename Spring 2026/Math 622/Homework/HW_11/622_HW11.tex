@@ -1,0 +1,188 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 622}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 11}
+
+\begin{enumerate}
+
+    \item[1.] For $v \in T_g(G)$, we define $\omega_g(v) = d(L_{g^{-1}})(v)$. Then we can
+    write 
+    \begin{align*}
+        (R_g)^*(\omega)_h (v) = \omega_{hg}(d(R_g)_h(v)) = 
+        d(L_{g^{-1}h^{-1}}) \circ d(R_g)(v) = d(R_g) \circ d(L_{g^{-1}})\circ d(L_{h^{-1}})(v)\\
+        = d(L_g \circ r_{g^{-1}})\omega(v),
+    \end{align*}
+    since it is clear that the differentials of left and right multiplication commute,
+    since the underlying maps commute. 
+
+    \item[2.] Define a distribution $D$ on $M \times N$ defined by the forms
+    \[
+        s_i = \pi^*(\alpha_i) - \rho^*(\omega_i).
+    \]
+
+    Then to show $D$ is involutive, we need to verify that $ds_i$ also vanishes on $D$. 
+    We have
+    \begin{align*}
+        d(\pi^*\alpha_i - \rho^*\omega_i) = \pi^*(d\alpha_i) - \rho^*(d\omega_i) = 
+        \pi^*(k_i \alpha_1 \wedge \wedge 2) - \rho^*(k_i \omega_1 \wedge \omega_2)\\
+        = k_i(\pi^*(\alpha_1)\wedge \pi^*(\alpha_1) - \rho^*(\omega_1) \wedge \rho^*(\omega_2)).
+    \end{align*}
+
+    Then
+    \[
+        (\pi^*(\alpha_1) - \rho^*(\omega_1))\wedge(\pi^*(\alpha_2) + \rho^*(\omega_2))
+        - (\pi^*(\alpha_2) - \rho^*(\omega_2))\wedge(\pi^*(\alpha_1) + \rho^*(\omega_1))
+        = 2 \pi^*(\alpha_1)\wedge\pi^*(\alpha_2) - \rho^*(\omega_1)\wedge\rho^*(\omega_2),
+    \]
+    and from here it is clear that we can write
+    \[
+        ds_i = \sum_i \beta_i \wedge s_i
+    \]
+    by adding the constant $k_i/2$ to the previous calculation.
+
+    Then $D$ is involutive. 
+
+    Now we have for every $(m,n) \in M\times N$, there is a neighborhood $U \times V \ni (m,n)$
+    and an integral submanifold $S$ defined on $U \times V$ passing through $(m,n)$,
+    and a coordinate neighborhood such that all such integral manifolds are slices,
+    with two coordinates constant. 
+
+    Then since both projection maps are injections onto rank 2 manifolds, they are diffeomorphisms.
+    Now define a diffeomorphism $F := \rho^{-1}\circ \pi$ on $U \subset N$. 
+
+    We know that $\pi^*(\alpha_i) = \rho^*(\omega_i)$ on $S$, so that 
+    \[
+        \alpha_i = F^*(\omega_i).
+    \]
+
+    \item[3.] (a.) Suppose $u$ is a solution. Then $du(X_i) = X_i(u) = g_i = omega(X_i)$. Since
+    the vector fields $X_i$ form a frame, it is enough to check this on each $X_i$. 
+    Then $du = \omega$.
+
+    Now suppose $du = \omega$. So $g_i = \omega(X_i) = du(X_i) = X_i(u)$.
+    
+    (b.) Suppose $u$ has a solution. Then $X_i(u) = g_i$. Then we have
+    \[
+        [X_1, X_2](u) = X_1(X_2(u)) - X_2(X_1(u)) = X_1(g_2) - X_2(g_1),
+    \]
+    and on the other hand we have
+    \[
+        [X_1, X_2](u) = \alpha_1 X_1(u) + \alpha_2 X_2(u) = \alpha_1 g_1 + \alpha_2 g_2.
+    \]
+
+    Now suppose the converse, that $X_1(g_2) - X_2(g_1) = \alpha_1 g_1 + \alpha_2 g_2$. We
+    will show $\omega = du$ for some $u$, and thus $u$ is a solution by part (a.). To do 
+    this we show $\omega$ is closed, which will imply it is exact since $\RR^2$ is contractible. 
+
+    We use the coordinate free formula:
+    \[
+        d\omega(X_1, X_2) = X_1(\omega(X_2)) - X_2(\omega(X_1)) - \omega([X_1, X_2])
+        = X_1(g_2) - X_2(g_1) - \omega(\alpha_1 X_1 + \alpha_2 X_2)
+        = X_1 g_2 - X_2 g_1 - \alpha_1 g_1 - \alpha_2 g_2 = 0
+    \]
+    by assumption. 
+
+    (ci.) Suppose $u$ is a solution. Choose $p = (x,y, u(x,y)) \in \Gamma_u$. Then since
+    the vector fields form a frame, we can express the tangent space to $\Gamma_u$ at $p$
+    as $\text{span}((1,0,\frac{\partial u}{\partial x_1}(x,y)), (0,1,\frac{\partial u}{\partial x_2}(x,y)))$,
+    where $x_i = X_i(p)$. Then we check that 
+    \[
+        \Omega(1,0,\frac{\partial u}{\partial x_1}(x,y)) = \frac{\partial u}{\partial x_1}(x,y) - \omega(X_1)
+        = \frac{\partial u}{\partial x_1}(x,y) - g_1(x,y).
+    \]
+    But the derivative of $u$ in the direction of $X_1$ at $(x,y)$ is just $g(x,y)$ since
+    $u$ is a solution of (1). The same is true for the other basis vector. Then 
+    is is clear the graph is integral. 
+
+    Now suppose that the graph is integral. Then at any point, the derivatives in $X_1$ and $X_2$ 
+    directions are annihilated by $\Omega$. Similar to the opposite direction, this 
+    implies that $u$ is a solution to (1).
+
+    \item[4.] Choose a coordinate neighborhood $U$ with coordinates $\{x_1, \dots, x_n\}$.
+    Then the tautological symplectic 2-form is given by
+    \[
+        \omega = \sum_i dy_i \wedge dx^i.
+    \]
+    Then using the definition of the pullback, we have
+    \[
+        \iota^*(\omega) = \sum_i d(df(x)_i)\wedge d(x_i) = 0,
+    \]
+
+    since $df(x)_i = \frac{\partial f}{\partial x_i} dx_i$.
+
+    \item[5.] Since $\theta$ is a contact form, there is a vector field $R$ such that 
+    $\theta(R) = 1$ and $d\theta(R) = 0$. Then for any vector field $X$ we can write
+    \[
+        X = Y + fR
+    \] 
+    for a unique vector field $Y$ which is an element of $D$. This implies $d\theta(X) = d\theta(Y)$.
+    Moreover, the condition that $X$ is an infinitesimal generator means 
+    $\mathcal{L}_X\theta = g\theta$ for some function $g$. This is along the lines of the problem
+    on a previous homework, since the distribution is generated a single one form. 
+
+    We can choose a vector field $X_f$ such that $\theta(X_f) = f$, but it may not be
+    an infinitesimal generator. 
+    
+    We have Cartan's Magic formula
+    \[
+        \mathcal{L}_X\theta = \iota_X(d\theta) + d(\iota_X\theta) = \iota_X(d\theta) + df.
+    \]
+
+    I could not continue.
+
+    We can explicitly show that $X_f = x\frac{\partial}{\partial x} + y\frac{\partial}{\partial y} + f
+    \frac{\partial}{\partial z}$.
+
+    
+\end{enumerate}
+
+\end{document}
