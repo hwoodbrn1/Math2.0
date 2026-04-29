@@ -1,0 +1,274 @@
+\documentclass[11pt, reqno]{beamer}
+\usetheme{madrid}
+\usefonttheme{serif}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\author[]{Henry Woodburn}
+\title{Dirac operators on Spin Manifolds}
+\setbeamertemplate{navigation symbols}{}
+\date{\today}
+\bibliographystyle{apalike}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \textbf{Contents:} 
+    We will define the group $\text{Spin}(k)$ and spin manifolds. We will define the dirac operator 
+    on a spin manifold, called the Atiyah-Singer operator. Finally, we will give an application 
+    of the index theorem to a result regarding positive scalar curvature. 
+\end{frame}
+
+\begin{frame}{The group $\text{Spin}(k)$}
+    The group $\text{Spin}(k)$ is a compact Lie group. It is a double cover of $\text{SO}(k)$, the group
+    of rotations in $\RR^n$. 
+
+    Informally, the spin group lets us rotate space in a ``complex'' dimension.
+    
+    \begin{example}
+        For $k = 1$, $\text{Spin}(k) = \text{O}(1) = \{-1, 1\}$. 
+
+        For $k = 2$, $\text{Spin}(k) = \text{SO}(2)$, the circle group. The double cover
+        is just winding the circle around itself twice.
+
+        For $k = 3$, $\text{Spin}(k) = SU(2)$, the group of unit quaternions.
+    \end{example}
+
+    For the case $k = 2$, the spin group is not that interesting. However, for $k \geq 3$, 
+    the $\text{Spin}(k)$ is simply connected, and is the univeral cover of $\text{SO}(k)$.
+\end{frame} 
+
+\begin{frame}{Principal Bundles}
+    \begin{definition}
+        Let $X$ be a topological space and $G$ be a topological group. A \textbf{principal $G$-bundle}
+        is a fiber bundle $P \to X$, with a continuous action of $G$ on $P$ preserving the fibers.
+        The fibers are \textit{homeomorphic} to $G$, but not isomorphic. 
+    \end{definition}
+
+    A classical example of a principal bundle is the frame bundle of a smooth manifold $M$. The
+    fiber of a point $m \in M$ is the set of frames for the tangent space at $M$. This is a 
+    principal $\text{GL(n)}$-bundle.
+    
+    \medskip
+    If $M$ is oriented, we can similarly talk about the principal $\text{SO}(n)$-bundle of 
+    positively oriented, orthogonal frames of an oriented manifold $M$. 
+\end{frame}
+
+\begin{frame}{Spin Manifolds}
+    We can define a higher analogue of orientation using the spin group. Let $M$ be an oriented Riemannian
+    manifold of dimension $k$, and let $P_{\text{SO}}$ be the principal $\text{SO}(k)$-bundle 
+    of oriented orthonormal frames of the tangent bundle $TM$. 
+    \begin{definition}
+        A \textbf{spin structure} on $M$ is a principal $\text{Spin}(k)$-bundle 
+        $P_{\text{Spin}}$ over $M$, which is a double cover of $P_{\text{SO}}$,
+        and such that the covering is compatible with the fiber-wise double cover $\text{Spin}(k) \to \text{SO}(k)$.
+        if $M$ admits a spin structure, it is called a \textbf{spin manifold}.
+    \end{definition}
+
+    An example of a spin manifold is the torus $\mathbb{T}^n$. Its tangent bundle is trivial, so there
+    are no obstructions to a spin structure.
+\end{frame}
+
+\begin{frame}{Spinors}
+    In the same way to every vector bundle there is an associated principal $\text{GL}(k)$-bundle of frames,
+    there is a way to associate to every principal $G$-bundle a vector bundle $E$, so that $G$ encodes the
+    data for how to piece together trivializations of $E$.
+
+    \medskip
+    We will not go into details here, but to every spin manifold, we can associate a bundle $S$ called the 
+    \textbf{spinor bundle}. This is an example of a \textbf{Clifford bundle}. Without going into details,
+    these are bundles which have a \textbf{Clifford action}, meaning at every $x \in M$, tangent
+    vectors to $M$ at $x$ act on the fiber $S_x$. This will be used to define Dirac operators. 
+
+    \medskip
+    There is a connection $\nabla$ on the spinor bundle $S$ called the \textbf{spin connection}. It
+    can be thought of as a derivative on section of $S$, with
+    \[
+        \nabla: C^\infty(S) \to C^\infty(T^*M\otimes S).
+    \]
+
+\end{frame}
+
+\begin{frame}{The Dirac Operator}
+    let $M$ be a spin manifold of even dimension $n$, $S$ the spinor bundle, and $\nabla$ the 
+    spin connection on $S$. The Dirac operator $D$ on this clifford bundle is called the Atiyah-Singer operator.
+
+    \begin{definition}
+        We define $D$ by the following sequence of maps 
+        \[
+            C^\infty(S) \to C^\infty(T^*M \otimes S) \to C^\infty(TM\otimes S) \to C^\infty(S),
+        \]
+        where the first arrow is just the connection on $S$, the second arrow is the identification of $T^*M$
+        with $TM$ using the metric on $M$, and the last arrow comes from the clifford action of sections of $TM$
+        on $S$ fiberwise. 
+    \end{definition}
+
+    In a local orthonormal basis, we can write
+    \[
+        Ds = \sum_i e_i \nabla_i s
+    \]
+    where $\nabla_i$ is the connection applied to $\partial_i$. 
+\end{frame}
+
+\begin{frame}{Grading}
+    The spinor bundle $S$ is graded, meaning there is a decomposition
+    \[
+        S = S^0 \oplus S^1
+    \]
+    of $S$ into even and odd parts. The clifford action on the spinor bundle is required to be 
+    chirality-reversing, meaning it sends elements of $S^0$ to $S^1$, and vice versa. From
+    the local expression for the dirac operator $D$, we can see that $D$ is an odd operator, 
+    meaning it reverses chirality. Thus, we can write
+    \[
+        D = \begin{bmatrix}
+            0 & D^-\\
+            D^+ & 0
+        \end{bmatrix}.
+    \]
+
+    Moreover, these operators are adjoints of one another. In particular, we have the expression
+    \[
+        \text{Index}(D^+) = \dim\ker D^+ - \dim \ker (D^+)^* = \dim\ker D^+ - \dim\ker D^-
+    \]
+    for the index of $D^+$. Also, $D$ is formally self adjoint.
+\end{frame}
+
+\begin{frame}
+    The square of the Dirac operator 
+    Let $e_i$ be an orthonormal frame at $m \in M$. Then we have
+    \begin{align}
+        D^2s & = \sum_{i,j}e_j \nabla_j(e_i \nabla_i s)\\
+        & = \sum_{i,j}e_j e_i \nabla_j \nabla_i s\\
+        & = -\sum_i \nabla_i^2 s + \sum_{j < i} e_j e_i (\nabla_j \nabla_i - \nabla_i \nabla_j)s\\
+        & = \nabla^*\nabla s + Ks.
+    \end{align}
+    
+    For a spin manifold $M$, this simplifies to
+    \[
+        D^2 = \nabla^*\nabla + \frac{1}{4}\kappa,
+    \]
+    where $\kappa$ is the scalar curvature of $M$. This is known as the \textbf{Lichnerowicz formula}.
+    The operator $\nabla^* \nabla$ is called the connection laplacian.
+\end{frame}
+
+\begin{frame}{Twisting}
+    We need an extra construction for our final theorem. If $S$ is the spinor bundle on a spin manifold $M$,
+    and $E$ is any vector bundle on $M$, the vector bundle $S \otimes E$ is also a clifford bundle, meaning
+    there is a clifford action on the fibers. We call this a \textbf{twisted spinor bundle}.
+    
+    \medskip
+    Here we define the \textbf{twisted Dirac operator} $D_E$. We have the more general formula
+    \[
+        D_E^2 = \nabla^*\nabla + \frac{1}{4}\kappa + R^E,
+    \]
+    where $R^E$ only depends on the curvature of the bundle $R^E$ and the dimension, and $\kappa$ is the scalar curvature
+    of $M$. 
+
+    \medskip
+    The comments about grading carry over to this case, so that we have the operators $D_E^+$ and $D_E^-$. 
+\end{frame}
+
+\begin{frame}{Enlargeable Manifolds}
+    \begin{definition}
+    Let $X$ be a Riemannian manifold. A map $f: X \to S^n$ is \textbf{$\epsilon$-contracting} if we have
+    \[
+        \|f^*v\| \leq \epsilon \|v\|
+    \]
+    for all tangent vectors $v$. 
+
+    A compact riemannian manifold $M$ of dimension $n$ is \textbf{compactly enlargeable} if for every $\epsilon > 0$, there exists an orientable
+    Riemann covering space which admits an $\epsilon$-contracting map to $S^n$ of non-zero degree, such that
+    the covering map is finite.
+    \end{definition}
+
+    An example of an enlargeable spin manifold is the Storus $\mathbb{T}^n$ (\textit{draw}).
+\end{frame}
+
+\begin{frame}{Final Theorem}
+    \begin{theorem}[Gromov-Lawson]
+    An enlargeable spin manifold may not carry a metric of positive scalar curvature. 
+    \end{theorem}
+
+    \textbf{Proof:} Let $M$ be an even dimensional compact spin manifold of even dimension.
+    Suppose that $M$ does carry a metric 
+    of positive scalar curvature, with $\kappa \geq \kappa_0 + c > 0$ for some $\kappa_0$ and $c > 0$. 
+
+    Choose a complex vector bundle $E_0$ on the sphere $S^n$ such that the top Chern class $c_n(E_0) \neq 0$. 
+    This is always possible.
+
+    Let $\epsilon > 0$ and choose a finite orientable covering $\tilde{M} \to X$ which admits 
+    an $\epsilon$-contracting map to the sphere of non-zero degree. Use $f$ to pull back $E_0$
+    to a bundle $E$ on $\tilde{X}$. Let $S$ be the spinor bundle on $\tilde{M}$, 
+    and Consider the twisted Atiyah-Singer operator $D_E$ on $S\otimes E$ 
+    as mentioned before. We have the formula
+    \[
+        D_E^2 = \nabla^*\nabla + \frac{1}{4}\kappa + R^E.
+    \]
+\end{frame}
+
+\begin{frame}
+    We will now use (without proof) that the term $R^E$ satisfies the estimate
+    \[
+        \|R^E\| < \frac{1}{4}k_0
+    \]
+    on each fiber of $M$. Let $s$ be a section of $S\otimes E$. Then pointwise, we have
+    \begin{align}
+        \langle D_E^2 s, s\rangle & = |\nabla s|^2 + \frac{1}{4}\kappa |s|^2 + \langle R^E s, s\rangle.
+    \end{align}
+    For the last term, we have
+    \[
+        \langle R^E s, s \rangle \leq \|R^E\||s|^2 < \frac{1}{4}k_0 |s|^2,
+    \]
+    so that
+    \[
+        \langle D_E^2 s, s\rangle > |\nabla s|^2 + \frac{1}{4}\kappa |s|^2 - \frac{1}{4}|s|^2 > |\nabla s|^2 + c|s|^2.
+    \]
+
+    This gives us the global $L_2$ estimate
+    \[
+        \|D_E^2 s\| \geq c\|s\|.
+    \]
+\end{frame}
+
+\begin{frame}
+    Now it is clear that if $D_E s = 0$, we must have $s = 0$. In fact this implies $D_E^+ s = 0$, so that 
+    $\ker D^+ = \ker D^- = \{0\}$. In particular, we have
+    \[
+        \text{Index}(D_E^+) = \dim\ker D^+ - \dim\ker D^- = 0.
+    \]
+
+    However, from a calculation using the Index formula for twisted dirac operators, we can show the index of 
+    the dirac operator is non-zero. This gives a contradiction, and thus $X$ may not admit a metric 
+    of positive scalar curvature. 
+\end{frame}
+
+\end{document}

@@ -1,0 +1,379 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 656}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Large \bfseries \noindent Dirac Operators, Spin manifolds, and Positive Scalar Curvature}
+
+\tableofcontents
+
+\section{Introduction}
+
+These are the notes for my final presentation in Functional Analysis II. The goal of this presentation will 
+be to ``prove'' a theorem about certain types of manifolds which do not admit positive scalar curvature 
+using the Atiyah-Singer index theorem. Along the way, we will define the Dirac Operator on a Riemannian Manifold,
+investigate spin structures, and see how these two interact on a spin manifold. 
+
+\section{Riemannian Geometry}
+
+\begin{definition}
+    Let $M$ be a smooth manifold, and $V$ a vector bundle on $M$. 
+    A \textbf{Connection} on $V$ is an $\RR$-linear map $\nabla: C^\infty(V) \to \Omega(V) = C^\infty(T^*M \otimes V)$ which
+    satisfies the Leibniz rule:
+    \[
+        \nabla(fs) = df \otimes s + f\nabla s,
+    \]
+    where $f \in C^\infty(M), s \in C^\infty(V)$.
+
+    A connection tells us how to differentiate sections of the bundle $V$. Given a section $s \in C^\infty(V)$ and a 
+    vector field $X \in C^\infty(TM)$, the section $\nabla_X s \in C^\infty(V)$ acts as the ``derivative''
+    of $s$ in the direction of $X$. 
+\end{definition}
+
+\begin{example}
+    An example of a connection on $\RR^n$ with $V = TM$ is the Lie derivative,
+    \[
+        \nabla_X: s \mapsto \mathcal{L}_X s
+    \]
+    where $X, s \in C^\infty(TM)$.
+\end{example}
+
+A related notion is \textbf{Parallel Transport}, which is a way to lift paths in $M$ to paths in 
+our bundle $V$. 
+
+\begin{definition}
+    We define the \textbf{Curvature Operator} $K$ of $V$ to be the map
+    \[
+        K(X, Y)Z = \nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X,Y]}Z.
+    \]
+    In other words, $K(X,Y)$ is the difference $[\nabla_X, \nabla_Y] - \nabla_{[X, Y]}$.
+
+    We can also express this as a tensor called the \textbf{Curvature 2-form} 
+    \[
+        K = \sum_{i < j} K(\partial_i, \partial_j)dx^i \wedge dx^j
+    \]
+    which takes values in $\text{End}(V)$. In other words, each $K(\partial_i, \partial_j)$ is an element
+    of $\text{End}(V)$. 
+\end{definition}
+
+Now let $M$ be equipped with a Riemannian Metric $(\cdot, \cdot)$. 
+
+\begin{definition}
+    A \textbf{Symmetric} connection on $TM$ is one such that
+    \[
+        \nabla_X Y - \nabla_Y X = [X, Y].
+    \]
+    We say a connection is \textbf{Compatible with the metric} if for any three vector 
+    fields $X, Y_1,$ and $Y_2$, 
+    \[
+        (\nabla_X Y_1, Y_2) + (Y_1, \nabla_X Y_2) = X \cdot (Y_1, Y_2).
+    \]
+\end{definition}
+
+\begin{theorem}[Levi-Civita]
+    A Riemannian manifold possesses a unique connection called the \textbf{Levi-Civita Connection} 
+    that is symmetric and compatible with the metric.
+\end{theorem}
+
+
+\begin{definition}
+    The curvature of the Levi-Civita connection on a riemannian manifold is called the 
+    \textbf{Riemann Curvature Tensor} (or operator) and is denoted $R$. We write 
+    \[
+        R(e_j, e_k)e_l = \sum_{i}R^i_{ljk}e_i
+    \]
+    relative to some local frame $\{e_i\}$ for $TM$.
+\end{definition}
+
+\begin{proposition}
+    The Riemann curvature operator has the following properties:
+    \begin{enumerate}
+        \item[(i)] R(X,Y)Z + R(Y,X)Z = 0
+        \item[(ii)] R(X,Y)Z + R(Y,Z)X + R(Z,X)Y = 0
+        \item[(iii)] (R(X,Y)Z, W) + (R(X,Y)W, Z) = 0
+        \item[(iv)] (R(X,Y)Z, W) = (R(Z,W)X,Y).
+    \end{enumerate}
+\end{proposition}
+
+These justify some calculations later.
+
+\begin{definition}
+    The \textbf{Ricci curvature tensor} is the bilinear form on $TM$ defined by 
+    \[
+        \text{Ric}(Y,Z) = \text{tr}(X \mapsto R(X,Y)Z),
+    \]
+    or $\text{Ric}_{ab} = \sum_i R_{aib}^i$.
+\end{definition}
+
+\begin{definition}
+    We will define positive scalar curvature as the trace of the Ricci curvature operator, expressed as
+    \[
+        \kappa = \sum_{i,j}R_{ijij}
+    \]
+    in an orthonormal framing
+\end{definition}
+
+\section{Clifford algebras}
+
+\begin{definition}
+    Let $V$ be a vector space equipped with a symmetric bilinear form $(\cdot, \cdot)$. A 
+    \textbf{Clifford algebra} for $V$, denoted $\text{Cl}(V)$ is a unital algebra $A$ which is equipped with a map 
+    $\phi:V \to A$ such that $\phi(v)^2 = -(v,v)1$, which is universal among all such algebras. 
+
+    It can also be viewed as the quotient of the tensor algebra $\mathcal{T}(V)$ of $V$ by the ideal 
+    generated by elements of the form $v \otimes v +q(V)1$ for $v \in V$. 
+\end{definition}
+
+Here we will mostly take $V = \RR^k$, and write $\text{Cl}(k) = \text{Cl}(V)$. With a positive definite inner
+product, there is only one group $\text{Cl}(k)$.
+
+\begin{example}
+    If we take the bilinear form on $V$ to be uniquely zero, we get $\text{Cl}(V) = \bigwedge^*(V)$ as 
+    the clifford algebra. For $V = \RR^k$, we write $\text{Cl}(k)$.
+\end{example}
+
+\begin{definition}
+    A \textbf{Clifford module} for the real inner product space $V = \RR^k$ is a left module over the complex algebra 
+    $\mathbb{C}l(k) := \text{Cl}(k)\otimes_{\RR}\mathbb{C}$.
+
+    This is the complexification of the algebra $Cl(V)$. It follows from the definition of the tensor product
+    that for any $v \in \mathbb{C}l(V)$, we can write
+    \[
+        v = v_1 \otimes 1 + v_2 \otimes i,
+    \]
+    and thus there is a canonical direct sum decomposition
+    \[
+        \mathbb{C}l(V) = Cl(V) \otimes iCl(V).
+    \]
+
+    A \textbf{Clifford bundle} is a bundle of Clifford modules over a Riemannian manifold $M$ with 
+    a compatible connection and metric, such that 
+    \begin{enumerate}
+        \item[(i)] The Clifford action of each $v \in T_m M$ on $S_m$ is skew-adjoint.
+        \item[(ii)] The connection on $S$ is compatible with the Levi-Civita connection on $M$,
+        in that it satisfies a product rule. 
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    There is a compact Lie group called $\text{Spin}(k)$ which is a double cover over $\text{SO}(k)$. For 
+    $k \geq 3$, it is simply connected, and the universal covering space of $\text{SO}(k)$. It is a certain
+    subgroup of $\text{Cl}(k)$ generated by some invertible elements. 
+
+    Let $M$ be a manifold and $E$ a vector bundle on $M$. Let $P_{\text{SO}}(E)$ be the principal $\text{SO}(k)$
+    bundle of frames for $E$. Then we define a \textbf{spin structure} on $E$ to be a principal $\text{Spin}(k)$-bundle
+    $P_{\text{Spin}}(E)$ on $M$, which is a double cover of $P_{\text{SO}}(E)$, such that the global double
+    cover is compatible with the fiberwise double cover of $\text{Spin}(k) \to \text{SO}(k)$. 
+
+    A \textbf{spin manifold} is a manifold with a spin structure on its tangent bundle $TM$. 
+
+    To every even dimensional spin manifold $M$, there is an associated vector bundle $S$ on $M$ called the 
+    \textbf{spinor bundle} of dimension $2^n$, which is in fact a clifford bundle. There is a 
+    canonical connection on $S$ called the spin connection, which comes from the Riemannian structure on $M$. 
+\end{definition}
+
+\section{Dirac operators}
+
+In this section, let $M$ be a spin manifold of even dimension $n$, $S$ the spinor bundle, and $\nabla$ the 
+spin connection on $S$. We will construct what is called the Atiyah-Singer operator $D$, which is the
+dirac operator in the case of a spin manifold on its spinor bundle. 
+
+\begin{definition}
+    We define $D$ by the following sequence of maps 
+    \[
+        C^\infty(S) \to C^\infty(T^*M \otimes S) \to C^\infty(TM\otimes S) \to C^infty(S),
+    \]
+    where the first arrow is just the connection on $S$, the second arrow is the identification of $T^*M$
+    with $TM$ using the metric on $M$, and the last arrow comes from the clifford action of sections of $TM$
+    on $S$ fiberwise. 
+
+    In a local orthonormal basis, we can write
+    \[
+        Ds = \sum_i e_i \nabla_i s
+    \]
+    where $\nabla_i$ is the connection applied to $\partial_i$. 
+
+    The Dirac operator is an unbounded operator, and is (formally) self adjoint in the correct 
+    function space, but we will not get into these details. 
+
+    An important fact is that the spinor bundle is graded, and the dirac operator is chirality-reversing.
+    Then we can write 
+    \[
+        D = \begin{bmatrix}
+            0 & D^-\\
+            D^+ & 0
+        \end{bmatrix}.
+    \]
+    Moreover, these operators are adjoints of one another, and we have the important formula
+    \[
+        \text{Index}(D^+) = \dim\ker D^+ - \dim \ker D^-
+    \]
+    for the index of $D$.
+\end{definition}
+
+\begin{proposition}
+    Let $e_i$ be an orthonormal frame at $m \in M$. Then we have
+    \begin{align}
+        D^2s & = \sum_{i,j}e_j \nabla_j(e_i \nabla_i s)\\
+        & = \sum_{i,j}e_j e_i \nabla_j \nabla_i s\\
+        & = -\sum_i \nabla_i^2 s + \sum_{j < i} e_j e_i (\nabla_j \nabla_i - \nabla_i \nabla_j)s\\
+        & = \nabla^*\nabla s + Ks.
+    \end{align}
+    Here, the symbol $\nabla^* \nabla$ is used to indicate that $\nabla$ is a sort of differential
+    operator from $S$ to $T^*M \otimes S$, and $\nabla^*$ is its adjoint. The negative sign is from
+    the adjoint operator. The operator $K$ can be expanded
+    \[
+        K = F + \frac{1}{4}\kappa,
+    \]
+    where $\kappa$ is the scalar curvature of $M$ and $F$ is called the twisting curvature.
+    The crucial fact about spin manifolds is that here, $F$ vanishes, leaving
+    \[
+        D^2 = \nabla^*\nabla + \frac{1}{4}\kappa,
+    \]
+    which is known as the \textbf{Lichnerowicz formula}.
+\end{proposition}
+
+An important construction is as follows. Let $M$ be a spin manifold and $S$ its spinor bundle,
+and $E$ be any vector bundle on $M$. Then $S \otimes E$ is also a clifford bundle on $M$,
+with a tensor product connection. We can define the dirac operator on this clifford bundle as well, and 
+we will denote this operator by $D_E$. We have the analagous formula
+\[
+    D_E^2 = \nabla^*\nabla + \frac{1}{4}\kappa + R^E,
+\]
+where $R^E$ only depends on the curvature tensor of $R^E$ and the dimension, and $\kappa$ is the scalar curvature
+of $M$. 
+
+The term $R^E$ corresponds to how ``flat'' the bundle $E$ is. This is a ``Bochner formula''.
+
+Now we state (without proof) a certain corollary of the Atiyah-Singer index theorem on spin manifolds:
+\begin{theorem}
+    The index of the positive part of the dirac operator is given by
+    \[
+        \text{Index}(D^+) = \hat{A}(X),
+    \]
+    where $\hat{A}(X)$ is a certain topological invariant of $X$. Moreover, if $E$ is a bundle and 
+    $D_E$ is the twisted operator from before, then we have
+    \[
+        \text{Index}(D_E^+) = \{\text{ch}E \cdot \hat{\textbf{A}}(X)\}[X],
+    \]
+    which is another topological invariant of the bundle $E$.
+\end{theorem}
+
+\section{Final theorem}
+
+\begin{definition}
+    A map $f: X \to S^n$ is \textbf{$\epsilon$-contracting} if we have
+    \[
+        \|f^*v\| \leq \epsilon \|v\|
+    \]
+    for all tangent vectors $v$. 
+
+    A compact riemannian manifold of dimension $n$ is \textbf{compactly enlargeable} if for every $\epsilon > 0$, there exists an orientable
+    Riemann covering space which admits an $\epsilon$-contracting map to $S^n$ of non-zero degree, such that
+    the covering map finite.
+\end{definition}
+
+An example of an enlargeable manifold is the $n$-torus $\mathbb{T}^n$. I can draw the map.
+
+Now here is the final theorem:
+
+\begin{theorem}
+    An enlargeable spin manifold may not carry a metric of positive scalar curvature. 
+\end{theorem}
+
+\textbf{Proof:} Let $X$ be an even dimensional compact spin manifold of even dimension. The 
+case for odd dimension will be mentioned at the end. Suppose that $X$ does carry a metric 
+of positive scalar curvature, with $\kappa \geq \kappa_0 + c > 0$ for some $\kappa_0$ and $c > 0$. 
+
+Choose a complex vector bundle $E_0$ on the sphere $S^n$ such that the top Chern class $c_n(E_0) \neq 0$. 
+This is always possible. Let $\nabla^{E_0}$ be a unitary connection.
+
+Let $\epsilon > 0$ and choose a finite orientable covering $\tilde{X} \to X$ which admits 
+an $\epsilon$-contracting map to the sphere of non-zero degree. Use $f$ to pull back $E_0$
+to a bundle $E$ on $\tilde{X}$. Consider the Atiyah-Singer operator $D_E$ on $S\otimes E$ 
+as mentioned before. We apply the Bochner formula
+\[
+    D_E^2 = \nabla^*\nabla + \frac{1}{4}\kappa + R^E,
+\]
+where $R^E$ again depends only on the curvature of the bundle $E$. This operator is a bundle homomorphism.
+
+We will now use (without proof) that the term $R^E$ satisfies the estimate
+\[
+    \|R^E\| < \frac{1}{4}k_0
+\]
+on each fiber of $M$. Let $s$ be a section of $S\otimes E$. Then pointwise, we have
+\begin{align}
+    \langle D_E^2 s, s\rangle & = |\nabla s|^2 + \frac{1}{4}\kappa |s|^2 + \langle R^E s, s\rangle.
+\end{align}
+For the last term, we have
+\[
+    \langle R^E s, s \rangle \leq \|R^E\||s|^2 < \frac{1}{4}k_0 |s|^2,
+\]
+so that
+\[
+    \langle D_E^2 s, s\rangle > |\nabla s|^2 + \frac{1}{4}\kappa |s|^2 - \frac{1}{4}|s|^2 > |\nabla s|^2 + c|s|^2.
+\]
+
+This gives us the global estimate
+\[
+    \|D_E^2 s\| \geq c\|s\|.
+\]
+Now it is clear that if $D_E s = 0$, we must have $s = 0$. In fact this implies $D_E^+ s = 0$, so that 
+$\ker D^+ = \ker D^- = \{0\}$. In particular, we have
+\[
+    \text{Index}(D_E^+) = \dim\ker D^+ - \dim\ker D^- = 0.
+\]
+
+However, from a calculation using the Index formula for twisted dirac operators, we can show the index of 
+the dirac operator is non-zero. This gives a contradiction, and thus $X$ may not admit a metric 
+of positive scalar curvature. 
+
+\end{document}
+
