@@ -76,7 +76,7 @@
     every element of the sum \ref{omega} must be zero. In particular, if $U_j$ is an open set containing $p$,
     $\omega_j|_p(u,u) = 0$ and thus $u = 0$. 
     
-    \item[2.] Let $F: \left(0,2\pi\right)\times \left(0,2\pi\right) \to T^2$ be the map 
+    \item[2.] Let $F: U = \left(0,2\pi\right)\times \left(0,2\pi\right) \to T^2$ be the map 
     \[
         (s,t) \mapsto (cos(s), sin(s), cos(t), sin(t)).
     \]
@@ -88,7 +88,126 @@
     Since the complement of the submanifold has measure zero, this integral will be equal to the integral
     over the entire manifold of the pullback. 
 
-    
+    By the formula for pullbacks, 
+    \[
+        F^*\omega = \cos(t)\sin^2(t)\sin^2(s).
+    \]
+    Then
+    \[
+        \int_T^2 \omega = \int_U F^* \omega = \int_0^{2\pi}\int_0^{2\pi}\cos(t)\sin^2(t)\sin^2(s)dt ds = 0,
+    \]
+    since the integral of cosine from 0 to $2\pi$ is zero, and we can separate variables in this integral. 
+
+    \item[3.] (a.) Let $\alpha = \frac{1}{2\pi}\frac{x dy - y dx}{x^2 + y^2}$ be a 1-form on $\RR^2 \setminus \{0\}$.
+    To show $\alpha$ is closed, we just calculate 
+    \[
+        d\alpha = \frac{x^2 + y^2 - 2x^2}{(x^2 + y^2)^2}dx \wedge dy - \frac{x^2 + y^2 - 2y^2}{(x^2 + y^2)^2}dy \wedge dx
+        = 0.
+    \]
+    To integrate along the unit circle, map $\left[0,2\pi\right)$ to the unit circle by $t \mapsto (\cos(t),\sin(t))$.
+    The pullback of $\alpha$ under this map is $\frac{1}{2\pi}(\cos^2(t) + \sin^2(t))dt = \frac{1}{2\pi}dt$. Then
+    it is clear that the integral of $\alpha$ over $S^1$ is $1$. 
+
+    By Stokes' theorem, the integral of any exact form over a manifold without boundary is zero. 
+    Then $\alpha$ is not exact. Moreover, the integral of $\alpha$ over $S^1$ is equal to
+    the integral of the pullback of $\alpha$ over $S^1$, since the pullback in this case is just the restriction
+    to the circle. Then $i^*(\alpha)$ is not exact by the same reasoning.
+
+    (b.) The cohomology group for top forms on $S^n$ is the one dimensional vector space $\RR$. The first 
+    cohomology group of $\RR^2\setminus \{0\}$ is isomorphic to the first cohomology group of $S^1$ by
+    homotopy invariance of de Rham cohomology. Then $H^1(\RR^n\setminus\{0\})$ is spanned by $\alpha$, and 
+    we can choose $c \in \RR$ such that $\omega - c\alpha$ is zero in the quotient group of closed
+    forms minus exact forms. In other words, $\omega - c\alpha$ is exact, and there exists a function $g$ 
+    on $\RR^2 \setminus\{0\}$ such that $\omega = c\alpha + dg$.
+
+    \item[4.] (a.) Let $\omega$ be a closed 1-form on $S^2$. Let $\gamma$ be any closed path in $S^2$. Then
+    there is an open subset $U \subset S^2$ such that $\partial U = \gamma$ by the jordan curve theorem.
+    Then by Stokes' theorem,
+    \[
+        \int_\gamma \omega = \int_{\partial U}\omega = \int_U d\omega = 0.
+    \]
+
+    Then the integral of $\omega$ over any closed curve is zero. This is equivalent to $\omega$ being exact. 
+
+    (b.) We can calculate that
+    \[
+        d\omega = \frac{|x|^3 - 3x_1^2 |x| - 3x_2^2 |x| - 3x_3^2 |x|}{|x|^6} = 
+        \frac{3|x|^3 - 3|x|^3}{|x|^6} = 0,
+    \]
+    thus $\omega$ is exact. 
+
+    (c.) We make a coordinate change to spherical polar coordinates on $S^2$ and compute the integral
+    of the pullback of $\omega$. 
+
+    We use coordinates
+    \begin{align*}
+        & x = sin\theta \cos\phi\\
+        & y = \sin\theta \sin\phi\\
+        & z = \cos\phi.
+    \end{align*}
+
+    Let $T$ be the coordinate change. For the pullback, we calculate that 
+    \begin{align*}
+        & d(x(\theta, \phi)) = \cos\theta\cos\phi d\theta - \sin\theta\sin\phi d\phi\\
+        & d(y(\theta, \phi)) = \cos\theta\sin\phi d\theta + \sin\theta\cos\phi d\phi\\
+        & d(z(\theta, \phi)) = -\sin\theta d\theta.
+    \end{align*}
+
+    Then the pullback is 
+    \[
+        T^*\omega = (\sin^3 \theta + \cos^2\theta \sin\theta)d\theta \wedge d\phi = \sin\theta d\theta\wedge d\phi.
+    \]
+
+    and the integral is
+    \[
+        \int_S^2 \omega = \int_{(0,2\pi)\times (0,\pi)}T^*\omega = \int_0^{2\pi}\int_0^\pi \sin(\theta)d\theta d\phi
+        = \int_0^{2\pi} 2 d\phi = 4\pi.
+    \]
+
+    This shows $\omega$ is not exact, because the integral of an exact form over a manifold without boundary
+    is zero by Stokes' theorem.
+
+    (d.) The hodge star map sends $p$ forms to $n-p$ forms with sign depending on the total orientation choice.
+    Then we can see that 
+    \[
+        *\alpha = \sum_i (-1)^{i-1}\frac{x_i dx_1 \wedge \cdots \hat{dx_i}\wedge \cdots \wedge dx_n}{|x|^n},
+    \]
+    where the factor $(-1)^{i-1}$ is chosen so that the pairing of each $p-1$ form in the sum with its missing
+    element $dx_i$ is correctly oriented after swapping $i-1$ times. 
+
+    $*\alpha$ is a closed form, which can be shown similarly to previous items. We have to find the 
+    differential of the coefficient $\frac{x_i}{|x|^n}$, which has the numerator $|x|^n - n |x|^(n-2)(x_i)$
+    after permuting the $dx_i$ to the correct spot, which gets rid of the $(-1)^{i-1}$ coefficient. Once
+    we sum over $i$, the terms will cancel just as in (b.). 
+
+    (e.) $*\alpha$ is just the volume form for $S^n$. Then its integral over $S^n$ will equal 
+    the surface area of the $n$-sphere. This proves $*\alpha$ is not exact by the reasoning above.
+
+    \item[5.] (a.) Using Stokes' theorem and the product formula for the exterior derivative, we have
+    \[
+        0 = \int_{\partial M}\alpha \wedge \beta = \int_{M} d(\alpha \wedge \beta) = \int_M d\alpha \wedge \beta
+        + (-1)^p\int_M \alpha \wedge d\beta.
+    \]
+    The result follows immediately after rearranging.
+
+    (b.) It is proved in Lee that integration of top forms defines an isomorphism onto the top de Rham groups. 
+    Since $\omega$ is exact, $\omega = d\alpha$ for some $\alpha$. Then $\omega \wedge \omega = d\alpha \wedge d\alpha
+    = d(\alpha \wedge d\alpha)$, so $\omega \wedge \omega$ is exact. In particular, the integral over $M$
+    must send it to zero. Then since the space of top forms is one dimensional, $\omega \wedge \omega$ is just 
+    a smooth function. Then $\omega \wedge\omega$ is either positive and negative, and must equal zero somewhere
+    by the intermediate value theorem, or is uniquely zero on $M$. 
+
+    (c.) It is proved in Lee that the lower cohomology groups of $S^n$ are trivial, meaning the exact forms 
+    are exactly the closed ones. Then if $\omega$ is closed, it is in fact exact, and the previous part applies.
+
+    \item[6.] (a.) For symmetry, we have
+    \[
+        \{h_1, h_2\} = dh_2(\overrightarrow{h_1}) = i_{\overrightarrow{h_2}}\omega(h_1) = 
+        \omega(\overrightarrow{h_1}, \overrightarrow{h_2}) = -\omega(\overrightarrow{h_2},\overrightarrow{h_1})
+        = -\{h_2,h_1\}.
+    \]
+
+    (b.) Don't know unfortunately.
 
 \end{enumerate}
 
