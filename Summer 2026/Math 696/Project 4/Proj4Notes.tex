@@ -1,0 +1,101 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 696}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Product Rule Notes}
+\bigbreak
+{\Huge Howdy!}
+
+Now that we have learned how to take derivatives of polynomial and exponential functions, we 
+can learn how to take derivatives of more complicated functions. 
+
+We may have functions such as 
+\begin{equation}\label{ex1}
+    f(x) = (x^2 + 67)e^x
+\end{equation}
+or
+\begin{equation}\label{ex2}
+    y = (3x^2 + x +1)(2x^3 + x)
+\end{equation}
+which are made up of functions we know how to take derivatives of, but
+so far we don't know how to handle. 
+
+In both of these cases, we can apply something called the product rule. 
+This applies any time we can write 
+\[
+    f(x) = g(x)\cdot h(x).
+\]
+
+\begin{theorem}
+    \[
+        f'(x) = g'(x)h(x) + g(x)h'(x).
+    \]
+\end{theorem}
+
+In Example \ref{ex1}, we let 
+\[
+    g(x) = x^2 + 67\qquad h(x) = e^x
+\]
+so that 
+\[
+    f(x) = g(x)\cdot h(x) = (x^2 + 67)e^x.
+\]
+
+Then 
+\[
+    g'(x) = 2x \qquad h'(x) = e^x,
+\]
+and together 
+\[
+    f'(x) = g'(x)h(x) + g(x)h'(x) = 2x e^x + (x^2 + 67)e^x.
+\]
+
+\end{document}
