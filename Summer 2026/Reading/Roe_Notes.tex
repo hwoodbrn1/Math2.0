@@ -1,0 +1,463 @@
+\documentclass[12pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\usepackage{lmodern}
+\newcolumntype{L}{>{$}l<{$}}
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Reading Summer 2026}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Roe Notes}
+
+\tableofcontents
+
+\section{Riemannian Geometry}  
+
+\subsection{Connections}
+
+Let $M$ be a smooth manifold, and let $V$ be a vector bundle on $M$. 
+
+\begin{definition}
+    A \textit{Connection} on $V$ is a linear map 
+    \[
+        \nabla: C^\infty(TM)\otimes C^\infty(V) \to C^\infty(V)
+    \]
+    which assigns to a vector field $X$ and a section $Y$ of $V$ a new section $\nabla_X Y$ 
+    of $V$, such that for any smooth function $f$ on $M$,
+    \begin{enumerate}
+        \item $\nabla_{fX}Y = f\nabla_X Y$
+        \item $\nabla_X{fY} = f\nabla_X Y + (X.f)Y$,
+    \end{enumerate}
+    where $X.f$ denotes the lie derivative of $f$ along $X$. 
+\end{definition}
+
+Condition $(1.)$ tells us that $X \mapsto \nabla_X Y$ is a homomorphism of modules over
+$C^\infty(M)$. In other words, a connection is tensorial in $C^\infty(TM)$. This means
+that we can regard a connection as a map 
+\[
+    C^\infty(V) \to \Omega^1(V) := C^\infty(T^*M \otimes V),
+\]
+the space of $V$ valued forms on $M$.
+
+In a local trivialization, an example of a connection is the Lie derivative. Thus many local connections 
+exist.
+
+Moreover, the difference of two connections is local in both $X$ and $Y$, making it an $\text{End}(V)$ valued
+one-form. Thus, we can use partitions of unity to piece together local connections into a global one.
+So connections exist and are plentiful. 
+
+From the above discussion, we deduce that in a local trivialization,
+\[
+    \nabla_i = \frac{\partial}{\partial x_i} + \Gamma_i,
+\]
+where $\nabla_i = \nabla_{\frac{\partial}{\partial x_i}}$, and $\Gamma_i$ is 
+a smooth section of $\text{End}(V)$. The $\Gamma_i$ are called the Christoffel symbols. 
+
+\begin{remark}
+    We can also define connections using \textit{paralell transport}. Let $\gamma$ be a 
+    smooth curve in $M$. The differential equation $\nabla_{\dot{\gamma}}Y = 0$ is a first 
+    order ODE on sections $Y$ of $V$ along $\gamma$ which has a unique solution for a 
+    given initial value. One says that $Y$ is paralell along $\gamma$, or that 
+    $Y$ has been obtained from its initial value by paralell transport. 
+\end{remark}
+
+\begin{definition}
+    The \textit{curvature operator $K$} of a connection $\nabla$ on $V$ is defined as follows: 
+    if $X$ and $Y$ are vector fields and $Z$ is a section of $V$, then 
+    \[
+        K(X,Y)Z = \nabla_X\nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X,Y]}Z.
+    \]
+\end{definition}
+
+\begin{lemma}
+    The curvature $F(X,Y)Z$ at a point $m \in M$ depends only on the values of $X, Y,$ and $Z$ at the point 
+    $m$.
+\end{lemma}
+
+\textit{Proof:} Choose some local coordinate patch and a trivialization of $V$. Then we can expand
+\begin{align}
+    \nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z & = 
+    \sum_{i,j} \left[X^j \frac{\partial Y^i}{\partial x_j} 
+    - Y^j \frac{\partial X^i}{\partial x_j}\right]\frac{\partial Z}{\partial x_i}
+    + \left[ X^j Y^i - Y^j X^i\right] \frac{\partial^2 Z}{\partial x_j \partial x_i}\\
+    & + \left[ X^j Y^i - Y^j X^i\right] \left(\frac{\partial \Gamma_j(Z)}{\partial x_i} 
+    + \frac{\partial\Gamma_i(Z)}{\partial x_j}\right)\\
+    & + \left[ X^j \frac{\partial Y^i}{\partial x_j} - Y^j \frac{\partial X^i}{\partial x_j}\right]\left(\Gamma_i(Z)\right)
+    + \left[X^j Y^i - Y^j X^i\right]\left(\Gamma_j \Gamma_i(Z)\right).
+\end{align}
+
+Since mixed partials commute, the second term in (1) vanishes. By symmetry, the term (2) vanishes as well, leaving only
+\begin{align*}
+    \nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z & = 
+    \sum_{i,j} \left[X^j \frac{\partial Y^i}{\partial x_j} 
+    - Y^j \frac{\partial X^i}{\partial x_j}\right]\left(\frac{\partial Z}{\partial x_i} + \Gamma_i(Z)\right)\\
+    & + \left[X^j Y^i - Y^j X^i\right]\left(\Gamma_j \Gamma_i(Z)\right)\\
+    & = \nabla_{[X,Y]}Z + \left[X^j Y^i - Y^j X^i\right]\Gamma_j\Gamma_i(Z).
+\end{align*}
+
+From here the lemma follows immediately. \qed
+
+Thus $K$ is induced by a bundle map $TM \otimes TM \to \text{End}(V)$, and moreover since $K(X,Y)$ is 
+antisymmetric in $X$ and $Y$, we may regard $K$ as a 2-form with values in $\text{End}(V)$. In terms of local 
+coordinates, we define the curvature 2-form to be the $\text{End}(V)$-valued 2-form 
+\[
+    K = \sum_{i < j}K(\partial_i, \partial_j)dx^i \wedge dx^j,
+\]
+where $K(\partial_i, \partial_j)$ takes values in $\text{End}(V)$. 
+
+Now we consider connections on the tangent bundle $TM$. Let $x^i$ be local coorinates with a corresponding
+vector fields $\partial_i$. Then we can express the endomorphisms $\Gamma_i$ of remark (1.1) 
+as matrices: 
+\[
+    \nabla_i(\partial_j) = \sum_k \Gamma_{ij}^k \partial_k.
+\]
+These symbols completely determine the connection. 
+
+\begin{definition}
+    A connection $\nabla$ on $TM$ is called \textit{symmetric} if for any two vector fields $X$ and $Y$
+    on $TM$, we have
+    \[
+        \nabla_X Y - \nabla_Y X = [X, Y].
+    \]
+\end{definition}
+
+\subsection{Riemannian Geometry}
+
+Suppose $M$ is a Riemannian manifold.
+
+\begin{definition}
+    We say $\nabla$ is \textit{compatible with the metric} on $M$ if for any three vector fields
+    $X$, $Y_1$, and $Y_2$, we have
+    \[
+        (\nabla_X Y_1, Y_2) + (Y_1, \nabla_X Y_2) = X \cdot(Y_1, Y_2).
+    \]
+\end{definition}
+
+\begin{theorem}[Levi-Civita]
+    A Riemannian manifold possesses a unique connection that is symmetric and compatible with the metric.
+\end{theorem}
+
+\textit{Proof:} Work in local coordinates. Represent the metric by a matrix of smooth functions
+$g_{jk} = (\partial_j, \partial_k)$. The symmetry condition implies 
+\[
+    (\nabla_i \partial_j, \partial_k) + (\partial_j, \nabla_i\partial_k) = \partial_i(\partial_j,\partial_k),
+\]
+or in other words,
+\[
+    \partial_i g_{jk} = \sum_a \left(\Gamma_{ij}^a g_{ak} + \Gamma_{ik}^a g_{aj}\right).
+\]
+Moreover, we can permute indices to get
+\[
+    \partial_j g_{ki} = \sum_a \left(\Gamma_{jk}^a g_{ai} + \Gamma_{ji}^a g_{ak}\right)\qquad
+    \partial_k g_{ij} = \sum_a \left(\Gamma_{ki}^a g_{aj} + \Gamma_{jk}^a g_{ai}\right).
+\]
+
+Combining these and using symmetry, we see that 
+\[
+    \sum_a \Gamma_{ij}^a g_{ak} = \frac{1}{2}\left(\partial_i g_{jk} + \partial_j g_{ik}
+    - \partial_k g_{ij}\right).
+\]
+This determines the $\Gamma$'s uniquely, since $g$ is invertible. \qed 
+
+Since the metric determines the Levi-Civita connection, it also uniquely determines the 
+curvature. 
+
+\begin{definition}
+    The curvature of the Levi-Civita connection on a Riemannian manifold 
+    is called the \textit{Riemann curvature operator} and is denoted by $R$. In components
+    relative to a frame $\{e_i\}$ we write 
+    \[
+        R(e_j, e_k)e_l = \sum_i R_{ljk}^i e_i.
+    \]
+\end{definition}
+
+We also define the 4-covariant version of the Riemannian curvature tensor defined by 
+\[
+    R_{iljk} = (R(e_j,e_k)e_l, e_i).
+\]
+
+\begin{proposition}
+    The Riemann curvature operator has the following properties:
+    \begin{enumerate}
+        \item[(i)] $R(X,Y)Z + R(Y,X)Z = 0$, or $R_{ljk}^i + R_{lkj}^i = 0$.
+        \item[(ii)] $R(X,Y)Z + R(Y,Z)X + R(Z,X)Y = 0$, 
+        or $R_{ljk}^i + R_{jkl}^i + R_{klj}^i = 0$.
+        \item[(iii)] $(R(X,Y)Z, W) + (R(X,Y)W, Z) = 0$, or $R_{iljk} + R_{lijk} = 0$. 
+        \item[(iv)] $(R(X,Y)Z, W) = (R(Z,W)X,Y)$, or $R_{iljk} = R_{jkil}$.
+    \end{enumerate}
+\end{proposition}
+
+The only non-trivial contraction of the Riemann curvature tensor is called 
+the \textit{Ricci curvature tensor}, given by 
+\[
+    \text{Ric}(Y,Z) \mapsto \text{tr}\left(X \mapsto R(X,Y)Z\right).
+\]
+
+In components, $\text{Ric}_{ab} = \sum_i R^i_{aib}$.
+
+We can raise one index of the Ricci curvature tensor to get the Ricci curvature
+operator, and taking its trace we obtain the scalar curvature,
+\[
+    \kappa = g^{ab}\text{Ric}_{ab}.
+\]
+
+\begin{definition}
+    We say a curve $\gamma$ is a \textit{geodesic} if $\nabla_{\dot{\gamma}}\dot{\gamma} = 0$,
+    or in other words if $\dot{\gamma}$ is parallel along $\gamma$. 
+\end{definition}
+
+The geodesic equation has a unique solution given initial values $\gamma(0)$ and $\dot{\gamma}(0)$.
+Then the exponential map 
+\[
+    \text{exp}: U \to M
+\]
+can be defined at any $m \in M$ on some open star-shaped subset $U \subset T_m M$ by 
+sending a vector $v \in T_m M$ to the value at $t = 1$ of the unique geodesic 
+with starting value $m$ and velocity $v$. By the inverse function theorem, $\text{exp}$
+is a diffeomorphism from a neighborhood of zero in $T_m M$ to a neighborhood of $m$ in $M$.
+Choosing an orthonormal basis for $T_m M$ gives a coordinate system called
+a \textit{geodesic coordinate system} at $m$. 
+
+\begin{proposition}
+    At the origin of a geodesic coordinate system, the Christoffel symbols all vanish.
+\end{proposition}
+
+\textit{Proof:} It is enough to show that $\nabla_i \partial_j$ vanishes at the origin. 
+By symmetry of the connection, it is also enough to show $\nabla_X X = 0$ for
+all constant vector fields $X$.
+
+But in a geodesic coordinate system, the geodesics are radial lines from the origin. Moreover,
+$X$ clearly points along these geodesics and has constant length, so $\nabla_X X = 0$. \qed
+
+\subsection{Differential forms}
+
+We let $\Omega^p = \bigwedge^p V^*$ denote the space of $p$-forms. We can identify 
+$p$-forms with antisymmetric tensors by writing 
+\[
+    \alpha = \sum_{i_1 < \cdots < i_p} A_{i_1, \dots, i_p} dx^{i_1}\wedge \cdots \wedge dx^{i_p}
+    = \frac{1}{p!}\sum_{i_1,\dots, i_p} A_{i_1,\dots, i_p} dx^{i_1}\wedge \cdots \wedge dx^{i_p}.
+\]
+
+We first extend the metric to the space of contravariant tensors. 
+
+Let $(\cdot, \cdot)$ be an inner product on $V$, and fix a basis $\{e^i\}$
+of $V$, with corresponding dual basis $\{e_i\}$. We have the matrix $g_{ij} = (e_i, e_j)$
+and its inverse $g^{ij}$.
+
+Then we have the lowering and raising of incices maps, 
+\begin{align*}
+    \flat: e^i \mapsto g_{ij}e_j\\
+    \sharp: e_i \mapsto g^{ij}e^j.
+\end{align*}
+
+These extend to tensors in the natural way.
+
+Using the metric, we can define one on the space of $(0,p)$ tensors by the formula
+\[
+    (\alpha,\beta) = \frac{1}{k!}\sum_{i_1, \dots, i_p, j_1, \dots, j_p}g^{i_1, j_1}\cdots g^{i_p, j_p}
+    A_{i_1, \dots, i_p}B_{i_1, \dots, i_p}.
+\]
+
+In an oriented coordinate system, we define the volume form $\text{vol} = \sqrt{g}dx^1 \wedge
+\cdots dx^n$, where $g = \det{g_{ij}}$. The normalization constant in the inner product formula ensures that 
+$(\text{vol},\text{vol}) = 1$:
+\begin{align*}
+    (\text{vol}, \text{vol}) = \frac{1}{n!}\sum_{i_1, \dots, i_n, j_1, \dots, j_n}g^{i_1, j_1}\cdots g^{i_n, j_n}
+    \delta_{1, \dots, n}^{i_1,\dots, i_n} \delta_{1,\dots,n}^{i_1,\dots, i_n}\\
+    = \frac{1}{n!}g \sum_{j_1, \dots, j_p}\det(g^{ij}) = 1.
+\end{align*}
+
+We also have formulas for the wedge product and exterior derivative of forms in terms 
+of the antisymmetric tensors associated to them. If $C$ corresponds to $\alpha\wedge\beta$, then
+\[
+    C_{k_1,\dots, k_{p+q}} = \frac{1}{p!q!}\sum_{i_1,\dots, i_p, j_1, \dots, j_q}
+    \delta_{k_1, \dots, k_{p+q}}^{i_1,\dots, i_p, j_1,\dots, j_q}.
+\]
+
+and if $D \sim d\alpha$, then
+\[
+    D_{k_1, \dots, k_{p+1}} = \frac{1}{p!}\sum_{i_1, \dots, i_p}\delta^{j,i_1,\dots,i_p}_{k_1,\dots, k_p}
+    \frac{\partial A_{i_1,\dots, i_p}}{\partial x_j}.
+\]
+
+\begin{definition}
+    Let $\alpha$ be a $k$-form. Define the \textit{Hodge Star} $*\alpha$ to be the unique
+    $(n-k)$ form such that for all $k$-forms $\beta$, 
+    \[
+        (\alpha,\beta)\text{vol} = \beta \wedge *\alpha.
+    \]
+\end{definition}
+
+This operation is linear and we have $**\alpha = (-1)^{kn + k}\alpha$
+
+\begin{definition}
+    If $\alpha$ is a $k$-form, define 
+    \[
+        d^*\alpha = (-1)^{nk + n + 1}*d*\alpha.
+    \]
+    Then $d^*\alpha$ is a $(k-1)$ form, and $(d^*)^2 = 0$.
+\end{definition}
+
+The importance of $d^*$ is that it is the adjoint of $d$, once we define a global inner product 
+on forms.
+
+We define
+\[
+    \langle \alpha, \beta\rangle = \int_M (\alpha,\beta)\text{vol} = 
+    \int_M \beta \wedge *\alpha = \int_M 
+\]
+
+\subsection{Excercises}
+
+\begin{enumerate}
+    \item[1.28] Prove Cartan's formula for the exterior deriative of a $p$-form.
+    
+    \textit{Proof:} See homework either 6 or 7 from DG.
+
+    \item[1.29] Prove the second Bianchi Identity,
+    \[
+        \nabla R(X,Y,Z,V,W) + \nabla R(X,Y,V,W,Z) + \nabla R(X,Y,W,Z,V) = 0.
+    \]
+
+    \textit{Proof:} Since the objects are tensors, it suffices to prove 
+    the identity at an arbitrary point on $M$. Fix a geodesic coordinate
+    system about this point so that brackets and $\nabla_i e_j$ vanishes 
+    at the origin. 
+
+    Then follow the steps in Do Carmo with the simplified coordinate system,
+    then the result is clear.
+
+    \item[1.30] Let $x^i$ be a geodesic coordinate system on a manifold $M$, and
+    let $r$ denote the Riemannian distance from the point $x$ to the origin. Prove
+    that 
+    \[
+        \sum_{i,j} g_{ij}(x)x^i x^j = \sum_{i,j} g^{ij}(x)x^i x^j = r^2.
+    \]
+
+    \textit{Proof:} This problem is straightforward using the 
+    fact that in a geodesic coordinate system, the geodesics are just radial
+    lines from the origin. The distance from the origin to $x$ is the infimum over
+    all geodesics connecting these points of the length of these curves. But 
+    in this case, there is only one radial line, so its length is the inf. 
+
+    Moreover, the velocity of the geodesic at the origin at $t = 0$ and at $x$ at $t = 1$ 
+    is just the magnitude of the vector $x$, viewed as a subset of $T_0 M$. 
+
+    \item[1.31] Let $\alpha$ be a $k$-form on an $n$ -dimensional oriented Riemannian 
+    manifold $M$ represented in local coordinates by an antisymetric tensor $A$. 
+    Show that 
+    \[
+        *\alpha = \sum_{i_1, \dots, i_k, j_1, \dots, j_{n-k}} 
+        \frac{1}{(n-k)!k!}\delta^{1, \dots, n}_{i_1, \dots, i_k, j_1, \dots, j_{n-k}}
+        \sqrt{g} A^{i_1, \dots, i_k}dx^{j_1} \wedge \cdots \wedge dx^{j_{n-k}}.
+    \]
+
+    \textit{Proof:} We utilize the antisymmetric tensor representation formula for the wedge
+    product:
+    \[
+        C_{k_1,\dots, k_{p+q}} = \frac{1}{p!q!}\sum_{i_1,\dots, i_p, j_1, \dots, j_q}
+        \delta_{k_1, \dots, k_{p+q}}^{i_1,\dots, i_p, j_1,\dots, j_q},
+    \]
+    where $C$ is the tensor representing the wedge of a $p$-form and a $q$-form.
+
+    We also have a formula for the inner product of $k$ forms:
+    \[
+        (\alpha,\beta) = \frac{1}{k!}\sum_{i_1, \dots, i_p, j_1, \dots, j_p}g^{i_1, j_1}\cdots g^{i_p, j_p}
+        A_{i_1, \dots, i_p}B_{i_1, \dots, i_p}.
+    \]
+
+    By definition of $*\alpha$, for all $k$-forms $\beta$, we have
+    \[
+        (\alpha,\beta)\text{vol} = \beta \wedge *\alpha.
+    \]
+    In other words, if we write $*A$ and $B$ for the antisymmetric tensors corresponding to 
+    $*\alpha$ and $\beta$, this means
+    \[
+        \sqrt{g}\frac{1}{k!}\sum_{|I|=|J|=k}g^{I,J}A_I B_J 
+        = \frac{1}{(n-k)!k!}\sum_{|I|=k,|J|=n-k}\delta^{IJ}_{1,\dots, n}B_I (*A)_J.
+    \]
+
+    We start from the left. Notice this is just the raising of the indices of $A$:
+    \[
+        A^J = \sum_{|I| = |J| = k}g^{I,J}A_I.
+    \]
+    Then we have 
+    \[
+        (\alpha,\beta)\text{vol} = \sqrt{g}\frac{1}{k!}\sum_{|J| = k}A^J B_J.
+    \]
+
+    Now we need a trick with the generalized Kronoker-delta symbols. For 
+    $k$-tuples $I,J$ and an $n-k$-tuple $K$, we have
+    \[
+        \delta^{IK}_{1,\dots,n}\delta^{JK}_{1,\dots,n}\delta^I_J = 1.
+    \]
+    To see why, consider either when $I$ and $J$ are opposite sign, 
+    or the same.
+
+    Then we can write
+    \begin{align*}
+        \sqrt{g}\frac{1}{k}\sum_{|J| = k}A^J B_J
+        & = \frac{1}{(n-k)!k!}\sqrt{g}\frac{1}{k!}
+        \sum_{|I|=|J|=k, |K|=n-k}\delta^{IK}_{1,\dots,n}\delta^{JK}_{1,\dots,n}\delta^I_J
+        B_J A^J\\
+        & = \frac{1}{(n-k)!k!}\sqrt{g}\frac{1}{k!} \sum_{|I|=|J|=k, |K|=n-k}
+        \delta^{IK}_{1,\dots,n}\delta^{JK}_{1,\dots,n}B_J A^I\\
+        & = \frac{1}{(n-k)!k!} \sum_{|J|=k, |K|= n-k}\delta^{IJ}_{1,\dots,n} B_I
+        \left(\sqrt{g}\frac{1}{k!}\sum_{|I|=k}\delta^{IK}_{1,\dots,n}A^I\right)\\
+        & = B\wedge *A,
+    \end{align*}
+
+    where we write $B \wedge *A$ to be the tensor for $\beta\wedge *\alpha$. In other words,
+    the matrix in parenthesis with parameter $K$ is $*A$. 
+
+    test again more
+
+
+\end{enumerate}
+
+\end{document}

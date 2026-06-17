@@ -1,0 +1,148 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Summer 2026}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent K-Homology Notes}
+
+\section{Chapter 1}
+
+Some Definitions: We say that a representation of a $C^*$ algebra
+\[
+    \pi: A \to B(H)
+\]
+is:
+\begin{enumerate}
+    \item Faithful: $\pi$ is injective
+    \item Nondegenerate: $\pi(1) = 1$
+    \item Ample: No operator of $A$ acts as a compact operator.
+\end{enumerate}
+
+\textbf{Setting}: Let $H$ be a complex Hilbert space equipped with a hermitian inner 
+product. We denote by $B(H)$ the subalgebra of bounded operators. The \textit{adjoint}
+$T^*$ of an operator $T$ is defined by $\langle Tv, w\rangle = \langle v, T^* w\rangle$
+for all $v, w$. The adjoint is an involution. Here we also have the $C^*$ identity
+\[
+    \|T^*T\| = \|T\|^2.
+\]
+\begin{example}
+    Any $*$ subalgebra of $B(H)$ is a $C^*$ algebra. Conversely,
+    a Banach-$*$ algebra with the $C^*$ identity is called a $C^*$ algebra. 
+\end{example}
+
+\begin{theorem}[Gelfand]
+    If $T$ is normal, then 
+    \[
+        \phi: C^*(T) \to C(\text{Spec}(T))
+    \]
+    is an isomorphism.
+\end{theorem}
+
+\begin{definition}
+    The \textit{dual} of a Banach algebra $A$ is defined to be 
+    \[
+        \hat{A} = \{f: A \to \CC: f\ \text{a nonzero continuous homomorphism}\}.
+    \]
+\end{definition}
+
+\section{Meeting 2}
+
+\textbf{Some Notes by Chenxi:}
+
+\begin{enumerate}
+    \item[1.] Functional calculus can be viewed as $C(X)$ acting on $L^2(X, \mu)$.
+    
+    \textbf{Fact:} We can write 
+    \[
+        H = \sum_{v} \text{span}(v, Tv, \dots)
+    \]
+    where the $v$ are obtained using Zorn's lemma. 
+
+    \textbf{Fact:} We have $\langle P(T) v, v\rangle$ for any polynomial $P$, 
+    and we use Riesz to extend to arbitrary continuous $f$.
+
+    Then we have a functional on $H$, so there is a Borel measure $\mu$ such that 
+    \[
+        \langle f(T)v, v\rangle = \int_X f(x) d\mu
+    \]
+
+    \textbf{Unbounded things:} Extend using mobius transform. 
+\end{enumerate}
+
+\textbf{Notes by Lily:}
+
+\begin{definition}
+    We define the \textbf{Caulkin algebra} to be the quotient $B(H)/K(H)$, where 
+    $B$ and $K$ denote the spaces of bounded or compact operators.
+
+    The \textbf{Fredholm Index}, $\text{Ind}(T) = \dim \ker(T) - \dim \text{coker}(T)$.
+\end{definition}
+
+\begin{theorem}[Atkinson]
+    $T \in B(H)$ is fredholm iff its image in the Calkin algebra is invertible. 
+\end{theorem}
+
+We also have $\text{Ind}(ST) = \text{Ind}(S) + \text{Ind}(T)$.
+
+\begin{definition}
+    Let $T \in B(H)$. The \textbf{Essential Spectrum} of $T$ is defined as the ordinary
+    spectrum of the image of $T$ in the Calkin algebra. 
+
+    $T_1$ and $T_2$ on $H_1$ and $H_2$ are essentially unitarily equivalent if 
+    there is a unitary map $\mathcal{U}: H_1 \to H_2$ st $T_1 - \mathcal{U}^* T \mathcal{U}$ 
+    is compact. 
+\end{definition}
+
+\begin{theorem}[Weyl-von Neumann]
+    Every bounded self adjoint operator on a separable Hilbert space is an 
+    arbirarily small compact perturbation of a diagonal element.
+\end{theorem}
+
+\end{document}

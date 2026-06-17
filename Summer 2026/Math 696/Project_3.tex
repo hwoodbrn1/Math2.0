@@ -1,0 +1,109 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\lhead{Math 151}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Week 5 Quiz}
+
+\section*{Multiple Choice}
+
+\begin{enumerate}
+    \item[1.] [5 points] Consider the following function:
+    \[
+        f(x) = x\ln(x) + e^x x^2.
+    \]
+    What is the value of the derivative $f'(x)$ at the point $x = 0$?
+    \begin{enumerate}
+        \item $f'(0) = -\infty$
+        \item $f'(0) = 0$
+        \item $f'(0) = -0.5$
+        \item $f'(0) = -1$
+    \end{enumerate}
+
+    \item[2.] [5 points] What is the $2026$'th derivative of the function $\cos(-2x)$?
+    \begin{enumerate}
+        \item ${(-2)}^{2026}\sin(x)$
+        \item $-2\cdot{(-1)}^{2026}\sin(-2x)$
+        \item $-{(2026)}^{-2}\cos(-2x)$
+        \item $-{(2)}^{2026}\cos(-2x)$
+    \end{enumerate}
+\end{enumerate}
+
+\section*{Written Response}
+
+\begin{enumerate}
+    \item[3.] [10 points] Differentiate the following function in the variable $x$. Do not simplify your answer.
+    \[
+        f(x) = \frac{\cos(x) + 1}{\cos(x)}
+    \]
+\end{enumerate}
+
+\newpage
+
+\section*{Answer Key}
+
+\begin{enumerate}
+    \item[1.] \textbf{Answer:} (a.)
+    \item[] \textbf{Answer:} (d.)
+    \item[] \textbf{Answer:} 
+    \[
+        \frac{-\cos(x)\sin(x) + (\cos(x) + 1)\sin(x)}{\cos^2(x)}
+    \]
+
+    \textbf{Rubric for 3:} 0 points for very wrong answer. 
+
+    2 points for the answer 1
+
+    6 points if showed knowledge of quotient rule but incorrect.
+
+    10 points for correct answer.
+    
+\end{enumerate}
+
+\end{document}
