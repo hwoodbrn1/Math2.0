@@ -1,0 +1,121 @@
+\documentclass[12pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{None}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Pseudodifferential Operators}
+
+\section{Part 1: Differential Operators}
+
+We would like to generalize the notion of a differential
+operator on $C^\infty(R^n)$ to sections of vector bundles on a manifold. Consider the 
+following system of equations:
+\[
+\begin{matrix}
+    3 \frac{\partial}{\partial x} f(x,y,z) + \frac{\partial}{\partial x} g(x,y,z) 
+    + 2 \frac{\partial}{\partial z} h(x,y,z) & = 0\\
+    3 \frac{\partial}{\partial x} f(x,y,z) + 3 \frac{\partial}{\partial x} f(x,y,z)
+    + 3 f(x,y,z) & = 0
+\end{matrix}
+\]
+
+We can represent the right side as an operator $D$ applied to an $R^3$ valued function,
+where
+\[
+    D = \begin{bmatrix} 3 & 1 & 0\\ 3 & 1 & 0\end{bmatrix}\frac{\partial}{\partial x}
+    + \begin{bmatrix} 0 & 0 & 1 \\ 0 & 0 & 0\end{bmatrix}\frac{\partial}{\partial z}
+    + \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 3\end{bmatrix}.
+\]
+
+In other words, $D$ is a linear map $C^\infty(\RR^2, \RR^3) \to C^\infty(\RR^2, \RR^2)$. 
+This suggests we consider differential operators mapping not just between functions
+on a manifold, but between sections of bundles $E$ and $F$.
+
+In the following section, we let $X$ be a manifold, with $E$ and $F$ smooth complex
+vector bundles on $X$. 
+
+\begin{definition}
+    A \textit{differential operator} of order $m$ on $X$ is a 
+    linear map $P: \Gamma(E) \to \Gamma(F)$, such that if we choose local
+    coordinates $x_i$ in an open set $U \subset X$, and also local trivializations
+    $E|_U \simeq U \times \CC^p$ and $F|_U \simeq U \times \CC^q$, then $P$ has the form
+    \[
+        P = \sum_{|\alpha| \leq m} A^\alpha(x) \frac{\partial^{|\alpha|}}{\partial x^\alpha}
+    \]
+    where the $A^\alpha$'s are smooth $p\times q$ matrices of smooth functions, and
+    such that one of the highest order coefficients is nonzero somewhere. 
+\end{definition}
+
+Observe that if we make a change of local trivializations of $E|_U$ and $F|_U$ by maps
+$g_E: U \to GL_p(\CC)$ and $g_F: U \to GL_p(\CC)$, then in these trivializations,
+$P$ has the form
+\[
+    P = g_F(\sum_{|\alpha| \leq m} A^{\alpha} \frac{\partial^{|\alpha}}{\partial x^\alpha})g_E^{-1}
+    = \sum_{|\alpha| \leq m} \tilde{A}^\alpha \frac{\partial^{|\alpha|}}{\partial x^\alpha},
+\]
+
+where the coefficients $\tilde{A}^\alpha$ can be obtained using the product rule 
+to interchange the orders of $\partial_x$ and $g_E^{-1}$. Namely, for all $|\alpha| = m$, 
+we have the formula 
+\[
+    \tilde{A}^\alpha = g_E A^\alpha g_E^{-1}
+\]
+for the modified coefficients. 
+
+Similarly, if we change coordinates on the set $U$, $P$ takes the form
+\[
+    P = \sum_{|\alpha| \leq m} \tilde{A}^\alpha(\tilde{x})\frac{\partial^{|\alpha|}}{\partial x^\alpha},
+\]
+and for $|\alpha| = m$, we have
+\[
+    \tilde{A}^\alpha = \sum_{}
+\]
+
+\end{document}
