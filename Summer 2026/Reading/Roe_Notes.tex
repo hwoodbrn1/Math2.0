@@ -454,10 +454,44 @@ We define
 
     where we write $B \wedge *A$ to be the tensor for $\beta\wedge *\alpha$. In other words,
     the matrix in parenthesis with parameter $K$ is $*A$. 
-
-    test again more
-
-
 \end{enumerate}
+
+\section{The Spin Groups}
+
+\begin{definition}
+    An algebra $A$ over $\RR$ or $\CC$ is called a \textit{superalgebra} 
+    if it is an internal direct sum of linear subspaces $A_0$ and $A_1$, 
+    with
+    \[
+        A_0\cdot A_0 \subset A_0, \quad A_0 \cdot A_1 \subset A_1, \quad 
+        A_1\cdot A_0 \subset A_1, \quad A_1 \cdot A_1 \subset A_0.
+    \]
+    We say that $A_0$ and $A_1$ are the \textit{even} and \textit{odd} parts of $A$
+    respectively. The subset $A_0\cup A_1$ is called the set of homogeneous elements of $A$. 
+
+    Alternatively, a superalgebra is an algebra $A$ equipped with an automorphism 
+    $\epsilon$, the \textit{grading automorphism}, such that $\epsilon^2 = 1$. 
+    The subspaces $A_0$ and $A_1$ are the $1$ and $-1$ eigenspaces of $\epsilon$, 
+    and in the previous case the automorphism is defined by
+    \[
+        \epsilon(a_0 + a_1) = a_0 - a_1
+    \]
+    for $a_0 \in A_0, a_1 \in A_1$. 
+\end{definition}
+
+\begin{proposition}
+    The Clifford algebra of an inner product space $V$ is a super algebra, in which the homogeneous
+    elements are products of an even or odd number of elements of $V$. 
+\end{proposition}
+
+\begin{definition}
+    We define the \textit{supercommutator} on $A$ first on homogeneous elements by
+    \[
+        [x,y]_s = xy - (-1)^{\deg(x)\deg(y)}yx,
+    \]
+    and then extend to all of $A$ by linearity. We define the \textit{super-center}
+    $\mathfrak{Z}_s(A)$ of $A$ to be the set of all elements which \textit{supercommute}
+    with every element in $A$, i.e. $[x,y]_s = 0$.
+\end{definition}
 
 \end{document}
