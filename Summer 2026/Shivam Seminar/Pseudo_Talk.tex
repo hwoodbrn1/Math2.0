@@ -1,4 +1,4 @@
-\documentclass[12pt, reqno]{article}
+\documentclass[14pt, reqno]{extarticle}
 
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage{enumitem}
@@ -15,16 +15,31 @@
 \usepackage{array}   % for \newcolumntype macro
 \newcolumntype{L}{>{$}l<{$}}
 
-\theoremstyle{plain}
-\newtheorem*{theorem}{Theorem}
-\newtheorem*{proposition}{Proposition}
-\newtheorem{exercise}{Exercise}
-\newtheorem*{lemma}{Lemma}
-\newtheorem*{corollary}{Corollary}
 
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{exercise}{Exercise}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
 \theoremstyle{definition}
-\newtheorem*{definition}{Definition}
+\newtheorem{definition}{Definition}[section]
 \newtheorem*{example}{Example}
+
+% Pretty good font with math typesetting
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\usepackage{concmath}
+\usepackage[T1]{fontenc}
+
+% funny and thin
+% \renewcommand*\rmdefault{cmdh}
+% \usepackage[T1]{fontenc}
+
+%very good and sciency
+% \usepackage[sfdefault]{ClearSans} %% option 'sfdefault' activates Clear Sans as the default text font
+% \usepackage[T1]{fontenc}
+% \usepackage{euler}
 
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
@@ -39,20 +54,17 @@
 \newcommand{\CC}{\mathbb{C}}
 \newcommand{\QQ}{\mathbb{Q}}
 
+\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+
 \DeclareMathOperator{\ima}{\text{im}}
 
 \begin{document}
 
-\topmargin=-40pt
-\rhead{Henry Woodburn}
-\lhead{None}
-\renewcommand{\headrulewidth}{1pt}
-\renewcommand{\headsep}{20pt}
-\thispagestyle{fancy}
+\title{Pseudodifferential Operators}
+\author{Henry Woodburn}
+\maketitle
 
-{\Huge \bfseries \noindent Pseudodifferential Operators}
-
-\section{Part 1: Differential Operators}
+\section{Differential Operators}
 
 We would like to generalize the notion of a differential
 operator on $C^\infty(R^n)$ to sections of vector bundles on a manifold. Consider the 
@@ -75,13 +87,14 @@ where
 \]
 
 In other words, $D$ is a linear map $C^\infty(\RR^2, \RR^3) \to C^\infty(\RR^2, \RR^2)$. 
-This suggests we consider differential operators mapping not just between functions
-on a manifold, but between sections of bundles $E$ and $F$.
+This suggests that instead of considering differential operators acting on functions 
+(sections of a trivial line bundle,) we consider differential operators which 
+act on sections of vector bundles. 
 
 In the following section, we let $X$ be a manifold, with $E$ and $F$ smooth complex
-vector bundles on $X$. 
+vector bundles on $X$. We denote by $\Gamma(E)$ the space of smooth $C^\infty$ sections of $E$. 
 
-\begin{definition}
+\begin{definition}\label{diff}
     A \textit{differential operator} of order $m$ on $X$ is a 
     linear map $P: \Gamma(E) \to \Gamma(F)$, such that if we choose local
     coordinates $x_i$ in an open set $U \subset X$, and also local trivializations
@@ -97,7 +110,7 @@ Observe that if we make a change of local trivializations of $E|_U$ and $F|_U$ b
 $g_E: U \to GL_p(\CC)$ and $g_F: U \to GL_p(\CC)$, then in these trivializations,
 $P$ has the form
 \[
-    P = g_F(\sum_{|\alpha| \leq m} A^{\alpha} \frac{\partial^{|\alpha}}{\partial x^\alpha})g_E^{-1}
+    P = g_F\left(\sum_{|\alpha| \leq m} A^{\alpha} \frac{\partial^{|\alpha}}{\partial x^\alpha}\right)g_E^{-1}
     = \sum_{|\alpha| \leq m} \tilde{A}^\alpha \frac{\partial^{|\alpha|}}{\partial x^\alpha},
 \]
 
@@ -109,13 +122,235 @@ we have the formula
 \]
 for the modified coefficients. 
 
-Similarly, if we change coordinates on the set $U$, $P$ takes the form
+Similarly, if we change to coordinates $\tilde{x} = \tilde{x}(x)$ on the set $U$, $P$ takes the form
 \[
-    P = \sum_{|\alpha| \leq m} \tilde{A}^\alpha(\tilde{x})\frac{\partial^{|\alpha|}}{\partial x^\alpha},
+    P = \sum_{|\alpha| \leq m} \tilde{A}^\alpha(\tilde{x})\frac{\partial^{|\alpha|}}{\partial x^\alpha}.
 \]
-and for $|\alpha| = m$, we have
+
+Using the Jacobian for the change of variables, for any $j$ we can write
 \[
-    \tilde{A}^\alpha = \sum_{}
+    \frac{\partial}{\partial x_j} = \sum_{k = 1}^n \frac{\partial \tilde{x}_k}{\partial x_j} \frac{\partial}{\partial \tilde{x}_k}.
 \]
+
+For any multi-index $\alpha$ with $|\alpha| = m$, we can write 
+\[
+    \frac{\partial}{\partial x^\alpha} = \sum_{|\beta| = m} \left[\frac{\partial\tilde{x}}{\partial x}\right]_\beta^\alpha \frac{\partial}{\partial \tilde{x}^\beta},
+\]
+where $\left[\frac{\partial\tilde{x}}{\partial x}\right]_*^*$ denotes the symmetrization of the $m$-th exterior 
+power of the jacobian. Note that both upper and lower indices are symmetrized to reflect the commutativity 
+of partial derivatives. 
+
+Thus we have 
+\[
+    \tilde{A}^\alpha = \sum_{|\beta| = m} A^\beta \left[ \frac{\partial{\tilde{x}}}{\partial x}\right]^\alpha_\beta
+\]
+for the top order coefficients with $|\alpha| = m$. 
+
+We see that $P$ behaves well under coordinate changes and changes of trivialization, so long as we only 
+consider the top order terms. In fact, we have proven that the coefficients $\{i^m A^\alpha\}_{|\alpha| = m}$
+represent a well defined section $\sigma(P)$ of the bundle $(\odot^m TX) \otimes \text{Hom}(E,F)$, where
+$\odot$ denotes the symmetric tensor product. 
+
+Next we note that the space $\odot^m V$ is \textit{canonically} isomorphic to the space of homogeneous polynomial
+functions of degree $m$ on $V^*$. Hence, for each cotangent vector $\xi \in T_x^* X$, the principal 
+symbol gives a linear map 
+\[
+    \sigma_\xi(P): E_x \to F_x.
+\]
+In other words, the symbol can be considered as a (polynomial) function on the cotangent bundle. 
+
+
+
+\subsection{Examples on Riemannian Manifolds}
+
+Now let $X$ be a riemannian manifold equipped with a metric $\langle\cdot,\cdot\rangle$. In local 
+coordinates we can express the metric using the basis as
+\[
+    \sum g_{jk}dx_j dx_k
+\]
+for some matrix $g_{jk}$. We also denote by $g^{jk}$ the inverse of $g_{jk}$, and $g := \det(\{g_{jk}\})$.
+
+\begin{example}
+    Consider the Laplace-Beltrami operator $\Delta: C^\infty(X) \to C^\infty(X)$ defined by $\Delta = d^*d$, where
+    $d^*$ is defined on $k$-forms $\alpha$ by $d^*\alpha = (-1)^{(nk+n+1)}*d^*\alpha$. We first calculate 
+    an explicit formula for $d^*$ applied to $k$-forms $\alpha = \sum A_i dx^i$:
+    \[
+        d^*\alpha = \frac{1}{\sqrt{g}}\sum_{ij}\frac{\partial}{\partial x_j}(A_i g^{ij}\sqrt{g}).
+    \]
+    Then we can apply it to $\alpha = df = \sum \frac{\partial f}{\partial x_i} dx^i$ to obtain the following formula for $\Delta$:
+    \begin{align}
+        \Delta f & = \frac{1}{\sqrt{g}}\sum_{ij}\frac{\partial}{\partial x_j}(\sqrt{g} g^{ij} \frac{\partial f}{\partial x_i} )\\
+        & = \sum_{j,k=1}^n g^{jk} \frac{\partial^2 f}{\partial x_j \partial x_k} + \{\text{lower order terms}\}.
+    \end{align}
+
+    Now we can calculate its symbol: for some cotangent vector $\xi = \sum \xi_k dx^k$, the polynomial
+    function is given by
+    \[
+        \sigma_\xi(\Delta) = i^2 \sum_{j,k = 1}^n g^{jk} \xi_j \xi_k = -\|\xi\|^2.
+    \]
+\end{example}
+
+\begin{example}
+    From this discussion, it is natural to wonder if we can just define an operator with symbol $i\|\xi\|$. 
+    In fact we could, but it will be pseudodifferential and not quite what we are after in several ways. 
+
+    Instead, we introduce the concept of clifford action of $T^*M$ on a bundle $S$. In defining the 
+    dirac operator $D$ in the usual way, we see that its symbol is 
+    \[
+        \sigma_\xi(D) = ic(\xi),
+    \]
+    where $c(\xi) \in \text{End},mk(S)$ denotes clifford multiplication by $\xi$. Trivializing $S$ in some neighborhood $U$, $c(\xi)$ becomes 
+    some matrix-valued function on $U$, and thus $D$ is an ordinary differential operator on $S$. 
+\end{example}
+
+\begin{remark}
+    For a differential operator $P: \Sigma(E) \to \Sigma(F)$ we can consider $\sigma(P)$ as a bundle map of the pullbacks 
+    $\pi^*E \to \pi^*F$ in the natural way, under the projection $\pi: T^*M \to M$.
+\end{remark}
+
+\section{Sobolev Spaces}
+
+The point of this section is to introduce the fourier transform-based sobolev spaces $H^s$ for $s \in \RR$,
+and to extend them to sections of vector bundles in a suitable way. 
+
+\begin{definition}\label{orig}
+    Let $E$ be a hermitian vector bundle with connection $\nabla$ on a compact Riemannian manifold $X$. Given 
+    $u \in \Sigma(E)$, we have $\nabla u \in \sigma(T^*X \otimes E)$. Furthermore, using the tensor product
+    connection on $T^*X \otimes E$, $\nabla \nabla u \in \sigma(T^*X\otimes T^*X \otimes E)$. Thus
+    for any $k$, we can define a norm
+    \[
+        \|u\|_k^2 = \sum_{j = 0}^k \int_X |\nabla^k u|,
+    \]
+    called the basic Sobolev $k$-norm on $\sigma(E)$.
+
+    The completion of $\sigma(E)$ under this norm is the Sobolev space $H^k(E)$.
+\end{definition}
+
+A fundamental fact about sobolev spaces is the following proposition:
+
+\begin{proposition}\label{basic}
+    A differential operator $P: \sigma(E) \to \sigma(E)$ of order $m$ is bounded 
+    as a linear map $P: H^k \to H^{k-m}$. Hence, $P$ extends to a linear
+    map $P: H^k \to H^{k-m}$. 
+\end{proposition}
+
+The next construction reduces the study of sections of $E$ to the study of smooth $\CC^p$-valued functions
+with compact support in the unit ball using a partition of unity. Then we can build a norm on $\sigma(E)$ using
+the fourier transform on sections in each trivialized patch of $E$ under the transformed coordinates.
+I will not provide it here, but we need an open cover of X consisting of trivialized patches of $E$, 
+and a partition of unity subordinate to this cover, such that the open cover is sufficiently overlapping.
+Then we change coordinates with a bijection $[-1,1] \to \RR$. 
+
+\subsection{Fourier transform-based Sobolev spaces}
+
+Here we briefly outline the sobolev spaces $H^s(\RR^n)$, with values in $\CC^p$, for $s \in \RR$. 
+These are constructed using the fourier transform.
+
+\begin{definition}
+    The \textit{Fourier Transform} $\hat{u}: \RR^n \to \CC^n$ 
+    of a compactly supported function $u \in C^\infty(\RR^n, \CC^n)$ 
+    is defined as 
+    \[
+        \hat{u}(\xi) = (2\pi)^{-n/2} \int_{\RR^n} e^{-i\langle x, \xi\rangle}u(x)dx.
+    \]
+    Denote the Fourier map by $\mathcal{F}$.
+\end{definition}
+
+In fact, $\mathcal{F}$ is an isometry $\mathscr{S} \to \mathscr{S}$, where $\mathscr{S}$ 
+is the space of \textit{Schwartz functions} of ``rapidly decreasing functions,'' 
+who are dominated by polynomials of arbitrarily large negative order on any compact set,
+under the $L^2$ norm. 
+
+\begin{definition}
+    We define the \textit{Sobolev $s$-norm} $\|\cdot\|_s$ by the formula
+    \[
+        \|u\|_s^2 = \int (1 + \|\xi\|)^{2s}|\hat{u}(\xi)|^2 d\xi.
+    \]
+\end{definition}
+
+To motivate this definition, note that for compactly supported $u$ on $\RR$, after integrating by parts, we have
+\[
+    \widehat{(\partial_{x}u)} = \int e^{ix\xi} \partial_{x}(u)(x)dx
+    = \int \xi e^{ix\xi} u(x) dx = \xi \hat{u}.
+\]
+Thus for the case $s = 1$, we have
+\[
+    \int |\xi|^2|\hat{u}(\xi)|^2d\xi = \int {|\xi\hat{u}(\xi)|}^2d\xi = \int {|\widehat{(\partial_x u)}(\xi)|}^2d\xi 
+    = \int {|\partial_x u(x)|}^2 dx
+\]
+since $\mathcal{F}$ is an isometry in the $L^2$ norm. 
+
+One surprising result is the following:
+
+\begin{proposition}[The Sobolev Embedding Theorem]
+    Fix a positive integer $k$. Then for each real number $s > (n/2) + k$, there is a constant
+    $K_s$ such that for every $u \in \mathscr{S}$, 
+    \[
+        \|u\|_{C^k} \leq K_s \|u\|_s.
+    \]
+    Hence, there is a continuous embedding 
+    \[
+        H^s \subset C^k.
+    \]
+\end{proposition}
+
+In order to extend these results globally to define Sobolev spaces on compact manifolds, 
+we need a couple of lemmas, which we will not prove, but are not too unreasonable. 
+
+\begin{lemma}\label{mtx}
+    Let $A$ be a smooth matrix-valued function on $\RR^n$ so that $|D^\alpha A|$ is bounded for all $\alpha$. 
+    Then the map $T: \mathscr{S} \to \mathscr{S}$ given by $Tu = Au$ extends to a bounded
+    linear map $T: H^s \to H^s$ for all $s \in \RR$. 
+\end{lemma}
+
+\begin{lemma}\label{btx}
+    Let $\Phi: \RR^n \to \RR^n$ be a $C^\infty$ diffeomorphism which is linear outside
+    a compact set. Then the map $T: \mathscr{S} \to \mathscr{S}$ given by $Tu = u \circ \Phi$
+    extends to a bounded linear map $T: H^s \to H^s$ for all $s \in \RR$. 
+\end{lemma}
+
+Now we globalize. Let $E$ be a smooth vector bundle over a compact manifold $X$. Fix a good presentation
+$\{U_\beta\}$ for $E$ with coordinates $x_\beta: U_\beta \to \RR^n$ and a partition of 
+unity $\{\chi_\beta\}$ subordinate to the cover $\{B_\beta\} = \{x^{-1}_\beta(B^n)\}$. 
+
+Since $\sum \chi_\beta = 1$, any $u \in \Gamma(E)$ can be written $u = \sum u_\beta$ where
+$u_\beta = \chi_\beta u$. For $s \in \RR$, define a Sobolev $s$-norm on $\Gamma(E)$ by
+setting
+\[
+    \|u\|_s = \sum_{\beta = 1}^N \|u_\beta\|_s,
+\]
+where the $\|u_\beta\|_s$ are defined in terms of the presentation $E|_{U_\beta} \simeq \RR^n \times \CC^n$.
+
+As a consequence of \ref{mtx} and \ref{btx}, we have the following: 
+
+\begin{proposition}
+    For any $s \in \RR$ and any smooth vector bundle $E$ over a compact manifold, the equivalence class
+    of the norm $\|\cdot\|_s$ as defined above is independent of the good presentation used to define it.
+    Furthermore, when $s = k$ is an integer, the equivalence class of $\|\cdot\|_k$ is the same
+    as that defined in the first definition \ref{orig}.
+\end{proposition}
+
+Moreover, we have an analagous result to \ref{basic} for differential operators:
+
+\begin{proposition}
+    Let $P: \Gamma(E) \to \Gamma(F)$ be a differential operator of order $m$ as defined 
+    in \label{diff}
+    whose (locally expressed) coefficients are bounded as in \ref{mtx}. Then $P: \Gamma(E) \to \Gamma(E)$ 
+    extends to a bounded linear map $P: H^s(E) \to H^{s-m}(F)$ for all $s \in \RR$. 
+\end{proposition}
+
+\begin{remark}
+    In fact, $H^s(E)$ is a hilbert space under the $H^s$ inner product
+    \[
+        \langle u, v\rangle_s = \int {(1 + |\xi|)}^{2s}\hat{u}(\xi)\overline{\hat{v}(\xi)}d\xi.
+    \]
+
+    Alternatively, we can define a pairing 
+    $\langle\cdot,\cdot\rangle_*: H^s(E) \times H^{-s}(E^*) \to \RR$ by setting 
+    \[
+        \langle u, v\rangle_* = \int u(v),
+    \]
+    placing $H^s(E)$ and $H^{-s}(E^*)$ in duality. 
+\end{remark}
 
 \end{document}
