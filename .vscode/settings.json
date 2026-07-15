@@ -1,0 +1,5 @@
+{
+    "latex-workshop.latex.watch.pdf.delay": 1000,
+    "latex-workshop.latex.watch.delay": 1000,
+    "latex-workshop.synctex.afterBuild.enabled": false
+}

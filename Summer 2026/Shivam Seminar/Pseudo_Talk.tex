@@ -14,6 +14,7 @@
 \usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
 \usepackage{array}   % for \newcolumntype macro
 \newcolumntype{L}{>{$}l<{$}}
+\usepackage{cite}
 
 
 
@@ -64,29 +65,58 @@
 \author{Henry Woodburn}
 \maketitle
 
+\tableofcontents
+
 \section{Differential Operators}
 
-We would like to generalize the notion of a differential
-operator on $C^\infty(R^n)$ to sections of vector bundles on a manifold. Consider the 
-following system of equations:
+The point of these notes is to give a brief introduction to pseudodifferential operators.
+First we will define ordinary differential operators on manifolds, which will give context
+and motivate what is to come. Most of these notes are from \cite{lawson}
+
+First, we will look at a very basic example of a differential operator: The Cauchy-Riemann
+operator on $\mathbb{C}$. Let $f: \CC \to \CC$ be a smooth function. Writing 
+$f(z) = u(z) + i v(z)$, we say $f$ is holomorphic if
+\begin{align}
+    &\der{u}{x}-\der{v}{y} = 0\\
+    &\der{u}{y} + \der{v}{x} = 0,
+\end{align}
+
+with the obvious identification of $z = x + iy$. Continuing to think of 
+$f$ as a map $\RR^2 \to \RR^2$, we want to think of the left side of the equation as 
+a differential operator $D$ applied to $f = (u(x,y),v(x,y))$. Notice in order to
+map $\RR^2$ valued functions to $\RR^2$ valued functions, $D$ must have matrix 
+valued coefficients. We can write
 \[
-\begin{matrix}
-    3 \frac{\partial}{\partial x} f(x,y,z) + \frac{\partial}{\partial x} g(x,y,z) 
-    + 2 \frac{\partial}{\partial z} h(x,y,z) & = 0\\
-    3 \frac{\partial}{\partial x} f(x,y,z) + 3 \frac{\partial}{\partial x} f(x,y,z)
-    + 3 f(x,y,z) & = 0
-\end{matrix}
+    D = 
+    \begin{bmatrix}
+        1 & 0\\
+        0 & 1
+    \end{bmatrix} \der{}{x} + 
+    \begin{bmatrix}
+        0 & -1\\
+        1 & 0
+    \end{bmatrix} \der{}{y},
 \]
 
-We can represent the right side as an operator $D$ applied to an $R^3$ valued function,
-where
+so that indeed
 \[
-    D = \begin{bmatrix} 3 & 1 & 0\\ 3 & 1 & 0\end{bmatrix}\frac{\partial}{\partial x}
-    + \begin{bmatrix} 0 & 0 & 1 \\ 0 & 0 & 0\end{bmatrix}\frac{\partial}{\partial z}
-    + \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 3\end{bmatrix}.
+    Df = 
+    \begin{bmatrix}
+        \der{u}{x} & 0\\
+        0 & \der{v}{x}
+    \end{bmatrix} +
+    \begin{bmatrix}
+        0 & -\der{v}{y}\\
+        \der{u}{x} & 0
+    \end{bmatrix} 
+    = 
+    \begin{bmatrix}
+        \der{u}{x} & -\der{v}{y}\\
+        \der{u}{y} & \der{v}{x}
+    \end{bmatrix}.
 \]
 
-In other words, $D$ is a linear map $C^\infty(\RR^2, \RR^3) \to C^\infty(\RR^2, \RR^2)$. 
+In other words, $D$ is a linear map $C^\infty(\RR^2, \RR^2) \to C^\infty(\RR^2, \RR^2)$. 
 This suggests that instead of considering differential operators acting on functions 
 (sections of a trivial line bundle,) we consider differential operators which 
 act on sections of vector bundles. 
@@ -148,10 +178,11 @@ for the top order coefficients with $|\alpha| = m$.
 
 We see that $P$ behaves well under coordinate changes and changes of trivialization, so long as we only 
 consider the top order terms. In fact, we have proven that the coefficients $\{i^m A^\alpha\}_{|\alpha| = m}$
-represent a well defined section $\sigma(P)$ of the bundle $(\odot^m TX) \otimes \text{Hom}(E,F)$, where
+represent a well defined section $\sigma(P)$, called 
+the \textit{Principal Symbol}, of the bundle $(\odot^m TX) \otimes \text{Hom}(E,F)$, where
 $\odot$ denotes the symmetric tensor product. 
 
-Next we note that the space $\odot^m V$ is \textit{canonically} isomorphic to the space of homogeneous polynomial
+Next we note that the space $\odot^m V$ is isomorphic to the space of homogeneous polynomial
 functions of degree $m$ on $V^*$. Hence, for each cotangent vector $\xi \in T_x^* X$, the principal 
 symbol gives a linear map 
 \[
@@ -161,7 +192,7 @@ In other words, the symbol can be considered as a (polynomial) function on the c
 
 
 
-\subsection{Examples on Riemannian Manifolds}
+\subsubsection{Examples on Riemannian Manifolds}
 
 Now let $X$ be a riemannian manifold equipped with a metric $\langle\cdot,\cdot\rangle$. In local 
 coordinates we can express the metric using the basis as
@@ -208,16 +239,67 @@ for some matrix $g_{jk}$. We also denote by $g^{jk}$ the inverse of $g_{jk}$, an
     $\pi^*E \to \pi^*F$ in the natural way, under the projection $\pi: T^*M \to M$.
 \end{remark}
 
-\section{Sobolev Spaces}
+\newpage
 
-The point of this section is to introduce the fourier transform-based sobolev spaces $H^s$ for $s \in \RR$,
-and to extend them to sections of vector bundles in a suitable way. 
+\section{Sobolev Spaces ($L^2$ Based)}
+
+In the last section, we defined differential operators on manifolds, mapping
+between sections of vector bundles. In the later section, we will define a 
+more general class of operators called Pseudodifferential operators. 
+These are a natural generalization of ordinary
+differential operators, as we will see, with their own corresponding principal symbols.
+These operators arise naturally when we want to find approximate inverses of 
+differential operators, called \textit{parametrices}, which are inverses modulo a 
+very nice class of operators called smoothing operators. 
+
+But first, we need to define the spaces of functions these operators act on. 
+We require them to be continuous and, say, $C^\infty$, at least at first. 
+We will try to base a norm on the $L^2$ norm because of its nice duality properties and
+so that we can eventually consider non-smooth functions in our domains. The ordinary
+$L^2$ norm is not good enough, however. Consider the sequence of functions 
+\[
+    u_n(x) = x^n
+\]
+on the interval $[-1,1]$.
+Since 
+\[
+    \|u_n\|_{L^2} \to 0
+\]
+as $n \to \infty$, but
+\[
+    \|u'_n\|_{L^2} = n,
+\]
+there may not exist a $C > 0$ such that $\|u'\|_{L^2} \leq C \|u\|_{L^2}$.
+
+
+However, define a norm $\|\cdot\|_1$ on $\RR$ given by
+\[
+    \|u\|_{1} = \|u\|_{L^2} + \|u'\|_{L^2}.
+\]
+If we consider $D = \der{}{x}$ as a map from $C_c^\infty(\RR)$ with the $L^2$ norm to the space
+$C_c^\infty(\RR)$ with the $\|\cdot\|_1$ norm, $D$ becomes a bounded operator. By taking
+one derivative, we lose one order of control over the ``size'' of our function than before. In the 
+same way, after taking an $m$-th order derivative, we lose $m$ derivatives of control on our output.
+
+We first define the basic sobolev $k$-norm, for $k \in \mathbb{N}$, on $\RR^n$. We will 
+immediately generalize this to sections of a vector bundle eqiupped with a connection,
+but the underlying mechanism will be the same. 
+
+\begin{definition}
+    Define the \textit{Sobolev $k$-norm} $\|\cdot\|_k$ on $C_c^\infty(\RR^n)$ by 
+    \[
+        \|u\|_k^2 = \sum_{|\alpha|<k} \|\partial_x^\alpha u(x)\|_{L^2},
+    \]
+    where $\alpha$ is a multi-index. Define $H^k(\RR^n)$ to be the completion of $C_c^\infty(\RR^n)$ under 
+    this norm.
+\end{definition}
+
+Next, let $E$ be a hermitian vector bundle with connection $\nabla$ on a compact Riemannian manifold $X$. Given 
+$u \in \Gamma(E)$, we have $\nabla u \in \sigma(T^*X \otimes E)$. Furthermore, using the tensor product
+connection on $T^*X \otimes E$, we have $\nabla \nabla u \in \sigma(T^*X\otimes T^*X \otimes E)$. 
 
 \begin{definition}\label{orig}
-    Let $E$ be a hermitian vector bundle with connection $\nabla$ on a compact Riemannian manifold $X$. Given 
-    $u \in \Sigma(E)$, we have $\nabla u \in \sigma(T^*X \otimes E)$. Furthermore, using the tensor product
-    connection on $T^*X \otimes E$, $\nabla \nabla u \in \sigma(T^*X\otimes T^*X \otimes E)$. Thus
-    for any $k$, we can define a norm
+    Define the \textit{Sobolev $k$-norm} $\|\cdot\|_k$ on $\Gamma(E)$ by
     \[
         \|u\|_k^2 = \sum_{j = 0}^k \int_X |\nabla^k u|,
     \]
@@ -225,6 +307,9 @@ and to extend them to sections of vector bundles in a suitable way.
 
     The completion of $\sigma(E)$ under this norm is the Sobolev space $H^k(E)$.
 \end{definition}
+
+The benefit of this definition is that it is inherently global, unlike some of the later
+definitions involving manifolds, where we have to verify independence of coordinates.
 
 A fundamental fact about sobolev spaces is the following proposition:
 
@@ -234,32 +319,77 @@ A fundamental fact about sobolev spaces is the following proposition:
     map $P: H^k \to H^{k-m}$. 
 \end{proposition}
 
-The next construction reduces the study of sections of $E$ to the study of smooth $\CC^p$-valued functions
-with compact support in the unit ball using a partition of unity. Then we can build a norm on $\sigma(E)$ using
-the fourier transform on sections in each trivialized patch of $E$ under the transformed coordinates.
-I will not provide it here, but we need an open cover of X consisting of trivialized patches of $E$, 
-and a partition of unity subordinate to this cover, such that the open cover is sufficiently overlapping.
-Then we change coordinates with a bijection $[-1,1] \to \RR$. 
+To see why this is true, work in some coordinate patch. Write the connection locally as
+\[
+    \nabla_i = \der{}{x_i} + \Gamma_i,
+\]
+where $\Gamma_i$ is a smooth local section of $\text{End}(E)$. Then the $k$-norm
+of a section $u \in \Gamma(E)$ involves at most $k$ ordinary derivatives of $u$, 
+as a function on an open set of $\RR^n$, plus many other lower order terms involving 
+derivatives of $u$ and the symbols $\Gamma_i$ above. But fixing a covering 
+of $X$ by trivialized patches of $E$, we can bound these errors by some uniform constant 
+as to not interfere with the end result. 
 
-\subsection{Fourier transform-based Sobolev spaces}
+\subsubsection{The Fourier Transform}
 
-Here we briefly outline the sobolev spaces $H^s(\RR^n)$, with values in $\CC^p$, for $s \in \RR$. 
-These are constructed using the fourier transform.
+In fact, we can generalize to the spaces $H^s$, for $s \in \RR$. To do this we need 
+to take advantage of the Fourier Transform.
+
+\textbf{Notation:} Here we will write $D_x^\alpha = -i \partial_x^\alpha$ for reasons which will
+become clear in the following proposition.
 
 \begin{definition}
-    The \textit{Fourier Transform} $\hat{u}: \RR^n \to \CC^n$ 
-    of a compactly supported function $u \in C^\infty(\RR^n, \CC^n)$ 
-    is defined as 
+    The \textit{Fourier Transform} $\mathcal{F}: C_c^\infty(\RR^n) \to C^\infty(\RR^n)$ 
+    is defined to be the map $u \mapsto \widehat{u}$, where
     \[
         \hat{u}(\xi) = (2\pi)^{-n/2} \int_{\RR^n} e^{-i\langle x, \xi\rangle}u(x)dx.
     \]
-    Denote the Fourier map by $\mathcal{F}$.
 \end{definition}
+
+Here are some of its basic properties:
+
+\begin{proposition}
+    \begin{enumerate} \item[]
+        \item[1.] $\widehat{D_x^\alpha u(x)}(\xi) = \xi^\alpha \widehat{u}(\xi)$
+        \item[2.] $\widehat{x^\alpha u(x)}(\xi) = D_\xi^\alpha \widehat{u}(\xi)$
+    \end{enumerate}
+\end{proposition}
+
+\textit{Proof:} 
+\begin{enumerate}
+    \item Using integration by parts, and the fact that $u$ is compactly supported 
+    \[
+        \widehat{D_x^\alpha u(x)}(\xi) = \int_{\RR^n} e^{i\langle x, \xi\rangle} D_x^\alpha u(x) dx
+        = \int_{\RR^n} D_x^\alpha e^{i\langle x, \xi\rangle} u(x)dx 
+        = \xi^\alpha \widehat{u}(\xi).
+    \]
+    \item Moreover,
+    \[
+        \widehat{x^\alpha u(x)}(\xi) = \int_{\RR^n} x^\alpha e^{i\langle x,\xi\rangle}u(x)dx
+        = \int_{\RR^n} D_\xi^\alpha e^{i\langle x,\xi\rangle} u(x) = D_\xi^\alpha \widehat{u}(\xi).
+    \]
+\end{enumerate}
+
 
 In fact, $\mathcal{F}$ is an isometry $\mathscr{S} \to \mathscr{S}$, where $\mathscr{S}$ 
 is the space of \textit{Schwartz functions} of ``rapidly decreasing functions,'' 
-who are dominated by polynomials of arbitrarily large negative order on any compact set,
-under the $L^2$ norm. 
+defined by
+\[
+    \mathscr{S} := \{u \in C^\infty(\RR^n): \forall \alpha, k, \exists C_{\alpha,k}\ \text{such that}
+    \ |D^\alpha u(x)| \leq C_{\alpha,k}{(1 + |x|)}^{-k}k, x \in \RR^n\}
+\]
+
+Its inverse is given by the following theorem:
+
+\begin{theorem}
+    For $u \in \mathscr{S}$, we have
+    \[
+        u(x) = (2\pi)^{-n/2}\int_{\RR^n}e^{i\langle x,\xi\rangle} \widehat{u}(\xi)d\xi.
+    \]
+    We will call the map on the right hand side the ``inverse'' Fourier transform.
+\end{theorem}
+
+\subsubsection{Sobolev Spaces}
 
 \begin{definition}
     We define the \textit{Sobolev $s$-norm} $\|\cdot\|_s$ by the formula
@@ -352,5 +482,72 @@ Moreover, we have an analagous result to \ref{basic} for differential operators:
     \]
     placing $H^s(E)$ and $H^{-s}(E^*)$ in duality. 
 \end{remark}
+
+\section{Pseudodifferential Operators}
+
+We start by giving a simple example to motivate the study of pseudodifferential operators. Let
+$P = \sum A^\alpha(x) D^\alpha$ be an ordinary differential operator. By the Fourier inversion formula,
+we have 
+\[
+    u(x) = (2\pi)^{-n/2}\int_{\RR^n}e^{i\langle x,\xi\rangle} \widehat{u}(\xi)d\xi.
+\]
+Then applying $P$, we get
+\begin{equation}\label{symbol}
+    Pu(x) = P\left((2\pi)^{-n/2}\int_{\RR^n}e^{i\langle x,\xi\rangle} \widehat{u}(\xi)d\xi\right)
+    = \int_{\RR^n} e^{i\langle x,\xi\rangle}p(x,\xi)\widehat{u}(\xi)d\xi,
+\end{equation}
+where $p(x,\xi) = \sum A^\alpha(x) \xi^\alpha$. This $p(x,\xi)$ is called the \textit{total symbol}
+of our differential operator
+
+\begin{example}
+    Consider the operator $(1 - \Delta): \mathscr{S} \to \mathscr{S}$. Using the above technique,
+    we can find its inverse $A$ explicitly:
+    \[
+        Au = (1-\Delta)^{-1}u = \int_{\RR^n} e^{i\langle x,\xi\rangle} \frac{1}{(1 + \xi^2)}\widehat{u}(\xi)d\xi.
+    \]
+    We can check that
+    \begin{align}
+        (1-\Delta)^{-1}(1 - \Delta) u(x) &= \int_{\RR^n} e^{i\langle x,\xi\rangle}\frac{1}{(1 + \xi^2)}
+        \mathcal{F}((1-\Delta)u(x))(\xi)d\xi \\
+        &= \int_{\RR^n} e^{i\langle x,\xi\rangle}\frac{1}{(1 + \xi^2)}(1-\xi^2)\widehat{u}(\xi)d\xi\\
+        &=  \int_{\RR^n} e^{i\langle x,\xi\rangle}\widehat{u}(\xi)d\xi = u(x).
+    \end{align}
+    However, $A$ is not a differential operator, since we cannot turn its symbol back
+    into a polynomial in the $\left\{\der{}{x_i}\right\}$'s. This suggests 
+    we broaden our focus to these new operators with more general symbols.
+\end{example}
+
+\subsection{The Space of Symbols}
+
+For an ordinary differential operator of order $m$, its total symbol is an order $m$ polynomial. 
+Such an operator ``removes'' $m$ orders of regularity, in the sense of our Sobolev spaces above.
+Naturally we would want to define of order $m$ to behave in this manner 
+as well. We will see that in fact the only factor which determines these new operators' continuity
+behavior in Sobolev spaces is the asymptotic polynomial behavior of the symbol. 
+
+\begin{definition}
+    Fix $m \in \RR$. A smooth (matrix valued) function $p(x,\xi)$ on $\RR^{2n}$ is called
+    a \textit{symbol of order $m$} if for each $\alpha, \beta$, there is a constant $C_{\alpha,\beta}$
+    such that
+    \[
+        |D_x^\alpha D_\xi^\beta p(x,\xi)|\leq C_{\alpha,\beta}(1 + |xi|)^{m-|\alpha|}
+    \]
+    for all $x, \xi$. Denote the space of these symbols by $\text{Sym}_m$.
+\end{definition}
+
+\begin{proposition}
+    To each $p \in \text{Sym}_m$ the formula \ref{symbol} defines a linear operator $P: \mathscr{S}
+    \to \mathscr{S}$. If $p$ has compact $x$-support, this operator has a continuous
+    extension $H^s \to H^{s-m}$ for all $s$.
+\end{proposition}
+
+The space of all such operators is called the (or ``a'') space of pseudodifferential operators 
+of order $m$ on $\RR^m$, denoted $PDO_m$.
+ 
+We will formally define the \textit{Distribution Kernel} of 
+
+\bibliography{refs}{}
+\bibliographystyle{plain}
+\end{document}
 
 \end{document}

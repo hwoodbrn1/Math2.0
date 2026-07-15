@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}Differential Operators}{1}{section.1}%
+\contentsline {subsubsection}{\numberline {1.0.1}Examples on Riemannian Manifolds}{3}{subsubsection.1.0.1}%
+\contentsline {section}{\numberline {2}Sobolev Spaces ($L^2$ Based)}{5}{section.2}%
+\contentsline {subsubsection}{\numberline {2.0.1}The Fourier Transform}{6}{subsubsection.2.0.1}%
+\contentsline {subsubsection}{\numberline {2.0.2}Sobolev Spaces}{7}{subsubsection.2.0.2}%
+\contentsline {section}{\numberline {3}Pseudodifferential Operators}{9}{section.3}%
+\contentsline {subsection}{\numberline {3.1}The Space of Symbols}{10}{subsection.3.1}%
