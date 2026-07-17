@@ -560,7 +560,7 @@ This gives us a way to translate from functions on $\ZZ^n$ back to functions on 
     For any integer $p > n/2$, there is a continuous embedding $W^{k + p} \to C^k$.
 \end{theorem}
 
-\begin{theorem}[Rellich's Theorem]
+\begin{theorem}[Rellich's Theorem]\label{rellich}
     If $k_1 < k_2$, there is a compact inclusion $W^{k_2} \to W^{k_1}$.
 \end{theorem}
 
@@ -612,11 +612,49 @@ Now we need some unbounded operator theory. We have
     which we will denote by $\overline{D}$.
 \end{proposition}
 
-The proof of this fact relies on the existence of a formal adjoint of $D$. 
+The proof of this fact relies on the existence of a formal adjoint of $D$. The domain of $\widehat{D}$
+consists of all $x \in L^2(S)$ such that there is a sequence $x_j$ converging to $x$, and with $Dx_j$ 
+converging in $L^2(S)$ as well. By applying Garding's inequality, we get
+\[
+    \|x_i - x_j\|_1 \leq C(\|x_i - x_j\|_0 + \|Dx_i - Dx_j\|_0) \to 0,
+\]
+and thus the sequence $x_j$ is cauchy in $\|\cdot\|_1$ and converges to some $x'$. Then since the $L^2$
+topology is weaker than the $H^1$ topology, this implies $x_j \to x'$ in $L^2$, and thus $x' = x$ by
+uniqueness of limits. Thus $x \in H^1$. 
 
-While the graph of $\overline{D}$ is closed in $H\oplus H$, its domain is still not all of $L^2(S)$. 
-Its domain consists of all $x \in L^2(S)$ such that there is a sequence $x_j$ of smooth sections 
-converging to $x$ in $L^2(S)$ and that $Dx_j$ converges in $L^2(S)$. By Garding's inequality,
-this domain is precisely the Sobolev space $H^1(S)$. 
+Conversely, if $x \in H^1$, take some smooth $x_j$ converging to $x$ in $H^1$. Then since $D$
+is continuous $H^1 \to H^0$, 
+\[
+    \|Dx_i - Dx_j\|_0 \leq \|x_i - x_j\|_1 \to 0,
+\]
+so that $Dx_j$ converges in $L^2$. And $x_j$ clearly converges to $x$ in $L^2$ as well, 
+so $x \in \text{Dom}(\overline{D})$.
+
+\begin{proposition}
+    Suppose $x, y \in L^2(S)$ with $Dx = y$ weakly, i.e. 
+    \[
+        \langle x, s\rangle = \langle y, D^* s\rangle\quad \text{for all}\ s \in C^\infty(S).
+    \]
+    Then $x \in H^1(S) = \text{dom}(\overline{D})$, and $\overline{D}x = y$.
+\end{proposition}
+
+\textbf{Proof:} To prove this, the book uses a Friedrichs' mollifier. We obtain 
+some bounded sequence $x_\epsilon \to x$ weakly as $\epsilon \to 0$, and prove that also $Dx_\epsilon$
+is bounded. Applying Garding's inequality, we see that $x_\epsilon$ is bounded in the $H^1$ norm, and
+thus converges in $L^2$ to $x$ by Rellich's theorem \ref{rellich}. This proves $x \in H^1$.
+
+Then $\overline{D}x = z$ for some $z$. To prove that $z = x$, it is enough show that $z$ is a weak
+solution to $D$ as well and then apply uniqueness of weak derivatives.
+
+\begin{definition}
+    A bounded operator $A$ on $L^2(S)$ is called a \textit{smoothing operator} if there is
+    a smooth \textit{kernel} $k(p,q)$ on $M\times M$ with values in $Hom(S_q, S_p)$, such
+    that 
+    \[
+        As(p) = \int_M k(p,q)s(q)dq.
+    \]
+\end{definition}
+
+
 
 \end{document}
