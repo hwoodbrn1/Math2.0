@@ -83,6 +83,20 @@
     \[
         \mu(K) \leq \mu\left(\bigcup_{k = 1}^M 3 B_{i_k}\right) \leq D \sum \mu(B_{i_k}) \leq \frac{D}{\alpha} \sum \int_{B_{i_k}} |f(y)|dy \leq \frac{D}{\alpha}\|f\|_{L^1}.
     \]
+
+    \item[2.1.2.a] Let $\mathscr{F}$ be a finite family of open intervals in $\RR$. We prove there exist two subfamilies $\mathscr{F}_1$ and $\mathscr{F}_2$
+    of $\mathscr{F}$, each family pairwise disjoint, such that the union of the sets in both families is equal to the union of $\mathscr{F}$.
+
+    Without loss of generality, we can reduce to the case when $\cup \mathscr{F}$ is connected, and we can remove any intervals
+    strictly contained in larger ones. If the union is not disjoint, we can just solve the problem on disjoint pieces and combine
+    the individual families in any way. 
+
+    We proceed by induction. The case of $n = 1$ is trivial. Now assume we have proven that for any family of $k-1$ elements,
+    we can find two disjoint subfamilies as above. 
+
+    Let $\mathscr{F}$ be a connected family of $k$ intervals. Remove the leftmost set $U_0$, which must exist since $\mathscr{F}$ is finite, and we 
+    have removed any sets contained in others. Then from $\mathscr{F}\setminus\{U_0\}$, choose subfamilies $\mathscr{G}_i$, $i = 1,2$
+    which satisfy the desired property.
 \end{enumerate}
 
 \end{document}
