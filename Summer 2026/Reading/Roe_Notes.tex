@@ -460,6 +460,43 @@ We define
     the matrix in parenthesis with parameter $K$ is $*A$. 
 \end{enumerate}
 
+\section{Connections, Curvature, and Characteristic Classes}
+
+Let $G$ be a Lie group. 
+
+\begin{definition}
+    We define a \textit{principal bundle} $E$ with \textit{structural group} $G$ over a smooth 
+    manifold $M$ to be a locally trivial fiber bundle whose fibers are homeomorphic to $G$,
+    considered as a right $G$-space. Therefore, $G$ acts smoothly on $E$ by right multiplication on 
+    each fiber, and $M = E/G$. 
+\end{definition}
+
+Examples of these are frame bundles of vector bundles. These are principal $\textrm{GL}(k)$-bundles.
+
+On the other hand, given a principal bundle, there is a way to construct a vector bundle 
+with a $G$ action, called the \textit{associated vector bundle} to $E$. Specifically,
+given a representation $\rho: G \to \text{GL}(F)$ of $G$ on a vector space $F$, 
+$G$ operates on the space $E \times F$ by
+\[
+    (e,f)g = (eg, \rho(g^{-1})f).
+\]
+We define the associated vector bundle as the quotient space $E \times_\rho F$ under the $G$ action. 
+It is indeed a vector bundle whose fibers are isomorphic to $F$.
+
+Now we will make some definitions about differential forms on vector bundles. Let $E$ be a principal bundle
+with group $G$. To any $u \in \mathfrak{g}$, the Lie algebra of $G$, we can associate a $G$-invariant
+vector field on $E$. This is called the Killing Field. 
+
+\begin{definition}
+    Let $p \in M$ and choose $s \in E_p$. Consider the map $m_s: G \to E_p$ given by 
+    $g \mapsto sg$. This is in fact a diffeomorphism, so that for every $g \in G$, the 
+    differential $dm_s|_g: T_gG \to T_{gs}E_s$ is an isomorphism. Taking $g = e \in G$, we
+    obtain an isomorphism $\phi_p:njbmT_eG = \mathfrak{g} \to T_s E_p$. For $u \in \mathfrak{g}$,
+    we define the \textit{Killing field} $X_u$ to be the vector field on $E$ whose 
+    value at a point $s \in E_p$ is $\phi_p$
+\end{definition}
+
+
 \section{The Spin Groups}
 
 \begin{definition}
@@ -644,7 +681,35 @@ is bounded. Applying Garding's inequality, we see that $x_\epsilon$ is bounded i
 thus converges in $L^2$ to $x$ by Rellich's theorem \ref{rellich}. This proves $x \in H^1$.
 
 Then $\overline{D}x = z$ for some $z$. To prove that $z = x$, it is enough show that $z$ is a weak
-solution to $D$ as well and then apply uniqueness of weak derivatives.
+solution to $D$ as well and then apply uniqueness of weak derivatives.\qed
+
+\begin{proposition}
+    The Kernel of $D$ consists of smooth sections. 
+\end{proposition}
+
+\textbf{Proof:} We will prove inductively that $s \in H^k$ for all $k$, and the result will follow by the 
+Sobolev embedding theorem. We have 
+\[
+    \|s_\epsilon\|_k \leq C_k(\|s_\epsilon\|_{k-1} + \|Ds_\epsilon\|_{k-1}) 
+    = C_k(\|s_\epsilon\|_{k-1} + \|[D,F_\epsilon]s\|_{k-1}),
+\]
+since $Ds = 0$. But $F_\epsilon$ and $[D,F_\epsilon]$ form bounded families of operators. Then
+$s_\epsilon$ is a bounded sequence in $H^k$ which converges in $L^2$ to $s$, and must converge weakly in 
+$H^k$. Then $s \in H^k$ as desired. 
+
+\subsection{The Functional Calculus}
+
+We will not prove the next theorem, but it is some version of a spectral theorem for unbounded
+self adjoint operators. 
+
+\begin{theorem}
+    There is a direct sum decomposition of $H$ into a sum of countably many finite dimensional
+    eigenspaces $H_\lambda$, each consisting of smooth sections with eigenvalue $\lambda$. 
+    These eigenvalues form a discrete subset of $\RR$.
+\end{theorem}
+
+
+
 
 \begin{definition}
     A bounded operator $A$ on $L^2(S)$ is called a \textit{smoothing operator} if there is

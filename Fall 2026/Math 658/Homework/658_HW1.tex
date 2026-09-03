@@ -1,0 +1,88 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 658}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 1}
+
+\begin{enumerate}
+    \item[2.1.1.a] Let $\mu$ be a positive inner regular locally finite measure. Suppose there exists
+    a constant $D$ such that for all $x \in \RR^n$ and $r > 0$ we have
+    \[
+        \mu(3B(x,r)) \leq D \mu(B(x,r)).
+    \]
+    Define the weak $L^{1,\infty}$ norm $\|\cdot\|_{L^{1, \infty}}$ by
+    \[
+        \|f\|_{L^{1,\infty}} = \sup_{\lambda > 0}\lambda\mu({|f| > \lambda}).
+    \]
+    We will show the uncentered maximal function $M$ is continuous $L^1(\RR^n, \mu) \to L^{1,\infty}(\RR^n,\mu)$.
+    Define $E_\alpha = \{x \in \RR^n: Mf(x) > \alpha\}$. We need to show
+    \[
+        \|Mf\|_{L^{1,\infty}} \leq C\|f\|_{L^1},
+    \]
+    and it will suffice to show for some $\alpha > 0$ that
+    \[
+        \alpha\mu(E_\alpha) \leq C\|f\|_{L^1}.
+    \]
+
+    First, I claim $E_\alpha$ is open. For $x \in E_\alpha$, there must be 
+    a ball $B_x$ containing $x$ such that the average value of $f$ on $B_x$ is greater than $\alpha$. Then this ball 
+    is in fact contained in $E_\alpha$, since for any point $y \in B_x$ we can choose a ball $B_y \subset B_x$ containing
+    $y$, and this proves $Mf(y) > \alpha$. 
+
+    Now use inner regularity. Choose any compact $K \subset E_\alpha$ and cover $K$ in balls $\{B_x\}_{x \in K}$ 
+    such the average value of $f$ on every $B_x$ is greater than $\alpha$. Choose a finite subcover $\{B_i\}_1^N$
+    and choose a further subcover $\{B_{i_k}\}_1^M$ such that $\cup B_i \subset \cup 3 B_{i_k}$. Then
+    \[
+        \mu(K) \leq \mu\left(\bigcup_{k = 1}^M 3 B_{i_k}\right) \leq D \sum \mu(B_{i_k}) \leq \frac{D}{\alpha} \sum \int_{B_{i_k}} |f(y)|dy \leq \frac{D}{\alpha}\|f\|_{L^1}.
+    \]
+\end{enumerate}
+
+\end{document}
