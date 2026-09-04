@@ -53,7 +53,7 @@
 {\Huge \bfseries \noindent Homework 1}
 
 \begin{enumerate}
-    \item[2.1.1.a] Let $\mu$ be a positive inner regular locally finite measure. Suppose there exists
+    \item[2.1.1.a.] Let $\mu$ be a positive inner regular locally finite measure. Suppose there exists
     a constant $D$ such that for all $x \in \RR^n$ and $r > 0$ we have
     \[
         \mu(3B(x,r)) \leq D \mu(B(x,r)).
@@ -72,11 +72,6 @@
         \alpha\mu(E_\alpha) \leq C\|f\|_{L^1}.
     \]
 
-    First, I claim $E_\alpha$ is open. For $x \in E_\alpha$, there must be 
-    a ball $B_x$ containing $x$ such that the average value of $f$ on $B_x$ is greater than $\alpha$. Then this ball 
-    is in fact contained in $E_\alpha$, since for any point $y \in B_x$ we can choose a ball $B_y \subset B_x$ containing
-    $y$, and this proves $Mf(y) > \alpha$. 
-
     Now use inner regularity. Choose any compact $K \subset E_\alpha$ and cover $K$ in balls $\{B_x\}_{x \in K}$ 
     such the average value of $f$ on every $B_x$ is greater than $\alpha$. Choose a finite subcover $\{B_i\}_1^N$
     and choose a further subcover $\{B_{i_k}\}_1^M$ such that $\cup B_i \subset \cup 3 B_{i_k}$. Then
@@ -84,7 +79,7 @@
         \mu(K) \leq \mu\left(\bigcup_{k = 1}^M 3 B_{i_k}\right) \leq D \sum \mu(B_{i_k}) \leq \frac{D}{\alpha} \sum \int_{B_{i_k}} |f(y)|dy \leq \frac{D}{\alpha}\|f\|_{L^1}.
     \]
 
-    \item[2.1.2.a] Let $\mathscr{F}$ be a finite family of open intervals in $\RR$. We prove there exist two subfamilies $\mathscr{F}_1$ and $\mathscr{F}_2$
+    \item[2.1.2.a.] Let $\mathscr{F}$ be a finite family of open intervals in $\RR$. We prove there exist two subfamilies $\mathscr{F}_1$ and $\mathscr{F}_2$
     of $\mathscr{F}$, each family pairwise disjoint, such that the union of the sets in both families is equal to the union of $\mathscr{F}$.
 
     Without loss of generality, we can reduce to the case when $\cup \mathscr{F}$ is connected, and we can remove any intervals
@@ -95,8 +90,111 @@
     we can find two disjoint subfamilies as above. 
 
     Let $\mathscr{F}$ be a connected family of $k$ intervals. Remove the leftmost set $U_0$, which must exist since $\mathscr{F}$ is finite, and we 
-    have removed any sets contained in others. Then from $\mathscr{F}\setminus\{U_0\}$, choose subfamilies $\mathscr{G}_i$, $i = 1,2$
+    have removed any sets contained in others. Then from $\mathscr{F}\setminus\{U_0\}$, choose subfamilies $\mathscr{F}_i$, $i = 1,2$
     which satisfy the desired property.
+
+    Remove elements of both subfamilies entirely contained in $U_0$. Then I claim we have two cases:
+    \begin{enumerate}
+        \item[1.] $U_0$ intersects only one of the subfamilies
+        \item[2.] $U_0$ intersects both subfamilies.
+    \end{enumerate}
+
+    This is because $U_0$ cannot intersect multiple elements of the same subfamily: $U_0$ is an interval, so the pairwise disjointness
+    of the subfamilies would force the leftmost of the two sets to be contained entirely in $U_0$. Then the only cases are 
+    $U_0$ meets one family, both, or none. But it cannot meet none as this would imply $\mathscr{F}$ was disjoint.
+    
+    In case $(1.)$, we can just add $U_0$ to the subfamily it doesnt intersect. 
+
+    For case $(2.)$, suppose $U_0$ meets the sets $V \in \mathscr{F}_1$ and $W \in \mathscr{F}_2$. We know $V \cap W \neq \emptyset$, and suppose 
+    without loss of generality that $V$ is to the left of $W$. Then since $U_0$ intersects $W$, and $U_0$ extends left past $V$, $V$ is contained
+    in the union of $U_0$ and $W$. Thus, we can replace $V$ in $\mathscr{F}_1$ by $U_0$. This completes the proof. 
+
+    Using this result, we prove the uncentered maximal function $M$ of the previous exercise map $L^1(\mu) \to L^{1,\infty}(\mu)$ with constant $2$. 
+
+    Define $E_\alpha = \{x \in \RR^n: Mf(x) > \alpha\}$. Again cover $E_\alpha$ in balls on which the average value of $f$ is 
+    greater than $\alpha$. Choose any compact $K \subset E_\alpha$ and choose a finite subcover $\mathscr{F}$ of $K$. Choose
+    subfamilies $\mathscr{F}_1$ and $\mathscr{F}_2$ which have the property above. Now 
+    \begin{align}
+        \mu(K) \leq \mu\left(\bigcup_{B \in \mathscr{F}} B\right) \leq \mu\left(\bigcup_{B \in \mathscr{F}_1} B\right) + \mu\left(\bigcup_{B \in \mathscr{F}_2} B\right)\\
+        = \sum_{B \in \mathscr{F}_1} \mu(B) + \sum_{B \in \mathscr{F}_2} \mu(B) \leq \frac{1}{\alpha}\left(\int_{\RR} |f| + \int_{\RR} |f|\right) = \frac{2}{\alpha}\|f\|_{L^1},
+    \end{align}
+    where the last inequality follows exactly as in $(2.1.1)$. Taking a supremum over all compact $K$, we obtain the result.
+
+    \item[2.1.3.] Define $\mathscr{M}_c$ and $M_c$, the centered and uncentered Hardy-Littlewood maximal operators, with the supremum taken over all cubes with 
+    sides parallel to the axes in $\RR^n$ instead of balls.
+    We prove 
+    \[
+        (a.) \quad 1 \leq \frac{M(f)}{\mathscr{M}(f)} \leq 2^n, \quad (b.) \quad \frac{1}{n^{\frac{n}{2}}}\frac{2^n}{v_n} \leq \frac{M(f)}{M_c(f)} \leq \frac{2^n}{v_n},
+        (c.) \quad \frac{1}{n^{\frac{n}{2}}}\frac{2^n}{v_n} \leq \frac{\mathscr{M}(f)}{\mathscr{M}_c(f)} \leq \frac{2^n}{v_n}
+    \]
+    where $v_n$ is the volume of the $n$-dimensional unit ball.
+    \begin{enumerate}
+        \item[a.] We have 
+        \[
+            M(f) = \sup_{r > 0} \sup_{B_r \ni x} \frac{1}{\mu(B_r)}\int_{B_r}|f(y)|d\mu \leq \sup_{r > 0} \frac{1}{\mu(B_r)} \int_{B_{2r}(x)}|f(y)|d\mu,
+        \]
+        since $|f|$ is positive. Moreover, we have $\mu(B_{2r}) = 2^n \mu(B_r)$. Thus
+        \[
+            \dots \leq \sup_{r > 0} 2^n \frac{1}{\mu(B_{2r})}\int_{B_{2r}(x)}|f|d\mu = 2^n \sup_{r > 0} \frac{1}{\mu(B_r)} \int_{B_r(x)}|f|d\mu = 2^n \mathscr{M}(f).
+        \]
+        We already know that $\mathscr{M}(f) \leq M(f)$, since the supremum in the uncentered operator is taken over a larger set. 
+
+        \item[b.] Let $R_r$ be a cube of side length $2r$, and note that the smallest concentric circle containing $B_r$ has radius $\sqrt{nr^2} =r\sqrt{n}$. Now
+        \[
+            M_c(f) = \sup_{r > 0} \sup_{R_r \ni x}\frac{1}{\mu(R_r)}\int_{R_r}|f|d\mu \leq \sup_{r > 0} \sup_{R_r \ni x} \frac{1}{\mu(R_r)}\int_{B_{r\sqrt{n}}}|f|d\mu.
+        \]
+        We have $\mu(R_r) = 2^n r^n$, and $\mu(B_{r\sqrt{n}}) = n^{\frac{n}{2}}r^n v_n$. Thus 
+        \[
+            \frac{1}{\mu(R_r)} = \frac{n^{\frac{n}{2}} v_n}{2^n }\frac{1}{\mu(B_r)}.
+        \]
+        Finally, after noting that the set $\{R_r: x \in R_r\}$ can be mapped injectively to $\{B_{r\sqrt{n}}: x \in B_{r\sqrt{n}}$, we have
+        \[
+            \dots \leq \sup_{r > 0}\sup_{R_r \ni x} \frac{n^{\frac{n}{2}} v_n}{2^n }\frac{1}{\mu(B_r)} \int_{B_{r\sqrt{n}}}|f|d\mu
+            \leq \sup_{r > 0} \sup_{B_r \ni x} \frac{n^{\frac{n}{2}} v_n}{2^n }\frac{1}{\mu(B_r)} \int_{B_r}|f|d\mu = \frac{n^{\frac{n}{2}} v_n}{2^n } M(f).
+        \]
+
+        For the next inequality, note that the smallest cube containing $B_r$ is just $R_r$. We have 
+        \[
+            \frac{1}{\mu(B_r)} = \frac{2^n}{v_n}\frac{1}{\mu(R_r)},
+        \]
+        so that 
+        \[
+            M(f) = \sup_{r > 0}\sup_{B_r \ni x} \frac{1}{\mu(B_r)}\int_{B_r}|f|d\mu \leq \sup_r \sup_{B_r} \frac{1}{\mu(B_r)}\int_{R_r}|f|d\mu
+            = \sup_r \sup_{B_r} \frac{2^n}{v_n} \frac{1}{\mu(R_r)}\int_{R_r}|f|d\mu = \frac{2^n}{v_n}M_c(f).
+        \]
+
+        \item[c.] The last case is exactly the same as above, except there is no second supremum taken over all balls containing $x$. 
+    \end{enumerate}
+    
+    \item[2.1.8.] Let $f_0$ be the characteristic function on the unit ball in $\RR^n$. For $|x| > 1$, define
+    \[
+        B_x = B(\frac{1}{2}(|x| - |x|^{-1})\frac{x}{|x|}, \frac{1}{2}(|x| + |x|^{-1})).
+    \]
+    Any such ball always intersects more than half of the unit ball: We can assume $x$ lies on the x-axis in $\RR^2$ as a simple case.
+    Let $r = |x|$. Then the distance from the center of $B_x$ to the point $(0,1)$ is given by
+    \[
+        \sqrt{\left(\frac{r^2 - 1}{2r}\right)^2 + 1} = \sqrt{\frac{r^4 - 2r^2 + 1 + 4r^2}{4r^2}} = \frac{r^2 + 1}{2r}.
+    \]
+    This proves the claim in dimension two, as the rest of the boundary of $B_x$ lies to one side of the $y$-axis as well. This holds for arbitrary $x$ by 
+    radial symmetry. In higher dimensions, the same argument holds to find the intersections between the boundaries, and about the rest of the intersection as well.
+
+    We will prove that there is no fixed $C > 0$ such that
+    \[
+        \|Mf\|_{L^p} \leq C \|f\|_{L^p}
+    \]
+    for all $n$ and $f \in L^p$. 
+
+    Pointiwse, we know 
+    \[
+        Mf_0(x) \geq \frac{1}{\mu(B_x)} \int_{B_x}|f_0|d\mu \geq \frac{1}{\mu(B_x)}\frac{v_n}{2}
+    \]
+    by the above argument. Then
+    \[
+        \|Mf_0\|_{L^p}^p \geq \int_{\RR^n}\frac{1}{(\mu(B_x))^p}\frac{(v_n)^p}{2^p}
+        = \int_{\RR^n} \left(\frac{r^1 + 1}{2r}\right)^{np}d\mu = v_n\int_0^\infty \left(\frac{r^2 + 1}{2r}\right)^{np}r^{n-1}dr
+    \]
+    after switching to polar coordinates. Note that $\|f_0\|_{L^p}^p = v_n$. Then all that is left is to show
+    this integral diverges in $n$. This is true upon inspection with Desmos, but I could not show it rigorously.
 \end{enumerate}
 
 \end{document}
