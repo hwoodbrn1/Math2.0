@@ -64,17 +64,110 @@
     \item theorem statement and proof 
 \end{enumerate}
 
-Let $V$ be an even dimensional spin vector bundle. If we equip $V$ 
-with a connection $\nabla$, we get a corresponding connection on the principal-$\text{SO}(2n)$
-bundle of frames of $V$, denoted $P_{\text{SO}}$. This lifts to a connection on $P_{\text{Spin}}$, 
-the principal-$\text{spin}(2n)$ bundle on $V$, by the covering map. 
 
-One can show that if the connection $1$-form is given locally by $\omega_{ij}$, then relative
-to this lifting, the lifted matrix is given by 
+In the last talk, Nazif told us about Clifford algebras, $\text{spin}(k)$, and Dirac Operators associated to Clifford bundles. 
+
+In my lecture, I will cover theorem 1.1, the vanishing theorem. We will first introduce the $\text{Spin}^c(k)$ group, then take a closer look at the Lie algebras
+of $\text{Spin}(k)$ and $\text{SO}(k)$. 
+
+\section{The Lie algebra $\mathfrak{spin}(k)$}
+
+(Some of this section is from Spin Geometry along with Hitchin)
+
+The group of units $Cl^\times(k)$ is a Lie group with Lie algebra $\mathfrak{cl}^\times(k) \simeq (Cl(k), [\cdot,\cdot])$, where $[\cdot,\cdot]$ is the 
+commutator in $Cl(k)$. 
+
+Since $Cl(k)$ is in fact a matrix group, the Adjoint action of the Lie group of units is just given by conjugation. 
+
+$\text{Spin}(k)$ is a Lie subgroup of $Cl^\times(k)$, so its Lie algebra $\mathfrak{spin}(k)$ is a Lie subalgebra of 
+$\mathfrak{cl}^\times(k) \simeq (Cl(k), [\cdot,\cdot])$, with the same product. 
+
+Recall that there are canonical embeddings $\wedge^p\RR^n \subset Cl(k)$ for all $p$.
+Then the explicit subalgebra is given by $\wedge^2 \RR^n$. To see this, note the Lie algebra is 
+spanned by tangent vectors to $\text{Spin}(k)$ at $1$. Fix an orthonormal basis $\{e_1, \dots, e_n\}$ of $\RR^n$
+and for any pair $i < j$ consider the curve
 \[
-    \frac{1}{4}\sum_{i,j}\omega_{ij}e_i e_j
+    \gamma(t) = \cos(t) + \sin(t)e_i e_j
+\]
+whose velocity at $\gamma(0) = 1$ is $e_i e_j$. This curve lies in $\text{Spin}(k)$ by definition. Then $\mathfrak{spin}(k)$ 
+contains the vector subspace $\text{span}_\RR\{e_i e_j\}_{i < j} = \wedge^2 \RR^n$. Since $\dim_\RR(\mathfrak{spin}(k)) = n(n-1)/2$, 
+they are equal. 
+
+Now consider $\mathfrak{so}(k)$, consisting of skew-symmetric $k\times k$ real valued matrices. We can identify this
+as a vector space with $\wedge^2 \RR^n = \text{span}_\RR\{e_i \wedge e_j: i < j\}$ by sending 
+a basis element in $\mathfrak{so}(k)$ with $(i,j)$ entry equal to $1$ to the element $e_i \wedge e_j$,
+with $e_i \wedge e_j(x) = \langle e_i,x\rangle e_j + \langle e_j, x\rangle e_i$. 
+
+Last lecture we introduced the double cover $\text{Spin}(k) \to \text{SO}(k)$ with kernel $\{-1,+1\}$. This is 
+in fact a surjective homomorphism of Lie groups, and induces an isomorphism of Lie algebras 
+$\Phi: \mathfrak{spin}(k) \to \mathfrak{so}(k)$.
+
+\begin{proposition}
+    The Lie algebra isomorphism $\Phi$ induced by the double cover $\text{Spin}(k) \to \text{SO}(k)$ 
+    is given on basis elements by
+    \[
+        \Phi(e_i e_j) = 2 e_i \wedge e_j,
+    \]
+    under the above identification of $\mathfrak{so}(k)$ with $\wedge^2\RR^n$. 
+\end{proposition}
+
+To prove this, consider again $\gamma(t) = \cos(t) + \sin(t)e_i e_j$ in $\text{Spin}(k)$ with $\gamma(0) = 1$
+and $\gamma'(0) = e_i e_j$. 
+
+The cover here is actually induced by the adjoint action of Spin on $U$, which maps into $SO(k)$ with kernel $1$ and $-1$. Then 
+the image of $\gamma(t)$ applied to a vector $x$ is $\gamma(t) x \gamma(t)^{-1}$, so that $\Phi$, the differential
+of this map, is the commutator $\Phi(\gamma(t))(x) = [\gamma(t)', x]$.
+
+Relative to a correct choice of basis, if the connection form is given locally by $\omega_{ij}$, then the corresponding 
+connection form of the lifted connection on the spinor bundle is given by
+\[
+    \frac{1}{4}\sum_{i,j}\omega_{ij}e_i e_j \in \Gamma(\text{End}(V)\otimes T^*)
 \]
 
- 
+\section{The complex spin group $\text{Spin}^c(k)$}
+
+We briefly define the group $\text{Spin}^c(k)$. Let $\text{Spin}^c(k) = \text{Spin}(k)\times_{\ZZ_2} S^1$ in $Cl(k)\otimes \CC$.
+Then we have the following short exact sequences
+\[
+    1 \to S^1 \to \text{Spin}^c \to SO \to 1
+\]
+\[
+    1 \to \text{Spin} \to \text{Spin}^c \to S^1 \to 1.
+\]
+We say a manifold is "$\text{Spin}^c$" if its frame bundle lifts to a principal $\text{Spin}^c$-bundle via the first sequence. The second
+gives an associated $S^1$ bundle $L$ on $X$ for any $\text{Spin}^c$ structure.
+
+To get a connection on the principal $\text{Spin}^c$ bundle, we must choose a hermitian connection on $L$
+
+\section{The Vanishing Theorem}
+
+To start, let $X$ be a $\text{Spin}^c$ manifold, and let $i\theta$ be the curvature form of the associated line
+bundle $L$. Then $\theta \in \Gamma(\lambda^2 T^*)$ defines, via the Riemannian metric, a skew-symmetric 
+endomorphism of $T$. Suppose its eigenvalues are $\pm\lambda_1, \dots, \pm \lambda_m$, where $\dim X = 2m$
+or $2m + 1$. 
+
+\begin{theorem}
+    Let $X$ be a $\text{Spin}^c$ manifold with scalar curvature $R \geq 4\sum |\lambda_i|$ and strict inequality at some 
+    point. Then $X$ admits no harmonic spinors. 
+\end{theorem}
+
+\textbf{Proof:} Recall the Dirac operator $P$ given by the composition
+\[
+    \Gamma(V) \overset{D}{\to} \Gamma(V\otimes T^*) \overset{m}{\to} \Gamma(V),
+\]
+where $D$ is the connection and $m$ is Clifford multiplication, after identifying $T^*\simeq T$ using the metric.
+Since $D$ and $m$ commute, we have $P^2\phi = m^2 D^2 \phi$, where $m^2: \Gamma(V\otimes T^* \otimes T^*) \to \Gamma(V)$ 
+is defined by $m^2(\phi\otimes\alpha\otimes\beta) = \alpha\cdot\beta\cdot\phi$. Under the identification of the Clifford algebra
+with the exterior algebra, the mutliplication becomes
+\[
+    \alpha\cdot\beta = \alpha\wedge\beta - (\alpha,\beta).
+\]
+Then we have
+\begin{align}
+    P^2\phi = & m^2 D^2 \phi = \sum_{i,j} m^2(\nabla_i\nabla_j \phi \otimes e_i \otimes e_j) = 
+    \sum_{i,j} (e_i \wedge e_j - (e_i, e_j))\nabla_i \nabla_j \phi = \\
+    & \sum_{i < j} e_i \cdot e_j (\nabla_i\nabla_j - \nabla_j \nabla_i)\phi - \sum_{i} \nabla_i\nabla_i \phi = \Omega\cdot\phi - \text{tr} D^2 \phi,
+\end{align}
+where $\Omega\cdot$ is the "Clifford contracted" Riemann curvature tensor.
 
 \end{document}
