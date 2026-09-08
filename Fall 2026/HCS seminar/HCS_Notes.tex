@@ -168,6 +168,33 @@ Then we have
     \sum_{i,j} (e_i \wedge e_j - (e_i, e_j))\nabla_i \nabla_j \phi = \\
     & \sum_{i < j} e_i \cdot e_j (\nabla_i\nabla_j - \nabla_j \nabla_i)\phi - \sum_{i} \nabla_i\nabla_i \phi = \Omega\cdot\phi - \text{tr} D^2 \phi,
 \end{align}
-where $\Omega\cdot$ is the "Clifford contracted" Riemann curvature tensor.
+where $\Omega\cdot$ is the ``Clifford contracted'' Riemann curvature tensor.
+
+Now, since
+\[
+    D(D\phi,\phi) = (D^2\phi,\phi) + (D\phi,D\phi) \in \Gamma(T^*\otimes T^*),
+\]
+we have 
+\[
+    (\text{tr}D^2 \phi,\phi) = - \langle D\phi,D\phi\rangle +  d^*(D\phi,\phi),
+\]
+where $\langle \cdot,\cdot\rangle$ denotes the inner product on $V\otimes T^*$.
+
+Then $(P^2 \phi, \phi) = (\Omega\cdot\phi,\phi) + \langle D\phi,D\phi\rangle - d^*(D\phi,\phi)$, and integrating over $X$ we obtain
+\[
+    \int_X (P^2 \phi,\phi)dV = \int_X (\Omega\cdot \phi,\phi) + \langle D\phi,D\phi\rangle dV
+\]
+
+This tells us more about the kernel of $P^2$. Suppose $\Omega \geq 0$ and $P^2 \phi = 0$. Then the positivity of $\langle D\phi,D\phi\rangle$
+implies $D\phi = 0$.
+
+Moreover, if $\Omega > 0$ at some point in $X$, we must have $\phi = 0$ at that point, otherwise $(\Omega\cdot\phi,\phi)$ would be positive.
+Then since $D\phi = 0$, this implies $\phi = 0$ everywhere.
+
+Now we will examine $\Omega$ in more detail. We have $\Omega \in \Gamma(L(\text{Spin}^c)\otimes \wedge^2 T^*)$, where $L(\text{Spin}^c)$ is the
+bundle of Lie algebras associated to the principal $\text{Spin}^c$ bundle by the adjoint representation. 
+
+We have $L(\text{Spin}^c) = L(SO) \oplus \RR$, where $\RR$ is acted on trivially by the adjoint representation. Hence,
+we can decompose $\Omega = \Omega_1 + \Omega_2$, where $\Omega_1 \in \Gamma(L(P_{SO})\otimes \wedge^2 T^*)$
 
 \end{document}
