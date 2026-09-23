@@ -53,7 +53,7 @@
 {\Huge \bfseries \noindent Homework 2}
 
 \begin{enumerate}
-    \item[1.] (a.) The derivative of a distribution $f \in \mathscr{S}'$ is defined by the rule
+    \item[2.3.4.] (a.) The derivative of a distribution $f \in \mathscr{S}'$ is defined by the rule
     \[
         \langle \partial f, \phi\rangle = - \langle f, \partial \phi\rangle,\quad \text{for}\ \phi \in \mathscr{S}.
     \]
@@ -77,7 +77,7 @@
     \[
         \langle \mathscr{F}u, \phi\rangle = \langle u, \mathscr{F}\phi\rangle,\quad \text{for}\ \phi \in \mathscr{S}.
     \]
-    We already know that $\hat{\left(e^{2i \pi x \cdot a}\right)} = \delta_a$ for $a \in \RR$, so that $\hat{\left(e^{ix}\right)} = \delta_{\frac{1}{2\pi}}$. 
+    We already know that $\widehat{\left(e^{2i \pi x \cdot a}\right)} = \delta_a$ for $a \in \RR$, so that $\widehat{\left(e^{ix}\right)} = \delta_{\frac{1}{2\pi}}$. 
     Moreover, $\sin(x)$ can be expressed as
     \[
         \sin(x) = \frac{e^{ix} - e^{-ix}}{2i}
@@ -104,6 +104,18 @@
 
     We have proven the sequence of tempered distributions defining $u$ converges to $\partial_x \log |x|$ in the weak$^*$ topology on $\mathscr{S}'(\RR)$, 
     and so this is the derivative.
+
+    \item[2.3.5.] (a.) First, we can see that the quotient converges pointwise to
+    $\partial_j f$. Fix $\epsilon > 0$. To show uniform convergence, choose compact $K \subset \RR^n$ 
+    such that $|f'(x)| < \epsilon/2$ outside $K$. Then by the fundamental theorem of calculus,
+    \[
+        |f(x + h e_j) - f(x)| = \left| \int_0^h \partial_t f(x + te_i)dt\right| \leq \int_0^h|\partial_t f(x + t e_i)|dt
+        \leq h\epsilon/2
+    \]
+    for $x \in K^c$, given that $t$ is small enough so $x + te_i$ also lies within $K^c$. 
+
+    Moreover, within $K$, pointwise convergence implies uniform convergence, so we can choose $h$ sufficiently small so that
+    the quotient is as close to $\partial_i f$ as we want. 
     
 \end{enumerate}
 
