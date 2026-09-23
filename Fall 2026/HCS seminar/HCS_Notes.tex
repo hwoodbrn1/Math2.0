@@ -132,9 +132,15 @@ Then we have the following short exact sequences
     1 \to S^1 \to \text{Spin}^c \to SO \to 1
 \]
 \[
-    1 \to \text{Spin} \to \text{Spin}^c \to S^1 \to 1.
+    1 \to \text{Spin} \to \text{Spin}^c \to S^1 \to 1,
 \]
-We say a manifold is "$\text{Spin}^c$" if its frame bundle lifts to a principal $\text{Spin}^c$-bundle via the first sequence. The second
+
+thus giving a map
+\[
+    \text{Spin}^c \to \text{SO}\times S^1
+\]
+with kernel $S^1 \cap \text{Spin} = \{-1, +1\}$, showing that $\text{Spin}^c$ is a double cover of $\text{SO}\times S^1$.
+We say a manifold is ``$\text{Spin}^c$'' if its frame bundle lifts to a principal $\text{Spin}^c$-bundle via the first sequence. The second
 gives an associated $S^1$ bundle $L$ on $X$ for any $\text{Spin}^c$ structure.
 
 To get a connection on the principal $\text{Spin}^c$ bundle, we must choose a hermitian connection on $L$
@@ -195,6 +201,22 @@ Now we will examine $\Omega$ in more detail. We have $\Omega \in \Gamma(L(\text{
 bundle of Lie algebras associated to the principal $\text{Spin}^c$ bundle by the adjoint representation. 
 
 We have $L(\text{Spin}^c) = L(SO) \oplus \RR$, where $\RR$ is acted on trivially by the adjoint representation. Hence,
-we can decompose $\Omega = \Omega_1 + \Omega_2$, where $\Omega_1 \in \Gamma(L(P_{SO})\otimes \wedge^2 T^*)$
+we can decompose $\Omega = \Omega_1 + \Omega_2$, where $\Omega_1 \in \Gamma(L(P_{SO})\otimes \wedge^2 T^*)$ and
+$\Omega_0 \in \Gamma(\wedge^2 T^*)$. 
+
+\begin{enumerate}
+    \item For the $\Omega_0$ component, we need to show its eigenvalues are $\sum \pm \lambda_k$.
+    We write
+    \[
+        \Omega_0 = i \sum \lambda_k e_{2k-1} e_{2k}.
+    \]
+
+    The operators $E_k = e_{2k-1} e_{2k}$ decompose $V$ into $2^m$ subspaces $\phi(k_1, \dots, k_m)$, $k_i = \pm 1$, such
+    that on each $\phi(k_1,\dots,k_m)$, $E_j$ acts as $ik_j$. Then the eigenvalues of $\Omega_0$ are $\pm \lambda_1 \pm \cdots \pm \lambda_m$,
+    and the smallest is $-\sum |\lambda_i|$.
+
+    \item It is a standard calculation that $\Omega_1 = \frac{1}{4}R$, with $R$ the scalar curvature. Then $\Omega$ is positive whenever 
+    $\frac{1}{4}R \geq \sum |\lambda_i|$ 
+\end{enumerate}
 
 \end{document}
