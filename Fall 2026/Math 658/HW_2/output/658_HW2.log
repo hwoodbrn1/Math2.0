@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.21)  22 SEP 2026 22:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.21)  22 SEP 2026 23:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Fall 2026/HCS seminar/HCS_Notes.tex"
-(c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Fall 2026/HCS seminar/HCS_Notes.tex
+**"c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Fall 2026/Math 658/HW_2/658_HW2.tex"
+(c:/Users/Henry Woodburn/Desktop/MathStuff/Math2.0/Math2.0/Fall 2026/Math 658/HW_2/658_HW2.tex
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
 (c:/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -555,8 +555,8 @@ Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
  (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count344
-) (output/HCS_Notes.aux)
-\openout1 = `HCS_Notes.aux'.
+) (output/658_HW2.aux)
+\openout1 = `658_HW2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
 LaTeX Font Info:    ... okay on input line 44.
@@ -596,9 +596,9 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package hyperref Info: Link coloring OFF on input line 44.
- (output/HCS_Notes.out) (output/HCS_Notes.out)
+ (output/658_HW2.out) (output/658_HW2.out)
 \@outlinefile=\write4
-\openout4 = `HCS_Notes.out'.
+\openout4 = `658_HW2.out'.
 
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
@@ -637,31 +637,18 @@ Package pgfplots notification 'compat/show suggested version=true': document has
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 68.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 56.
 (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 68.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 56.
  (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 68.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 56.
  (c:/texlive/2025/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+euf on input line 73.
- (c:/texlive/2025/texmf-dist/tex/latex/amsfonts/ueuf.fd
-File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-)
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 73.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 73.
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -672,44 +659,27 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [1{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 127.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 127.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 127.
-
-
-
-[2]
-
-[3] (output/HCS_Notes.aux)
+] (output/658_HW2.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
-Package rerunfilecheck Info: File `HCS_Notes.out' has not changed.
-(rerunfilecheck)             Checksum: ED8C1CFC195B45B786613FE198D1888C;621.
+Package rerunfilecheck Info: File `658_HW2.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 34357 strings out of 467797
- 812124 string characters out of 5435982
- 1348164 words of memory out of 5000000
- 62469 multiletter control sequences out of 15000+600000
- 639717 words of font info for 91 fonts, out of 8000000 for 9000
+ 34283 strings out of 467797
+ 811121 string characters out of 5435982
+ 1345162 words of memory out of 5000000
+ 62423 multiletter control sequences out of 15000+600000
+ 632573 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 116i,12n,121p,812b,457s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on output/HCS_Notes.pdf (3 pages, 166985 bytes).
+ 116i,11n,121p,812b,448s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb>
+Output written on output/658_HW2.pdf (1 page, 122379 bytes).
 PDF statistics:
- 127 PDF objects out of 1000 (max. 8388607)
- 91 compressed objects within 1 object stream
- 16 named destinations out of 1000 (max. 500000)
- 45 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 PDF objects out of 1000 (max. 8388607)
+ 51 compressed objects within 1 object stream
+ 2 named destinations out of 1000 (max. 500000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

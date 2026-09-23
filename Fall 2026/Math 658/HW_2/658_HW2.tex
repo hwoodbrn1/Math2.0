@@ -1,0 +1,110 @@
+\documentclass[11pt, reqno]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage[bottom=0.75in, top=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+\DeclareMathOperator{\ima}{\text{im}}
+
+\begin{document}
+
+\topmargin=-40pt
+\rhead{Henry Woodburn}
+\lhead{Math 658}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{20pt}
+\thispagestyle{fancy}
+
+{\Huge \bfseries \noindent Homework 2}
+
+\begin{enumerate}
+    \item[1.] (a.) The derivative of a distribution $f \in \mathscr{S}'$ is defined by the rule
+    \[
+        \langle \partial f, \phi\rangle = - \langle f, \partial \phi\rangle,\quad \text{for}\ \phi \in \mathscr{S}.
+    \]
+    To compute the derivative of $\chi_{[a,b]}$, letting $\phi \in \mathscr{S}$, we have
+    \[
+        \langle \partial_x \chi_{[a,b]}, \phi\rangle = -\langle \chi_{[a,b]}, \partial_x \phi\rangle = -\int_a^b \partial_x \phi = \phi(a) - \phi(b).
+    \]
+    So the action of $\partial_x \chi_{[a,b]}$ is the same as $\delta_a - \delta_b$, so this is the distributional derivative.
+
+    (b.) Take $x_j = x$ without loss of generality. Again letting $\phi \in \mathscr{S}(\RR^2)$, we can write
+    \begin{align*}
+        \langle \partial_x \chi_{B(0,1)}, \phi\rangle &= -\int_{B(0,1)} \partial_x \phi(x, y) dV = 
+        -\int_{-1}^1 \int_{-\sqrt{1 - y^2}}^{\sqrt{1 - y^2}}\partial_x \phi dx dy\\
+        &= \int_{\partial B(0,1)^-} \phi dS - \int_{\partial B(0,1)^+} \phi dS,
+    \end{align*}
+
+    where $dS$ denotes a measure on the boundary $\partial B(0,1)$ and $-$ and $+$ denote left and right semicircles. This is the difference between the integral of $\phi$ over the left and
+    right semicircles.
+
+    (c.) We compute the fourier transforms of $\sin(x)$ and $\cos(x)$, which are not integrable functions in the $L^1$ sense. We use the definition
+    \[
+        \langle \mathscr{F}u, \phi\rangle = \langle u, \mathscr{F}\phi\rangle,\quad \text{for}\ \phi \in \mathscr{S}.
+    \]
+    We already know that $\hat{\left(e^{2i \pi x \cdot a}\right)} = \delta_a$ for $a \in \RR$, so that $\hat{\left(e^{ix}\right)} = \delta_{\frac{1}{2\pi}}$. 
+    Moreover, $\sin(x)$ can be expressed as
+    \[
+        \sin(x) = \frac{e^{ix} - e^{-ix}}{2i}
+    \]
+    so that by linearity of the fourier transform, we have
+    \[
+        \mathscr{F}(\sin(x)) = \frac{1}{2i}\left(\delta_{\frac{1}{2\pi}} - \delta_{\frac{-1}{2\pi}}\right).
+    \]
+
+    (d.) We need to compute
+    \[
+        \langle \partial \log|x|, \phi\rangle = -\langle \log|x|,\partial_x \phi\rangle
+    \]
+    for any $\phi \in \mathscr{S}(\RR)$. Let $\epsilon > 0$. Then
+    \[
+        \int_{\epsilon \leq |x|} \phi(x) \frac{1}{x}dx = -\int_{\epsilon \leq |x|}\partial_x\phi(x) \log|x|dx
+    \]
+    after integrating by parts, noting that the first integrand is integrable for any $\epsilon > 0$. 
+    Moreover, the function $\log|x|$ is integrable on $\RR$, so we can let epsilon go to zero in the final integral.
+    So the limit converges for all $\phi$:
+    \[
+        u(\phi) = \lim_{\epsilon \to 0} \int_{\epsilon \leq |x|} \phi(x)\frac{1}{x}dx = -\int_\RR \partial \phi(x) \log|x|dx = \langle \log|x|, \partial_x \phi\rangle =: \langle \partial_x \log|x|, \phi\rangle.
+    \]
+
+    We have proven the sequence of tempered distributions defining $u$ converges to $\partial_x \log |x|$ in the weak$^*$ topology on $\mathscr{S}'(\RR)$, 
+    and so this is the derivative.
+    
+\end{enumerate}
+
+\end{document}
