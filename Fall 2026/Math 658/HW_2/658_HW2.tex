@@ -105,18 +105,105 @@
     We have proven the sequence of tempered distributions defining $u$ converges to $\partial_x \log |x|$ in the weak$^*$ topology on $\mathscr{S}'(\RR)$, 
     and so this is the derivative.
 
-    \item[2.3.5.] (a.) First, we can see that the quotient converges pointwise to
+    \item[2.3.5.] Let $\phi \in C_0^\infty$ and $f \in \mathscr{S}$. Choose $M$ so that $|\phi| < M$ for all $x$. 
+    
+    (a.) Let 
+    \[
+        t_n = \frac{\tau^{-he_j}f - f}{h} - \partial_j f.
+    \]
+        First, we can see that the quotient converges pointwise to
     $\partial_j f$. Fix $\epsilon > 0$. To show uniform convergence, choose compact $K \subset \RR^n$ 
     such that $|f'(x)| < \epsilon/2$ outside $K$. Then by the fundamental theorem of calculus,
     \[
         |f(x + h e_j) - f(x)| = \left| \int_0^h \partial_t f(x + te_i)dt\right| \leq \int_0^h|\partial_t f(x + t e_i)|dt
         \leq h\epsilon/2
     \]
-    for $x \in K^c$, given that $t$ is small enough so $x + te_i$ also lies within $K^c$. 
+    for $x \in K^c$, given that $t$ is small enough so $x + te_i$ also lies within $K^c$. Then for this same $x$, we have
+    \[
+        \left|\frac{\tau^{-he_j}f - f}{h} - \partial_j f\right| \leq \epsilon/2 + \epsilon/2 = \epsilon.
+    \]
 
     Moreover, within $K$, pointwise convergence implies uniform convergence, so we can choose $h$ sufficiently small so that
-    the quotient is as close to $\partial_i f$ as we want. 
+    the quotient is as close to $\partial_i f$ as we want. Then we have proven uniform convergence after combining the control over both regions.
+
+    In fact, for any $\alpha$, $\partial^\alpha(t_n)$ converges to zero uniformly by the exact same argument, since $\partial^\alpha f$ is schwartz as well. 
     
+    Lastly, to show that $x^\alpha(t_n)$ converges to zero uniformly, note that we can choose $M$ large so that $|x^\alpha f(x)| \leq (1 + |x|)^{-M}$
+    for all $x$. This gives the uniform bound outside a compact set $K$, and within $K$, $x^\alpha$ is bounded,
+    so we still have pointwise and therefore uniform convergence.
+
+    (b.) Let $\phi \in C_0^\infty$, so $|\phi|\leq M$ for some $M > 0$. Then choose a compact set $K$ so that $|f| < \frac{\epsilon}{2M}$ for all $x \in K^c$. 
+    Within $K$, $\phi_k(x)f(x)$ converges pointwise to $f$ and thus uniformly since these functions are continuous. Outside of $K$, we have
+    $|\phi_k(x)f(x) - f(x)| \leq \frac{M\epsilon}{2M} + \frac{\epsilon}{2M} \leq \epsilon$.
+
+    Now we show uniform convergence of the derivatives. We have
+    \[  
+        |\partial_j(\phi_k f) - \partial_j f| \leq |\partial_j \phi_k \cdot f| + |\phi_k \partial_j f - \partial_j f|.
+    \]
+    We will prove both of these terms are small individually. Since $\phi_k$ is flat near $1$, for any $\alpha$, $\partial^\alpha \phi_k$ converges pointwise to 0 
+    as $k \to \infty$. Then the first term can be made less than $\epsilon/2$ if we choose $k$ large enough so that within the support of $\phi_k$, $|f| \leq \frac{\epsilon}{2M}$.
+    For the second term, the proof goes exactly the same as the previous step without the derivative.
+
+    For arbitrary partial derivatives, we could expand with the product rule, but every term containing a derivative of $\phi_k$ would vanish in a neighborhood of the origin
+    and could be controlled as we did in the case of $\partial_j$. Then only the term with all derivatives hitting $f$ survives, and
+    \[
+        |\phi_k \partial^\alpha f - \partial^\alpha f| \to 0
+    \]
+    as in the previous case.
+
+    For any $\alpha$, since $x^\alpha f$ is still a schwartz function, the proof is exactly the same here. 
+
+    (c.) In the previous part we showed that $\phi_k f \to f$ in the Schwartz space topology. Then it follows that
+    $\widehat{\phi_k f} \to \widehat{f}$ in $\mathscr{S}$ as well. In particular we have uniform convergence. 
+    Choose $N_1$ large enough that $\|\widehat{(\phi_k f)} - \widehat{f}\|_{L^\infty} \leq \frac{\epsilon}{4M}$ when $k > N_1$, and
+    choose a compact set $K$ so that $|\widehat{f}| \leq \frac{\epsilon}{4M}$ for $x \in K^c$. Then by 
+    the triangle inequality, for all $k > N_1$, we have $|\widehat{(\phi_k f)}| \leq \frac{\epsilon}{2M}$ for $x \in K^c$. 
+    Thus 
+    \[
+        |\phi_k\widehat{(\phi_k f)} - \widehat{f}| \leq \epsilon/2 + \frac{\epsilon}{4M} \leq \epsilon
+    \]
+
+    Within the compact set $K$, we clearly have pointwise convergence since $\phi_k$ converges pointwise to $1$ and
+    $\widehat{(\phi_k f)}$ converges pointwise to $\widehat{f}$. Then we can choose $N_2$ so that $|\phi_k\widehat{(\phi_k f)} - \widehat{f}| < \epsilon$
+    on $K$ when $k > N_2$, since $K$ is compact. 
+
+    Now set $N = \max \{N_1, N_2\}$. The difference will be less than epsilon for $k > N$ within and outside of $K$. 
+
+    To show derivatives converge as well, write
+    \[
+        \partial_j(\phi_k \widehat{(\phi_k f)}) = \partial_j \phi_k \widehat{(\phi_k f)} + \phi_k ((-2\pi ix_j)\phi_k f)\widehat{},
+    \]
+    
+    and note the similarity to part (b.). In general for $\partial^\alpha$, we see again that the terms involving derivatives of $\phi_k$ will
+    be zero around $1$ and can be controlled like before. We can make them all small since we are only taking finite derivatives. 
+    This leaves only the term with all derivatives on $f$, but we can just replace $f$ by $(-2\pi ix)^{-\alpha}f$ to return to 
+    the original case. 
+
+    For convergence after multiplying by $x^\alpha$ for any $\alpha$, choose a compact set $K$ and $N$ large so that $|x^\alpha\widehat{(\phi_k f)}| \leq \frac{\epsilon}{2M}$
+    for some $C > 0$ for $x \in K^c$ when $k > N$ again using triangle inequality and the fact that $\widehat{(\phi_k f)}$ converges to $\widehat{f}$ uniformly. 
+    Then we have
+    \[
+        |\phi_k x^\alpha \widehat{(\phi_k f)} - x^\alpha \widehat{f}| \leq \frac{\epsilon}{2} + \frac{\epsilon}{2M} \leq \epsilon
+    \]
+    for all $x \in K^c$ and all $k > N$. 
+
+    We can get uniform bounds within $K$ in exactly the same way as before. Then combine by taking the larger of the two $N$. 
+
+    \item[2.3.7.] Let 
+    \[
+        g_N(\xi) = \int_{B(0,N)}f(x)e^{-2\pi ix\cdot\xi}dx.
+    \]
+    Note that $g_N = \widehat{(\chi_{B(0,N)}f)}$. We show $g_N$ converges to $\widehat{f}$ in $\mathscr{S}'$. 
+    This means showing $\langle g_N, \phi\rangle \to \langle \widehat{f}, \phi\rangle := \langle f, \widehat{\phi}\rangle$ for any $\phi \in \mathscr{S}$.
+    We have
+    \begin{align*}
+        \langle g_N, \phi\rangle &= \int_{\RR^n}\int_{\RR^n}\chi_{B(0,N)}(x)f(x)\phi(\xi)e^{-2\pi i x\cdot\xi}dxd\xi\\
+        &= \int_{\RR^n}\int_{\RR^n}\chi_{B(0,N)}(x)f(x)\phi(\xi)e^{-2\pi i x\cdot\xi}d\xi dx\\
+        &= \int_{\RR^n}\chi_{B(0,N)}f(x)\int_{\RR^n}\phi(\xi)e^{-2\pi i x\cdot\xi}d\xi dx\\
+        &= \int_{\RR^n}\chi_{B(0,N)}f(x)\widehat{\phi}(x)dx \to \int_{\RR^n}f(x)\widehat{\phi}(x)dx = \langle f, \widehat{\phi}\rangle,
+    \end{align*}
+    where the convergence at the end follows from the dominated convergence theorem.
+
 \end{enumerate}
 
 \end{document}
