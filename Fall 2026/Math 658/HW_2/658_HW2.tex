@@ -204,6 +204,33 @@
     \end{align*}
     where the convergence at the end follows from the dominated convergence theorem.
 
+    \item[2.3.8.] Suppose $|c_k| \leq (1 + |k|)^{M}$ for $k \in \ZZ^n$ and some $M > 0$. Let $f \in \mathscr{S}$. We
+    show that 
+    \[
+        \sum_{|k| \leq N}c_k \delta_k
+    \]
+    converges to a distribution in $\mathscr{S}'$ as $N \to \infty$. First choose $R > 0$ large enough so that 
+    $\sum_{k \in \ZZ} (1 + |k|)^{M-R}$ is summable. Moreover, there exists $C > 0$ such that $|f(x)| \leq C(1 + |x|)^{M-R}$. 
+    Then for $f \in \mathscr{S}$, we have
+    \[
+        \langle \sum_{|k| \leq N}c_k \delta_k, f\rangle = \sum_{|k| \leq N}c_k f(k).
+    \]
+    We show the last series is in fact absolutely convergent, which implies the original sum converges.
+    We can write
+    \[
+        \sum_{|k| \leq N} |c_k||f(k)| \leq \sum_{|k| \leq N}(1 + |k|)^{M}C(1 + |k|)^{-R} = C \sum_{|k| \leq N}(1 + |k|)^{M-R}
+    \]
+    which converges as $N \to \infty$. Then the original sum converges to $\sum_{k \in \ZZ^n}c_k f(k) = \langle\sum_{k \in \ZZ^n}c_k \delta_k, f\rangle$.
+
+    The Fourier transform of a distribution is defined by $\langle \widehat{u}, \phi\rangle := \langle u, \widehat{\phi}\rangle$.
+    We can write
+    \[
+        \langle \widehat{u}, \phi\rangle = \langle u, \widehat{\phi}\rangle = \lim_{N \to \infty} \langle \sum_{|k| \leq N} c_k \delta_k, \widehat{\phi}\rangle
+        = \lim_{N \to \infty}\langle \sum_{|k| \leq N} c_k e^{-2\pi i \xi\cdot k}, \phi\rangle,
+    \]
+    and thus the sequence of functions $\sum_{|k| \leq N}c_k e^{-2\pi i \xi\cdot k}$ converges to $\widehat{u}$ 
+    in the weak$^*$ topology on $\mathscr{S}'$.
+
 \end{enumerate}
 
 \end{document}
